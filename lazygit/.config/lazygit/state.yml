@@ -1,0 +1,13 @@
+lastupdatecheck: 0
+recentrepos:
+- /mnt/hddstorage/files/programming/go/streaming
+- /home/nikola/.dotfiles
+- /mnt/hddstorage/files/programming/git/test1
+- /mnt/hddstorage/files/programming/web/microservices/twitchy
+startuppopupversion: 5
+customcommandshistory:
+- q
+- exit
+- w
+- 'q:'
+hidecommandlog: false
