@@ -1,7 +1,9 @@
 lastupdatecheck: 0
 recentrepos:
-- /mnt/hddstorage/files/programming/go/streaming
 - /home/nikola/.dotfiles
+- /mnt/hddstorage/files/programming/go/projects/streaming
+- /mnt/hddstorage/files/programming/go/streaming
+- /mnt/hddstorage/files/BitStarz/projekti/IronMan
 - /mnt/hddstorage/files/programming/git/test1
 - /mnt/hddstorage/files/programming/web/microservices/twitchy
 startuppopupversion: 5

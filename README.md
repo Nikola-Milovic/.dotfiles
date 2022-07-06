@@ -8,7 +8,11 @@ sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emula
 sudo update-alternatives --config x-terminal-emulator
 ```
 
-
-
 ## Keyboard
 https://github.com/ThePrimeagen/keyboards/tree/master/ubuntu
+
+## TODOS 
+[] Improve keybindings  
+[] Add debugging for Golang and non-Golang languages
+[] WebDev setup
+[] Better terminal management

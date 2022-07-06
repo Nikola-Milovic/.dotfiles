@@ -91,10 +91,6 @@ M.nnoremap( "<leader>rn", "<cmd> set rnu! <CR>", opts)
 -- M.nnoremap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- M.nnoremap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
--- Nvim Tree
-M.nnoremap("<C-n>", "<cmd> NvimTreeFocus <CR>")
-M.nnoremap("<leader>e", "<cmd> NvimTreeToggle <CR>")
-
 M.nnoremap("<F11>", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 M.nnoremap("<F12>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 M.vnoremap("//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], opts)
@@ -105,5 +101,8 @@ M.nnoremap(
 )
 M.nnoremap("<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
 M.nnoremap("<C-s>", "<cmd>vsplit<cr>", opts)
+
+-- Current buffers directory open
+M.nnoremap("<C-d>", "<cmd>lcd %:p:h<cr>", opts)
 
 return M

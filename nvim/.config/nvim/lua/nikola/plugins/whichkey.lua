@@ -84,9 +84,9 @@ local nmappings = {
 		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Buffers",
 	},
-	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+	["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
 	["w"] = { "<cmd>w!<CR>", "Save" },
-	["q"] = { "<cmd>q!<CR>", "Quit" },
+	["q"] = { "<cmd>q!<CR>", "Close current buffer" },
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 	["/"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment" },
@@ -137,10 +137,10 @@ local nmappings = {
 		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
 		d = {
 			"<cmd>Gitsigns diffthis HEAD<cr>",
-			"Diff"
+			"Diff",
 		},
 		n = {
-      name = "Neogit",
+			name = "Neogit",
 			s = {
 				"<cmd>lua require 'neogit'.open({kind='split'})  <cr>",
 				"Split neogit",
@@ -150,6 +150,95 @@ local nmappings = {
 				"Neogit fetch all",
 			},
 		},
+	},
+
+	G = {
+		name = "Golang",
+		f = {
+			name = "AutoFill",
+			i = {
+				"<cmd> GoIfErr <CR>",
+				"Add If Error",
+			},
+			s = {
+				"<cmd> GoFillStruct <CR>",
+				"Fill struct",
+			},
+			p = {
+				"<cmd> GoFixPlurals <CR>",
+				"foo (b int, a int) -> foo (b, a int)",
+			},
+			w = {
+				"<cmd> GoFillSwitch <CR>",
+				"Fill switch",
+			},
+		},
+		g = {
+			"<cmd> GoGenerate <CR>",
+			"Generate",
+		},
+		r = {
+			"<cmd> GoRun <CR>",
+			"Run .",
+		},
+		b = {
+			"<cmd> GoBuild <CR>",
+			"Build",
+		},
+		t = {
+			name = "Test",
+			c = {
+				"<cmd> GoTest -c <CR>",
+				"Test current file path",
+			},
+			n = {
+				"<cmd> GoTest -n <CR>",
+				"Test nearest",
+			},
+			f = {
+				"<cmd> GoTest -f <CR>",
+				"Test current file",
+			},
+			p = {
+				"<cmd> GoTest -p <CR>",
+				"Test current package",
+			},
+		},
+		l = {
+			"<cmd> GoLint <CR>",
+			"Lint",
+		},
+		v = {
+			"<cmd> GoVet <CR>",
+			"Vet",
+		},
+		c = {
+			"<cmd> GoCoverage <CR>",
+			"Coverage",
+		},
+		o = {
+			"<cmd> GoCoverage -f  <CR>",
+			"Load coverage file",
+		},
+		C = {
+			"<cmd> GoTermClose <CR>",
+			"Close floating term",
+		},
+    O = {
+      "<cmd>GoPkgOutline <CR>", "Package outline"
+    },
+    d = {
+      name = "Debug",
+      d = {
+      "<cmd>GoDebug <CR>", "Start debugger"
+      },
+      t = {
+      "<cmd>GoBreakToggle <CR>", "Toggle break point"
+      },
+      c = {
+      "<cmd>BreakCondition <CR>", "Conditional break point"
+      }
+    }
 	},
 
 	l = {
@@ -237,9 +326,10 @@ local nmappings = {
 	},
 	t = {
 		name = "Terminal",
-		n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
-		u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
-		t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
+		n = { "<cmd>FloatermNew <cr>", "New floating terminal" },
+		[","] = { "<cmd>FloatermPrev<cr>", "Previous terminal" },
+		["."] = { "<cmd>FloatermNext<cr>", "Next terminal" },
+		t = { "<cmd>FloatermToggle<cr>", "Hide/reopen termianl" },
 		p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
 		f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
 		h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
@@ -247,18 +337,18 @@ local nmappings = {
 	},
 }
 
--- VISUAL MODE 
+-- VISUAL MODE
 local vopts = {
-  mode = "v", -- VISUAL mode
-  prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
+	mode = "v", -- VISUAL mode
+	prefix = "<leader>",
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
 }
 local vmappings = {
-  ["/"] = { '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', "Comment" },
-  s = { "<esc><cmd>'<,'>SnipRun<cr>", "Run range" },
+	["/"] = { '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', "Comment" },
+	s = { "<esc><cmd>'<,'>SnipRun<cr>", "Run range" },
 }
 
 which_key.setup(setup)
