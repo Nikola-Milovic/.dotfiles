@@ -1,15 +1,7 @@
 lastupdatecheck: 0
 recentrepos:
-- /home/nikola/.dotfiles
-- /mnt/hddstorage/files/programming/go/projects/streaming
-- /mnt/hddstorage/files/programming/go/streaming
 - /mnt/hddstorage/files/BitStarz/projekti/IronMan
-- /mnt/hddstorage/files/programming/git/test1
-- /mnt/hddstorage/files/programming/web/microservices/twitchy
+- /mnt/hddstorage/files/programming/go/projects/event-streaming
 startuppopupversion: 5
-customcommandshistory:
-- q
-- exit
-- w
-- 'q:'
+customcommandshistory: []
 hidecommandlog: false

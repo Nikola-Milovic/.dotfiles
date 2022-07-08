@@ -6,7 +6,7 @@ vim.cmd([[
   autocmd!
   autocmd BufWritePre *.go :silent! lua require('go.format').goimport()
   autocmd BufWritePre (InsertLeave?) <buffer> lua vim.lsp.buf.formatting_sync(nil,500)
-augroup end 
+augroup end
 ]])
 
 require("go").setup({

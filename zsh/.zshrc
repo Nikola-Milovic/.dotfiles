@@ -101,7 +101,12 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 function killport() {
-    sudo kill -s STOP $(fuser -n tcp $1 2> /dev/null)
-}
+  pid=$(fuser -n tcp "${1:?parameter missing}" 2>/dev/null)
+  if [[ -z $pid || $pid == *[^[:digit:]]* ]]
+  then
+    echo "Error: Can not find PID for '$1'" 1>&2
+  else
+    sudo kill -s STOP $pid
+fi}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

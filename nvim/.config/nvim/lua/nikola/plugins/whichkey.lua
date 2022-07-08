@@ -84,7 +84,6 @@ local nmappings = {
 		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Buffers",
 	},
-	["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
 	["w"] = { "<cmd>w!<CR>", "Save" },
 	["q"] = { "<cmd>q!<CR>", "Close current buffer" },
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
@@ -100,6 +99,7 @@ local nmappings = {
 		S = { "<cmd>PackerStatus<cr>", "Status" },
 		u = { "<cmd>PackerUpdate<cr>", "Update" },
 	},
+
 	f = {
 		name = "Find",
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
@@ -108,12 +108,12 @@ local nmappings = {
 			"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 			"Find files",
 		},
-		t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
+		t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text in directory" },
 		h = { "<cmd>Telescope help_tags<cr>", "Help" },
 		i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Media" },
 		l = { "<cmd>Telescope resume<cr>", "Last Search" },
 		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-		r = { "<cmd>Telescope oldfiles<cr>", "Recent File" },
+		r ={"<cmd>lua require('telescope.builtin').lsp_references()<CR>", "References"}, 
 		R = { "<cmd>Telescope registers<cr>", "Registers" },
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 		C = { "<cmd>Telescope commands<cr>", "Commands" },
@@ -139,24 +139,13 @@ local nmappings = {
 			"<cmd>Gitsigns diffthis HEAD<cr>",
 			"Diff",
 		},
-		n = {
-			name = "Neogit",
-			s = {
-				"<cmd>lua require 'neogit'.open({kind='split'})  <cr>",
-				"Split neogit",
-			},
-			a = {
-				"<cmd>!git fetch --all<CR>",
-				"Neogit fetch all",
-			},
-		},
 	},
 
 	G = {
 		name = "Golang",
 		f = {
 			name = "AutoFill",
-			i = {
+			e = {
 				"<cmd> GoIfErr <CR>",
 				"Add If Error",
 			},
@@ -240,6 +229,17 @@ local nmappings = {
       }
     }
 	},
+  -- quit
+    q = {
+        name = "+quit",
+        w = {"<cmd>q<CR>", "window"},
+        W = {"<cmd>wincmd o<CR>", "all other windows"},
+        b = {"<cmd>Bdelete<CR>", "buffer"},
+        B = {"<cmd>BufOnly!<CR>", "all other buffers"},
+        t = {"<cmd>tabclose<CR>", "tab"},
+        T = {"<cmd>tabonly<CR>", "all other tabs"},
+        q = {"<cmd>cclose<CR>", "quickfix list"},
+    },
 
 	l = {
 		name = "LSP",

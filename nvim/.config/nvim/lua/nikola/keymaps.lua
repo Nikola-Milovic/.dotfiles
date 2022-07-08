@@ -26,7 +26,7 @@ M.inoremap = bind("i")
 
 
 --Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
+-- keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -91,15 +91,10 @@ M.nnoremap( "<leader>rn", "<cmd> set rnu! <CR>", opts)
 -- M.nnoremap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- M.nnoremap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
-M.nnoremap("<F11>", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-M.nnoremap("<F12>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+-- Explorer
+M.nnoremap("<C-n>", "<cmd>NvimTreeToggle<CR>", opts)
+
 M.vnoremap("//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], opts)
-M.nnoremap(
-  "<C-p>",
-  "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-  opts
-)
-M.nnoremap("<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
 M.nnoremap("<C-s>", "<cmd>vsplit<cr>", opts)
 
 -- Current buffers directory open

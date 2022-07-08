@@ -14,7 +14,6 @@ require("nikola.plugins.alpha")
 require("nikola.plugins.whichkey")
 require("nikola.plugins.cmp")
 require("nikola.plugins.go")
-require("nikola.plugins.neogit")
 require("nikola.plugins.spectre")
 require("nikola.plugins.dap")
 
@@ -126,7 +125,6 @@ return packer.startup(function(use)
 
 	-- Git
 	use("lewis6991/gitsigns.nvim")
-	use("TimUntersberger/neogit")
 	use("kdheepak/lazygit.nvim")
 
 	-- random

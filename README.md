@@ -16,3 +16,4 @@ https://github.com/ThePrimeagen/keyboards/tree/master/ubuntu
 [] Add debugging for Golang and non-Golang languages
 [] WebDev setup
 [] Better terminal management
+[] < and > are not staying in shift mode
