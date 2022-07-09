@@ -92,11 +92,50 @@ return packer.startup(function(use)
 	use("L3MON4D3/LuaSnip") --snippet engine
 	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
-	-- LSP
-	use("neovim/nvim-lspconfig") -- enable LSP
-	use("williamboman/nvim-lsp-installer") -- simple to use language server installer
-	use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
-	use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+  -- LSP
+    use {
+      "neovim/nvim-lspconfig",
+      opt = true,
+      event = { "BufReadPre" },
+      wants = {
+        "nvim-lsp-installer",
+        "cmp-nvim-lsp",
+        "lua-dev.nvim",
+        "vim-illuminate",
+        "null-ls.nvim",
+        "schemastore.nvim",
+        "typescript.nvim",
+      },
+      config = function()
+        require("nikola.lsp").setup()
+      end,
+      requires = {
+        "williamboman/nvim-lsp-installer",
+        "folke/lua-dev.nvim",
+        "RRethy/vim-illuminate",
+        "jose-elias-alvarez/null-ls.nvim",
+        {
+          "j-hui/fidget.nvim",
+          config = function()
+            require("fidget").setup {}
+          end,
+        },
+        "b0o/schemastore.nvim",
+        "jose-elias-alvarez/typescript.nvim",
+      },
+    }
+
+    -- trouble.nvim
+    use {
+      "folke/trouble.nvim",
+      wants = "nvim-web-devicons",
+      cmd = { "TroubleToggle", "Trouble" },
+      config = function()
+        require("trouble").setup {
+          use_diagnostic_signs = true,
+        }
+      end,
+    }
 
 	-- languages
 	use({

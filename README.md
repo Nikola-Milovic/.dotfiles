@@ -17,3 +17,5 @@ https://github.com/ThePrimeagen/keyboards/tree/master/ubuntu
 [] WebDev setup
 [] Better terminal management
 [] < and > are not staying in shift mode
+[] zsh killport 
+
