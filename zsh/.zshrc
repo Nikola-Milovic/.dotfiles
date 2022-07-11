@@ -1,4 +1,4 @@
-# If you come from bash you might have to change your $PATH.
+## If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -101,12 +101,55 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 function killport() {
-  pid=$(fuser -n tcp "${1:?parameter missing}" 2>/dev/null)
-  if [[ -z $pid || $pid == *[^[:digit:]]* ]]
-  then
-    echo "Error: Can not find PID for '$1'" 1>&2
-  else
-    sudo kill -s STOP $pid
-fi}
+  sudo kill `sudo lsof -t -i:$1` 
+}
+
+#ZSH_PROFILE
+
+export XDG_CONFIG_HOME=$HOME/.config
+VIM="nvim"
+
+PERSONAL=$XDG_CONFIG_HOME/personal
+source $PERSONAL/env
+for i in `find -L $PERSONAL`; do
+   source $i
+done
+export GOPATH=$HOME/go
+export GIT_EDITOR=$VIM
+export DOTFILES=$HOME/.dotfiles
+
+addToPathFront $HOME/.local/.npm-global/bin
+addToPathFront $HOME/.local/bin
+addToPathFront $HOME/.local/n/bin/
+addToPathFront $HOME/.local/go/bin
+addToPathFront $HOME/go/bin
+
+# Where should I put you?
+bindkey -s ^f "tmux-sessionizer\n"
+
+catr() {
+    tail -n "+$1" $3 | head -n "$(($2 - $1 + 1))"
+}
+
+validateYaml() {
+    python -c 'import yaml,sys;yaml.safe_load(sys.stdin)' < $1
+}
+
+goWork() {
+    cp ~/.npm_work_rc ~/.npmrc
+}
+
+goPersonal() {
+    cp ~/.npm_personal_rc ~/.npmrc
+}
+
+cat1Line() {
+    cat $1 | tr -d "\n"
+}
+
+eslintify() {
+    cat $1 > /tmp/file_to_eslint
+    npx eslint
+}
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
