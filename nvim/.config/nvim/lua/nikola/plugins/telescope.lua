@@ -85,9 +85,9 @@ telescope.setup({
 		},
 	},
 	pickers = {
-    find_files = {
-      hidden = true
-    }
+		find_files = {
+			hidden = true,
+		},
 		-- Default configuration for builtin pickers goes here:
 		-- picker_name = {
 		--   picker_config_key = value,
@@ -104,3 +104,6 @@ telescope.setup({
 		-- please take a look at the readme of the extension you want to configure
 	},
 })
+
+telescope.load_extension("ui-select")
+telescope.load_extension("git_worktree")

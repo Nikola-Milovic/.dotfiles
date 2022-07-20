@@ -79,17 +79,15 @@ local nopts = {
 }
 
 local nmappings = {
-	["a"] = { "<cmd>Alpha<cr>", "Alpha" },
+	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["b"] = {
 		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Buffers",
 	},
 	["w"] = { "<cmd>w!<CR>", "Save" },
-	["q"] = { "<cmd>q!<CR>", "Close current buffer" },
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-	["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
 	["/"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment" },
-	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
+	["P"] = { "<cmd>lua require('telescope').ext)<cr>", "Projects" },
 
 	p = {
 		name = "Packer",
@@ -104,6 +102,10 @@ local nmappings = {
 		name = "Find",
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
+		H = {
+			"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+			"Find files",
+		},
 		f = {
 			"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 			"Find files",
@@ -111,15 +113,20 @@ local nmappings = {
 		t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text in directory" },
 		h = { "<cmd>Telescope help_tags<cr>", "Help" },
 		i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Media" },
-		l = { "<cmd>Telescope resume<cr>", "Last Search" },
+		-- l = { "<cmd>Telescope resume<cr>", "Last Search" },
 		M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-		r ={"<cmd>lua require('telescope.builtin').lsp_references()<CR>", "References"}, 
+		g = {
+			function()
+				require("telescope.builtin").grep_string({ search = vim.fn.input("Grep For > ") })
+			end,
+			"Grep for",
+		},
 		R = { "<cmd>Telescope registers<cr>", "Registers" },
 		k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
 		C = { "<cmd>Telescope commands<cr>", "Commands" },
 	},
 
-	h = {
+	g = {
 		name = "Git",
 		g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
 		j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
@@ -136,6 +143,14 @@ local nmappings = {
 		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
+		m = {
+			"<cmd> lua require('telescope').extensions.git_worktree.create_git_worktree()<cr>",
+			"Create worktrees",
+		},
+		w = {
+			"<cmd> lua require('telescope').extensions.git_worktree.git_worktrees()<cr>",
+			"Worktrees",
+		},
 		d = {
 			"<cmd>Gitsigns diffthis HEAD<cr>",
 			"Diff",
@@ -214,34 +229,39 @@ local nmappings = {
 			"<cmd> GoTermClose <CR>",
 			"Close floating term",
 		},
-    O = {
-      "<cmd>GoPkgOutline <CR>", "Package outline"
-    },
-    d = {
-      name = "Debug",
-      d = {
-      "<cmd>GoDebug <CR>", "Start debugger"
-      },
-      t = {
-      "<cmd>GoBreakToggle <CR>", "Toggle break point"
-      },
-      c = {
-      "<cmd>BreakCondition <CR>", "Conditional break point"
-      }
-    }
+		O = {
+			"<cmd>GoPkgOutline <CR>",
+			"Package outline",
+		},
+		d = {
+			name = "Debug",
+			d = {
+				"<cmd>GoDebug <CR>",
+				"Start debugger",
+			},
+			t = {
+				"<cmd>GoBreakToggle <CR>",
+				"Toggle break point",
+			},
+			c = {
+				"<cmd>BreakCondition <CR>",
+				"Conditional break point",
+			},
+		},
 	},
-  -- quit
-    q = {
-        name = "+quit",
-        w = {"<cmd>q<CR>", "window"},
-        W = {"<cmd>wincmd o<CR>", "all other windows"},
-        b = {"<cmd>Bdelete<CR>", "buffer"},
-        B = {"<cmd>BufOnly!<CR>", "all other buffers"},
-        t = {"<cmd>tabclose<CR>", "tab"},
-        T = {"<cmd>tabonly<CR>", "all other tabs"},
-        q = {"<cmd>cclose<CR>", "quickfix list"},
-    },
-	
+	-- quit
+	q = {
+		--TODO BufOnly
+		name = "+quit",
+		w = { "<cmd>q<CR>", "window" },
+		W = { "<cmd>wincmd o<CR>", "all other windows" },
+		b = { "<cmd>Bdelete<CR>", "buffer" },
+		B = { "<cmd>BufOnly!<CR>", "all other buffers" },
+		t = { "<cmd>tabclose<CR>", "tab" },
+		T = { "<cmd>tabonly<CR>", "all other tabs" },
+		q = { "<cmd>cclose<CR>", "quickfix list" },
+	},
+
 	s = {
 		name = "Split",
 		s = { "<cmd>split<cr>", "HSplit" },

@@ -15,6 +15,7 @@ local function keymappings(client, bufnr)
 	keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 	keymap("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
 	keymap("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
+	-- TODO conflict
 	keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 
 	-- Whichkey
@@ -22,7 +23,7 @@ local function keymappings(client, bufnr)
 		l = {
 			name = "LSP",
 			R = { "<cmd>Trouble lsp_references<cr>", "Trouble References" },
-			a = { "<cmd>Telescope lsp_code_actions<CR>", "Code Action" },
+			a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
 			d = { "<cmd>Telescope diagnostics<CR>", "Diagnostics" },
 			f = { "<cmd>Lspsaga lsp_finder<CR>", "Finder" },
 			i = { "<cmd>LspInfo<CR>", "Lsp Info" },
@@ -33,9 +34,9 @@ local function keymappings(client, bufnr)
 		},
 		r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
 	}
-  if client.server_capabilities.documentFormattingProvider then
-    keymap_leader.l.F = { "<cmd>lua vim.lsp.buf.format({async = true})<CR>", "Format Document" }
-  end
+	if client.server_capabilities.documentFormattingProvider then
+		keymap_leader.l.F = { "<cmd>lua vim.lsp.buf.format({async = true})<CR>", "Format Document" }
+	end
 
 	local keymap_g = {
 		name = "Goto",

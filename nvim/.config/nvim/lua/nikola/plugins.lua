@@ -3,7 +3,6 @@ require("nikola.plugins.treesitter")
 require("nikola.plugins.autopairs")
 require("nikola.plugins.comment")
 require("nikola.plugins.gitsigns")
-require("nikola.plugins.nvim-tree")
 require("nikola.plugins.bufferline")
 require("nikola.plugins.lualine")
 require("nikola.plugins.toggleterm")
@@ -14,8 +13,9 @@ require("nikola.plugins.alpha")
 require("nikola.plugins.whichkey")
 require("nikola.plugins.cmp")
 require("nikola.plugins.go")
-require("nikola.plugins.spectre")
 require("nikola.plugins.dap")
+require("nikola.plugins.harpoon")
+require("nikola.plugins.worktree")
 
 local fn = vim.fn
 
@@ -63,8 +63,6 @@ return packer.startup(function(use)
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
 	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
 	use("numToStr/Comment.nvim") -- Easily comment stuff
-	use("kyazdani42/nvim-web-devicons")
-	use("kyazdani42/nvim-tree.lua")
 	use("akinsho/bufferline.nvim")
 	use("moll/vim-bbye")
 	use("nvim-lualine/lualine.nvim")
@@ -75,6 +73,7 @@ return packer.startup(function(use)
 	use("goolord/alpha-nvim")
 	use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
 	use("folke/which-key.nvim")
+	use("ThePrimeagen/harpoon")
 
 	-- Colorschemes
 	use("gruvbox-community/gruvbox")
@@ -92,50 +91,63 @@ return packer.startup(function(use)
 	use("L3MON4D3/LuaSnip") --snippet engine
 	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
 
-  -- LSP
-    use {
-      "neovim/nvim-lspconfig",
-      opt = true,
-      event = { "BufReadPre" },
-      wants = {
-        "nvim-lsp-installer",
-        "cmp-nvim-lsp",
-        "lua-dev.nvim",
-        "vim-illuminate",
-        "null-ls.nvim",
-        "schemastore.nvim",
-        "typescript.nvim",
-      },
-      config = function()
-        require("nikola.lsp").setup()
-      end,
-      requires = {
-        "williamboman/nvim-lsp-installer",
-        "folke/lua-dev.nvim",
-        "RRethy/vim-illuminate",
-        "jose-elias-alvarez/null-ls.nvim",
-        {
-          "j-hui/fidget.nvim",
-          config = function()
-            require("fidget").setup {}
-          end,
-        },
-        "b0o/schemastore.nvim",
-        "jose-elias-alvarez/typescript.nvim",
-      },
-    }
+	-- LSP
+	use({
+		"neovim/nvim-lspconfig",
+		opt = true,
+		event = { "BufReadPre" },
+		wants = {
+			"nvim-lsp-installer",
+			"cmp-nvim-lsp",
+			"lua-dev.nvim",
+			"vim-illuminate",
+			"null-ls.nvim",
+			"schemastore.nvim",
+			"typescript.nvim",
+		},
+		config = function()
+			require("nikola.lsp").setup()
+		end,
+		requires = {
+			"williamboman/nvim-lsp-installer",
+			"folke/lua-dev.nvim",
+			"RRethy/vim-illuminate",
+			"jose-elias-alvarez/null-ls.nvim",
+			{
+				"j-hui/fidget.nvim",
+				config = function()
+					require("fidget").setup({})
+				end,
+			},
+			"b0o/schemastore.nvim",
+			"jose-elias-alvarez/typescript.nvim",
+		},
+	})
 
-    -- trouble.nvim
-    use {
-      "folke/trouble.nvim",
-      wants = "nvim-web-devicons",
-      cmd = { "TroubleToggle", "Trouble" },
-      config = function()
-        require("trouble").setup {
-          use_diagnostic_signs = true,
-        }
-      end,
-    }
+	-- nvim-tree
+	use("kyazdani42/nvim-web-devicons")
+	use({
+		"kyazdani42/nvim-tree.lua",
+		opt = true,
+		wants = "nvim-web-devicons",
+		cmd = { "NvimTreeToggle", "NvimTreeClose" },
+		-- module = "nvim-tree",
+		config = function()
+			require("nikola.plugins.nvim-tree").setup()
+		end,
+	})
+
+	-- trouble.nvim
+	use({
+		"folke/trouble.nvim",
+		wants = "nvim-web-devicons",
+		cmd = { "TroubleToggle", "Trouble" },
+		config = function()
+			require("trouble").setup({
+				use_diagnostic_signs = true,
+			})
+		end,
+	})
 
 	-- languages
 	use({
@@ -152,7 +164,12 @@ return packer.startup(function(use)
 	use("theHamsta/nvim-dap-virtual-text")
 
 	-- Telescope
-	use("nvim-telescope/telescope.nvim")
+	use({
+		"nvim-telescope/telescope.nvim",
+		requires = {
+			"nvim-telescope/telescope-ui-select.nvim",
+		},
+	})
 
 	-- Treesitter
 	use({
@@ -165,6 +182,7 @@ return packer.startup(function(use)
 	-- Git
 	use("lewis6991/gitsigns.nvim")
 	use("kdheepak/lazygit.nvim")
+	use("ThePrimeagen/git-worktree.nvim")
 
 	-- random
 	use("windwp/nvim-spectre") -- search and replace
