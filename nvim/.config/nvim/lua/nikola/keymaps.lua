@@ -51,8 +51,8 @@ M.nnoremap("<S-l>", ":bnext<CR>", opts)
 M.nnoremap("<S-h>", ":bprevious<CR>", opts)
 
 -- Move text up and down
-M.nnoremap("<A-j>", "<Esc>:m .+1<CR>==gi", opts)
-M.nnoremap("<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+M.nnoremap("<A-Down>", "<Esc>:m .+1<CR>==gi", opts)
+M.nnoremap("<A-Up>", "<Esc>:m .-2<CR>==gi", opts)
 
 -- I sert --
 -- Press jk fast to enter
@@ -65,16 +65,29 @@ M.vnoremap("<", "<gv", opts)
 M.vnoremap(">", ">gv", opts)
 
 -- Move text up and down
-M.vnoremap("<A-j>", ":m .+1<CR>==", opts)
-M.vnoremap("<A-k>", ":m .-2<CR>==", opts)
+M.vnoremap("<A-Down>", ":m .+1<CR>==", opts)
+M.vnoremap("<A-Up>", ":m .-2<CR>==", opts)
+
+-- Prime
+
+-- next greatest remap ever : asbjornHaland
+M.vnoremap("<leader>y", "\"+y", opts)
+M.nnoremap("<leader>y", "\"+y", opts)
 M.vnoremap("p", '"_dP', opts)
+M.nnoremap("Q", "<nop>", opts)
+M.nnoremap("Y", "yg$", opts)
+M.nnoremap("n", "nzzzv", opts)
+M.nnoremap("N", "Nzzzv", opts)
+M.nnoremap("J", "mzJ`z", opts)
+M.nnoremap("<C-d>", "<C-d>zz", opts)
+M.nnoremap("<C-u>", "<C-u>zz", opts)
 
 -- Visual Block --
 -- Move text up and down
-M.xnoremap("J", ":move '>+1<CR>gv-gv", opts)
-M.xnoremap("K", ":move '<-2<CR>gv-gv", opts)
-M.xnoremap("<A-j>", ":move '>+1<CR>gv-gv", opts)
-M.xnoremap("<A-k>", ":move '<-2<CR>gv-gv", opts)
+M.xnoremap("Down", ":move '>+1<CR>gv-gv", opts)
+M.xnoremap("Up", ":move '<-2<CR>gv-gv", opts)
+M.xnoremap("<A-Down>", ":move '>+1<CR>gv-gv", opts)
+M.xnoremap("<A-Up>", ":move '<-2<CR>gv-gv", opts)
 
 -- line numbers
 M.nnoremap("<leader>n", "<cmd> set nu! <CR>", opts)
@@ -92,5 +105,10 @@ M.nnoremap("<C-s>", "<cmd>vsplit<cr>", opts)
 
 -- Current buffers directory open
 M.nnoremap("<C-d>", "<cmd>lcd %:p:h<cr>", opts)
+
+M.nnoremap("<C-m>", "<cmd>pop<cr>", opts)
+
+M.nnoremap("<leader>eo", "<cmd>NvimTreeToggle<cr>", opts)
+M.nnoremap("<leader>e", "<cmd>NvimTreeFocus<cr>", opts)
 
 return M

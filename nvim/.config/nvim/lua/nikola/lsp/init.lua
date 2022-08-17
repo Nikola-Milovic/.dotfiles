@@ -3,6 +3,30 @@ local M = {}
 -- local util = require "lspconfig.util"
 
 local servers = {
+	--[[ rust_analyzer = { ]]
+	--[[ 	settings = { ]]
+	--[[ 		["rust-analyzer"] = { ]]
+	--[[ 			assist = { ]]
+	--[[ 				importEnforceGranularity = true, ]]
+	--[[ 				importPrefix = "crate" ]]
+	--[[ 			}, ]]
+	--[[ 			cargo = { ]]
+	--[[ 				allFeatures = true ]]
+	--[[ 			}, ]]
+	--[[ 			checkOnSave = { ]]
+	--[[ 				-- default: `cargo check` ]]
+	--[[ 				command = "clippy" ]]
+	--[[ 			}, ]]
+	--[[ 		}, ]]
+	--[[ 		inlayHints = { ]]
+	--[[ 			lifetimeElisionHints = { ]]
+	--[[ 				enable = true, ]]
+	--[[ 				useParameterNames = true ]]
+	--[[ 			}, ]]
+	--[[ 		}, ]]
+	--[[ 	} ]]
+	--[[ }, ]]
+	gdscript = {},
 	gopls = {
 		settings = {
 			gopls = {
@@ -20,6 +44,7 @@ local servers = {
 		settings = {
 			json = {
 				schemas = require("schemastore").json.schemas(),
+				validate = { enable = true },
 			},
 		},
 	},
@@ -60,6 +85,7 @@ local servers = {
 	tsserver = { disable_formatting = true },
 	vimls = {},
 	tailwindcss = {},
+	svelte = {},
 	-- solang = {},
 	yamlls = {
 		schemastore = {
@@ -68,6 +94,7 @@ local servers = {
 	},
 	jdtls = {},
 	dockerls = {},
+	sqlls = {},
 	graphql = {},
 	bashls = {},
 	omnisharp = {},

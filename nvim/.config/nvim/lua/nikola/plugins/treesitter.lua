@@ -2,6 +2,19 @@ local status_ok, configs = pcall(require, "nvim-treesitter.configs")
 if not status_ok then
 	return
 end
+-- TODO switch to new syntax https://www.youtube.com/watch?v=9gUatBHuXE0 
+-- vim.api.nvim_create_autocmd("BufRead,BufEnter", {
+--   
+-- })
+
+local enable = true
+
+vim.cmd([[
+  augroup _astro
+  autocmd!
+  autocmd BufRead,BufEnter *.astro set filetype=astro 
+  augroup end
+]])
 
 configs.setup({
 	ensure_installed = "all", -- "all" (parsers with maintainers), or a list of languages
@@ -37,7 +50,7 @@ configs.setup({
 			enable = enable,
 			peek_definition_code = {
 				["DF"] = "@function.outer",
-				["DF"] = "@class.outer",
+				["DC"] = "@class.outer",
 			},
 		},
 		keymaps = {

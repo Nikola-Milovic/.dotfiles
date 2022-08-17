@@ -16,6 +16,7 @@ require("nikola.plugins.go")
 require("nikola.plugins.dap")
 require("nikola.plugins.harpoon")
 require("nikola.plugins.worktree")
+require("nikola.plugins.package-json")
 
 local fn = vim.fn
 
@@ -86,6 +87,7 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 	use("hrsh7th/cmp-nvim-lsp")
+	use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
 
 	-- snippets
 	use("L3MON4D3/LuaSnip") --snippet engine
@@ -128,9 +130,9 @@ return packer.startup(function(use)
 	use("kyazdani42/nvim-web-devicons")
 	use({
 		"kyazdani42/nvim-tree.lua",
-		opt = true,
+		--[[ opt = true, ]]
 		wants = "nvim-web-devicons",
-		cmd = { "NvimTreeToggle", "NvimTreeClose" },
+		--[[ cmd = { "NvimTreeToggle", "NvimTreeClose", "NvimTreeFocus" }, ]]
 		-- module = "nvim-tree",
 		config = function()
 			require("nikola.plugins.nvim-tree").setup()
@@ -141,7 +143,7 @@ return packer.startup(function(use)
 	use({
 		"folke/trouble.nvim",
 		wants = "nvim-web-devicons",
-		cmd = { "TroubleToggle", "Trouble" },
+		-- cmd = { "TroubleToggle", "Trouble" },
 		config = function()
 			require("trouble").setup({
 				use_diagnostic_signs = true,
@@ -156,6 +158,9 @@ return packer.startup(function(use)
 	})
 	use("ray-x/guihua.lua")
 	use("ray-x/sad.nvim")
+
+	-- rust 
+	use("simrat39/rust-tools.nvim")
 
 	-- Debug
 	use("voldikss/vim-floaterm")
@@ -185,8 +190,10 @@ return packer.startup(function(use)
 	use("ThePrimeagen/git-worktree.nvim")
 
 	-- random
-	use("windwp/nvim-spectre") -- search and replace
-
+	use({
+		"vuki656/package-info.nvim",
+		requires = "MunifTanjim/nui.nvim",
+	})
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then

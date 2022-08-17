@@ -79,24 +79,14 @@ local nopts = {
 }
 
 local nmappings = {
-	["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
 	["b"] = {
 		"<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
 		"Buffers",
 	},
 	["w"] = { "<cmd>w!<CR>", "Save" },
 	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-	["/"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment" },
+	["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
 	["P"] = { "<cmd>lua require('telescope').ext)<cr>", "Projects" },
-
-	p = {
-		name = "Packer",
-		c = { "<cmd>PackerCompile<cr>", "Compile" },
-		i = { "<cmd>PackerInstall<cr>", "Install" },
-		s = { "<cmd>PackerSync<cr>", "Sync" },
-		S = { "<cmd>PackerStatus<cr>", "Status" },
-		u = { "<cmd>PackerUpdate<cr>", "Update" },
-	},
 
 	f = {
 		name = "Find",
@@ -291,7 +281,7 @@ local vopts = {
 	nowait = true, -- use `nowait` when creating keymaps
 }
 local vmappings = {
-	["/"] = { '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', "Comment" },
+	["/"] = { '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>', "Comment" },
 	s = { "<esc><cmd>'<,'>SnipRun<cr>", "Run range" },
 }
 
