@@ -1,0 +1,39 @@
+# # show last updated time
+air_quality {
+    format = 'AQI {aqi} - {category}'
+    format_datetime = {'time': '%-I%P'}
+    auth_token='ea40c44f18023420eac0a5e014d693d1d396d587'
+    location='@8093'
+}
+
+clock {
+    format = "{Europe/Belgrade}"
+    format_time = "{name} %H:%M:%S %d-%m-%Y" 
+}
+
+pomodoro {
+    format = "{mmss} {bar}"
+}
+
+net_rate {
+    format = "D: {down}  U: {up}"
+    format_no_connection = "no conn"
+}
+
+volume_status {
+    button_up = 4
+    button_down = 5
+    button_mute = 2
+    command = pactl
+}
+
+vpn_status {}
+
+order += "pomodoro"
+order += "vpn_status"
+order += "air_quality"
+order += "net_rate"
+order += "volume_status"
+order += "clock"
+
+

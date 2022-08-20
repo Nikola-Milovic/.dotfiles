@@ -37,13 +37,12 @@ for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4
 floating_modifier $mod
 
 # start a terminal
-# bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+t exec i3-sensible-terminal
 
 # kill focused window
 # bindsym $mod+space exec "/home/theprimeagen/dotfiles/awesome-streamerrc/ThePrimeagen/tmux2"
 
-bindsym $mod+Shift+q kill
+bindsym $mod+Ctrl+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
@@ -53,17 +52,15 @@ bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+# move focused workspace between monitors
+bindsym $mod+Ctrl+greater move workspace to output right
+bindsym $mod+Ctrl+less move workspace to output left
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -99,73 +96,72 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+  
+#Workplaces  
+set $workspace1 "1: IDE" 
+set $workspace2 "2: terminals" 
+set $workspace3 "3" 
+set $workspace4 "4:  " 
+set $workspace5 "5: joplin" 
+set $workspace6 "6" 
+set $workspace7 "7" 
+set $workspace8 "8" 
+set $workspace9 "9: firefox"  
+set $workspace10 "10: discord"  
 
-# # switch to workspace
-# bindsym $mod+1 workspace 1
-# bindsym $mod+2 workspace 2
-# bindsym $mod+3 workspace 3
-# bindsym $mod+4 workspace 4
-# bindsym $mod+5 workspace 5
-# bindsym $mod+6 workspace 6
-# bindsym $mod+7 workspace 7
-# bindsym $mod+8 workspace 8
-# bindsym $mod+9 workspace 9
-# bindsym $mod+0 workspace 10
-#
-# # move focused container to workspace
-# bindsym $mod+Shift+1 move container to workspace 1
-# bindsym $mod+Shift+2 move container to workspace 2
-# bindsym $mod+Shift+3 move container to workspace 3
-# bindsym $mod+Shift+4 move container to workspace 4
-# bindsym $mod+Shift+5 move container to workspace 5
-# bindsym $mod+Shift+6 move container to workspace 6
-# bindsym $mod+Shift+7 move container to workspace 7
-# bindsym $mod+Shift+8 move container to workspace 8
-# bindsym $mod+Shift+9 move container to workspace 9
-# bindsym $mod+Shift+0 move container to workspace 10
+assign [class="Chromium"] $workspace4
+assign [class="Google Chrome"] $workspace4 
+assign [class="firefox"] $workspace9 
+assign [class="discord"] $workspace10
+assign [class="Joplin"] $workspace5
 
+set $monitorPrimary HDMI-A-0 
+set $monitorSecondary DisplayPort-0 
+workspace $workspace1 output $monitorPrimary
+workspace $workspace2 output $monitorSecondary
 # NOTE: This is some real tom fooliery with my keyboard layout
 #  ZMK will send a shift mod with the items that require a shift key on a
 #  regular keyboard.  so though it defines a keycode as "LEFT_BRACE" it really
 #  is shift_L + LEFT_BRACE.  So you will notice the odd peppering of shifts and
 #  non shifts
 # switch to workspace
-bindsym $mod+Shift+plus workspace 1
-bindsym $mod+bracketleft workspace 2
-bindsym $mod+Shift+braceleft workspace 3
-bindsym $mod+Shift+parenleft workspace 4
-bindsym $mod+Shift+ampersand workspace 5
-bindsym $mod+equal workspace 6
-bindsym $mod+Shift+parenright workspace 7
-bindsym $mod+Shift+braceright workspace 8
-bindsym $mod+bracketright workspace 9
-bindsym $mod+Shift+asterisk workspace 10
+#SWITCH TO CTRL
+bindsym $mod+Ctrl+plus workspace $workspace1  
+bindsym $mod+Ctrl+bracketleft workspace $workspace2  
+bindsym $mod+Ctrl+braceleft workspace $workspace3
+bindsym $mod+Ctrl+parenleft workspace $workspace4 
+bindsym $mod+Ctrl+ampersand workspace $workspace5 
+bindsym $mod+equal workspace $workspace6  
+bindsym $mod+Ctrl+parenright workspace $workspace7   
+bindsym $mod+Ctrl+braceright workspace $workspace8    
+bindsym $mod+bracketright workspace $workspace9 
+bindsym $mod+Ctrl+asterisk workspace $workspace10
 
 # NOTE: since i have to press shift to get these symbols
 # move focused container to workspace.
 #  I wanted to use this as my method of moving spaces around, but it doesn't
 #  seem to work, but when i provide the keycode + shift it seems to work well.
-# bindsym $mod+Shift+kp_1 move container to workspace 1
-# bindsym $mod+Shift+kp_2 move container to workspace 2
-# bindsym $mod+Shift+kp_3 move container to workspace 3
-# bindsym $mod+Shift+kp_4 move container to workspace 4
-# bindsym $mod+Shift+kp_5 move container to workspace 5
-# bindsym $mod+Shift+kp_6 move container to workspace 6
-# bindsym $mod+Shift+kp_7 move container to workspace 7
-# bindsym $mod+Shift+kp_8 move container to workspace 8
-# bindsym $mod+Shift+kp_9 move container to workspace 9
-# bindsym $mod+Shift+kp_0 move container to workspace 10
-
-bindcode $mod+Shift+87 move container to workspace 1
-bindcode $mod+Shift+88 move container to workspace 2
-bindcode $mod+Shift+89 move container to workspace 3
-bindcode $mod+Shift+83 move container to workspace 4
-bindcode $mod+Shift+84 move container to workspace 5
-bindcode $mod+Shift+85 move container to workspace 6
-bindcode $mod+Shift+79 move container to workspace 7
-bindcode $mod+Shift+80 move container to workspace 8
-bindcode $mod+Shift+81 move container to workspace 9
-bindcode $mod+Shift+90 move container to workspace 10
+bindsym $mod+Shift+plus move container to workspace $workspace1   
+bindsym $mod+Shift+bracketleft move container to workspace $workspace2
+bindsym $mod+Shift+braceleft move container to workspace $workspace3
+bindsym $mod+Shift+parenleft move container to workspace $workspace4
+bindsym $mod+Shift+ampersand move container to workspace $workspace5
+bindsym $mod+Shift+equal move container to workspace $workspace6
+bindsym $mod+Shift+parenright move container to workspace $workspace7
+bindsym $mod+Shift+braceright  move container to workspace $workspace8
+bindsym $mod+Shift+bracketright move container to workspace $workspace9
+bindsym $mod+Shift+asterisk move container to workspace $workspace10
+#
+# bindcode $mod+Shift+87 move container to workspace $workspace1  
+# bindcode $mod+Shift+88 move container to workspace $workspace2
+# bindcode $mod+Shift+89 move container to workspace $workspace3
+# bindcode $mod+Shift+83 move container to workspace $workspace4
+# bindcode $mod+Shift+84 move container to workspace $workspace5
+# bindcode $mod+Shift+85 move container to workspace $workspace6
+# bindcode $mod+Shift+79 move container to workspace $workspace7
+# bindcode $mod+Shift+80 move container to workspace $workspace8
+# bindcode $mod+Shift+81 move container to workspace $workspace9
+# bindcode $mod+Shift+90 move container to workspace $workspace10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -203,15 +199,63 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
-        tray_output primary
+        status_command py3status
 }
 
 # ------------------------------------------
 # CUSTOM SETUP START
 # ------------------------------------------
+set $HOME ~/.config
+exec --no-startup-id $HOME/i3/startup.sh 2  
+exec --no-startup-id setxkbmap real-prog-dvorak
+exec --no-startup-id caffeine-indicator
+# Suspend
+bindsym $mod+Shift+period exec systemctl suspend
 
-exec --no-startup-id xrandr --output HDMI-A-0 --auto --left-of DisplayPort-0
+bindsym $mod+Ctrl+b exec chromium
+bindsym $mod+Ctrl+m exec google-chrome
+bindsym $mod+Ctrl+v exec nautilus
+bindsym $mod+Ctrl+w exec gnome-control-center
+bindsym $mod+Ctrl+j exec Joplin
+# Redshift (https://confluence.jaytaala.com/display/TKB/Redshift+on+i3wm) 
 
-workspace 1 output DisplayPort-0
-workspace 2 output DVI-1-0
+bindsym $mod+Ctrl+s mode "$mode_redshift"
+set $mode_redshift Set colour temperature: (a)uto, (r)eset, (1)500K, (2)500K, (3)000K, (4)000K, (5)000K
+set $kill_redshift pkill -9 redshift;
+mode "$mode_redshift" {
+    bindsym a exec --no-startup-id "$kill_redshift redshift -P -t 5000:4000", mode "default"
+    bindsym r exec --no-startup-id "$kill_redshift redshift -x", mode "default"
+    bindsym 1 exec --no-startup-id "$kill_redshift redshift -P -O 1500", mode "default"
+    bindsym 2 exec --no-startup-id "$kill_redshift redshift -P -O 2500", mode "default"
+    bindsym 3 exec --no-startup-id "$kill_redshift redshift -P -O 3000", mode "default"
+    bindsym 4 exec --no-startup-id "$kill_redshift redshift -P -O 4000", mode "default"
+    bindsym 5 exec --no-startup-id "$kill_redshift redshift -P -O 5000", mode "default"
+ 
+    # exit mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+ 
+set $Locker i3lock && sleep 1
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Pause mode "$mode_system"
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [title="^Android Emulator*"] floating enable
+
+exec_always --no-startup-id feh --bg-scale /home/nikola/Pictures/wallpaper.jpg
