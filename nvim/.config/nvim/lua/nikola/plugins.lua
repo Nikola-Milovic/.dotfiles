@@ -97,8 +97,6 @@ return packer.startup(function(use)
 	-- LSP
 	use({
 		"neovim/nvim-lspconfig",
-		--[[ opt = true, ]]
-		--[[ event = { "BufReadPre" }, ]]
 		wants = {
 			"nvim-lsp-installer",
 			"cmp-nvim-lsp",

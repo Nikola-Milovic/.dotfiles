@@ -3,29 +3,6 @@ local M = {}
 -- local util = require "lspconfig.util"
 
 local servers = {
-	--[[ rust_analyzer = { ]]
-	--[[ 	settings = { ]]
-	--[[ 		["rust-analyzer"] = { ]]
-	--[[ 			assist = { ]]
-	--[[ 				importEnforceGranularity = true, ]]
-	--[[ 				importPrefix = "crate" ]]
-	--[[ 			}, ]]
-	--[[ 			cargo = { ]]
-	--[[ 				allFeatures = true ]]
-	--[[ 			}, ]]
-	--[[ 			checkOnSave = { ]]
-	--[[ 				-- default: `cargo check` ]]
-	--[[ 				command = "clippy" ]]
-	--[[ 			}, ]]
-	--[[ 		}, ]]
-	--[[ 		inlayHints = { ]]
-	--[[ 			lifetimeElisionHints = { ]]
-	--[[ 				enable = true, ]]
-	--[[ 				useParameterNames = true ]]
-	--[[ 			}, ]]
-	--[[ 		}, ]]
-	--[[ 	} ]]
-	--[[ }, ]]
 	gdscript = {},
 	gopls = {
 		settings = {
@@ -139,10 +116,10 @@ function M.on_attach(client, bufnr)
 	require("nikola.lsp.keymaps").setup(client, bufnr)
 
 	-- Configure highlighting
-	require("nikola.lsp.highlighter").setup(client, bufnr)
+	-- require("nikola.lsp.highlighter").setup(client, bufnr)
 
 	-- Configure formatting
-	require("nikola.lsp.null-ls.formatters").setup(client, bufnr)
+	require("nikola.lsp.null-ls.formatters").setup(client, bufnr) 
 
 	-- tagfunc
 	if client.server_capabilities.definitionProvider then
