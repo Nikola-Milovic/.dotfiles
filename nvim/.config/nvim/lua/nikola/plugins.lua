@@ -13,10 +13,11 @@ require("nikola.plugins.alpha")
 require("nikola.plugins.whichkey")
 require("nikola.plugins.cmp")
 require("nikola.plugins.go")
+require("nikola.plugins.rust")
 require("nikola.plugins.dap")
 require("nikola.plugins.harpoon")
 require("nikola.plugins.worktree")
-require("nikola.plugins.package-json")
+--[[ require("nikola.plugins.package-json") ]]
 
 local fn = vim.fn
 
@@ -96,8 +97,8 @@ return packer.startup(function(use)
 	-- LSP
 	use({
 		"neovim/nvim-lspconfig",
-		opt = true,
-		event = { "BufReadPre" },
+		--[[ opt = true, ]]
+		--[[ event = { "BufReadPre" }, ]]
 		wants = {
 			"nvim-lsp-installer",
 			"cmp-nvim-lsp",
@@ -159,7 +160,7 @@ return packer.startup(function(use)
 	use("ray-x/guihua.lua")
 	use("ray-x/sad.nvim")
 
-	-- rust 
+	-- rust
 	use("simrat39/rust-tools.nvim")
 
 	-- Debug
@@ -190,10 +191,10 @@ return packer.startup(function(use)
 	use("ThePrimeagen/git-worktree.nvim")
 
 	-- random
-	use({
-		"vuki656/package-info.nvim",
-		requires = "MunifTanjim/nui.nvim",
-	})
+	--[[ use({ ]]
+	--[[ 	"vuki656/package-info.nvim", ]]
+	--[[ 	requires = "MunifTanjim/nui.nvim", ]]
+	--[[ }) ]]
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
