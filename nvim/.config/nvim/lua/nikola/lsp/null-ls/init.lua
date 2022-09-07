@@ -27,7 +27,8 @@ local sources = {
 	b.formatting.isort,
 	b.formatting.stylua,
 	b.formatting.google_java_format,
-	b.formatting.sqlfluff.with({ extra_args = { "--dialect", "postgres" } }),
+	--[[ b.formatting.sqlfluff.with({ extra_args = { "--dialect", "postgres" } }), ]]
+	b.formatting.pg_format,
 	-- with_root_file(b.formatting.stylua, "stylua.toml"),
 
 	-- diagnostics

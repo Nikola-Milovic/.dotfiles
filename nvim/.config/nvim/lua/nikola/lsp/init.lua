@@ -9,7 +9,6 @@ local servers = {
 			gopls = {
 				usePlaceholders = false,
 				env = { GOFLAGS = "-tags=integration" },
-				-- buildFlags = { "-tags=integration" }
 			},
 		},
 		init_options = {
@@ -115,11 +114,8 @@ function M.on_attach(client, bufnr)
 	-- Configure key mappings
 	require("nikola.lsp.keymaps").setup(client, bufnr)
 
-	-- Configure highlighting
-	-- require("nikola.lsp.highlighter").setup(client, bufnr)
-
 	-- Configure formatting
-	require("nikola.lsp.null-ls.formatters").setup(client, bufnr) 
+	require("nikola.lsp.null-ls.formatters").setup(client, bufnr)
 
 	-- tagfunc
 	if client.server_capabilities.definitionProvider then

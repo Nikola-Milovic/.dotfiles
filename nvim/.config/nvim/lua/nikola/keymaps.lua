@@ -1,11 +1,6 @@
 local M = {}
 local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
-
--- Shorten function name
-local keymap = vim.api.nvim_set_keymap
-
 function bind(op, outer_opts)
 	outer_opts = outer_opts or opts
 	return function(lhs, rhs, opts)
@@ -35,16 +30,16 @@ vim.g.maplocalleader = " "
 
 -- Normal --
 -- -- Better window navigation
--- M.nnoremap("<C-h>", "<C-w>h", opts)
--- M.nnoremap("<C-j>", "<C-w>j", opts)
--- M.nnoremap("<C-k>", "<C-w>k", opts)
--- M.nnoremap("<C-l>", "<C-w>l", opts)
+M.nnoremap("<C-Left>", "<C-w>h", opts)
+M.nnoremap("<C-Down>", "<C-w>j", opts)
+M.nnoremap("<C-Up>", "<C-w>k", opts)
+M.nnoremap("<C-Right>", "<C-w>l", opts)
 
--- Resize with arrows
-M.nnoremap("<C-Up>", ":resize -2<CR>", opts)
-M.nnoremap("<C-Down>", ":resize +2<CR>", opts)
-M.nnoremap("<C-Right>", ":vertical resize -2<CR>", opts)
-M.nnoremap("<C-Left>", ":vertical resize +2<CR>", opts)
+-- Resizing panes
+M.nnoremap("<Left>", ":vertical resize +1<CR>", opts)
+M.nnoremap("<Right>", ":vertical resize -1<CR>", opts)
+M.nnoremap("<Up>", ":resize -1<CR>", opts)
+M.nnoremap("<Down>", ":resize +1<CR>", opts)
 
 -- Navigate buffers
 M.nnoremap("<S-l>", ":bnext<CR>", opts)
@@ -71,8 +66,8 @@ M.vnoremap("<A-Up>", ":m .-2<CR>==", opts)
 -- Prime
 
 -- next greatest remap ever : asbjornHaland
-M.vnoremap("<leader>y", "\"+y", opts)
-M.nnoremap("<leader>y", "\"+y", opts)
+M.vnoremap("<leader>y", '"+y', opts)
+M.nnoremap("<leader>y", '"+y', opts)
 M.vnoremap("p", '"_dP', opts)
 M.nnoremap("Q", "<nop>", opts)
 M.nnoremap("Y", "yg$", opts)
@@ -93,13 +88,6 @@ M.xnoremap("<A-Up>", ":move '<-2<CR>gv-gv", opts)
 M.nnoremap("<leader>n", "<cmd> set nu! <CR>", opts)
 M.nnoremap("<leader>rn", "<cmd> set rnu! <CR>", opts)
 
--- Terminal --
--- Better terminal navigation
--- M.nnoremap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- M.nnoremap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- M.nnoremap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- M.nnoremap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
-
 M.vnoremap("//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], opts)
 M.nnoremap("<C-s>", "<cmd>vsplit<cr>", opts)
 
@@ -110,5 +98,9 @@ M.nnoremap("<C-m>", "<cmd>pop<cr>", opts)
 
 M.nnoremap("<leader>eo", "<cmd>NvimTreeToggle<cr>", opts)
 M.nnoremap("<leader>e", "<cmd>NvimTreeFocus<cr>", opts)
+
+-- Center search results
+M.nnoremap("n", "nzz", opts)
+M.nnoremap("N", "Nzz", opts)
 
 return M

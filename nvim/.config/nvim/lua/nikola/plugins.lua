@@ -1,5 +1,6 @@
 require("nikola.plugins.telescope")
 require("nikola.plugins.treesitter")
+require("nikola.plugins.treesitter-context")
 require("nikola.plugins.autopairs")
 require("nikola.plugins.comment")
 require("nikola.plugins.gitsigns")
@@ -14,7 +15,6 @@ require("nikola.plugins.whichkey")
 require("nikola.plugins.cmp")
 require("nikola.plugins.go")
 require("nikola.plugins.rust")
-require("nikola.plugins.dap")
 require("nikola.plugins.harpoon")
 require("nikola.plugins.worktree")
 --[[ require("nikola.plugins.package-json") ]]
@@ -161,11 +161,24 @@ return packer.startup(function(use)
 	-- rust
 	use("simrat39/rust-tools.nvim")
 
-	-- Debug
-	use("voldikss/vim-floaterm")
-	use("mfussenegger/nvim-dap")
-	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
-	use("theHamsta/nvim-dap-virtual-text")
+	-- -- Debug
+	use({
+		"mfussenegger/nvim-dap",
+		module = { "dap" },
+		opt = true,
+		-- event = "BufReadPre",
+		keys = { [[<leader>d]] },
+		wants = { "nvim-dap-virtual-text", "nvim-dap-ui", "which-key.nvim" },
+		requires = {
+			"theHamsta/nvim-dap-virtual-text",
+			"rcarriga/nvim-dap-ui",
+			"nvim-telescope/telescope-dap.nvim",
+			{ "jbyuki/one-small-step-for-vimkind", module = "osv" },
+		},
+		config = function()
+			require("nikola.dap").setup()
+		end,
+	})
 
 	-- Telescope
 	use({
@@ -180,6 +193,7 @@ return packer.startup(function(use)
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 	})
+	use("nvim-treesitter/nvim-treesitter-context")
 	use("nvim-treesitter/nvim-treesitter-textobjects")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 
