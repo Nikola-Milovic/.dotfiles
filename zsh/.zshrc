@@ -153,3 +153,53 @@ eslintify() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#godot 
+# this start in current folder if it is a project
+# gd () {
+# if [ -f "project.godot" ]; then
+#     NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim -S ./Session.vim
+# else
+#     echo "no godot project found"
+# fi
+# }
+#
+# # this lets you choose which project, with fzf and starts
+# gdd () {
+# cd $HOME/Desktop/GameDev/`ls $HOME/Desktop/GameDev  | fzf`;NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim -S ./Session.vim
+# }
+
+
+#RUST
+addToPathFront $HOME/.cargo/bin
+
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
+source $HOME/.cargo/env
+if [ ! -f "$HOME/.config/rustlang/autocomplete/rustup" ]; then
+  mkdir -p ~/.config/rustlang/autocomplete
+  rustup completions bash rustup >> ~/.config/rustlang/autocomplete/rustup
+fi
+source "$HOME/.config/rustlang/autocomplete/rustup"
+if ! command -v rust-analyzer &> /dev/null
+then
+  brew install rust-analyzer
+fi
+if ! cargo audit --version &> /dev/null; then
+  cargo install cargo-audit --features=fix
+fi
+if ! cargo nextest --version &> /dev/null; then
+  cargo install cargo-nextest
+fi
+if ! cargo fmt --version &> /dev/null; then
+  rustup component add rustfmt
+fi
+if ! cargo clippy --version &> /dev/null; then
+  rustup component add clippy
+fi
+if ! ls ~/.cargo/bin | grep 'cargo-upgrade' &> /dev/null; then
+  cargo install cargo-edit
+fi
+
+
+export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/

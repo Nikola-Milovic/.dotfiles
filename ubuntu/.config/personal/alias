@@ -10,9 +10,16 @@ alias my_ip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / '
 alias esc="$HOME/.config/sway/config"
 alias vim="$VIM"
 alias vims="NVIM_LISTEN_ADDRESS=/tmp/nvim $VIM"
+alias dotfiles="nvim ~/.dotfiles"
+alias vimrc="nvim ~/.dotfiles/nvim/.config/nvim/lua/"
+alias todo="nvim ~/.dotfiles/README.md"
+alias zhrc="nvim ~/.dotfiles/zsh/.zshrc"
+alias i3conf="nvim ~/.dotfiles/i3/"
+
 alias work="cd /mnt/hddstorage/files/work/"
 
 alias python="python3"
+alias dc="docker compose"
 
 alias pjson="python -mjson.tool"
 alias killBT="rfkill block bluetooth"
@@ -25,6 +32,5 @@ alias livestream_screenkey="screenkey -s large --scr 2 -p bottom --geometry 1210
 alias yt_screenkey="screenkey -s large --scr 1 -p bottom --geometry 510x300+1412+850"
 
 alias cnpm="cat ~/.npmrc"
-alias pnpm='rm ~/.npmrc'
 
-alias monitors="~/Desktop/startup/left-hdmi.sh"
+alias cgd="cd $HOME/Desktop/GameDev/"

@@ -109,7 +109,7 @@ set $workspace8 "8"
 set $workspace9 "9: firefox"  
 set $workspace10 "10: discord"  
 
-assign [class="Chromium"] $workspace4
+assign [class="Brave-browser"] $workspace4
 assign [class="Google Chrome"] $workspace4 
 assign [class="firefox"] $workspace9 
 assign [class="discord"] $workspace10
@@ -212,7 +212,7 @@ exec --no-startup-id caffeine-indicator
 # Suspend
 bindsym $mod+Shift+period exec systemctl suspend
 
-bindsym $mod+Ctrl+b exec chromium
+bindsym $mod+Ctrl+b exec brave-browser 
 bindsym $mod+Ctrl+m exec google-chrome
 bindsym $mod+Ctrl+v exec nautilus
 bindsym $mod+Ctrl+w exec gnome-control-center
