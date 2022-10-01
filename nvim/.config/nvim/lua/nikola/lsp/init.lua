@@ -128,6 +128,10 @@ function M.on_attach(client, bufnr)
 		require("jdtls.dap").setup_dap_main_class_configs()
 		vim.lsp.codelens.refresh()
 	end
+
+  if client.name == "sqls" then
+    require("sqls").on_attach(client, bufnr)
+  end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -135,6 +139,14 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.foldingRange = {
 	dynamicRegistration = false,
 	lineFoldingOnly = true,
+}
+
+capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    "documentation",
+    "detail",
+    "additionalTextEdits",
+  },
 }
 M.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities) -- for nvim-cmp
 
@@ -154,7 +166,7 @@ function M.setup()
 	require("nikola.lsp.null-ls").setup(opts)
 
 	-- Installer
-	require("nikola.lsp.installer").setup(servers, opts)
+	require("nikola.lsp.mason").setup(servers, opts)
 end
 
 local diagnostics_active = true

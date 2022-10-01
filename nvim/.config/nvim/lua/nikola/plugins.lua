@@ -17,7 +17,7 @@ require("nikola.plugins.go")
 require("nikola.plugins.rust")
 require("nikola.plugins.harpoon")
 require("nikola.plugins.worktree")
---[[ require("nikola.plugins.package-json") ]]
+require("nikola.plugins.package-info")
 
 local fn = vim.fn
 
@@ -98,8 +98,9 @@ return packer.startup(function(use)
 	use({
 		"neovim/nvim-lspconfig",
 		wants = {
-			"nvim-lsp-installer",
-			"cmp-nvim-lsp",
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
 			"lua-dev.nvim",
 			"vim-illuminate",
 			"null-ls.nvim",
@@ -110,14 +111,16 @@ return packer.startup(function(use)
 			require("nikola.lsp").setup()
 		end,
 		requires = {
-			"williamboman/nvim-lsp-installer",
+			"williamboman/mason.nvim",
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			"williamboman/mason-lspconfig.nvim",
 			"folke/lua-dev.nvim",
 			"RRethy/vim-illuminate",
 			"jose-elias-alvarez/null-ls.nvim",
 			{
 				"j-hui/fidget.nvim",
 				config = function()
-					require("fidget").setup({})
+					require("fidget").setup()
 				end,
 			},
 			"b0o/schemastore.nvim",
@@ -203,10 +206,11 @@ return packer.startup(function(use)
 	use("ThePrimeagen/git-worktree.nvim")
 
 	-- random
-	--[[ use({ ]]
-	--[[ 	"vuki656/package-info.nvim", ]]
-	--[[ 	requires = "MunifTanjim/nui.nvim", ]]
-	--[[ }) ]]
+	use({
+		"vuki656/package-info.nvim",
+		requires = "MunifTanjim/nui.nvim",
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then

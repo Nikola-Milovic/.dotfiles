@@ -3,7 +3,7 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 local rt = require("rust-tools")
 
-local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.6.7/"
+local extension_path = vim.env.HOME .. "/.vscode/extensions/vadimcn.vscode-lldb-1.7.4/"
 local codelldb_path = extension_path .. "adapter/codelldb"
 local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
 
@@ -24,7 +24,7 @@ rt.setup({
 		on_attach = function(client, bufnr)
 			vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
 
-			vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+			vim.keymap.set("n", "<Leader>o", rt.code_action_group.code_action_group, { buffer = bufnr })
 		end,
 	},
 })
