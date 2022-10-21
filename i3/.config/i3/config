@@ -102,7 +102,7 @@ set $workspace1 "1: IDE"
 set $workspace2 "2: terminals" 
 set $workspace3 "3" 
 set $workspace4 "4:  " 
-set $workspace5 "5: joplin" 
+set $workspace5 "5: obsidian" 
 set $workspace6 "6" 
 set $workspace7 "7" 
 set $workspace8 "8" 
@@ -113,7 +113,7 @@ assign [class="Brave-browser"] $workspace4
 assign [class="Google Chrome"] $workspace4 
 assign [class="firefox"] $workspace9 
 assign [class="discord"] $workspace10
-assign [class="Joplin"] $workspace5
+assign [class="obsidian"] $workspace5
 
 set $monitorPrimary HDMI-A-0 
 set $monitorSecondary DisplayPort-0 
@@ -216,7 +216,7 @@ bindsym $mod+Ctrl+b exec brave-browser
 bindsym $mod+Ctrl+m exec google-chrome
 bindsym $mod+Ctrl+v exec nautilus
 bindsym $mod+Ctrl+w exec gnome-control-center
-bindsym $mod+Ctrl+j exec Joplin
+bindsym $mod+Ctrl+j exec obsidian
 # Redshift (https://confluence.jaytaala.com/display/TKB/Redshift+on+i3wm) 
 
 bindsym $mod+Ctrl+s mode "$mode_redshift"

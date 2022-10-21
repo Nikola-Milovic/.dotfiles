@@ -127,32 +127,16 @@ addToPathFront $HOME/go/bin
 # Where should I put you?
 bindkey -s ^f "tmux-sessionizer\n"
 
-catr() {
-    tail -n "+$1" $3 | head -n "$(($2 - $1 + 1))"
-}
-
-validateYaml() {
-    python -c 'import yaml,sys;yaml.safe_load(sys.stdin)' < $1
-}
-
-goWork() {
-    cp ~/.npm_work_rc ~/.npmrc
-}
-
-goPersonal() {
-    cp ~/.npm_personal_rc ~/.npmrc
-}
-
-cat1Line() {
-    cat $1 | tr -d "\n"
-}
-
-eslintify() {
-    cat $1 > /tmp/file_to_eslint
-    npx eslint
-}
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#https://github.com/kdheepak/lazygit.nvim/issues/67
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+    export VISUAL="nvr -cc split --remote-tab-wait +'set bufhidden=wipe'"
+else
+    export VISUAL="nvim"
+fi
+
+export EDITOR="$VISUAL"
 
 #godot 
 # this start in current folder if it is a project

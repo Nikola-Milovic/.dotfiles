@@ -1,4 +1,6 @@
 require("nikola.plugins.telescope")
+--[[ require("nikola.plugins.copilot") ]]
+require("nikola.plugins.close-buffer")
 require("nikola.plugins.treesitter")
 require("nikola.plugins.treesitter-context")
 require("nikola.plugins.autopairs")
@@ -88,7 +90,27 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	use("saadparwaiz1/cmp_luasnip") -- snippet completions
 	use("hrsh7th/cmp-nvim-lsp")
-	use({ "tzachar/cmp-tabnine", run = "./install.sh", requires = "hrsh7th/nvim-cmp" })
+
+	use("kazhala/close-buffers.nvim")
+
+	use({
+		"zbirenbaum/copilot.lua",
+		event = "VimEnter",
+		config = function()
+			vim.defer_fn(function()
+				require("copilot").setup()
+			end, 100)
+		end,
+	})
+	use({
+		"zbirenbaum/copilot-cmp",
+		after = { "copilot.lua" },
+		config = function()
+			vim.defer_fn(function()
+				require("copilot_cmp").setup()
+			end, 200)
+		end,
+	})
 
 	-- snippets
 	use("L3MON4D3/LuaSnip") --snippet engine
@@ -209,6 +231,10 @@ return packer.startup(function(use)
 	use({
 		"vuki656/package-info.nvim",
 		requires = "MunifTanjim/nui.nvim",
+	})
+
+	use({
+		"gpanders/editorconfig.nvim",
 	})
 
 	-- Automatically set up your configuration after cloning packer.nvim

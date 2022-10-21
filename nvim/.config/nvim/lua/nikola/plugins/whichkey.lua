@@ -80,7 +80,7 @@ local nopts = {
 
 local nmappings = {
 	["w"] = { "<cmd>w!<CR>", "Save" },
-	["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+	["c"] = { "<cmd>Bdelete<CR>", "Close Buffer" },
 	["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
 	["P"] = { "<cmd>lua require('telescope').ext)<cr>", "Projects" },
 	B = {
@@ -123,7 +123,12 @@ local nmappings = {
 		p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
 		r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
 		R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-		s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
+		s = {
+			function()
+				require("gitsigns").stage_hunk()
+			end,
+			"Stage Hunk",
+		},
 		u = {
 			"<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
 			"Undo Stage Hunk",
@@ -150,8 +155,7 @@ local nmappings = {
 		name = "+quit",
 		w = { "<cmd>q<CR>", "window" },
 		W = { "<cmd>wincmd o<CR>", "all other windows" },
-		b = { "<cmd>Bdelete<CR>", "buffer" },
-		B = { "<cmd>BufOnly!<CR>", "all other buffers" },
+		b = { "<cmd> lua require('close_buffers').delete({ type = 'hidden', force = true })<CR>", "all buffers" },
 		t = { "<cmd>tabclose<CR>", "tab" },
 		T = { "<cmd>tabonly<CR>", "all other tabs" },
 		q = { "<cmd>cclose<CR>", "quickfix list" },

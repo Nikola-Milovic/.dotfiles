@@ -11,8 +11,7 @@ function M.format()
 	vim.lsp.buf.format({
 		async = true,
 		filter = function(client)
-			return client.name ~= "tsserver"
-				and client.name ~= "jsonls"
+			return client.name ~= "jsonls"
 				and client.name ~= "html"
 				and client.name ~= "sumneko_lua"
 				and client.name ~= "jdt.ls"

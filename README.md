@@ -13,6 +13,12 @@ sudo update-alternatives --config x-terminal-emulator
 
 https://github.com/ThePrimeagen/keyboards/tree/master/ubuntu
 
+We have to add the keyboard to here and also add an entry into the rules
+
+```
+sudo cp ~/dotfiles/xkb/.config/xkb/real-prog-dvorak /usr/share/X11/xkb/symbols/
+```
+
 ```
 [rwin]>[lwin]
 [end]>[lctrl]
@@ -33,4 +39,5 @@ set default sink with pulse audio
 
 [] Lazygit open and edit files
 [] Add installs for dependencies - golang - i3blocks - python - chromium - kitty - godot - discord
-[] vim.lsp.buf.hover() not working
+[] worktree
+[] harpoon in monorepo
