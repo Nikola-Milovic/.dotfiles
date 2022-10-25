@@ -41,3 +41,7 @@ set default sink with pulse audio
 [] Add installs for dependencies - golang - i3blocks - python - chromium - kitty - godot - discord
 [] worktree
 [] harpoon in monorepo
+[] always show copilot
+[] pulse audio keybinding
+[] lua-dev was renamed to neodev please update
+[] update dap

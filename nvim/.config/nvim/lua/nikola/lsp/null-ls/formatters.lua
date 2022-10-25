@@ -14,6 +14,7 @@ function M.format()
 			return client.name ~= "jsonls"
 				and client.name ~= "html"
 				and client.name ~= "sumneko_lua"
+				and client.name ~= "jedi"
 				and client.name ~= "jdt.ls"
 			-- and client.name ~= "kotlin_language_server"
 		end,

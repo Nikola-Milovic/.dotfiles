@@ -3,6 +3,21 @@ local M = {}
 -- local util = require "lspconfig.util"
 
 local servers = {
+	pylsp = {
+		plugins = {
+			pylint = { enabled = true, executable = "pylint" },
+			pyflakes = { enabled = false },
+			pycodestyle = { enabled = false },
+			jedi_completion = { fuzzy = true },
+			pyls_isort = { enabled = true },
+			pylsp_mypy = { enabled = true },
+		},
+	},
+	pyright = {
+		analysis = {
+			typeCheckingMode = "off",
+		},
+	},
 	gdscript = {},
 	gopls = {
 		settings = {
@@ -22,11 +37,6 @@ local servers = {
 				schemas = require("schemastore").json.schemas(),
 				validate = { enable = true },
 			},
-		},
-	},
-	pyright = {
-		analysis = {
-			typeCheckingMode = "off",
 		},
 	},
 	sumneko_lua = {

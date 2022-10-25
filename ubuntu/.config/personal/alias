@@ -6,6 +6,12 @@ alias snth="setxkbmap us"
 alias xsc="xclip -selection clipboard"
 alias my_ip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs"
 
+alias prog="cd /mnt/hddstorage/files/programming/"
+alias cbits="cd /mnt/hddstorage/files/work/BitStarz/projekti/IronMan/"
+alias nbits="nvim /mnt/hddstorage/files/work/BitStarz/projekti/IronMan/"
+
+alias docker-compose="docker compose"
+
 #!/usr/bin/env bash
 alias esc="$HOME/.config/sway/config"
 alias vim="$VIM"
