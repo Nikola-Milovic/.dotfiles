@@ -19,7 +19,7 @@ require("nikola.plugins.go")
 require("nikola.plugins.rust")
 require("nikola.plugins.harpoon")
 require("nikola.plugins.worktree")
-require("nikola.plugins.package-info")
+--[[ require("nikola.plugins.package-info") ]]
 
 local fn = vim.fn
 
@@ -98,7 +98,7 @@ return packer.startup(function(use)
 		event = "VimEnter",
 		config = function()
 			vim.defer_fn(function()
-				require("copilot").setup()
+				require("nikola.plugins.copilot").setup()
 			end, 100)
 		end,
 	})
@@ -228,10 +228,10 @@ return packer.startup(function(use)
 	use("ThePrimeagen/git-worktree.nvim")
 
 	-- random
-	use({
-		"vuki656/package-info.nvim",
-		requires = "MunifTanjim/nui.nvim",
-	})
+	--[[ use({ ]]
+	--[[ 	"vuki656/package-info.nvim", ]]
+	--[[ 	requires = "MunifTanjim/nui.nvim", ]]
+	--[[ }) ]]
 
 	use({
 		"gpanders/editorconfig.nvim",

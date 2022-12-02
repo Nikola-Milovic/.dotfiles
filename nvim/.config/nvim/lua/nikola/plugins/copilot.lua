@@ -3,22 +3,10 @@ if not status_ok then
 	return
 end
 
-keymaps.inoremap( "<C-H>",  'copilot#Accept("<CR>")')
-keymaps.inoremap( "<C-J>",  'copilot#Previous("<CR>")')
-keymaps.inoremap( "<C-K>",  'copilot#Next("<CR>")')
+local M = {}
 
-vim.g.copilot_no_tab_map = true
-vim.g.copilot_assume_mapped = true
+function M.setup() 
+    require("copilot").setup()
+end
 
-vim.g.copilot_filetypes = {
-	["*"] = false,
-	["javascript"] = true,
-	["typescript"] = true,
-	["lua"] = false,
-	["rust"] = true,
-	["c"] = true,
-	["c#"] = true,
-	["c++"] = true,
-	["go"] = true,
-	["python"] = true,
-}
+return M

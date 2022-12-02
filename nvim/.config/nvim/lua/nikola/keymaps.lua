@@ -103,4 +103,6 @@ M.nnoremap("<leader>e", "<cmd>NvimTreeFocus<cr>", opts)
 M.nnoremap("n", "nzz", opts)
 M.nnoremap("N", "Nzz", opts)
 
+M.vnoremap("<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>', opts)
+
 return M

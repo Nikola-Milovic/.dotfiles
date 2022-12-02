@@ -111,7 +111,7 @@ function killport() {
 #ZSH_PROFILE
 
 export XDG_CONFIG_HOME=$HOME/.config
-VIM="nvim"
+VIM="nvim --listen /tmp/nvim-server.pipe"
 
 PERSONAL=$XDG_CONFIG_HOME/personal
 source $PERSONAL/env

@@ -29,6 +29,14 @@ sudo cp ~/dotfiles/xkb/.config/xkb/real-prog-dvorak /usr/share/X11/xkb/symbols/
 [pup]>[tab]
 ```
 
+## Darkmode
+
+`exec --no-startup-id /usr/libexec/gsd-xsettings`
+
+`//dark
+alias dark='gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark \
+&& gsettings set org.gnome.desktop.interface color-scheme prefer-dark'`
+
 ## Sound
 
 set default sink with pulse audio
@@ -37,11 +45,9 @@ set default sink with pulse audio
 
 ## TODOS
 
-[] Lazygit open and edit files
-[] Add installs for dependencies - golang - i3blocks - python - chromium - kitty - godot - discord
 [] worktree
-[] harpoon in monorepo
-[] always show copilot
-[] pulse audio keybinding
-[] lua-dev was renamed to neodev please update
 [] update dap
+
+Good to haves
+[] Add installs for dependencies - golang - i3blocks - python - chromium - kitty - godot - discord
+

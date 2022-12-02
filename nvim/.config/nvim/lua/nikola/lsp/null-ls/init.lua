@@ -35,7 +35,7 @@ local sources = {
 	b.diagnostics.jsonlint,
 	b.diagnostics.write_good,
 	-- b.diagnostics.markdownlint,
-	b.diagnostics.eslint_d,
+	--[[ b.diagnostics.eslint_d, ]]
 	b.diagnostics.flake8,
 	b.diagnostics.tsc,
 	-- b.diagnostics.selene,
