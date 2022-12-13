@@ -3,13 +3,10 @@ require("nikola.plugins.telescope")
 require("nikola.plugins.close-buffer")
 require("nikola.plugins.treesitter")
 require("nikola.plugins.treesitter-context")
-require("nikola.plugins.autopairs")
 require("nikola.plugins.comment")
-require("nikola.plugins.gitsigns")
 require("nikola.plugins.bufferline")
 require("nikola.plugins.lualine")
 require("nikola.plugins.toggleterm")
-require("nikola.plugins.project")
 require("nikola.plugins.impatient")
 require("nikola.plugins.indentline")
 require("nikola.plugins.alpha")
@@ -19,7 +16,6 @@ require("nikola.plugins.go")
 require("nikola.plugins.rust")
 require("nikola.plugins.harpoon")
 require("nikola.plugins.worktree")
---[[ require("nikola.plugins.package-info") ]]
 
 local fn = vim.fn
 
@@ -65,22 +61,17 @@ return packer.startup(function(use)
 	use("wbthomason/packer.nvim") -- Have packer manage itself
 	use("nvim-lua/popup.nvim") -- An implementation of the Popup API from vim in Neovim
 	use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
-	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
 	use("numToStr/Comment.nvim") -- Easily comment stuff
 	use("akinsho/bufferline.nvim")
-	use("moll/vim-bbye")
 	use("nvim-lualine/lualine.nvim")
 	use("akinsho/toggleterm.nvim")
-	use("ahmedkhalf/project.nvim")
 	use("lewis6991/impatient.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
 	use("goolord/alpha-nvim")
-	use("antoinemadec/FixCursorHold.nvim") -- This is needed to fix lsp doc highlight
 	use("folke/which-key.nvim")
 	use("ThePrimeagen/harpoon")
 
 	-- Colorschemes
-	use("gruvbox-community/gruvbox")
 	use("folke/tokyonight.nvim")
 
 	-- cmp plugins
@@ -133,6 +124,7 @@ return packer.startup(function(use)
 			require("nikola.lsp").setup()
 		end,
 		requires = {
+			"folke/neodev.nvim",
 			"williamboman/mason.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			"williamboman/mason-lspconfig.nvim",
@@ -223,15 +215,8 @@ return packer.startup(function(use)
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 
 	-- Git
-	use("lewis6991/gitsigns.nvim")
 	use("kdheepak/lazygit.nvim")
 	use("ThePrimeagen/git-worktree.nvim")
-
-	-- random
-	--[[ use({ ]]
-	--[[ 	"vuki656/package-info.nvim", ]]
-	--[[ 	requires = "MunifTanjim/nui.nvim", ]]
-	--[[ }) ]]
 
 	use({
 		"gpanders/editorconfig.nvim",
