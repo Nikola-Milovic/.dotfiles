@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for f in $(find . -name go.mod -not -path "./.mod/*"); do
+	(
+		cd $(dirname $f)
+		go mod tidy
+		echo $(dirname $f)
+	)
+done
