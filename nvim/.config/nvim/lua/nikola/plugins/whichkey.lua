@@ -155,7 +155,7 @@ local nmappings = {
 		name = "+quit",
 		w = { "<cmd>q<CR>", "window" },
 		W = { "<cmd>wincmd o<CR>", "all other windows" },
-		b = { "<cmd> lua require('close_buffers').delete({ type = 'hidden', force = true })<CR>", "all buffers" },
+		--[[ b = { "<cmd> lua require('close_buffers').delete({ type = 'hidden', force = true })<CR>", "all buffers" }, ]]
 		t = { "<cmd>tabclose<CR>", "tab" },
 		T = { "<cmd>tabonly<CR>", "all other tabs" },
 		q = { "<cmd>cclose<CR>", "quickfix list" },

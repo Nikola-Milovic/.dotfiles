@@ -143,17 +143,14 @@ return packer.startup(function(use)
 	})
 
 	-- nvim-tree
-	use("kyazdani42/nvim-web-devicons")
-	use({
-		"kyazdani42/nvim-tree.lua",
-		--[[ opt = true, ]]
-		wants = "nvim-web-devicons",
-		--[[ cmd = { "NvimTreeToggle", "NvimTreeClose", "NvimTreeFocus" }, ]]
-		-- module = "nvim-tree",
-		config = function()
-			require("nikola.plugins.nvim-tree").setup()
-		end,
-	})
+	--[[ use("kyazdani42/nvim-web-devicons") ]]
+	--[[ use({ ]]
+	--[[ 	"kyazdani42/nvim-tree.lua", ]]
+	--[[ 	wants = "nvim-web-devicons", ]]
+	--[[ 	config = function() ]]
+	--[[ 		require("nikola.plugins.nvim-tree").setup() ]]
+	--[[ 	end, ]]
+	--[[ }) ]]
 
 	-- trouble.nvim
 	use({

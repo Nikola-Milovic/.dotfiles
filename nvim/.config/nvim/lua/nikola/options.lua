@@ -35,7 +35,7 @@ local options = {
 	sidescrolloff = 8,
 	guifont = "monospace:h17", -- the font used in graphical neovim applications
 
-	autochdir = true, -- auto set the current working directory to buffer
+	--[[ autochdir = true, -- auto set the current working directory to buffer ]]
 
 	rnu = true,
 }
@@ -49,5 +49,3 @@ end
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
 vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
-vim.cmd([[:let g:loaded_netrw = 1]])
-vim.cmd([[:let g:loaded_netrwPlugin = 1]])
