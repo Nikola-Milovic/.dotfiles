@@ -244,14 +244,15 @@ mode "$mode_volume" {
 bindsym $mod+Ctrl+s mode "$mode_redshift"
 set $mode_redshift Set colour temperature: (a)uto, (r)eset, (1)500K, (2)500K, (3)000K, (4)000K, (5)000K
 set $kill_redshift pkill -9 redshift;
+set $bright $HOME/scripts/set-brightness
 mode "$mode_redshift" {
     bindsym a exec --no-startup-id "$kill_redshift redshift -P -t 5000:4000", mode "default"
-    bindsym r exec --no-startup-id "$kill_redshift redshift -x", mode "default"
-    bindsym 1 exec --no-startup-id "$kill_redshift redshift -P -O 1500", mode "default"
-    bindsym 2 exec --no-startup-id "$kill_redshift redshift -P -O 2500", mode "default"
-    bindsym 3 exec --no-startup-id "$kill_redshift redshift -P -O 3000", mode "default"
-    bindsym 4 exec --no-startup-id "$kill_redshift redshift -P -O 4000", mode "default"
-    bindsym 5 exec --no-startup-id "$kill_redshift redshift -P -O 5000", mode "default"
+    bindsym r exec --no-startup-id "$kill_redshift redshift -x"; exec "$bright 50", mode "default"
+    bindsym 1 exec --no-startup-id "$kill_redshift redshift -P -O 1500"; exec "$bright 0", mode "default"
+    bindsym 2 exec --no-startup-id "$kill_redshift redshift -P -O 2500"; exec "$bright 15", mode "default"
+    bindsym 3 exec --no-startup-id "$kill_redshift redshift -P -O 3000"; exec "$bright 25", mode "default"
+    bindsym 4 exec --no-startup-id "$kill_redshift redshift -P -O 4000"; exec "$bright 35", mode "default"
+    bindsym 5 exec --no-startup-id "$kill_redshift redshift -P -O 5000"; exec "$bright 45", mode "default"
  
     # exit mode: "Enter" or "Escape"
     bindsym Return mode "default"

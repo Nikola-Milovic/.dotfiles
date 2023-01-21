@@ -27,11 +27,6 @@ alias docker-compose="docker compose"
 # Source the cargo environment
 . "$HOME/.cargo/env"
 
-# Define a function to kill a process running on a specific port
-function killport() {
-	sudo kill $(sudo lsof -t -i:$1)
-}
-
 # Set up XDG_CONFIG_HOME and VIM
 export XDG_CONFIG_HOME=$HOME/.config
 VIM="nvim --listen /tmp/nvim-server.pipe"
