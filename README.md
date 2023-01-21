@@ -27,6 +27,7 @@ sudo cp ~/dotfiles/xkb/.config/xkb/real-prog-dvorak /usr/share/X11/xkb/symbols/
 [rctrl]>[pup]
 [lctrl]>[pdown]
 [pup]>[tab]
+[caps]>[escape]
 ```
 
 ## Darkmode
@@ -43,11 +44,27 @@ set default sink with pulse audio
 
 `/etc/pulse/default.pa`
 
+## Bluetooth 
+https://askubuntu.com/questions/1423752/ubuntu-20-04-unable-to-use-a-bluetooth-dongle-tp-link-ub500
+
 ## TODOS
 
 [] worktree
-[] update dap
 
 Good to haves
-[] Add installs for dependencies - golang - i3blocks - python - chromium - kitty - godot - discord
+[] Add installs for dependencies - ansible 
 
+
+### Install deps
+golang 
+i3blocks 
+python
+brave
+kitty 
+godot 
+discord
+
+
+#### Low priority
+terminal browser
+pandoc
