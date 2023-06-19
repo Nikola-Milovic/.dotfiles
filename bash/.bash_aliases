@@ -86,3 +86,16 @@ export PATH=$HOME/.cargo/bin:$PATH
 # fi
 
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
+
+###
+
+if [ -n "$SSH_AUTH_SOCK" ]; then
+	ssh-add -q ~/.ssh/id_ed25519.github
+fi
+
+export PIPENV_VENV_IN_PROJECT=1
+
+# export TERM=xterm-256color
+
+bind 'set bell-style none'
+export PATH=$HOME/android_sdk/cmdline-tools/latest/bin/:$PATH

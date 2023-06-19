@@ -1,0 +1,9 @@
+#! /bin/bash
+if ! [ -x "$(command -v ddcutil)" ]; then
+	echo 'Error: ddcutil is not installed.' >&2
+	exit 1
+fi
+
+c_val=$1
+sudo -u root ddcutil -d 2 setvcp 12 $c_val >/dev/null
+sudo -u root ddcutil -d 1 setvcp 12 $c_val >/dev/null

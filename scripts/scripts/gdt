@@ -1,0 +1,3 @@
+#! /bin/bash
+xterm -e ~/Desktop/godot.* &
+cd ~/Desktop/GameDev/tog/godot/ && nvim --listen 127.0.0.1:55432 .

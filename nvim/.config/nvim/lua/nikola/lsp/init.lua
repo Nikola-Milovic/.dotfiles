@@ -2,6 +2,10 @@ local M = {}
 -- https://github.com/alpha2phi/neovim-for-beginner/blob/main/lua/config/lsp/init.lua
 -- local util = require "lspconfig.util"
 
+-- https://github.com/Hoffs/omnisharp-extended-lsp.nvim
+local pid = vim.fn.getpid()
+local omnisharp_bin = "/home/nikola/omnisharp-mono/OmniSharp.exe"
+
 local servers = {
     pylsp = {
         plugins = {
@@ -13,12 +17,12 @@ local servers = {
             pylsp_mypy = { enabled = true },
         },
     },
-    pyright = {
-        analysis = {
-            typeCheckingMode = "off",
-        },
+    gdscript = {
+        force_setup = true,
+        single_file_support = false,
+        root_dir = require("lspconfig.util").root_pattern("project.godot", ".git"),
+        filetypes = { "gd", "gdscript", "gdscript3" },
     },
-    gdscript = {},
     gopls = {
         settings = {
             gopls = {
@@ -39,7 +43,7 @@ local servers = {
             },
         },
     },
-    sumneko_lua = {
+    lua_ls = {
         settings = {
             Lua = {
                 runtime = {
@@ -83,7 +87,13 @@ local servers = {
     sqlls = {},
     graphql = {},
     bashls = {},
-    omnisharp = {},
+    --[[ omnisharp = { ]]
+    --[[     handlers = { ]]
+    --[[         ["textDocument/definition"] = require("omnisharp_extended").handler, ]]
+    --[[     }, ]]
+    --[[     cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) }, ]]
+    --[[     use_mono = true, ]]
+    --[[ }, ]]
     kotlin_language_server = {},
     -- awk_ls = {},
     emmet_ls = {},
