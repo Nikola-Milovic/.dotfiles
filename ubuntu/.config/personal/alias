@@ -49,4 +49,3 @@ alias icat="kitty +kitten icat"
 alias cfugo="centrifugo"
 
 alias k=kubectl
-complete -o default -F __start_kubectl k

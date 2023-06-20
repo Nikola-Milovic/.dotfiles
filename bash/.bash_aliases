@@ -19,11 +19,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# Set up aliases
-alias k="minikube kubectl --"
-alias kubectl="minikube kubectl --"
-alias docker-compose="docker compose"
-
 # Source the cargo environment
 . "$HOME/.cargo/env"
 
@@ -99,3 +94,6 @@ export PIPENV_VENV_IN_PROJECT=1
 
 bind 'set bell-style none'
 export PATH=$HOME/android_sdk/cmdline-tools/latest/bin/:$PATH
+
+# TODO gives me warnings
+# complete -o default -F __start_kubectl k

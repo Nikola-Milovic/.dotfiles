@@ -2,10 +2,6 @@ local M = {}
 -- https://github.com/alpha2phi/neovim-for-beginner/blob/main/lua/config/lsp/init.lua
 -- local util = require "lspconfig.util"
 
--- https://github.com/Hoffs/omnisharp-extended-lsp.nvim
-local pid = vim.fn.getpid()
-local omnisharp_bin = "/home/nikola/omnisharp-mono/OmniSharp.exe"
-
 local servers = {
     pylsp = {
         plugins = {
@@ -87,13 +83,6 @@ local servers = {
     sqlls = {},
     graphql = {},
     bashls = {},
-    --[[ omnisharp = { ]]
-    --[[     handlers = { ]]
-    --[[         ["textDocument/definition"] = require("omnisharp_extended").handler, ]]
-    --[[     }, ]]
-    --[[     cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) }, ]]
-    --[[     use_mono = true, ]]
-    --[[ }, ]]
     kotlin_language_server = {},
     -- awk_ls = {},
     emmet_ls = {},
