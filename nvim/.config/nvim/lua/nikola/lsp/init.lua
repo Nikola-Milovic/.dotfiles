@@ -83,9 +83,7 @@ local servers = {
     sqlls = {},
     graphql = {},
     bashls = {},
-    kotlin_language_server = {},
     -- awk_ls = {},
-    emmet_ls = {},
     -- gradle_ls = {
     --   cmd = {
     --     vim.env.HOME

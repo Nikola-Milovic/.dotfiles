@@ -72,7 +72,10 @@ return packer.startup(function(use)
 	use("ThePrimeagen/harpoon")
 
 	-- Colorschemes
-	use("folke/tokyonight.nvim")
+	use({
+		"folke/tokyonight.nvim",
+		style = "moon",
+	})
 
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- The completion plugin

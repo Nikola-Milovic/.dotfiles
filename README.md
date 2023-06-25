@@ -44,27 +44,27 @@ set default sink with pulse audio
 
 `/etc/pulse/default.pa`
 
+## Font 
+
+`JetBrains Mono Nerd Font`
+
+1. Add `.ttf`'s to `/usr/local/share/fonts` 
+1. Run `fc-cache -f -v`
+
 ## Bluetooth 
 https://askubuntu.com/questions/1423752/ubuntu-20-04-unable-to-use-a-bluetooth-dongle-tp-link-ub500
 
 ## TODOS
 
-[] worktree
+- [ ] worktree
 
 Good to haves
-[] Add installs for dependencies - ansible 
 
+- [ ] Add installs for dependencies - ansible 
+- [ ] Look into NixOS 
 
-### Install deps
-golang 
-i3blocks 
-python
-brave
-kitty 
-godot 
-discord
 
 
 #### Low priority
-terminal browser
-pandoc
+
+- terminal browser
