@@ -22,17 +22,18 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# Source the cargo environment
-. "$HOME/.cargo/env"
-
 # Set up XDG_CONFIG_HOME and VIM
 export XDG_CONFIG_HOME=$HOME/.config
 VIM="nvim --listen /tmp/nvim-server.pipe"
 
 # Source personal environment and files
 PERSONAL=$XDG_CONFIG_HOME/personal
-. $PERSONAL/env
 for i in $(find -L $PERSONAL -type f); do
+	. $i
+done
+
+COMMON=$XDG_CONFIG_HOME/common
+for i in $(find -L $COMMON -type f); do
 	. $i
 done
 
@@ -55,47 +56,8 @@ else
 fi
 export EDITOR="$VISUAL"
 
-# Set up RUST environment
-export PATH=$HOME/.cargo/bin:$PATH
-# export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-# . $HOME/.cargo/env
-# if [ ! -f "$HOME/.config/rustlang/autocomplete/rustup" ]; then
-# 	mkdir -p ~/.config/rustlang/autocomplete
-# 	rustup completions bash rustup >>~/.config/rustlang/autocomplete/rustup
-# fi
-# . "$HOME/.config/rustlang/autocomplete/rustup"
-# if ! command -v rust-analyzer &>/dev/null; then
-# 	brew install rust-analyzer
-# fi
-# if ! cargo audit --version &>/dev/null; then
-# 	cargo install cargo-audit --features=fix
-# fi
-# if ! cargo nextest --version &>/dev/null; then
-# 	cargo install cargo-nextest
-# fi
-# if ! cargo fmt --version &>/dev/null; then
-# 	rustup component add rustfmt
-# fi
-# if ! cargo clippy --version &>/dev/null; then
-# 	rustup component add clippy
-# fi
-# if ! ls ~/.cargo/bin | grep 'cargo-upgrade' &>/dev/null; then
-# 	cargo install cargo-edit
-# fi
-
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
-
 ###
 
-if [ -n "$SSH_AUTH_SOCK" ]; then
-	ssh-add -q ~/.ssh/id_ed25519.github
-fi
-
-export PIPENV_VENV_IN_PROJECT=1
-
-# export TERM=xterm-256color
-
 bind 'set bell-style none'
-export PATH=$HOME/android_sdk/cmdline-tools/latest/bin/:$PATH
-
 # complete -o default -F __start_kubectl k

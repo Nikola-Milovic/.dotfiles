@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+alias asdf="setxkbmap real-prog-dvorak"
+alias aoeu="setxkbmap us"
+alias xsc="xclip -selection clipboard"
+alias my_ip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs"
+alias vim="$VIM"
+alias python="python3"
+alias dc="docker compose"
+alias icat="kitty +kitten icat"
+alias docker-compose="docker compose"
+# alias k=kubectl
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
