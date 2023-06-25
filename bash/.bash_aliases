@@ -1,3 +1,6 @@
+# Enable for debugging purposes, it logs every command ran in the terminal
+# set -x
+
 unalias -a
 set -o vi
 
@@ -95,5 +98,4 @@ export PIPENV_VENV_IN_PROJECT=1
 bind 'set bell-style none'
 export PATH=$HOME/android_sdk/cmdline-tools/latest/bin/:$PATH
 
-# TODO gives me warnings
 # complete -o default -F __start_kubectl k
