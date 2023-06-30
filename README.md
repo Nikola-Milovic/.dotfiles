@@ -44,7 +44,13 @@ set default sink with pulse audio
 
 `/etc/pulse/default.pa`
 
-## Font 
+## Styling
+
+## Themes
+
+Kitty and Neovim use [`tokyonight`](https://github.com/folke/tokyonight.nvim)
+
+### Font 
 
 `JetBrains Mono Nerd Font`
 
