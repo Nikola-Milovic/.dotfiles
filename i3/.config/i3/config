@@ -57,10 +57,10 @@ bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+Ctrl+h focus left
+bindsym $mod+Ctrl+j focus down
+bindsym $mod+Ctrl+k focus up
+bindsym $mod+Ctrl+l focus right
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -216,7 +216,7 @@ bindsym $mod+Ctrl+b exec brave-browser
 bindsym $mod+Ctrl+m exec google-chrome
 bindsym $mod+Ctrl+v exec nautilus
 bindsym $mod+Ctrl+w exec gnome-control-center
-bindsym $mod+Ctrl+j exec obsidian
+bindsym $mod+Ctrl+a exec obsidian
 
 #audio setup
 set $Volume_Set pactl set-sink-volume @DEFAULT_SINK@

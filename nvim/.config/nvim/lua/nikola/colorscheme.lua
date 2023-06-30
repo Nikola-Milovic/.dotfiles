@@ -1,16 +1,5 @@
--- vim.cmd([[
--- try
---   colorscheme tokyonight
--- catch /^Vim\%((\a\+)\)\=:E185/
---   colorscheme default
---   set background=dark
---   hi LineNr guifg=#c2bddb
---   hi CursorLineNr guifg=#ffffff
--- endtry
--- ]])
-
 function ColorScheme()
-	vim.cmd("colorscheme tokyonight")
+	vim.cmd("colorscheme tokyonight-moon")
 
 	local hl = function(thing, opts)
 		vim.api.nvim_set_hl(0, thing, opts)
