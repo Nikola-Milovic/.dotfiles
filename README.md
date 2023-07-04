@@ -9,6 +9,10 @@ sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emula
 sudo update-alternatives --config x-terminal-emulator
 ```
 
+## i3
+
+`sudo update-alternatives --config x-window-manager`
+
 ## Keyboard
 
 https://github.com/ThePrimeagen/keyboards/tree/master/ubuntu

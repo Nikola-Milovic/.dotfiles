@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# maybe this isnt needed anymore
 addToPath /usr/local/go/bin
 addToPath $GOPATH/bin
 addToPath $HOME/.yarn/bin

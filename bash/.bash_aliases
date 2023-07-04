@@ -1,6 +1,5 @@
 # Enable for debugging purposes, it logs every command ran in the terminal
 # set -x
-
 unalias -a
 set -o vi
 
@@ -42,7 +41,7 @@ export GOPATH=$HOME/go
 export GIT_EDITOR=$VIM
 
 # Set up PATH
-export PATH=$HOME/.local/.npm-global/bin:$HOME/.local/bin:$HOME/.local/n/bin/:$HOME/.local/go/bin:$HOME/go/bin:$PATH
+export PATH=$HOME/.local/.npm-global/bin:$HOME/.local/bin:$HOME/.local/n/bin/:$HOME/.local/go/bin:$HOME/go/bin:$HOME/bin:$PATH
 export PATH=$HOME/scripts:$PATH
 
 # Bind key to tmux-sessionizer

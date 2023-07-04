@@ -6,6 +6,7 @@ setxkbmap -option caps:ctrl_modifier
 
 export STOW_FOLDERS="git,nvim,tmux,ubuntu,kitty,personal,i3,zsh,xkb"
 export TERMINAL="kitty"
+export TERM=xterm
 
 change_background() {
     dconf write /org/mate/desktop/background/picture-filename "'$HOME/dotfiles/backgrounds/$(ls ~/dotfiles/backgrounds | fzf)'"
