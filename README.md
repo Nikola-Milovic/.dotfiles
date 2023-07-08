@@ -38,6 +38,8 @@ sudo cp ~/dotfiles/xkb/.config/xkb/real-prog-dvorak /usr/share/X11/xkb/symbols/
 
 Cool alternatives to common Unix commands like `grep`, `find`, `top`... (mostly written in Rust)
 
+Mostly trying them out and playing around with my setup
+
 - `ripgrep` - search tool [github.com/BurntSushi/ripgrep](github.com/BurntSushi/ripgrep)
 - `fd` - simple and fast alternative to `find` [github.com/shardp/fd](github.com/shardp/fd)
 - `bottom` - graphical process/system monitor [github.com/ClementTsang/bottom](github.com/ClementTsang/bottom)
@@ -48,6 +50,9 @@ Cool alternatives to common Unix commands like `grep`, `find`, `top`... (mostly 
 - `hyperfine` - CLI benchmarking tool [https://github.com/sharkdp/hyperfine](https://github.com/sharkdp/hyperfine)
 - `tokei` - count code, file lines... [https://github.com/XAMPPRocky/tokei](https://github.com/XAMPPRocky/tokei)
 - `dust` - modern replacement for `du` [https://github.com/bootandy/dust](https://github.com/bootandy/dust)
+- `broot` - new way to see and navigate directory trees [https://github.com/Canop/broot](https://github.com/Canop/broot)
+- `atuin` - magical shell history [https://github.com/ellie/atuin](https://github.com/ellie/atuin) (requires additional [setup for bash](https://atuin.sh/docs/advanced-install#bash))
+- `starship.rs` - cross-shell prompt [https://github.com/starship/starship](https://github.com/starship/starship)
 
 ## Themes
 
