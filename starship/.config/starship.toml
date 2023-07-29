@@ -16,6 +16,6 @@ error_symbol = "[➜](bold red)"
 [git_branch]
 format = 'on [$symbol$branch(:$remote_branch)]($style) '
 
-[python]
-format = "[$symbol$pyenv] "
-style = "bright-black"
+# [python]
+# format = "[$symbol$pyenv] "
+# style = "bright-black"

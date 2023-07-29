@@ -1,6 +1,7 @@
 local M = {}
 -- https://github.com/alpha2phi/neovim-for-beginner/blob/main/lua/config/lsp/init.lua
 -- local util = require "lspconfig.util"
+local nvim_lsp = require("lspconfig")
 
 local servers = {
 	pylsp = {
@@ -68,9 +69,16 @@ local servers = {
 			},
 		},
 	},
-	tsserver = { disable_formatting = true },
+	tsserver = {
+		root_dir = nvim_lsp.util.root_pattern("package.json"),
+		single_file_support = false,
+		disable_formatting = true,
+	},
 	vimls = {},
 	tailwindcss = {},
+	denols = {
+		root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
+	},
 	svelte = {},
 	-- solang = {},
 	yamlls = {
