@@ -135,7 +135,7 @@ local plugins = {
 	},
 	{
 		"zbirenbaum/copilot-cmp",
-		after = { "copilot.lua" },
+		dependencies = { "copilot.lua" },
 		config = function()
 			vim.defer_fn(function()
 				require("copilot_cmp").setup()
@@ -164,19 +164,19 @@ local plugins = {
 			"folke/lua-dev.nvim",
 			"RRethy/vim-illuminate",
 			"jose-elias-alvarez/null-ls.nvim",
-            "fidget.nvim",
+			"fidget.nvim",
 			"b0o/schemastore.nvim",
 			"jose-elias-alvarez/typescript.nvim",
 		},
 	},
-    {
-        "j-hui/fidget.nvim",
-        name = "fidget.nvim",
-        config = function()
-            require("fidget").setup()
-        end,
-        tag = "legacy"
-    },
+	{
+		"j-hui/fidget.nvim",
+		name = "fidget.nvim",
+		config = function()
+			require("fidget").setup()
+		end,
+		tag = "legacy",
+	},
 	-- Trouble
 	{
 		"folke/trouble.nvim",
@@ -203,9 +203,6 @@ local plugins = {
 	-- Treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
-		run = function()
-			vim.cmd([[TSUpdate]])
-		end,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"nvim-treesitter/nvim-treesitter-refactor",
