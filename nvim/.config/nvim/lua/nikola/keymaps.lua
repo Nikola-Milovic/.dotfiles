@@ -105,4 +105,8 @@ M.nnoremap("N", "Nzz", opts)
 
 M.vnoremap("<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>', opts)
 
+-- TEMP TODO
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
+
 return M

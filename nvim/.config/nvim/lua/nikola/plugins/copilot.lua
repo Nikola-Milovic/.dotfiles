@@ -5,8 +5,9 @@ end
 
 local M = {}
 
-function M.setup() 
-    require("copilot").setup()
+function M.setup()
+	vim.g.copilot_filetypes = { markdown = true }
+	require("copilot").setup()
 end
 
 return M

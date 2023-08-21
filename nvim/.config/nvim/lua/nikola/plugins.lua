@@ -38,6 +38,7 @@ local plugins = {
 		config = function()
 			require("nikola.plugins.comment").setup()
 		end,
+		lazy = false,
 	},
 	{
 		"akinsho/bufferline.nvim",

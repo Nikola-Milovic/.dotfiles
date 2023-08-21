@@ -139,10 +139,12 @@ function M.setup()
 				end,
 				"Find files",
 			},
+			--[[
 			f = {
 				function()
 					telescope_builtin.find_files(
-						merge_tables(require("telescope.themes").get_dropdown({ previewer = false }), {
+						merge_tables(
+                        require("telescope.themes").get_dropdown({ previewer = false }), {
 							find_command = { "fd", "-t=f", "-a" },
 							path_display = { "truncate" },
 						})
@@ -150,6 +152,7 @@ function M.setup()
 				end,
 				"Find files",
 			},
+            ]]
 			t = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text in directory" },
 			h = { "<cmd>Telescope help_tags<cr>", "Help" },
 			i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", "Media" },
