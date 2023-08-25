@@ -12,14 +12,9 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-local function setup_lazy_plugin(plugin)
-    if plugin.config then
-        plugin.config(plugin)
-    end
-end
-
 local plugins = {
-    require('nikola.plugins.whichkey'),
+    -- require('nikola.plugins.whichkey'),
+    require('nikola.plugins.telescope'),
     {
         "folke/tokyonight.nvim",
         lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -110,35 +105,6 @@ local plugins = {
         config = function()
             require("nikola.plugins.worktree").setup()
         end,
-    },
-    {
-        "nvim-telescope/telescope.nvim",
-        cmd = "Telescope",
-        config = function()
-            require("nikola.plugins.telescope").setup()
-        end,
-        dependencies = {
-            "nvim-telescope/telescope-ui-select.nvim",
-        },
-        keys = {
-            { "<leader>ff",  "<CMD>Telescope find_files<CR>",      desc = "Files" },
-            { "<leader>fh",  "<CMD>Telescope help_tags<CR>",       desc = "Help" },
-            { "<leader>fk",  "<CMD>Telescope keymaps<CR>",         desc = "Keymaps" },
-            { "<leader>fS",  "<CMD>Telescope spell_suggest<CR>",   desc = "Spelling" },
-            { "<leader>fg",  "<CMD>Telescope live_grep<CR>",       desc = "Grep" },
-            { "<leader>fG",  "<CMD>Telescope grep_string<CR>",     desc = "Find Word Under Cursor" },
-            { "<leader>fcp", "<CMD>Telescope git_commits<CR>",     desc = "Git Commits For Project" },
-            { "<leader>fcb", "<CMD>Telescope git_bcommits<CR>",    desc = "Git Commits For Buffer" },
-            { "<leader>fb",  "<CMD>Telescope buffers<CR>",         desc = "Buffers" },
-            { "<leader>f:",  "<CMD>Telescope command_history<CR>", desc = "Command History" },
-            {
-                "<leader>f/",
-                "<CMD>Telescope current_buffer_fuzzy_find<CR>",
-                desc = "Fuzzy Find In Current Buffer",
-            },
-            { "<leader>fss", "<CMD>Telescope lsp_document_symbols<CR>",          desc = "Find Document Symbols" },
-            { "<leader>fsw", "<CMD>Telescope lsp_dynamic_workspace_symbols<CR>", desc = "Find Workspace Symbols" },
-        },
     },
     {
         "zbirenbaum/copilot.lua",
@@ -247,12 +213,12 @@ local plugins = {
     },
 }
 
-vim.g.mapleader = ' '
+-- Make sure to set `mapleader` before lazy so your mappings are correct
+--Remap space as leader key
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
+-- https://github.com/tjdevries/config_manager/blob/653e916358f4445b497d53b567649ef8e332f38b/xdg_config/nvim/init.lua#L4
 require("lazy").setup(plugins, {
-    defaults = {
-        lazy = true,
-        setup = setup_lazy_plugin,
-    },
     autosync = true,
 })

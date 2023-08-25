@@ -15,11 +15,6 @@ M.vnoremap = bind("v")
 M.xnoremap = bind("x")
 M.inoremap = bind("i")
 
---Remap space as leader key
--- keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -104,9 +99,5 @@ M.nnoremap("n", "nzz", opts)
 M.nnoremap("N", "Nzz", opts)
 
 M.vnoremap("<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>', opts)
-
--- TEMP TODO
--- local builtin = require("telescope.builtin")
--- vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 
 return M
