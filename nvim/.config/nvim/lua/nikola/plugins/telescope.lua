@@ -87,6 +87,8 @@ function M.setup()
                 },
             },
         },
+        find_command = { "fd", "-t=f", "-a" },
+        path_display = { "truncate" },
         pickers = {
             find_files = {
                 hidden = true,
@@ -100,6 +102,7 @@ function M.setup()
             -- builtin picker
         },
         extensions = {
+            ["ui-select"] = { require("telescope.themes").get_dropdown({}) },
             -- Your extension configuration goes here:
             -- extension_name = {
             --   extension_config_key = value,
@@ -111,5 +114,3 @@ function M.setup()
     telescope.load_extension("ui-select")
     telescope.load_extension("git_worktree")
 end
-
-return M
