@@ -9,15 +9,15 @@ sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emula
 sudo update-alternatives --config x-terminal-emulator
 ```
 
-## i3
+## sway
 
 `sudo update-alternatives --config x-window-manager`
 
 ## Keyboard
 
-https://github.com/ThePrimeagen/keyboards/tree/master/ubuntu
+[real-prog-dvorak github](https://github.com/ThePrimeagen/keyboards/tree/master/ubuntu)
 
-We have to add the keyboard to here and also add an entry into the rules
+We have to add the keyboard to here and also add an entry into the rules (rules might be unnecessary on Wayland)
 
 ```
 sudo cp ~/dotfiles/xkb/.config/xkb/real-prog-dvorak /usr/share/X11/xkb/symbols/

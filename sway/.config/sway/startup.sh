@@ -1,5 +1,5 @@
 #!/bin/bash
-xrandr --output HDMI-A-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DisplayPort-0 --primary --mode 2560x1440 --pos 1920x0 --rotate normal --output DVI-D-0 --off
+# xrandr --output HDMI-A-0 --mode 1920x1080 --pos 0x0 --rotate normal --output DisplayPort-0 --primary --mode 2560x1440 --pos 1920x0 --rotate normal --output DVI-D-0 --off
 
 #Sound https://unix.stackexchange.com/questions/65246/change-pulseaudio-input-output-from-shell
 pacmd set-default-sink 1

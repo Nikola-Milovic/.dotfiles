@@ -1,6 +1,6 @@
 keybinding:
   universal:
-    return: '<c-\>'
+    return: '<c-/>'
 
 gui: 
   theme:
@@ -10,8 +10,8 @@ gui:
       - underline
 
 os:
-  editCommand: 'nvim'
-  editCommandTemplate: '{{editor}} --server /tmp/nvim-server.pipe --remote-tab "$(pwd)/{{filename}}"'
+  editPreset: 'nvim-remote'
+  open: 'nvim {{filename}}'
 # git:
 #   paging:
 #     colorArg: never
