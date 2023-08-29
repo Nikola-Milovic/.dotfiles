@@ -55,3 +55,18 @@ export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
 
 bind 'set bell-style none'
 # complete -o default -F __start_kubectl k
+
+eval "$(atuin init bash --disable-up-arrow)"
+
+# Add the code below
+
+_atuin_fix_echo() {
+    stty echo
+    stty sane
+}
+
+if [[ -n "${BLE_VERSION-}" ]]; then
+    blehook PRECMD-+=_atuin_fix_echo
+else
+    precmd_functions+=(_atuin_fix_echo)
+fi
