@@ -184,3 +184,15 @@
     border-color: #c9545d;
     color: #c9545d;
 }
+
+#custom-vpn {
+    padding: 0 5px;
+}
+
+#custom-vpn.connected {
+    color: green;
+}
+
+#custom-vpn.disconnected {
+    color: red;
+}

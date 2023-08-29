@@ -4,10 +4,7 @@
     // -------------------------------------------------------------------------
 
     "layer": "top",
-
-    "position": "top",
-
-    // If height property would be not present, it'd be calculated dynamically
+    "position": "bottom",
     "height": 30,
 
     "modules-left": [
@@ -18,12 +15,10 @@
         "sway/window"
     ],
     "modules-right": [
-        "network",
-        "memory",
-        "cpu",
-        "temperature",
-        "custom/keyboard-layout",
+//        "network",
         "battery",
+        "pulseaudio",
+        "custom/vpn",
         "tray",
         "clock#date",
         "clock#time"
@@ -66,15 +61,6 @@
       "tooltip-format": "{:%e %B %Y}"
     },
 
-    "cpu": {
-        "interval": 5,
-        "format": "  {usage}% ({load})", // Icon: microchip
-        "states": {
-          "warning": 70,
-          "critical": 90
-        }
-    },
-
     "custom/keyboard-layout": {
       "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
       // Interval set only as a fallback, as the value is updated by signal
@@ -85,22 +71,12 @@
       "tooltip": false
     },
 
-    "memory": {
-        "interval": 5,
-        "format": "  {}%", // Icon: memory
-        "states": {
-            "warning": 70,
-            "critical": 90
-        }
-    },
-
-    "network": {
-        "interval": 5,
-        "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
-        "format-ethernet": "  {ifname}: {ipaddr}/{cidr}", // Icon: ethernet
-        "format-disconnected": "⚠  Disconnected",
-        "tooltip-format": "{ifname}: {ipaddr}"
-    },
+//    "network": {
+//        "interval": 5,
+//        "format": "  up: {bandwidthUpBytes} down: {bandwidthDownBytes}", 
+//        "format-wifi": "  {essid} ({signalStrength}%)",
+//        "format-disconnected": "⚠  No con",
+//    },
 
     "sway/mode": {
         "format": "<span style=\"italic\">  {}</span>", // Icon: expand-arrows-alt
@@ -115,53 +91,36 @@
     "sway/workspaces": {
         "all-outputs": false,
         "disable-scroll": true,
-        "format": "{icon} {name}",
+        "format": "{icon}",
+      },
+
+    "pulseaudio": {
+        "scroll-step": 5,
+        "format": "{icon}  {volume}%",
+        "format-bluetooth": "{icon}  {volume}%",
+        "format-muted": "",
         "format-icons": {
-            "1:www": "龜", // Icon: firefox-browser
-            "2:mail": "", // Icon: mail
-            "3:editor": "", // Icon: code
-            "4:terminals": "", // Icon: terminal
-            "5:portal": "", // Icon: terminal
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        }
-    },
-
-    //"pulseaudio": {
-    //    //"scroll-step": 1,
-    //    "format": "{icon}  {volume}%",
-    //    "format-bluetooth": "{icon}  {volume}%",
-    //    "format-muted": "",
-    //    "format-icons": {
-    //        "headphones": "",
-    //        "handsfree": "",
-    //        "headset": "",
-    //        "phone": "",
-    //        "portable": "",
-    //        "car": "",
-    //        "default": ["", ""]
-    //    },
-    //    "on-click": "pavucontrol"
-    //},
-
-    "temperature": {
-      "critical-threshold": 80,
-      "interval": 5,
-      "format": "{icon}  {temperatureC}°C",
-      "format-icons": [
-          "", // Icon: temperature-empty
-          "", // Icon: temperature-quarter
-          "", // Icon: temperature-half
-          "", // Icon: temperature-three-quarters
-          ""  // Icon: temperature-full
-      ],
-      "tooltip": true
+            "headphones": "",
+            "handsfree": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
     },
 
     "tray": {
         "icon-size": 21,
         "spacing": 10
-    }
+    },
 
+   "custom/vpn": {
+    "format": "{icon} {}",
+    "return-type": "json",
+    "exec": "~/.config/waybar/vpn_status.sh",
+    "on-click": "~/.config/waybar/vpn_disconnect.sh",
+    "interval": 5
+    }
 }

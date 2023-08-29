@@ -84,6 +84,10 @@ set default sink with pulse audio
 
 `/etc/pulse/default.pa`
 
+### SSH && mosh
+port forward from X port to 2222 in router for SSH
+port forward from 60001 to any in router for mosh
+also enable firewall these connections in firewall
 
 ## TODOS
 
@@ -93,8 +97,6 @@ Good to haves
 
 - [ ] Add installs for dependencies - ansible 
 - [ ] Look into NixOS 
-
-
 
 #### Low priority
 
