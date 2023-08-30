@@ -12,6 +12,7 @@ output $monitorSecondary pos 0 0 res 1920x1080 bg ~/Pictures/wallpapers/1.jpg st
 output $monitorPrimary pos 1920 0 res 2560x1440 bg ~/Pictures/wallpapers/1.jpg stretch
 
 input * xkb_layout real-prog-dvorak
+exec_always setxkbmap real-prog-dvorak
 
 set $mod Mod1
 
@@ -39,7 +40,6 @@ for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
-
 # start a terminal
 bindsym $mod+t exec $TERMINAL
 
