@@ -13,9 +13,9 @@ function M.format()
 		filter = function(client)
 			return client.name ~= "jsonls"
 				and client.name ~= "html"
-				and client.name ~= "gopls"
 				and client.name ~= "lua_ls"
 				and client.name ~= "jedi"
+				and client.name ~= "gopls"
 				and client.name ~= "tsserver"
 				and client.name ~= "jdt.ls"
 			-- and client.name ~= "kotlin_language_server"

@@ -1,6 +1,35 @@
 local M = {}
 -- https://github.com/alpha2phi/neovim-for-beginner/blob/main/lua/config/lsp/init.lua
 -- local util = require "lspconfig.util"
+local nvim_lsp = require("lspconfig")
+
+local util = require("lspconfig/util")
+
+local function root_pattern_excludes(opt)
+	local root = opt.root
+	local exclude = opt.exclude
+
+	local function matches(path, pattern)
+		return 0 < #vim.fn.glob(util.path.join(path, pattern))
+	end
+
+	return function(startpath)
+		local foundWanted = false
+		local foundUnwanted = false
+		return util.search_ancestors(startpath, function(path)
+			if foundWanted then
+				return true
+			end
+
+			if foundUnwanted then
+				return false
+			end
+
+			foundWanted = matches(path, root)
+			foundUnwanted = matches(path, exclude)
+		end)
+	end
+end
 
 local servers = {
 	pylsp = {
@@ -16,7 +45,7 @@ local servers = {
 	gdscript = {
 		force_setup = true,
 		single_file_support = false,
-		root_dir = require("lspconfig.util").root_pattern("project.godot", ".git"),
+		root_dir = util.root_pattern("project.godot", ".git"),
 		filetypes = { "gd", "gdscript", "gdscript3" },
 	},
 	gopls = {
@@ -31,6 +60,15 @@ local servers = {
 		},
 	},
 	html = {},
+	astro = {
+		init_options = {
+			typescript = {
+				serverPath = vim.fs.normalize(
+					"~/.local/share/nvim/mason/packages/typescript-language-server/node_modules/typescript/lib/tsserverlibrary.js"
+				),
+			},
+		},
+	},
 	jsonls = {
 		settings = {
 			json = {
@@ -68,9 +106,22 @@ local servers = {
 			},
 		},
 	},
-	tsserver = { disable_formatting = true },
+	tsserver = {
+		root_dir = root_pattern_excludes({
+			root = "package.json",
+			exclude = "deno.json",
+		}),
+		single_file_support = false,
+		disable_formatting = true,
+	},
 	vimls = {},
 	tailwindcss = {},
+	denols = {
+		root_dir = root_pattern_excludes({
+			root = "deno.json",
+			exclude = "package.json",
+		}),
+	},
 	svelte = {},
 	-- solang = {},
 	yamlls = {
