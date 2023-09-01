@@ -4,6 +4,14 @@ set $monitorPrimary DP-1
 set $monitorSecondary HDMI-A-1 
 set $menu LD_LIBRARY_PATH=/usr/local/lib/ bemenu-run | xargs swaymsg exec --
 
+# https://github.com/flameshot-org/flameshot/blob/master/docs/Sway%20and%20wlroots%20support.md#sway-and-wlroots-support
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+# Clipboard support
+# exec wl-paste -p -t text --watch clipman store --no-persist -P --histpath="~/.local/share/clipman-primary.json"
+
 default_border none
 
 # output HDMI-A-0 pos 0 0 res 1920x1080 bg ~/Pictures/wallpapers/1.jpg stretch

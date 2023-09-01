@@ -1,6 +1,6 @@
 keybinding:
   universal:
-    return: '<c-/>'
+    return: '<c-l>'
 
 gui: 
   theme:
@@ -10,8 +10,8 @@ gui:
       - underline
 
 os:
-  editPreset: 'nvim-remote'
-  open: 'nvim {{filename}}'
+  editPreset: $EDITOR
+  open: '$EDITOR {{filename}}'
 # git:
 #   paging:
 #     colorArg: never

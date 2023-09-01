@@ -2,14 +2,18 @@
 
 A collection of my .dotfiles, still a work in progress as I migrate my work environment to a more customizable experience.
 
-## Set wezterm as default terminal
+## Terminal
+
+I've since switched to `wezterm` from `kitty`, its written in Rust and I am trying to have my entire system in Rust, soontm.
+
+Jokes aside, I just wanted to try something new, `wezterm` seems easy to configure, performs well, and I don't really use any of the features of my terminal since I have other tools for that. And the `kitty` maintainer usually has more dislikes than likes on his responses which just threw me off every time I was reading about an issue.
 
 ```
 sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator `which wezterm` 50
 sudo update-alternatives --config x-terminal-emulator
 ```
 
-## sway
+## WM Sway
 
 `sudo update-alternatives --config x-window-manager`
 
@@ -33,6 +37,10 @@ sudo cp ~/dotfiles/xkb/.config/xkb/real-prog-dvorak /usr/share/X11/xkb/symbols/
 [pup]>[tab]
 [caps]>[escape]
 ```
+
+## Clipboard
+
+For clipboard install `ws-clipboard`
 
 ## Cool tools
 
