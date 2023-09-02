@@ -99,5 +99,7 @@ M.nnoremap("n", "nzz", opts)
 M.nnoremap("N", "Nzz", opts)
 
 M.vnoremap("<C-r>", '"hy:%s/<C-r>h//gc<left><left><left>', opts)
+--Telescope
+M.nnoremap("<leader>f", "<cmd>Telescope find_files<cr>", opts)
 
 return M

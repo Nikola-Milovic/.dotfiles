@@ -271,7 +271,7 @@ bindsym $mod+Ctrl+s mode "$mode_gammastep"
  
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec $Locker, mode "default"
+    bindsym l exec swaylock, mode "default"
     bindsym e exec i3-msg exit, mode "default"
     bindsym s exec systemctl suspend, mode "default"
     bindsym h exec systemctl hibernate, mode "default"
