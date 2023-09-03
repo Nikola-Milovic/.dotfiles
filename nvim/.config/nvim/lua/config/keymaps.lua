@@ -12,10 +12,10 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -- Override lazynvim defaults
-map("n", "Left", "<cmd>wincmd h<cr>", { desc = "Go to left window", remap = true })
-map("n", "Down", "<cmd>wincmd j<cr>", { desc = "Go to lower window", remap = true })
-map("n", "Up", "<cmd>wincmd k<cr>", { desc = "Go to upper window", remap = true })
-map("n", "Right", "<cmd>wincmd l<cr>", { desc = "Go to right window", remap = true })
+map("n", "<Left>", "<cmd>wincmd h<cr>", { desc = "Go to left window", remap = true })
+map("n", "<Down>", "<cmd>wincmd j<cr>", { desc = "Go to lower window", remap = true })
+map("n", "<Up>", "<cmd>wincmd k<cr>", { desc = "Go to upper window", remap = true })
+map("n", "<Right>", "<cmd>wincmd l<cr>", { desc = "Go to right window", remap = true })
 
 map("n", "<leader>Ww", "<C-W>p", { desc = "Other window", remap = true })
 map("n", "<leader>Wd", "<C-W>c", { desc = "Delete window", remap = true })
