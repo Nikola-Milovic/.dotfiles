@@ -1,7 +1,0 @@
-(
-	command_fg: Some(Red),
-    cmdbar_bg: Some(Black),
-    disabled_fg: Some(Black),
-    selected_fg: Some(Black),
-    selection_fg: Some(Black),
-)
