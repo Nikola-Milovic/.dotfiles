@@ -15,6 +15,10 @@ sudo update-alternatives --config x-terminal-emulator
 
 ## WM Sway
 
+Need to disable GDM since Display manages don't support sway
+
+`systemctl set-default multi-user.target`
+
 `sudo update-alternatives --config x-window-manager`
 
 ## Keyboard
@@ -113,3 +117,21 @@ Good to haves
 #### Low priority
 
 - terminal browser
+
+## Apps
+*Regular*
+
+```
+brave, stow, sway, swaylock, waybar, pavlucontrol, obsidian, wezterm, neovim, ripgrep, fd-find, mosh, git
+```
+
+*~/bin binaries*
+````
+atuin bat broot dust exa fzf hyperfine lazygit localstack open-wezterm-here procs starship strip-ansi-escapes tldr tokei wezterm wezterm-gui wezterm-mux-server zellij zoxide
+````
+
+## Issues
+
+1. `libssl.1.1` not found when running `wezterm` 
+[Solution](https://gist.github.com/joulgs/c8a85bb462f48ffc2044dd878ecaa786)
+

@@ -83,13 +83,13 @@ eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_ed25519.github
 
 # Have to install bash-preexec as well
-[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+[[ -e ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
 
 source ~/.config/broot/launcher/bash/br
 source ~/.config/wezterm/wezterm.sh
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 
-[[ -f ~/.config/personal/bash/alias_personal ]] && \. ~/.config/personal/bash/alias_personal
+[[ -e ~/.config/personal/bash/alias_personal ]] && \. ~/.config/personal/bash/alias_personal
 
 [ "$(tty)" = "/dev/tty1" ] && exec sway
