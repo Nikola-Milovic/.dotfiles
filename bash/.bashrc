@@ -2,6 +2,11 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 # If not running interactively, don't do anything
+
+if [ -e ~/.bash_aliases ]; then
+	source ~/.bash_aliases >/dev/null 2>&1
+fi
+
 case $- in
 *i*) ;;
 *) return ;;
