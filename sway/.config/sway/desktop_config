@@ -1,0 +1,5 @@
+set $monitorPrimary DP-1
+set $monitorSecondary HDMI-A-1
+
+output $monitorSecondary pos 0 0 res 1920x1080 bg ~/Pictures/wallpapers/1.jpg stretch
+output $monitorPrimary pos 1920 0 res 2560x1440 bg ~/Pictures/wallpapers/1.jpg stretch

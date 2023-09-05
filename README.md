@@ -122,7 +122,7 @@ Good to haves
 *Regular*
 
 ```
-brave, stow, sway, swaylock, waybar, pavlucontrol, obsidian, wezterm, neovim, ripgrep, fd-find, mosh, git, wl-clipboard
+brave, stow, sway, swaylock, waybar, pavlucontrol, obsidian, wezterm, neovim, ripgrep, fd-find, mosh, git, wl-clipboard, ripgrep
 ```
 
 *~/bin binaries*

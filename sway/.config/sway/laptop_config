@@ -1,0 +1,3 @@
+set $monitorPrimary eDP-1
+
+output $monitorPrimary pos 0 0 res 1366x768 bg ~/Pictures/wallpaper.jpg stretch
