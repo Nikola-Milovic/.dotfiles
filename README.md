@@ -122,13 +122,17 @@ Good to haves
 *Regular*
 
 ```
-brave, stow, sway, swaylock, waybar, pavlucontrol, obsidian, wezterm, neovim, ripgrep, fd-find, mosh, git
+brave, stow, sway, swaylock, waybar, pavlucontrol, obsidian, wezterm, neovim, ripgrep, fd-find, mosh, git, wl-clipboard
 ```
 
 *~/bin binaries*
 ````
 atuin bat broot dust exa fzf hyperfine lazygit localstack open-wezterm-here procs starship strip-ansi-escapes tldr tokei wezterm wezterm-gui wezterm-mux-server zellij zoxide
 ````
+
+## Screenshots
+
+[`grim`](https://sr.ht/~emersion/grim/) + [`slurp`](https://github.com/emersion/slurp)
 
 ## Issues
 
