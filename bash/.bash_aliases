@@ -79,8 +79,10 @@ else
 fi
 # end atuin
 
-eval $(ssh-agent -s)
-ssh-add ~/.ssh/id_ed25519.github
+if [[ -f ~/.ssh/id_ed25519.github ]]; then
+	eval $(ssh-agent -s)
+	ssh-add ~/.ssh/id_ed25519.github
+fi
 
 # Have to install bash-preexec as well
 [[ -e ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
