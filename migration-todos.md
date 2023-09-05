@@ -1,3 +1,2 @@
 - application launcher improve bmenu look
-- improve waybar, fix missing sound icon
 - update packages

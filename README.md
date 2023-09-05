@@ -2,6 +2,10 @@
 
 A collection of my .dotfiles, still a work in progress as I migrate my work environment to a more customizable experience.
 
+## Setup 
+
+`make setup/laptop|work|desktop`
+
 ## Terminal
 
 I've since switched to `wezterm` from `kitty`, its written in Rust and I am trying to have my entire system in Rust, soontm.
@@ -20,6 +24,10 @@ Need to disable GDM since Display manages don't support sway
 `systemctl set-default multi-user.target`
 
 `sudo update-alternatives --config x-window-manager`
+
+## Enviroment
+
+Since I use multiple devices, personal and for work, I needed a way to switch between these. So for now there are symlinks for sway and git configs that are included by the common main config. So I just just swap out the include for any environment specific configuration
 
 ## Keyboard
 
@@ -113,10 +121,6 @@ Good to haves
 
 - [ ] Add installs for dependencies - ansible 
 - [ ] Look into NixOS 
-
-#### Low priority
-
-- terminal browser
 
 ## Apps
 *Regular*
