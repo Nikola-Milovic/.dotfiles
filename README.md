@@ -134,6 +134,10 @@ brave, stow, sway, swaylock, waybar, pavlucontrol, obsidian, wezterm, neovim, ri
 atuin bat broot dust exa fzf hyperfine lazygit localstack open-wezterm-here procs starship strip-ansi-escapes tldr tokei wezterm wezterm-gui wezterm-mux-server zellij zoxide
 ````
 
+## VPN
+
+[Setup VPN to only be working for specified route](https://weiguangcui.github.io/2020-10-07-route-VPN-to-specific-ips/) (home PC)
+
 ## Screenshots
 
 [`grim`](https://sr.ht/~emersion/grim/) + [`slurp`](https://github.com/emersion/slurp)
