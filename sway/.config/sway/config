@@ -6,10 +6,11 @@ include ./env_config
 
 default_border none
 
-# input * xkb_layout real-prog-dvorak
-# exec_always setxkbmap real-prog-dvorak
-input * xkb_file ~/keyboard/real_prog_dvorak.xkb
-exec_always xkbcomp ~/keyboard/real_prog_dvorak.xkb $DISPLAY
+input * xkb_layout real-prog-dvorak
+exec_always setxkbmap real-prog-dvorak
+# input * xkb_file ~/keyboard/real_prog_dvorak.xkb
+# exec_always xmodmap ~/keyboard/real_prog_dvorak.xmodmap
+#exec_always xkbcomp ~/keyboard/real_prog_dvorak.xkb $DISPLAY
 
 set $mod Mod1
 
