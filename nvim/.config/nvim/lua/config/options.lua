@@ -4,3 +4,4 @@
 
 local opt = vim.opt
 opt.pumblend = 0
+opt.mouse = ""

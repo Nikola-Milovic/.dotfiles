@@ -58,7 +58,7 @@ done
 export EDITOR="nvim"
 export GIT_EDITOR=$EDITOR
 
-export menu="albert"
+export menu="bemenu"
 
 export PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig/
 

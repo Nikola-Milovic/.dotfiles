@@ -36,7 +36,7 @@ Since I use multiple devices, personal and for work, I needed a way to switch be
 We have to add the keyboard to here and also add an entry into the rules (rules might be unnecessary on Wayland)
 
 ```
-sudo cp ~/dotfiles/xkb/.config/xkb/real-prog-dvorak /usr/share/X11/xkb/symbols/
+sudo cp real-prog-dvorak /usr/share/X11/xkb/symbols/
 ```
 
 ```
