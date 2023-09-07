@@ -25,6 +25,7 @@ bindsym $mod+t exec $TERMINAL
 
 bindsym $mod+Ctrl+q kill
 
+exec albert
 # start dmenu (a program launcher)
 bindsym $mod+d exec albert toggle
 
@@ -256,5 +257,6 @@ for_window [title="^Android Emulator*"] floating enable
 set $float floating enable
 set $center move position center
 for_window [class="jetbrains-studio" title="Settings"] $float, $centers
+for_window [app_id="albert"] floating enable
 
 exec waybar
