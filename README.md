@@ -17,14 +17,6 @@ sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emula
 sudo update-alternatives --config x-terminal-emulator
 ```
 
-## WM Sway
-
-Need to disable GDM since Display manages don't support sway
-
-`systemctl set-default multi-user.target`
-
-`sudo update-alternatives --config x-window-manager`
-
 ## Enviroment
 
 Since I use multiple devices, personal and for work, I needed a way to switch between these. So for now there are symlinks for sway and git configs that are included by the common main config. So I just just swap out the include for any environment specific configuration
@@ -50,7 +42,7 @@ sudo cp real-prog-dvorak /usr/share/X11/xkb/symbols/
 [caps]>[escape]
 ```
 
-## Clipboard
+## Clipboard (Wayland)
 
 For clipboard install `ws-clipboard`
 
@@ -138,7 +130,11 @@ atuin bat broot dust exa fzf hyperfine lazygit localstack open-wezterm-here proc
 
 [Setup VPN to only be working for specified route](https://weiguangcui.github.io/2020-10-07-route-VPN-to-specific-ips/) (home PC)
 
-## Screenshots
+## Display manager 
+
+[ly](https://github.com/fairyglade/ly), display manager with console ui, simple and works for Wayland and Xorg
+
+## Screenshots (Wayland)
 
 [`grim`](https://sr.ht/~emersion/grim/) + [`slurp`](https://github.com/emersion/slurp)
 

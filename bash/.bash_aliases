@@ -8,19 +8,6 @@ echo "Welcome to $(hostname)!"
 # The theme we'll be using
 . $HOME/.bash_theme
 
-# Set up GOPATH and GIT_EDITOR
-export CLUTTER_BACKEND=wayland
-export XDG_SESSION_TYPE=wayland
-export QT_QPA_PLATFORM=wayland-egl
-export QT_WAYLAND_FORCE_DPI=physical
-export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-export XDG_CURRENT_DESKTOP=sway
-export XDG_SESSION_DESKTOP=sway
-export SDL_VIDEODRIVER=wayland
-export _JAVA_AWT_WM_NONREPARENTING=1
-export MOZ_ENABLE_WAYLAND=1
-export MOZ_WEBRENDER=1
-
 # Set up PATH
 export PATH="$HOME/.amplify/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
@@ -93,5 +80,3 @@ eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 
 [[ -e ~/.config/personal/bash/alias_personal ]] && \. ~/.config/personal/bash/alias_personal
-
-[ "$(tty)" = "/dev/tty1" ] && exec sway

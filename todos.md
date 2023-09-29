@@ -1,0 +1,2 @@
+- nix setup
+- pipewire with obs
