@@ -5,3 +5,5 @@
 local opt = vim.opt
 opt.pumblend = 0
 opt.mouse = ""
+opt.expandtab = false
+-- opt.shiftwidth = 4
