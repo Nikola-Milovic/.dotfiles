@@ -1,6 +1,7 @@
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
+    enabled = true,
     opts = {
       close_if_last_window = true,
       enable_diagnostics = false,
@@ -12,13 +13,13 @@ return {
         },
       },
       filesystem = {
-        hide_by_name = {
-          "node_modules",
-        },
         filtered_items = {
           visible = true,
           hide_dotfiles = false,
           hide_gitignored = true,
+          hide_by_name = {
+            "node_modules",
+          },
         },
       },
     },
