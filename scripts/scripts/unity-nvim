@@ -1,2 +1,4 @@
 #! /bin/bash
-nvim --listen 127.0.0.1:55432 $@
+nvim --listen ~/.cache/nvim/unity.pipe $@
+
+# on the unity args --remote-silent $(File)
