@@ -209,7 +209,7 @@ bar {
 # ------------------------------------------
 set $HOME ~/.config
 exec --no-startup-id $HOME/i3/startup.sh 2  
-exec --no-startup-id setxkbmap real-prog-dvorak
+# exec --no-startup-id setxkbmap real-prog-dvorak
 exec --no-startup-id caffeine-indicator
 # Suspend
 bindsym $mod+Shift+period exec systemctl suspend

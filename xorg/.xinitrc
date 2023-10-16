@@ -12,5 +12,11 @@
 export XDG_SESSION_TYPE=x11
 export GNOME_SHELL_SESSION_MODE=i3
 
+xcompmgr
+
+setxkbmap real-prog-dvorak
+
+i3
+
 # Start the GNOME + i3 session
-exec gnome-session --session=i3-gnome
+# exec gnome-session --session=i3-gnome
