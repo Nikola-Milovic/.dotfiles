@@ -6,13 +6,33 @@ return {
       close_if_last_window = true,
       enable_diagnostics = false,
       enable_git_status = false,
+      -- use_popups_for_input = false, -- force use vim.input
+      sort_case_insensitive = true,
       window = {
+        mappings = {
+          -- Disable neotree's fuzzy finder on `/`, it's annoying when I just want to jump to something I see
+          ["/"] = "noop",
+          ["#"] = "noop",
+          -- Re-enable neotree's fuzzy finder using shifted letters so I can spam shift `/` + shift
+          -- `f` to activate it, but still do shift `/` + `bla` to search `bla` with vim's search.
+          ["/F"] = "fuzzy_finder",
+          ["//"] = "fuzzy_finder", -- alt mapping, nicer?
+          ["/D"] = "fuzzy_finder_directory", -- only directories
+        },
         fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
           ["<C-j>"] = "move_cursor_down",
           ["<C-k>"] = "move_cursor_up",
         },
       },
+      git_status = {
+        bind_to_cwd = false,
+      },
+      buffers = {
+        bind_to_cwd = false,
+      },
       filesystem = {
+        use_libuv_file_watcher = true,
+        bind_to_cwd = false,
         filtered_items = {
           visible = true,
           hide_dotfiles = false,

@@ -47,9 +47,9 @@ return {
         -- go
         "gopls", -- lsp
         "golangci-lint-langserver", -- lsp
+        "golangci-lint", -- linter (required by golanci-lint-langserver?)
         "gofumpt", -- formatter
         "goimports", -- formatter
-        "golangci-lint", -- linter (required by golanci-lint-langserver?)
         "gomodifytags", -- code actions
         "impl", -- code actions
 

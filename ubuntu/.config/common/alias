@@ -20,6 +20,8 @@ alias ga="git add"
 alias gc="git commit"
 alias lg="lazygit"
 
+alias "??"="gh copilot"
+
 alias c="clear"
 
 alias tmux="zellij"
