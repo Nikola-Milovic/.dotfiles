@@ -5,9 +5,6 @@ set -o vi
 
 echo "Welcome to $(hostname)!"
 
-# The theme we'll be using
-. $HOME/.bash_theme
-
 # Set up PATH
 export PATH="$HOME/.amplify/bin:$PATH"
 export PATH=/usr/local/bin:$PATH

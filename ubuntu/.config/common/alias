@@ -13,6 +13,7 @@ alias tree="br"
 alias man="tldr"
 alias history="atuin history list"
 alias cd="z"
+alias apt="nala"
 
 alias g="git"
 alias gs="git status"
