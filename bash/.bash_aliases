@@ -68,12 +68,13 @@ if [[ -f ~/.ssh/id_ed25519.github ]]; then
 	ssh-add ~/.ssh/id_ed25519.github
 fi
 
-# Have to install bash-preexec as well
-[[ -e ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
-
 source ~/.config/broot/launcher/bash/br
 source ~/.config/wezterm/wezterm.sh
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 
 [[ -e ~/.config/personal/bash/alias_personal ]] && \. ~/.config/personal/bash/alias_personal
+
+# Have to install bash-preexec as well
+# causing issues with starship https://unix.stackexchange.com/questions/762231/bash-customization-only-take-place-after-interacting-with-the-terminal-for-the-f
+# [[ -e ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
