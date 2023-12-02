@@ -1,5 +1,6 @@
 return {
   "ThePrimeagen/harpoon",
+  branch = "harpoon2",
   dependencies = {
     { "nvim-lua/plenary.nvim" },
   },
@@ -7,42 +8,48 @@ return {
     {
       "<leader>a",
       function()
-        require("harpoon.mark").add_file()
+        local harpoon = require("harpoon")
+        harpoon:list():append()
       end,
       desc = "Add to Harpoon",
     },
     {
       "<C-e>",
       function()
-        require("harpoon.ui").toggle_quick_menu()
+        local harpoon = require("harpoon")
+        harpoon.ui:toggle_quick_menu(harpoon:list())
       end,
       desc = "Toggle Harpoon Quick Menu",
     },
     {
       "<C-h>",
       function()
-        require("harpoon.ui").nav_file(1)
+        local harpoon = require("harpoon")
+        harpoon:list():select(1)
       end,
       desc = "which_key_ignore",
     },
     {
       "<C-t>",
       function()
-        require("harpoon.ui").nav_file(2)
+        local harpoon = require("harpoon")
+        harpoon:list():select(2)
       end,
       desc = "which_key_ignore",
     },
     {
       "<C-n>",
       function()
-        require("harpoon.ui").nav_file(3)
+        local harpoon = require("harpoon")
+        harpoon:list():select(3)
       end,
       desc = "which_key_ignore",
     },
     {
       "<C-s>",
       function()
-        require("harpoon.ui").nav_file(4)
+        local harpoon = require("harpoon")
+        harpoon:list():select(4)
       end,
       desc = "which_key_ignore",
     },
