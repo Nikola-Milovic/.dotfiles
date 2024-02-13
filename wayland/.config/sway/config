@@ -141,7 +141,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -259,5 +259,7 @@ for_window [title="^Android Emulator*"] $float, $centers
 for_window [class="jetbrains-studio" title="Settings"] $float, $centers
 for_window [class="Unity" title="Settings"] $float, $centers
 for_window [app_id="albert"] $float, $centers
+# For godot
+assign [instance="Godot_Engine"] $workspace2
 
 exec waybar

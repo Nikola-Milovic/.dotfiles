@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Destination directory on the external hard drive
-DEST_DIR="/media/nikola/One Touch/backups"
+DEST_DIR="/home/nikola/backuphdd/backups"
 
 # Exclude patterns
-EXCLUDE_PATTERNS=("node_modules/" ".turbo/" ".next/" ".pnpm-store/" "*cache*" ".postgres-data")
+EXCLUDE_PATTERNS=("node_modules/" ".turbo/" ".next/" ".pnpm-store/" "*cache*" ".npm" ".postgres-data" "*cargo*" "docker" ".steam" "Trash" ".docker" "yarn" "pnpm-store" "unityhub" "backuphdd")
 
 # Construct the --exclude options for rsync
 EXCLUDES=()
@@ -14,9 +14,9 @@ done
 
 # Backup /home/nikola to the linux directory on the external drive
 # Uncomment the next lines if you want to backup /home/nikola too
-#echo "Starting backup of /home/nikola..."
-rsync -avh --progress "${EXCLUDES[@]}" /home/nikola/ "$DEST_DIR/linux/"
-#echo "Backup of /home/nikola complete."
+# echo "Starting backup of /home/nikola..."
+# rsync -avh --progress "${EXCLUDES[@]}" /home/nikola/ "$DEST_DIR/linux/"
+# echo "Backup of /home/nikola complete."
 
 # Backup /mnt/hddstorage/files to the hdd directory on the external drive
 echo "Starting backup of /mnt/hddstorage/files..."

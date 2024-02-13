@@ -43,3 +43,13 @@ map("n", "<C-u>", "<C-u>zz", { desc = "which_key_ignore" })
 map("n", "<C-u>", "<C-u>zz", { desc = "which_key_ignore" })
 
 map("n", "<leader>w", "<cmd>w<cr><esc>", { desc = "which_key_ignore" })
+
+-- Oil
+local oil = require("oil")
+map("n", "<leader>E", function()
+  oil.open(vim.loop.cwd())
+end, { desc = "Open root directory" })
+-- map("n", "<leader>", oil.open(vim.loop.cwd()), { desc = "Open root directory" })
+map("n", "<leader>e", function()
+  oil.open(oil.get_current_dir())
+end, { desc = "Open cwd" })

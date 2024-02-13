@@ -1,2 +1,0 @@
-- application launcher improve bmenu look
-- update packages
