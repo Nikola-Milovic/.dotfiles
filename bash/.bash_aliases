@@ -75,6 +75,10 @@ eval "$(starship init bash)"
 
 [[ -e ~/.config/personal/bash/alias_personal ]] && \. ~/.config/personal/bash/alias_personal
 
+for f in ~/bash/completions*; do
+	. $f
+done
+
 # Have to install bash-preexec as well
 # causing issues with starship https://unix.stackexchange.com/questions/762231/bash-customization-only-take-place-after-interacting-with-the-terminal-for-the-f
 # [[ -e ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
