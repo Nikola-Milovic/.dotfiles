@@ -72,6 +72,7 @@ source ~/.config/broot/launcher/bash/br
 source ~/.config/wezterm/wezterm.sh
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
+source <(kubectl completion bash)
 
 [[ -e ~/.config/personal/bash/alias_personal ]] && \. ~/.config/personal/bash/alias_personal
 
@@ -82,3 +83,10 @@ done
 # Have to install bash-preexec as well
 # causing issues with starship https://unix.stackexchange.com/questions/762231/bash-customization-only-take-place-after-interacting-with-the-terminal-for-the-f
 # [[ -e ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH
+
+alias k=kubectl
+complete -o default -F __start_kubectl k

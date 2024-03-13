@@ -21,6 +21,8 @@ alias ga="git add"
 alias gc="git commit"
 alias lg="lazygit"
 
+alias wcl="warp-cli"
+
 alias "??"="gh copilot"
 
 alias c="clear"
@@ -51,7 +53,7 @@ alias python="python3"
 alias dc="docker compose"
 alias icat="kitty +kitten icat"
 alias docker-compose="docker compose"
-# alias k=kubectl
+alias kc=kubectl
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 
