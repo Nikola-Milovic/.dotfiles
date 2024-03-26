@@ -76,7 +76,8 @@ source <(kubectl completion bash)
 
 [[ -e ~/.config/personal/bash/alias_personal ]] && \. ~/.config/personal/bash/alias_personal
 
-for f in ~/bash/completions*; do
+for f in ~/bash/completions/*; do
+	echo "Sourcing $f"
 	. $f
 done
 
