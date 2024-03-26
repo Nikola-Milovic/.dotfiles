@@ -13,6 +13,7 @@ exec_always setxkbmap real-prog-dvorak
 #exec_always xkbcomp ~/keyboard/real_prog_dvorak.xkb $DISPLAY
 
 set $mod Mod1
+set $term wezterm
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -21,7 +22,8 @@ font pango:JetBrainsMono Nerd Font 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 # start a terminal
-bindsym $mod+t exec $TERMINAL
+bindsym $mod+t exec /home/nikola/bin/wezterm
+# bindsym $mod+t exec gnome-terminal
 
 bindsym $mod+Ctrl+q kill
 
