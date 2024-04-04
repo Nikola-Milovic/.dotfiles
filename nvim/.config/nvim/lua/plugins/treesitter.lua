@@ -10,6 +10,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "NoahTheDuke/vim-just",
+      "vrischmann/tree-sitter-templ",
     },
     build = ":TSUpdate",
   },
