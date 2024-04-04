@@ -105,15 +105,6 @@ also enable firewall these connections in firewall
 
 [Install via apt not snap](https://askubuntu.com/a/1404401/1106437)
 
-## TODOS
-
-- [ ] worktree
-
-Good to haves
-
-- [ ] Add installs for dependencies - ansible 
-- [ ] Look into NixOS 
-
 ## Apps
 *Regular*
 
@@ -125,10 +116,21 @@ brave, stow, sway, swaylock, waybar, pavlucontrol, obsidian, wezterm, neovim, ri
 ````
 atuin bat broot dust exa fzf hyperfine lazygit localstack open-wezterm-here procs starship strip-ansi-escapes tldr tokei wezterm wezterm-gui wezterm-mux-server zellij zoxide
 ````
-
+# Security
 ## VPN
 
 [Setup VPN to only be working for specified route](https://weiguangcui.github.io/2020-10-07-route-VPN-to-specific-ips/) (home PC)
+
+## Cloudflare
+
+### SSH with Cloudflare
+
+On server run the cloudflared tunnel 
+```terminal
+docker run --add-host=host.docker.internal:host-gateway -d --name sshtunnel cloudflare/cloudflared:latest tunnel --no-autoupdate run --token eyJhxxxxxxxxxxx
+```
+
+On host machine follow the [Connect to SSH server with cloudflared access guide](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/use-cases/ssh/#connect-to-ssh-server-with-cloudflared-access)
 
 ## Display manager 
 
@@ -143,3 +145,12 @@ atuin bat broot dust exa fzf hyperfine lazygit localstack open-wezterm-here proc
 1. `libssl.1.1` not found when running `wezterm` 
 [Solution](https://gist.github.com/joulgs/c8a85bb462f48ffc2044dd878ecaa786)
 
+
+## TODOS
+
+- [ ] worktree
+
+Good to haves
+
+- [ ] Add installs for dependencies - ansible 
+- [ ] Look into NixOS 

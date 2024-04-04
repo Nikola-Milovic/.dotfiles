@@ -1,22 +1,25 @@
 #!/bin/sh
+# ~/.xinitrc
 
-# /etc/X11/xinit/xinitrc
-#
-# global xinitrc file, used by all X sessions started by xinit (startx)
-
-# invoke global X session script
-. /etc/X11/Xsession
-# export XDG_SESSION_TYPE=x11
-# exec gnome-session
-# exec i3
+# Set the session type to X11
 export XDG_SESSION_TYPE=x11
+
+# Set the GNOME Shell session mode to i3
 export GNOME_SHELL_SESSION_MODE=i3
 
-xcompmgr
+# Run the system xinitrc scripts (if any)
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+	for f in /etc/X11/xinit/xinitrc.d/?*.sh; do
+		[ -x "$f" ] && . "$f"
+	done
+	unset f
+fi
 
+# Start the compositor (xcompmgr)
+xcompmgr &
+
+# Set the keyboard layout to real-prog-dvorak
 setxkbmap real-prog-dvorak
 
+# Start the i3 window manager
 i3
-
-# Start the GNOME + i3 session
-# exec gnome-session --session=i3-gnome
