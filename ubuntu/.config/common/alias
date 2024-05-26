@@ -54,6 +54,7 @@ alias dc="docker compose"
 alias icat="kitty +kitten icat"
 alias docker-compose="docker compose"
 alias kc=kubectl
+alias mp=multipass
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 

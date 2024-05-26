@@ -3,6 +3,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
+      opts.inlay_hints = {
+        enabled = false,
+      }
       opts.servers.gopls = vim.tbl_deep_extend("force", opts.servers.gopls or {}, {
         settings = {
           gopls = {
