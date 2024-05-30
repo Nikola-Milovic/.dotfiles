@@ -16,13 +16,14 @@ return {
       end
 
       local luasnip = require("luasnip")
+      local cmp = require("cmp")
 
       local cmp_window = require("cmp.config.window")
-      local cmp = require("cmp")
       opts.window = {
         completion = cmp_window.bordered(),
         documentation = cmp_window.bordered(),
       }
+
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
         ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),

@@ -4,59 +4,47 @@ return {
   {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
-    config = function()
-      require("harpoon"):setup()
-    end,
-    keys = {
-      {
-        "<leader>a",
-        function()
-          local harpoon = require("harpoon")
-          harpoon:list():append()
-        end,
-        desc = "Add to Harpoon",
+    opts = {
+      menu = {
+        width = vim.api.nvim_win_get_width(0) - 4,
       },
-      {
-        "<C-e>",
-        function()
-          local harpoon = require("harpoon")
-          harpoon.ui:toggle_quick_menu(harpoon:list())
-        end,
-        desc = "Toggle Harpoon Quick Menu",
-      },
-      {
-        "<C-h>",
-        function()
-          local harpoon = require("harpoon")
-          harpoon:list():select(1)
-        end,
-        desc = "which_key_ignore",
-      },
-      {
-        "<C-t>",
-        function()
-          local harpoon = require("harpoon")
-          harpoon:list():select(2)
-        end,
-        desc = "which_key_ignore",
-      },
-      {
-        "<C-n>",
-        function()
-          local harpoon = require("harpoon")
-          harpoon:list():select(3)
-        end,
-        desc = "which_key_ignore",
-      },
-      {
-        "<C-s>",
-        function()
-          local harpoon = require("harpoon")
-          harpoon:list():select(4)
-        end,
-        desc = "which_key_ignore",
+      settings = {
+        save_on_toggle = true,
       },
     },
+    keys = function()
+      local keys = {
+        {
+          "<leader>a",
+          function()
+            require("harpoon"):list():add()
+          end,
+          desc = "Harpoon File",
+        },
+        {
+          "<C-e>",
+          function()
+            local harpoon = require("harpoon")
+            harpoon.ui:toggle_quick_menu(harpoon:list())
+          end,
+          desc = "Harpoon Quick Menu",
+        },
+      }
+
+      local key_map = { "h", "t", "n", "s" }
+
+      for i, key in ipairs(key_map) do
+        table.insert(keys, {
+          "<C-" .. key .. ">",
+          function()
+            require("harpoon"):list():select(i)
+          end,
+          desc = "Harpoon to File " .. i,
+        })
+      end
+
+      return keys
+    end,
     dependencies = {
       { "nvim-lua/plenary.nvim" },
     },
