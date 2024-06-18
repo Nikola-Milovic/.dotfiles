@@ -264,4 +264,4 @@ for_window [app_id="albert"] $float, $centers
 # For godot
 assign [instance="Godot_Engine"] $workspace2
 
-exec waybar
+bar swaybar_command waybar
