@@ -8,7 +8,12 @@ layout {
             plugin location="zellij:status-bar"
         }
     }
-    tab name="editor" focus=true {}
+    tab name="editor" focus=true {
+			pane {
+				command "/usr/bin/nvim"
+				args "."
+		}
+	}
     tab name="terminals" split_direction="vertical" {
         pane
         pane

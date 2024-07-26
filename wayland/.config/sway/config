@@ -188,7 +188,8 @@ bindsym $mod+Ctrl+a exec obsidian
 
 #audio setup
 # Set default sink to speakers
-exec pactl set-default-sink 1
+# pactl list short sinks
+exec pactl set-default-sink 46
 
 set $Volume_Set pactl set-sink-volume @DEFAULT_SINK@
 set $mode_volume Choose: (1) +5 volume, (2) -5 volume, (3) pavucontrol (4) mute 
@@ -263,5 +264,7 @@ for_window [class="Unity" title="Settings"] $float, $centers
 for_window [app_id="albert"] $float, $centers
 # For godot
 assign [instance="Godot_Engine"] $workspace2
+
+bindsym $mod+dollar workspace back_and_forth
 
 bar swaybar_command waybar
