@@ -50,9 +50,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     keys = {
-      { "<leader><space>", LazyVim.pick("files", {}), desc = "Find Files (cwd)" },
-      { "<leader>ff", LazyVim.pick("files", {}), desc = "Find Files (cwd)" },
-      { "<leader>fF", LazyVim.pick("files", {}), desc = "Find Files (root dir)" },
+      { "<leader><space>", LazyVim.pick("files", { root = false }), desc = "Find Files (cwd)" },
     },
     opts = function(_, opts)
       local actions = require("telescope.actions")

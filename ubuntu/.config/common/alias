@@ -53,7 +53,6 @@ alias python="python3"
 alias dc="docker compose"
 alias icat="kitty +kitten icat"
 alias docker-compose="docker compose"
-alias kc=kubectl
 alias mp=multipass
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
@@ -61,3 +60,7 @@ alias pbpaste='xclip -selection clipboard -o'
 alias ssock="export SWAYSOCK=/run/user/$(id -u)/sway-ipc.$(id -u).$(pgrep -x sway).sock"
 
 alias sshot='f() { grim -g "$(slurp)" - | wl-copy; unset -f f; }; f'
+
+alias k=kubectl
+
+complete -F _complete_alias k

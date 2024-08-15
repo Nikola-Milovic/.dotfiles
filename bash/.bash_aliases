@@ -72,7 +72,6 @@ source ~/.config/broot/launcher/bash/br
 source ~/.config/wezterm/wezterm.sh
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
-source <(kubectl completion bash)
 
 [[ -e ~/.config/personal/bash/alias_personal ]] && \. ~/.config/personal/bash/alias_personal
 
@@ -88,6 +87,3 @@ done
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
-
-alias k=kubectl
-complete -o default -F __start_kubectl k
