@@ -146,6 +146,39 @@ On host machine follow the [Connect to SSH server with cloudflared access guide]
 [Solution](https://gist.github.com/joulgs/c8a85bb462f48ffc2044dd878ecaa786)
 
 
+## X11
+
+`~/.xinitrc` sets up gnome keyring and i3
+```bash
+#!/bin/sh
+
+# Set the session type to X11
+export XDG_SESSION_TYPE=x11
+
+# Set the GNOME Shell session mode to i3
+export GNOME_SHELL_SESSION_MODE=i3
+
+# Run the system xinitrc scripts (if any)
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+	for f in /etc/X11/xinit/xinitrc.d/?*.sh; do
+		[ -x "$f" ] && . "$f"
+	done
+	unset f
+fi
+
+# Start the compositor (xcompmgr)
+xcompmgr &
+
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+
+# Set the keyboard layout to real-prog-dvorak
+setxkbmap real-prog-dvorak
+
+# Start the i3 window manager
+i3
+```
+
 ## TODOS
 
 - [ ] worktree

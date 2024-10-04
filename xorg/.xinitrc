@@ -18,6 +18,9 @@ fi
 # Start the compositor (xcompmgr)
 xcompmgr &
 
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+
 # Set the keyboard layout to real-prog-dvorak
 setxkbmap real-prog-dvorak
 

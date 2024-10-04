@@ -26,7 +26,22 @@ return {
         ["<C-t>"] = false,
       },
     },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "echasnovski/mini.icons" },
+  },
+  {
+    "echasnovski/mini.icons",
+    opts = {
+      file = {
+        ["compose.yaml"] = { hl = "MiniIconsAzure", glyph = "󰡨" },
+        ["sqlc.yaml"] = { hl = "MiniIconsAzure", glyph = "" },
+        ["go.mod"] = { hl = "MiniIconsAzure", glyph = "󰟓" },
+      },
+      extension = {
+        yaml = { hl = "MiniIconsAzure", glyph = "" },
+        yml = { hl = "MiniIconsAzure", glyph = "" },
+      },
+    },
   },
   {
     "nvim-lualine/lualine.nvim",

@@ -8,7 +8,7 @@ return {
     end,
     servers = {
       tailwindcss = {
-        filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+        filetypes = { "templ", "astro", "javascript", "typescript", "react", "html" },
         init_options = { userLanguages = { templ = "html" } },
       },
       html = {
