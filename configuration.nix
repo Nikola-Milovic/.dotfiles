@@ -96,21 +96,22 @@
     mako # notification system developed by swaywm maintainer
   ];
 
- nix.gc = {
+  nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
 
   # Enable the OpenSSH daemon.
-services.openssh = {
-  enable = true;
-  ports = [ 22 ];
-  settings = {
-    PasswordAuthentication = true;
-    AllowUsers = null; # Allows all users by default. Can be [ "user1" "user2" ]
-    UseDns = true;
-    X11Forwarding = false;
-    PermitRootLogin = "yes"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
+  services.openssh = {
+    enable = true;
+    ports = [22];
+    settings = {
+      PasswordAuthentication = true;
+      AllowUsers = null; # Allows all users by default. Can be [ "user1" "user2" ]
+      UseDns = true;
+      X11Forwarding = false;
+      PermitRootLogin = "yes"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
+    };
   };
-};}
+}

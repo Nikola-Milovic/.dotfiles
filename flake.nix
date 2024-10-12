@@ -30,8 +30,7 @@
     host = "nixos";
     username = "demo";
   in {
-
-overlays = import ./overlays {inherit inputs outputs;};
+    overlays = import ./overlays {inherit inputs outputs;};
 
     nixosConfigurations.${host} = nixpkgs.lib.nixosSystem {
       specialArgs = {
@@ -51,14 +50,15 @@ overlays = import ./overlays {inherit inputs outputs;};
     };
 
     homeConfigurations = {
-      "${username}@${host}" = home-manager.lib.homeManagerConfiguration 
-			{
-        pkgs = nixpkgs.legacyPackages.${system}; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs username;};
-        modules = [
-          ./home-manager/home.nix
-        ];
-      };
+      "${username}@${host}" =
+        home-manager.lib.homeManagerConfiguration
+        {
+          pkgs = nixpkgs.legacyPackages.${system}; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = {inherit inputs outputs username;};
+          modules = [
+            ./home-manager/home.nix
+          ];
+        };
     };
   };
 }

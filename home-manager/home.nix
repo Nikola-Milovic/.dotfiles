@@ -1,6 +1,6 @@
 {
-	inputs,
-	outputs,
+  inputs,
+  outputs,
   config,
   pkgs,
   username,
@@ -8,7 +8,7 @@
   ...
 }: let
   homeDirectory = "/home/${username}";
-  dotfilesPath = "${homeDirectory}/.dotfiles";
+  configsPath = "${homeDirectory}/.dotfiles/configs";
 in {
   home.username = "${username}";
   home.homeDirectory = "${homeDirectory}";
@@ -20,7 +20,6 @@ in {
       allowUnfree = true;
     };
   };
-
 
   # link the configuration file in current directory to the specified location in home directory
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
@@ -76,19 +75,29 @@ in {
     ];
   };
 
+  programs.bat.enable = true;
+
+  programs.ripgrep.enable = true;
+
+  programs.atuin = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
   xdg.configFile = {
     "nvim" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/nvim/.config/nvim";
+      source = config.lib.file.mkOutOfStoreSymlink "${configsPath}/nvim";
       recursive = true;
     };
 
     "zellij" = {
-      source = config.lib.file.mkOutOfStoreSymlink "${dotfilesPath}/zellij/.config/zellij";
+      source = config.lib.file.mkOutOfStoreSymlink "${configsPath}/zellij";
       recursive = true;
     };
   };
 
   fonts.fontconfig.enable = true;
+
 
   programs.wezterm = {
     enable = true;
@@ -160,8 +169,12 @@ in {
 
     shellAliases = {
       k = "kubectl";
+			cat = "bat";
+			grep = "ripgrep";
     };
   };
+
+	programs.lazygit.enable = true;
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
