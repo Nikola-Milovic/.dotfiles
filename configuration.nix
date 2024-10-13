@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+	rootPath, 
   username,
   nixpkgs,
   system,
@@ -40,7 +41,7 @@
     xkb.extraLayouts.real-prog-dvorak = {
       description = "Real programmers dvorak";
       languages = ["eng"];
-      symbolsFile = /home/${username}/keyboard/symbols/real-prog-dvorak;
+      symbolsFile =   rootPath + /configs/keyboard/real-prog-dvorak;
     };
 
     enable = true;

@@ -27,6 +27,7 @@
   } @ inputs: let
     inherit (self) outputs;
     system = "x86_64-linux";
+		rootPath = ./.;
     host = "nixos";
     username = "demo";
   in {
@@ -38,6 +39,7 @@
         inherit inputs;
         inherit username;
         inherit host;
+				inherit rootPath;
       };
 
       modules = [
