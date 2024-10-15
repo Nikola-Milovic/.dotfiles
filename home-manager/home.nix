@@ -1,8 +1,8 @@
 {
   inputs,
   outputs,
+pkgs,
   config,
-  pkgs,
   username,
   lib,
   ...
@@ -12,14 +12,6 @@
 in {
   home.username = "${username}";
   home.homeDirectory = "${homeDirectory}";
-
-  nixpkgs = {
-    overlays = builtins.attrValues outputs.overlays ++ [];
-
-    config = {
-      allowUnfree = true;
-    };
-  };
 
   # link the configuration file in current directory to the specified location in home directory
   # home.file.".config/i3/wallpaper.jpg".source = ./wallpaper.jpg;
@@ -186,7 +178,7 @@ in {
   home.stateVersion = "24.05";
 
   # Let home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  #programs.home-manager.enable = true;
 
   # Reload services nicely on config changes
   systemd.user.startServices = "sd-switch";

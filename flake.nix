@@ -37,6 +37,7 @@
       specialArgs = {
         inherit system;
         inherit inputs;
+	inherit outputs;
         inherit username;
         inherit host;
         inherit rootPath;
@@ -49,16 +50,7 @@
 
         ./configuration.nix
 
-	   home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-          extraSpecialArgs = {inherit inputs outputs username;};
-
-            home-manager.users.nikola = import ./home-manager/home.nix;
-
-            # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
-          }
+    home-manager.nixosModules.home-manager
       ];
     };
   };

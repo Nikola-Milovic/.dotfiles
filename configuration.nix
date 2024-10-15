@@ -5,6 +5,8 @@
   rootPath,
   username,
   nixpkgs,
+  inputs, 
+  outputs,
   system,
   ...
 }: {
@@ -13,6 +15,15 @@
     "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
     (rootPath + /disk-config.nix)
   ];
+
+	   home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+
+          extraSpecialArgs = {inherit inputs outputs username pkgs;};
+
+            users.nikola = import ./home-manager/home.nix;
+	};
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
