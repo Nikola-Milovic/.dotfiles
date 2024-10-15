@@ -2,19 +2,32 @@
   config,
   pkgs,
   lib,
-	rootPath, 
+  rootPath,
   username,
   nixpkgs,
   system,
   ...
 }: {
-  imports = [<nixpkgs/nixos/modules/installer/virtualbox-demo.nix>];
+  imports = [
+    (rootPath + /hardware-configuration.nix)
+    "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
+    (rootPath + /disk-config.nix)
+  ];
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   # Let demo build as a trusted user.
   # nix.settings.trusted-users = [ "demo" ];
 
-  users.users.${username}.extraGroups = ["docker"];
+  users.users.nikola = {
+    isNormalUser = true;
+    home = "/home/nikola";
+    description = "Nikola Milovic";
+    extraGroups = ["wheel" "networkmanager" "docker"];
+  };
+
   # Mount a VirtualBox shared folder.
   # This is configurable in the VirtualBox menu at
   # Machine / Settings / Shared Folders.
@@ -41,7 +54,7 @@
     xkb.extraLayouts.real-prog-dvorak = {
       description = "Real programmers dvorak";
       languages = ["eng"];
-      symbolsFile =   rootPath + /configs/keyboard/real-prog-dvorak;
+      symbolsFile = rootPath + /configs/keyboard/real-prog-dvorak;
     };
 
     enable = true;

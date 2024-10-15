@@ -98,7 +98,6 @@ in {
 
   fonts.fontconfig.enable = true;
 
-
   programs.wezterm = {
     enable = true;
     enableBashIntegration = true;
@@ -169,12 +168,12 @@ in {
 
     shellAliases = {
       k = "kubectl";
-			cat = "bat";
-			grep = "ripgrep";
+      cat = "bat";
+      grep = "ripgrep";
     };
   };
 
-	programs.lazygit.enable = true;
+  programs.lazygit.enable = true;
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage

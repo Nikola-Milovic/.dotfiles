@@ -27,9 +27,9 @@
   } @ inputs: let
     inherit (self) outputs;
     system = "x86_64-linux";
-		rootPath = ./.;
+    rootPath = ./.;
     host = "nixos";
-    username = "demo";
+    username = "nikola";
   in {
     overlays = import ./overlays {inherit inputs outputs;};
 
@@ -39,7 +39,7 @@
         inherit inputs;
         inherit username;
         inherit host;
-				inherit rootPath;
+        inherit rootPath;
       };
 
       modules = [
@@ -48,19 +48,18 @@
         }
 
         ./configuration.nix
-      ];
-    };
 
-    homeConfigurations = {
-      "${username}@${host}" =
-        home-manager.lib.homeManagerConfiguration
-        {
-          pkgs = nixpkgs.legacyPackages.${system}; # Home-manager requires 'pkgs' instance
+	   home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
           extraSpecialArgs = {inherit inputs outputs username;};
-          modules = [
-            ./home-manager/home.nix
-          ];
-        };
+
+            home-manager.users.nikola = import ./home-manager/home.nix;
+
+            # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+          }
+      ];
     };
   };
 }
