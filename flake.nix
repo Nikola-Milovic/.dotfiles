@@ -16,6 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    impermanence.url = "github:nix-community/impermanence";
   };
 
   outputs = {
@@ -37,7 +38,7 @@
       specialArgs = {
         inherit system;
         inherit inputs;
-	inherit outputs;
+        inherit outputs;
         inherit username;
         inherit host;
         inherit rootPath;
@@ -47,10 +48,11 @@
         {
           environment.systemPackages = [alejandra.defaultPackage.${system}];
         }
+        impermanence.nixosModules.impermanence
 
         ./configuration.nix
 
-    home-manager.nixosModules.home-manager
+        home-manager.nixosModules.home-manager
       ];
     };
   };

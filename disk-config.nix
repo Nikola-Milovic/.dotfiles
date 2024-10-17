@@ -1,65 +1,56 @@
 {
   disko.devices = {
     disk = {
-      main = {
+      nvme0n1 = {
         type = "disk";
-        device = "/dev/sda";
+        device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
             ESP = {
-              priority = 1;
+              label = "boot";
               name = "ESP";
-              start = "1M";
-              end = "128M";
+              size = "512M";
               type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = ["umask=0077"];
+                mountOptions = [
+                  "defaults"
+                ];
               };
             };
             root = {
               size = "100%";
+              label = "nixos-root";
               content = {
                 type = "btrfs";
-                extraArgs = ["-f"]; # Override existing partition
-                # Subvolumes must set a mountpoint in order to be mounted,
-                # unless their parent is mounted
+                extraArgs = ["-L" "nixos" "-f"];
                 subvolumes = {
-                  # Subvolume name is different from mountpoint
-                  "/rootfs" = {
+                  "/root" = {
                     mountpoint = "/";
+                    mountOptions = ["subvol=root" "compress=zstd" "noatime"];
                   };
-                  # Subvolume name is the same as the mountpoint
                   "/home" = {
-                    mountOptions = ["compress=zstd"];
                     mountpoint = "/home";
+                    mountOptions = ["subvol=home" "compress=zstd" "noatime"];
                   };
-                  # Parent is not mounted so the mountpoint must be set
                   "/nix" = {
-                    mountOptions = ["compress=zstd" "noatime"];
                     mountpoint = "/nix";
+                    mountOptions = ["subvol=nix" "compress=zstd" "noatime"];
                   };
-                  # Subvolume for the swapfile
+                  "/persist" = {
+                    mountpoint = "/persist";
+                    mountOptions = ["subvol=persist" "compress=zstd" "noatime"];
+                  };
+                  "/log" = {
+                    mountpoint = "/var/log";
+                    mountOptions = ["subvol=log" "compress=zstd" "noatime"];
+                  };
                   "/swap" = {
-                    mountpoint = "/.swapvol";
-                    swap = {
-                      swapfile.size = "20M";
-                      swapfile2.size = "20M";
-                      swapfile2.path = "rel-path";
-                    };
-                  };
-                };
-
-                mountpoint = "/partition-root";
-                swap = {
-                  swapfile = {
-                    size = "20M";
-                  };
-                  swapfile1 = {
-                    size = "20M";
+                    mountpoint = "/swap";
+                    swap.swapfile.size = "64G";
                   };
                 };
               };
@@ -69,4 +60,7 @@
       };
     };
   };
+
+  fileSystems."/persist".neededForBoot = true;
+  fileSystems."/var/log".neededForBoot = true;
 }
