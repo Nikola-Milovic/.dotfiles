@@ -23,6 +23,7 @@
     self,
     nixpkgs,
     home-manager,
+		impermanence,
     alejandra,
     ...
   } @ inputs: let
