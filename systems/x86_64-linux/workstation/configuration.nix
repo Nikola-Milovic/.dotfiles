@@ -2,8 +2,6 @@
   config,
   pkgs,
   lib,
-  rootPath,
-  username,
   nixpkgs,
   inputs,
   outputs,
@@ -11,30 +9,17 @@
   ...
 }: {
   imports = [
-    (rootPath + /hardware-configuration.nix)
+    ./hardware-configuration.nix
     "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
-    (rootPath + /disk-config.nix)
-    (rootPath + /impermanence.nix)
+    ./disk-config.nix
+    ./impermanence.nix
   ];
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-
-    extraSpecialArgs = {inherit inputs outputs username pkgs;};
-
-    users.nikola = import ./home-manager/home.nix;
-  };
 
   boot.initrd.systemd.enable = true;
   boot.initrd.systemd.emergencyAccess = true;
   boot.initrd.supportedFilesystems = lib.mkForce ["btrfs"];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  # Let demo build as a trusted user.
-  # nix.settings.trusted-users = [ "demo" ];
 
   users = {
     mutableUsers = false;
@@ -78,7 +63,7 @@
     xkb.extraLayouts.real-prog-dvorak = {
       description = "Real programmers dvorak";
       languages = ["eng"];
-      symbolsFile = rootPath + /configs/keyboard/real-prog-dvorak;
+      symbolsFile = lib.snowfall.fs.get-file "/configs/keyboard/real-prog-dvorak";
     };
 
     enable = true;
