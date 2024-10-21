@@ -56,7 +56,7 @@ in {
     enable = true;
     viAlias = true;
     vimAlias = true;
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    package = inputs.neovim-nightly.packages.${pkgs.system}.default;
   };
 
   programs.chromium = {

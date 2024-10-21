@@ -26,34 +26,31 @@
     users.nikola = import ./home-manager/home.nix;
   };
 
-
-	boot.initrd.systemd.enable = true;
-boot.initrd.systemd.emergencyAccess = true;
-boot.initrd.supportedFilesystems = lib.mkForce ["btrfs"];
-boot.loader.systemd-boot.enable = true;
+  boot.initrd.systemd.enable = true;
+  boot.initrd.systemd.emergencyAccess = true;
+  boot.initrd.supportedFilesystems = lib.mkForce ["btrfs"];
+  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   # Let demo build as a trusted user.
   # nix.settings.trusted-users = [ "demo" ];
 
-  users = 
-	 {
-		      mutableUsers = false;
+  users = {
+    mutableUsers = false;
 
-		users = 
-		{
-root.hashedPassword = "$6$SS1zHvFP7bqY6yqo$g3R63sGjSlt8dAZh.oGznVg90GtSciNJDZU.BXb2SrVi.qHjnfcuiYRzwKdEoFq/gpJmQOWQ7Gr7ZVELKKXcr.";
+    users = {
+      root.hashedPassword = "$6$SS1zHvFP7bqY6yqo$g3R63sGjSlt8dAZh.oGznVg90GtSciNJDZU.BXb2SrVi.qHjnfcuiYRzwKdEoFq/gpJmQOWQ7Gr7ZVELKKXcr.";
 
-nikola = {
-	hashedPassword = "$6$lP/WAcHvSHwBHxMn$ou44X10FVP3kHaTrIBSpwZGA0jlf5YSLp2lha9fSeJcOLaw5lvWD9BuH3lyNs3qlASqfe/TVtDSkpj5PzpWJK1";
-	isNormalUser = true;
-	home = "/home/nikola";
-	description = "Nikola Milovic";
-	extraGroups = ["wheel" "networkmanager" "docker"];
-};
-			};
-	 };
+      nikola = {
+        hashedPassword = "$6$lP/WAcHvSHwBHxMn$ou44X10FVP3kHaTrIBSpwZGA0jlf5YSLp2lha9fSeJcOLaw5lvWD9BuH3lyNs3qlASqfe/TVtDSkpj5PzpWJK1";
+        isNormalUser = true;
+        home = "/home/nikola";
+        description = "Nikola Milovic";
+        extraGroups = ["wheel" "networkmanager" "docker"];
+      };
+    };
+  };
 
   # Mount a VirtualBox shared folder.
   # This is configurable in the VirtualBox menu at

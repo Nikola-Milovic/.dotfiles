@@ -3,7 +3,7 @@
     disk = {
       nvme0n1 = {
         type = "disk";
-        device = "/dev/nvme0n1";
+        device = "/dev/sda";
         content = {
           type = "gpt";
           partitions = {
@@ -50,7 +50,7 @@
                   };
                   "/swap" = {
                     mountpoint = "/swap";
-                    swap.swapfile.size = "64G";
+                    swap.swapfile.size = "2G";
                   };
                 };
               };
@@ -60,7 +60,4 @@
       };
     };
   };
-
-  fileSystems."/persist".neededForBoot = true;
-  fileSystems."/var/log".neededForBoot = true;
 }
