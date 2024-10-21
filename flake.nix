@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       # The `follows` keyword in inputs is used for inheritance.
@@ -11,50 +12,39 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     alejandra = {
       url = "github:kamadorueda/alejandra/3.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+
     impermanence.url = "github:nix-community/impermanence";
+
+    snowfall-lib = {
+      url = "github:snowfallorg/lib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
-    home-manager,
-		impermanence,
-    alejandra,
     ...
   } @ inputs: let
-    inherit (self) outputs;
-    system = "x86_64-linux";
-    rootPath = ./.;
-    host = "nixos";
-    username = "nikola";
-  in {
-    overlays = import ./overlays {inherit inputs outputs;};
+  in
+    inputs.snowfall-lib.mkFlake {
+      inherit inputs;
+      src = ./.;
 
-    nixosConfigurations.${host} = nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit system;
-        inherit inputs;
-        inherit outputs;
-        inherit username;
-        inherit host;
-        inherit rootPath;
+      home.modules = with inputs; [];
+
+      systems = {
+        modules = {
+          nixos = with inputs; [
+          ];
+        };
       };
-
-      modules = [
-        {
-          environment.systemPackages = [alejandra.defaultPackage.${system}];
-        }
-        impermanence.nixosModules.impermanence
-
-        ./configuration.nix
-
-        home-manager.nixosModules.home-manager
-      ];
     };
-  };
 }
