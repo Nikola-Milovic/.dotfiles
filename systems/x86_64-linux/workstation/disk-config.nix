@@ -1,4 +1,6 @@
 {
+# TODO: check out https://github.com/IogaMaster/dotfiles/blob/main/disks/default.nix
+#https://github.com/redyf/nixdots/blob/main/disks/default.nix
   disko.devices = {
     disk = {
       nvme0n1 = {

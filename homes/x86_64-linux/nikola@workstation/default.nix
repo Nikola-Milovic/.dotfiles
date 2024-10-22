@@ -4,16 +4,15 @@
   pkgs,
   config,
   system,
+	namespace,
   lib,
   ...
-}: let
-in {
-  nikola = {
-    user = {
-      enable = true;
-      inherit (config.snowfallorg.user) name;
-    };
-
+}:
+ let 
+  inherit (lib.${namespace}) enabled;
+ in
+ with lib.${namespace}; 
+ {
     # Packages that should be installed to the user profile.
     home.packages = with pkgs; [
       # misc
@@ -64,12 +63,12 @@ in {
 
     xdg.configFile = {
       "nvim" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${configsPath}/nvim";
+        source = config.lib.file.mkOutOfStoreSymlink (lib.snowfall.fs.get-file "configs/nvim");
         recursive = true;
       };
 
       "zellij" = {
-        source = config.lib.file.mkOutOfStoreSymlink "${configsPath}/zellij";
+        source = config.lib.file.mkOutOfStoreSymlink (lib.snowfall.fs.get-file "configs/zellij");
         recursive = true;
       };
     };
@@ -168,5 +167,4 @@ in {
 
     # Reload services nicely on config changes
     systemd.user.startServices = "sd-switch";
-  };
 }

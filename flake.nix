@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
 
+		disko.url = "github:nix-community/disko";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       # The `follows` keyword in inputs is used for inheritance.
@@ -33,16 +35,33 @@
     nixpkgs,
     ...
   } @ inputs: let
-  in
-    inputs.snowfall-lib.mkFlake {
-      inherit inputs;
-      src = ./.;
+			lib = inputs.snowfall-lib.mkLib {
+        inherit inputs;
+        src = ./.;
+
+        snowfall = {
+          meta = {
+            name = "dotfiles";
+            title = "Dotfiles";
+          };
+
+          namespace = "custom";
+        };
+      };
+    in
+			lib.mkFlake {
+				channels-config = {
+					allowUnfree = true;
+				};
 
       home.modules = with inputs; [];
 
       systems = {
         modules = {
           nixos = with inputs; [
+						disko.nixosModules.disko
+						impermanence.nixosModule
+						# alejandra.nixosModule.alejandra
           ];
         };
       };
