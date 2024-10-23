@@ -3,31 +3,33 @@
   pkgs,
   lib,
   nixpkgs,
-	namespace,
+  namespace,
   inputs,
   ...
-}: 
+}:
 with lib;
 with lib.${namespace};
 {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   boot.initrd.systemd.enable = true;
   boot.initrd.systemd.emergencyAccess = true;
-  boot.initrd.supportedFilesystems = lib.mkForce ["btrfs"];
+  boot.initrd.supportedFilesystems = lib.mkForce [ "btrfs" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-	system = { 
-		impermanence = enabled;
-		disko.btrfs = {
-				enable = true;
-				swapSize = "2G";
-				device = "/dev/sda2";
-		};
-	};
+  system = {
+    impermanence = enabled;
+    disko.btrfs = {
+      enable = true;
+      swapSize = "2G";
+      device = "/dev/sda2";
+    };
+  };
+
+  services = {
+    ssh = enabled;
+  };
 
   users = {
     mutableUsers = false;
@@ -40,7 +42,11 @@ with lib.${namespace};
         isNormalUser = true;
         home = "/home/nikola";
         description = "Nikola Milovic";
-        extraGroups = ["wheel" "networkmanager" "docker"];
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+          "docker"
+        ];
       };
     };
   };
@@ -70,7 +76,7 @@ with lib.${namespace};
   services.xserver = {
     xkb.extraLayouts.real-prog-dvorak = {
       description = "Real programmers dvorak";
-      languages = ["eng"];
+      languages = [ "eng" ];
       symbolsFile = lib.snowfall.fs.get-file "/configs/keyboard/real-prog-dvorak";
     };
 
@@ -102,7 +108,10 @@ with lib.${namespace};
   # Will be exposed through DBus to programs willing to store secrets.
   services.gnome.gnome-keyring.enable = true;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   #services.pipewire = {
   #	enable = true;
   #	alsa.enable = true;
@@ -117,6 +126,7 @@ with lib.${namespace};
   # List packages installed in system profile. To search, run:
   # \$ nix search wget
   environment.systemPackages = with pkgs; [
+    nixfmt-rfc-style
     wget
     vim
     foot
@@ -131,18 +141,5 @@ with lib.${namespace};
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 30d";
-  };
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    ports = [22];
-    settings = {
-      PasswordAuthentication = true;
-      AllowUsers = null; # Allows all users by default. Can be [ "user1" "user2" ]
-      UseDns = true;
-      X11Forwarding = false;
-      PermitRootLogin = "yes"; # "yes", "without-password", "prohibit-password", "forced-commands-only", "no"
-    };
   };
 }

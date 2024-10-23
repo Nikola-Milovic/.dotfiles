@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
 
-		disko.url = "github:nix-community/disko";
+    disko.url = "github:nix-community/disko";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
@@ -30,12 +30,10 @@
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ...
-  } @ inputs: let
-			lib = inputs.snowfall-lib.mkLib {
+  outputs =
+    { self, nixpkgs, ... }@inputs:
+    let
+      lib = inputs.snowfall-lib.mkLib {
         inherit inputs;
         src = ./.;
 
@@ -49,21 +47,24 @@
         };
       };
     in
-			lib.mkFlake {
-				channels-config = {
-					allowUnfree = true;
-				};
+    lib.mkFlake {
+      channels-config = {
+        allowUnfree = true;
+      };
 
-      home.modules = with inputs; [];
+      home.modules = with inputs; [ ];
 
       systems = {
         modules = {
           nixos = with inputs; [
-						disko.nixosModules.disko
-						impermanence.nixosModule
-						# alejandra.nixosModule.alejandra
+            disko.nixosModules.disko
+            impermanence.nixosModule
+            # alejandra.nixosModule.alejandra
           ];
         };
       };
+
+      outputs-builder = channels: { formatter = channels.nixpkgs.nixfmt-rfc-style; };
+
     };
 }

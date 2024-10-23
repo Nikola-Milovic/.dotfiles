@@ -3,10 +3,10 @@
   lib,
   namespace,
   ...
-}: let
+}:
+let
   inherit (lib.${namespace}) enabled;
-in {
-  imports = [
-    ./configuration.nix
-  ];
+in
+{
+  imports = [ ./configuration.nix ];
 }

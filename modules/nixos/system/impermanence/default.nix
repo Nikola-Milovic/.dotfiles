@@ -1,32 +1,37 @@
-{lib, config,namespace,...}:
+{
+  lib,
+  config,
+  namespace,
+  ...
+}:
 with lib;
 with lib.${namespace};
 let
   cfg = config.system.impermanence;
 in
-{  
+{
   options.system.impermanence = with types; {
     enable = mkBoolOpt false "Whether or not to enable impermanence.";
-# TODO: home impermanence
+    # TODO: home impermanence
     home = mkBoolOpt false "Whether or not to enable impermanence for /home as well.";
   };
 
-config = mkIf cfg.enable {
-	security.sudo.extraConfig = ''
-    # rollback results in sudo lectures after each reboot
-    Defaults lecture = never
-  '';
+  config = mkIf cfg.enable {
+    security.sudo.extraConfig = ''
+      # rollback results in sudo lectures after each reboot
+      Defaults lecture = never
+    '';
 
-  programs.fuse.userAllowOther = true;
+    programs.fuse.userAllowOther = true;
 
     boot.initrd.systemd.services.rollback = {
       description = "Simplified Rollback BTRFS root subvolume to a pristine state";
-      wantedBy = ["initrd.target"];
+      wantedBy = [ "initrd.target" ];
       before = [
         "initrd-root-fs.target"
         "sysroot-var-lib-nixos.mount"
       ];
-      after = ["sysroot.mount"];
+      after = [ "sysroot.mount" ];
       unitConfig.DefaultDependencies = "no";
       serviceConfig.Type = "oneshot";
       script = ''
@@ -60,26 +65,26 @@ config = mkIf cfg.enable {
       '';
     };
 
-  environment.persistence."/persist" = {
-    hideMounts = true;
-    directories = [
-      "/srv"
-      "/.cache/nix/"
-      "/etc/NetworkManager/system-connections"
-      "/var/cache/"
-      "/var/db/sudo/"
-      "/var/lib/"
-    ];
-    files = [
-      "/etc/machine-id"
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-      "/etc/ssh/ssh_host_rsa_key"
-      "/etc/ssh/ssh_host_rsa_key.pub"
-    ];
-  };
+    environment.persistence."/persist" = {
+      hideMounts = true;
+      directories = [
+        "/srv"
+        "/.cache/nix/"
+        "/etc/NetworkManager/system-connections"
+        "/var/cache/"
+        "/var/db/sudo/"
+        "/var/lib/"
+      ];
+      files = [
+        "/etc/machine-id"
+        "/etc/ssh/ssh_host_ed25519_key"
+        "/etc/ssh/ssh_host_ed25519_key.pub"
+        "/etc/ssh/ssh_host_rsa_key"
+        "/etc/ssh/ssh_host_rsa_key.pub"
+      ];
+    };
 
-  fileSystems."/persist".neededForBoot = true;
-  fileSystems."/var/log".neededForBoot = true;
-};
+    fileSystems."/persist".neededForBoot = true;
+    fileSystems."/var/log".neededForBoot = true;
+  };
 }
