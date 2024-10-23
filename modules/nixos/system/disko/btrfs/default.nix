@@ -1,11 +1,35 @@
+# If you'd saved this configuration in ./disks/default.nix, and wanted to create a disk named /dev/nvme0n1, you would run the following command to partition, format and mount the disk.
+# sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disks/default.nix --arg device '"/dev/nvme0n1"'
+
+{lib, config,namespace,...}:
+with lib;
+with lib.${namespace};
+let
+  cfg = config.system.disko.btrfs;
+in
+{  
+  options.system.disko.btrfs = with types; {
+    enable = mkBoolOpt false "Whether or not to enable btfrs filesystem.";
+		device = mkOpt str "" "Which device to target";
+		swapSize = mkOpt str "" "The size of the swap";
+  };
+
+config = mkIf cfg.enable {
+    assertions = [{
+      assertion = cfg.device != "";
+      message = "config.system.disko.btrfs.device is not set!";
+    }
 {
-# TODO: check out https://github.com/IogaMaster/dotfiles/blob/main/disks/default.nix
-#https://github.com/redyf/nixdots/blob/main/disks/default.nix
+      assertion = cfg.swapSize != "";
+      message = "config.system.disko.btrfs.swapSize is not set!";
+    }
+		];
+
   disko.devices = {
     disk = {
       nvme0n1 = {
         type = "disk";
-        device = "/dev/sda";
+        device = cfg.device;
         content = {
           type = "gpt";
           partitions = {
@@ -52,7 +76,7 @@
                   };
                   "/swap" = {
                     mountpoint = "/swap";
-                    swap.swapfile.size = "2G";
+                    swap.swapfile.size = cfg.swapSize;
                   };
                 };
               };
@@ -62,4 +86,5 @@
       };
     };
   };
+};
 }

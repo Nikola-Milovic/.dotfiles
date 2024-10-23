@@ -3,15 +3,15 @@
   pkgs,
   lib,
   nixpkgs,
+	namespace,
   inputs,
-  outputs,
-  system,
   ...
-}: {
+}: 
+with lib;
+with lib.${namespace};
+{
   imports = [
     ./hardware-configuration.nix
-    ./disk-config.nix
-    ./impermanence.nix
   ];
 
   boot.initrd.systemd.enable = true;
@@ -19,6 +19,15 @@
   boot.initrd.supportedFilesystems = lib.mkForce ["btrfs"];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+	system = { 
+		impermanence = enabled;
+		disko.btrfs = {
+				enable = true;
+				swapSize = "2G";
+				device = "/dev/sda2";
+		};
+	};
 
   users = {
     mutableUsers = false;

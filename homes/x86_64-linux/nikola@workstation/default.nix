@@ -108,10 +108,8 @@
       userEmail = "nikolamilovic2001@gmail.com";
     };
 
-    # starship - an customizable prompt for any shell
     programs.starship = {
       enable = true;
-      # custom settings
       settings = {
         add_newline = false;
         aws.disabled = true;
@@ -123,7 +121,6 @@
     # alacritty - a cross-platform, GPU-accelerated terminal emulator
     programs.alacritty = {
       enable = true;
-      # custom settings
       settings = {
         env.TERM = "xterm-256color";
         font = {
