@@ -8,9 +8,6 @@
   lib,
   ...
 }:
-let
-  inherit (lib.${namespace}) enabled;
-in
 with lib.${namespace};
 {
   # Packages that should be installed to the user profile.
@@ -63,9 +60,11 @@ with lib.${namespace};
 
   fonts.fontconfig.enable = true;
 
-  programs.terminal.wezterm = enabled;
-  programs.terminal.nvim = enabled;
-  programs.terminal.starship = enabled;
+  custom = {
+		programs.terminal.wezterm = enabled;
+		programs.terminal.neovim = enabled;
+		programs.terminal.starship = enabled;
+	};
 
   # basic configuration of git, please change to your own
   programs.git = {

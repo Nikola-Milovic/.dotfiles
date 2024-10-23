@@ -8,10 +8,10 @@
 with lib;
 with lib.${namespace};
 let
-  cfg = config.programs.terminal.starship;
+  cfg = config.${namespace}.programs.terminal.starship;
 in
 {
-  options.config.programs.terminal.starship = with types; {
+  options.config.${namespace}.programs.terminal.starship = with types; {
     enable = mkBoolOpt false "Enable Starship";
   };
 

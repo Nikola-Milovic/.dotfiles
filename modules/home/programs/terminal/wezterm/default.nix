@@ -8,10 +8,10 @@
 with lib;
 with lib.${namespace};
 let
-  cfg = config.programs.terminal.wezterm;
+  cfg = config.${namespace}.programs.terminal.wezterm;
 in
 {
-  options.config.programs.terminal.wezterm = with types; {
+  options.config.${namespace}.programs.terminal.wezterm = with types; {
     enable = mkBoolOpt false "Enable wezterm";
   };
 

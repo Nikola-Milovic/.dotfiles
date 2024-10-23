@@ -10,10 +10,10 @@
 with lib;
 with lib.${namespace};
 let
-  cfg = config.programs.terminal.neovim;
+  cfg = config.${namespace}.programs.terminal.neovim;
 in
 {
-  options.config.programs.terminal.neovim = with types; {
+  options.config.${namespace}.programs.terminal.neovim = with types; {
     enable = mkBoolOpt false "Enable Neovim";
   };
 
