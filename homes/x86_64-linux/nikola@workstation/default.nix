@@ -28,15 +28,16 @@ with lib.${namespace};
 
   fonts.fontconfig.enable = true;
 
-  custom = { 
-  	programs.terminal = {
-			wezterm = enabled;
-			neovim = enabled;
-			starship = enabled; 
-			bash = enabled;
-			common = enabled;
-		};
-  	};
+  custom = {
+    programs.terminal = {
+      wezterm = enabled;
+      neovim = enabled;
+      starship = enabled;
+      bash = enabled;
+      common = enabled;
+    };
+  };
+
   # basic configuration of git, please change to your own
   programs.git = {
     enable = true;

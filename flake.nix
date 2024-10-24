@@ -15,11 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    alejandra = {
-      url = "github:kamadorueda/alejandra/3.0.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
 
     impermanence.url = "github:nix-community/impermanence";
@@ -59,12 +54,10 @@
           nixos = with inputs; [
             disko.nixosModules.disko
             impermanence.nixosModule
-            # alejandra.nixosModule.alejandra
           ];
         };
       };
 
       outputs-builder = channels: { formatter = channels.nixpkgs.nixfmt-rfc-style; };
-
     };
 }

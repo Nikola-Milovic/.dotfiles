@@ -1,10 +1,7 @@
 {
-  config,
   pkgs,
   lib,
-  nixpkgs,
   namespace,
-  inputs,
   ...
 }:
 with lib;
@@ -14,7 +11,7 @@ with lib.${namespace};
 
   boot.initrd.systemd.enable = true;
   boot.initrd.systemd.emergencyAccess = true;
-  boot.initrd.supportedFilesystems = lib.mkForce [ "btrfs" ];
+  boot.initrd.supportedFilesystems = mkForce [ "btrfs" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 

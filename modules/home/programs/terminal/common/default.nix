@@ -1,6 +1,6 @@
 {
   options,
-	pkgs,
+  pkgs,
   inputs,
   system,
   config,
@@ -39,9 +39,9 @@ in
         enableBashIntegration = true;
       };
 
-			zellij = {
-				enable = true;
-			};
+      zellij = {
+        enable = true;
+      };
 
       atuin = {
         enable = true;
