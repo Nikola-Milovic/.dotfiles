@@ -13,7 +13,7 @@ let
   cfg = config.${namespace}.programs.terminal.neovim;
 in
 {
-  options.config.${namespace}.programs.terminal.neovim = with types; {
+  options.${namespace}.programs.terminal.neovim = with types; {
     enable = mkBoolOpt false "Enable Neovim";
   };
 

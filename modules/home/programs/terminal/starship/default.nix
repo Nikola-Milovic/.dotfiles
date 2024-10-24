@@ -11,7 +11,7 @@ let
   cfg = config.${namespace}.programs.terminal.starship;
 in
 {
-  options.config.${namespace}.programs.terminal.starship = with types; {
+  options.${namespace}.programs.terminal.starship = with types; {
     enable = mkBoolOpt false "Enable Starship";
   };
 

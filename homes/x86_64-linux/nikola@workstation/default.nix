@@ -10,28 +10,12 @@
 }:
 with lib.${namespace};
 {
-  # Packages that should be installed to the user profile.
-  home.packages = with pkgs; [
-    # misc
-    cowsay
-    file
-    which
-    tree
-
-    btop
-
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  ];
+  home.packages = with pkgs; [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
 
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
     nix-direnv.enable = true;
-  };
-
-  programs.zellij = {
-    enable = true;
-    # enableBashIntegration = true;
   };
 
   programs.chromium = {
@@ -42,64 +26,22 @@ with lib.${namespace};
     ];
   };
 
-  programs.bat.enable = true;
-
-  programs.ripgrep.enable = true;
-
-  programs.atuin = {
-    enable = true;
-    enableBashIntegration = true;
-  };
-
-  xdg.configFile = {
-    "zellij" = {
-      source = config.lib.file.mkOutOfStoreSymlink (lib.snowfall.fs.get-file "configs/zellij");
-      recursive = true;
-    };
-  };
-
   fonts.fontconfig.enable = true;
 
-  custom = {
-		programs.terminal.wezterm = enabled;
-		programs.terminal.neovim = enabled;
-		programs.terminal.starship = enabled;
-	};
-
+  custom = { 
+  	programs.terminal = {
+			wezterm = enabled;
+			neovim = enabled;
+			starship = enabled; 
+			bash = enabled;
+			common = enabled;
+		};
+  	};
   # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
     userName = "Nikola-Milovic";
     userEmail = "nikolamilovic2001@gmail.com";
-  };
-
-  # alacritty - a cross-platform, GPU-accelerated terminal emulator
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      env.TERM = "xterm-256color";
-      font = {
-        size = 12;
-        draw_bold_text_with_bright_colors = true;
-      };
-      scrolling.multiplier = 5;
-      selection.save_to_clipboard = true;
-    };
-  };
-
-  programs.bash = {
-    enable = true;
-    enableCompletion = true;
-
-    bashrcExtra = ''
-      export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
-    '';
-
-    shellAliases = {
-      k = "kubectl";
-      cat = "bat";
-      grep = "ripgrep";
-    };
   };
 
   programs.lazygit.enable = true;
@@ -119,6 +61,4 @@ with lib.${namespace};
 
   # Reload services nicely on config changes
   systemd.user.startServices = "sd-switch";
-
-  system.stateVersion = "24.05";
 }

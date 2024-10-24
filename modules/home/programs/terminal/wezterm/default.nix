@@ -11,7 +11,7 @@ let
   cfg = config.${namespace}.programs.terminal.wezterm;
 in
 {
-  options.config.${namespace}.programs.terminal.wezterm = with types; {
+  options.${namespace}.programs.terminal.wezterm = with types; {
     enable = mkBoolOpt false "Enable wezterm";
   };
 
