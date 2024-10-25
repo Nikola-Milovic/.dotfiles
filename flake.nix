@@ -26,7 +26,7 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    { ... }@inputs:
     let
       lib = inputs.snowfall-lib.mkLib {
         inherit inputs;

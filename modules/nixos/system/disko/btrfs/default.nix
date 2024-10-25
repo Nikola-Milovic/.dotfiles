@@ -10,10 +10,10 @@
 with lib;
 with lib.${namespace};
 let
-  cfg = config.system.disko.btrfs;
+  cfg = config.${namespace}.system.disko.btrfs;
 in
 {
-  options.system.disko.btrfs = with types; {
+  options.${namespace}.system.disko.btrfs = with types; {
     enable = mkBoolOpt false "Whether or not to enable btfrs filesystem.";
     device = mkOpt str "" "Which device to target";
     swapSize = mkOpt str "" "The size of the swap";

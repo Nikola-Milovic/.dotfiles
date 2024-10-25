@@ -7,10 +7,10 @@
 with lib;
 with lib.${namespace};
 let
-  cfg = config.system.impermanence;
+  cfg = config.${namespace}.system.impermanence;
 in
 {
-  options.system.impermanence = with types; {
+  options.${namespace}.system.impermanence = with types; {
     enable = mkBoolOpt false "Whether or not to enable impermanence.";
     # TODO: home impermanence
     home = mkBoolOpt false "Whether or not to enable impermanence for /home as well.";

@@ -21,7 +21,7 @@ return {
                 expr = '(builtins.getFlake "/home/nikola/.dotfiles").nixosConfigurations.workstation.options',
               },
               home_manager = {
-                expr = '(builtins.getFlake "/home/nikola/.dotfiles").homeConfigurations.nikola@workstation.options',
+                expr = '(builtins.getFlake "/home/nikola/.dotfiles").homeConfigurations."nikola@workstation".options',
               },
             },
           },

@@ -24,6 +24,7 @@ in
       viAlias = true;
       vimAlias = true;
       package = inputs.neovim-nightly.packages.${system}.default;
+      defaultEditor = true;
     };
 
     xdg.configFile = {

@@ -8,10 +8,10 @@
 with lib;
 with lib.${namespace};
 let
-  cfg = config.services.ssh;
+  cfg = config.${namespace}.services.ssh;
 in
 {
-  options.services.ssh = with types; {
+  options.${namespace}.services.ssh = with types; {
     enable = mkBoolOpt false "Enable ssh";
   };
 
