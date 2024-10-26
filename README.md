@@ -101,6 +101,10 @@ port forward from X port to 2222 in router for SSH
 port forward from 60001 to any in router for mosh
 also enable firewall these connections in firewall
 
+## DNS
+
+Change DNS from ISP to Cloudflare
+
 ### Firefox
 
 [Install via apt not snap](https://askubuntu.com/a/1404401/1106437)

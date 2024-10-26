@@ -10,6 +10,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   pattern = ".env",
   group = group,
   callback = function(args)
-    vim.diagnostic.disable(args.buf)
+    vim.diagnostic.enable(false, args.buf)
   end,
 })

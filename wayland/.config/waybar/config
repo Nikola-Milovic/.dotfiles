@@ -19,6 +19,7 @@
         "battery",
         "pulseaudio",
         "custom/vpn",
+        "custom/warp",
         "tray",
         "clock#date",
         "clock#time"
@@ -121,6 +122,14 @@
     "return-type": "json",
     "exec": "~/.config/waybar/vpn_status.sh",
     "on-click": "~/.config/waybar/vpn_disconnect.sh",
+    "interval": 5
+    },
+
+   "custom/warp": {
+    "format": "{icon} {}",
+    "return-type": "json",
+    "exec": "~/.config/waybar/warp_status.sh",
+    "on-click": "~/.config/waybar/warp_click.sh",
     "interval": 5
     }
 }

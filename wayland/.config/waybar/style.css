@@ -196,3 +196,11 @@
 #custom-vpn.disconnected {
     color: red;
 }
+
+#custom-warp.connected {
+    color: green;
+}
+
+#custom-warp.disconnected {
+    color: red;
+}
