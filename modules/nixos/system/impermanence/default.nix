@@ -72,6 +72,7 @@ in
         "/.cache/nix/"
         "/etc/NetworkManager/system-connections"
         "/var/cache/"
+        "/var/tmp/" # needed because we change the nix tmp dir to /var/tmp
         "/var/db/sudo/"
         "/var/lib/"
       ];

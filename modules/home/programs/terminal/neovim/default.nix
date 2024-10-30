@@ -27,11 +27,9 @@ in
       defaultEditor = true;
     };
 
-    xdg.configFile = {
-      "nvim" = {
-        source = config.lib.file.mkOutOfStoreSymlink (lib.snowfall.fs.get-file "configs/nvim");
-        recursive = true;
-      };
+    custom.home.configFile."nvim" = {
+      source = config.lib.file.mkOutOfStoreSymlink (lib.snowfall.fs.get-file "configs/nvim");
+      recursive = true;
     };
   };
 }

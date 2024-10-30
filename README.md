@@ -23,3 +23,8 @@ Thanks to these awesome repos for getting me started and helping me get my curre
 - [Github SSH key on startup](https://discourse.nixos.org/t/add-ssh-key-to-agent-at-login-using-kwallet/25175/6)
 - [SOPS](https://www.youtube.com/watch?v=G5f6GC7SnhU)
 - [YubiKey](https://github.com/drduh/YubiKey-Guide)
+
+
+# in the future
+
+- [Firefox nordic theme](https://github.com/EliverLara/firefox-nordic-theme) (check out Hamilton's config)

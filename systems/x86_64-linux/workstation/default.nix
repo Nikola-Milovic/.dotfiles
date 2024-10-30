@@ -90,20 +90,6 @@ in
   };
   console.useXkbConfig = true;
 
-  programs = {
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-    };
-  };
-  xdg.portal.wlr.enable = true;
-  security.rtkit.enable = true;
-  # Move to hm value
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  # Enable the gnome-keyring secrets vault.
-  # Will be exposed through DBus to programs willing to store secrets.
-  services.gnome.gnome-keyring.enable = true;
-
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"

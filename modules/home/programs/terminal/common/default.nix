@@ -19,28 +19,53 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      file
-      which
-      tree
-      bottom
-      hyperfine
-      tokei
-      eza
-      procs
-    ];
+    custom.home = {
+      extraOptions = {
+        home.packages = with pkgs; [
+          file
+          which
+          tree
+          bottom
+          hyperfine
+          tokei
+          eza
+          procs
+        ];
+
+        home.shellAliases = {
+          # sed="sd" -- can't do this because sd is not compatible with sed's commands that Unix by default uses
+          htop = "btm";
+          ps = "procs";
+          time = "hyperfine";
+          cloc = "tokei";
+          cd = "z";
+          c = "clear";
+          cat = "bat";
+          ls = "eza";
+          find = "fd";
+          grep = "rg";
+          top = "btm";
+
+          tmux = "zellij";
+          zj = "zellij";
+        };
+      };
+    };
 
     programs = {
       fd = enabled;
       bat = enabled;
       ripgrep = enabled;
+
+      zellij = enabled;
       zoxide = {
         enable = true;
         enableBashIntegration = true;
       };
 
-      zellij = {
-        enable = true;
+      yazi = {
+        enabled = true;
+        enableBashIntegration = true;
       };
 
       atuin = {
@@ -50,12 +75,9 @@ in
       };
     };
 
-    xdg.configFile = {
-      "zellij" = {
-        source = config.lib.file.mkOutOfStoreSymlink (lib.snowfall.fs.get-file "configs/zellij");
-        recursive = true;
-      };
+    custom.home.configFile."zellij" = {
+      source = config.lib.file.mkOutOfStoreSymlink (lib.snowfall.fs.get-file "configs/zellij");
+      recursive = true;
     };
-
   };
 }
