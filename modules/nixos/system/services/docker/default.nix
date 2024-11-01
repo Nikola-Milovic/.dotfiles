@@ -16,7 +16,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    # docker
+    custom.user.extraGroups = [ "docker" ];
+
     virtualisation.docker = {
       enable = true;
       enableOnBoot = true;

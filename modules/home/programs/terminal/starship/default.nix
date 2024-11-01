@@ -19,7 +19,6 @@ in
   # https://gist.github.com/3ayazaya/d87c70c5f30a6e28f15dfc84ca95fc68
   config = mkIf cfg.enable {
     programs.starship = {
-
       enable = true;
       settings = {
         character = {

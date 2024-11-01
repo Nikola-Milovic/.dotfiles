@@ -19,8 +19,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    custom.home = {
-      extraOptions = {
         home.packages = with pkgs; [
           file
           which
@@ -49,8 +47,6 @@ in
           tmux = "zellij";
           zj = "zellij";
         };
-      };
-    };
 
     programs = {
       fd = enabled;
@@ -64,7 +60,7 @@ in
       };
 
       yazi = {
-        enabled = true;
+        enable = true;
         enableBashIntegration = true;
       };
 
@@ -75,7 +71,7 @@ in
       };
     };
 
-    custom.home.configFile."zellij" = {
+    xdg.configFile."zellij" = {
       source = config.lib.file.mkOutOfStoreSymlink (lib.snowfall.fs.get-file "configs/zellij");
       recursive = true;
     };

@@ -19,7 +19,6 @@ in
 {
   options.${namespace}.desktop.sway = with types; {
     enable = mkBoolOpt false "Whether or not to enable Sway.";
-    wallpaper = mkOpt (nullOr package) null "The wallpaper to display.";
     extraConfig = mkOpt str "" "Additional configuration for the Sway config file.";
   };
 
@@ -53,12 +52,6 @@ in
       # Start a user session dbus (required for things like starting
       # applications through wofi).
       exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
-
-      ${optionalString (cfg.wallpaper != null) ''
-        output * {
-          bg ${cfg.wallpaper.gnomeFilePath or cfg.wallpaper} fill
-        }
-      ''}
 
       ${cfg.extraConfig}
     '';

@@ -41,6 +41,18 @@ in
       ssh = enabled;
       docker = enabled;
     };
+
+		user = {
+        hashedPassword = "$6$lP/WAcHvSHwBHxMn$ou44X10FVP3kHaTrIBSpwZGA0jlf5YSLp2lha9fSeJcOLaw5lvWD9BuH3lyNs3qlASqfe/TVtDSkpj5PzpWJK1";
+				fullName="Nikola Milovic";
+        extraGroups = [
+          "wheel"
+        ];
+			};
+
+hardware = {
+		networking = enabled;
+	};
   };
 
   users = {
@@ -48,18 +60,6 @@ in
 
     users = {
       root.hashedPassword = "$6$SS1zHvFP7bqY6yqo$g3R63sGjSlt8dAZh.oGznVg90GtSciNJDZU.BXb2SrVi.qHjnfcuiYRzwKdEoFq/gpJmQOWQ7Gr7ZVELKKXcr.";
-
-      nikola = {
-        hashedPassword = "$6$lP/WAcHvSHwBHxMn$ou44X10FVP3kHaTrIBSpwZGA0jlf5YSLp2lha9fSeJcOLaw5lvWD9BuH3lyNs3qlASqfe/TVtDSkpj5PzpWJK1";
-        isNormalUser = true;
-        home = "/home/nikola";
-        description = "Nikola Milovic";
-        extraGroups = [
-          "wheel"
-          "networkmanager"
-          "docker"
-        ];
-      };
     };
   };
 

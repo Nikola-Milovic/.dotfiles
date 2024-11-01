@@ -18,7 +18,6 @@ in
   };
 
   config = mkIf cfg.enable {
-
     programs.neovim = {
       enable = true;
       viAlias = true;
@@ -27,7 +26,7 @@ in
       defaultEditor = true;
     };
 
-    custom.home.configFile."nvim" = {
+    xdg.configFile."nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink (lib.snowfall.fs.get-file "configs/nvim");
       recursive = true;
     };

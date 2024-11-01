@@ -22,8 +22,20 @@ in
     extraOptions = mkOpt attrs { } (mdDoc "Extra options passed to `users.users.<name>`.");
   };
 
-  config = {
-    environment.systemPackages = with pkgs; [ ];
+  config = (mkMerge [
+    {
+      assertions = [
+        {
+          assertion = cfg.name != null;
+          message = "${namespace}.user.name must be set";
+        }
+        {
+          assertion = cfg.hashedPassword != null;
+          message = "${namespace}.user.hashedPassword must be set";
+        }
+      ];
+
+		environment.systemPackages = with pkgs; [ ];
 
     custom.home = {
       file = {
@@ -54,7 +66,16 @@ in
       # system to select).
       uid = 1000;
 
-      extraGroups = [ ] ++ cfg.extraGroups;
+      extraGroups = [
+				"wheel"
+        "systemd-journal"
+        "audio"
+        "video"
+        "input"
+        "power"
+        "nix"
+			] ++ cfg.extraGroups;
     } // cfg.extraOptions;
-  };
+  }
+]);
 }
