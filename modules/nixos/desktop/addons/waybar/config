@@ -117,19 +117,19 @@
         "spacing": 10
     },
 
-   "custom/vpn": {
-    "format": "{icon} {}",
-    "return-type": "json",
-    "exec": "waybar_vpn_status.sh",
-    "on-click": "waybar_vpn_disconnect.sh",
-    "interval": 5
-    },
+"custom/vpn": {
+  "format": "{icon} {}",
+  "return-type": "json",
+  "exec": "waybar_network_status.sh vpn-status",
+  "on-click": "waybar_network_status.sh vpn-toggle",
+  "interval": 5
+},
 
-   "custom/warp": {
-    "format": "{icon} {}",
-    "return-type": "json",
-    "exec": "waybar_warp_status.sh",
-    "on-click": "waybar_warp_click.sh",
-    "interval": 5
-    }
+"custom/warp": {
+  "format": "{icon} {}",
+  "return-type": "json",
+  "exec": "waybar_network_status.sh warp-status",
+  "on-click": "waybar_network_status.sh warp-toggle",
+  "interval": 5
+}
 }

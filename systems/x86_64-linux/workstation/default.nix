@@ -37,6 +37,8 @@ in
       };
     };
 
+		desktop.sway = enabled;
+
     services = {
       ssh = enabled;
       docker = enabled;

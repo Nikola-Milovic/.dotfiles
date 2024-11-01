@@ -25,7 +25,6 @@ in
   config = mkIf cfg.enable {
     # Desktop additions
     custom.desktop.addons = {
-      gtk = enabled;
       foot = enabled;
       mako = enabled;
       rofi = enabled;
@@ -71,7 +70,7 @@ in
         playerctl
         brightnessctl
         glib # for gsettings
-        gtk3.out # for gtk-launch
+        # gtk3.out # for gtk-launch
         gnome.gnome-control-center
       ];
 
@@ -135,7 +134,7 @@ in
     };
 
     services.xserver.enable = true;
-    services.xserver.displayManager.defaultSession = "sway";
+    services.displayManager.defaultSession = "sway";
     services.xserver.displayManager.gdm.enable = true;
     services.xserver.displayManager.gdm.wayland = true;
 
