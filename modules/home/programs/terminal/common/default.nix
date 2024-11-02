@@ -19,34 +19,34 @@ in
   };
 
   config = mkIf cfg.enable {
-        home.packages = with pkgs; [
-          file
-          which
-          tree
-          bottom
-          hyperfine
-          tokei
-          eza
-          procs
-        ];
+    home.packages = with pkgs; [
+      file
+      which
+      tree
+      bottom
+      hyperfine
+      tokei
+      eza
+      procs
+    ];
 
-        home.shellAliases = {
-          # sed="sd" -- can't do this because sd is not compatible with sed's commands that Unix by default uses
-          htop = "btm";
-          ps = "procs";
-          time = "hyperfine";
-          cloc = "tokei";
-          cd = "z";
-          c = "clear";
-          cat = "bat";
-          ls = "eza";
-          find = "fd";
-          grep = "rg";
-          top = "btm";
+    home.shellAliases = {
+      # sed="sd" -- can't do this because sd is not compatible with sed's commands that Unix by default uses
+      htop = "btm";
+      ps = "procs";
+      time = "hyperfine";
+      cloc = "tokei";
+      cd = "z";
+      c = "clear";
+      cat = "bat";
+      ls = "eza";
+      find = "fd";
+      grep = "rg";
+      top = "btm";
 
-          tmux = "zellij";
-          zj = "zellij";
-        };
+      tmux = "zellij";
+      zj = "zellij";
+    };
 
     programs = {
       fd = enabled;

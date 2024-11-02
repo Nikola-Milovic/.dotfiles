@@ -69,7 +69,7 @@ in
 
         homeDirectory = mkDefault cfg.home;
 
-        shellAliases = {};
+        shellAliases = { };
 
         username = mkDefault cfg.name;
       };

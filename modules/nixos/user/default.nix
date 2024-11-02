@@ -22,60 +22,62 @@ in
     extraOptions = mkOpt attrs { } (mdDoc "Extra options passed to `users.users.<name>`.");
   };
 
-  config = (mkMerge [
-    {
-      assertions = [
-        {
-          assertion = cfg.name != null;
-          message = "${namespace}.user.name must be set";
-        }
-        {
-          assertion = cfg.hashedPassword != null;
-          message = "${namespace}.user.hashedPassword must be set";
-        }
-      ];
+  config = (
+    mkMerge [
+      {
+        assertions = [
+          {
+            assertion = cfg.name != null;
+            message = "${namespace}.user.name must be set";
+          }
+          {
+            assertion = cfg.hashedPassword != null;
+            message = "${namespace}.user.hashedPassword must be set";
+          }
+        ];
 
-		environment.systemPackages = with pkgs; [ ];
+        environment.systemPackages = with pkgs; [ ];
 
-    custom.home = {
-      file = {
-        "Desktop/.keep".text = "";
-        "Documents/.keep".text = "";
-        "Downloads/.keep".text = "";
-        "Music/.keep".text = "";
-        "Pictures/.keep".text = "";
-        "Videos/.keep".text = "";
-        "work/.keep".text = "";
-      };
-    };
+        custom.home = {
+          file = {
+            "Desktop/.keep".text = "";
+            "Documents/.keep".text = "";
+            "Downloads/.keep".text = "";
+            "Music/.keep".text = "";
+            "Pictures/.keep".text = "";
+            "Videos/.keep".text = "";
+            "work/.keep".text = "";
+          };
+        };
 
-    users.users.${cfg.name} = {
-      isNormalUser = true;
+        users.users.${cfg.name} = {
+          isNormalUser = true;
 
-      inherit (cfg) name hashedPassword;
+          inherit (cfg) name hashedPassword;
 
-      home = "/home/${cfg.name}";
-      group = "users";
+          home = "/home/${cfg.name}";
+          group = "users";
 
-      shell = pkgs.bash;
+          shell = pkgs.bash;
 
-      # Arbitrary user ID to use for the user. Since I only
-      # have a single user on my machines this won't ever collide.
-      # However, if you add multiple users you'll need to change this
-      # so each user has their own unique uid (or leave it out for the
-      # system to select).
-      uid = 1000;
+          # Arbitrary user ID to use for the user. Since I only
+          # have a single user on my machines this won't ever collide.
+          # However, if you add multiple users you'll need to change this
+          # so each user has their own unique uid (or leave it out for the
+          # system to select).
+          uid = 1000;
 
-      extraGroups = [
-				"wheel"
-        "systemd-journal"
-        "audio"
-        "video"
-        "input"
-        "power"
-        "nix"
-			] ++ cfg.extraGroups;
-    } // cfg.extraOptions;
-  }
-]);
+          extraGroups = [
+            "wheel"
+            "systemd-journal"
+            "audio"
+            "video"
+            "input"
+            "power"
+            "nix"
+          ] ++ cfg.extraGroups;
+        } // cfg.extraOptions;
+      }
+    ]
+  );
 }

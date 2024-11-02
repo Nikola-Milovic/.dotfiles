@@ -37,24 +37,22 @@ in
       };
     };
 
-		desktop.sway = enabled;
+    desktop.sway = enabled;
 
     services = {
       ssh = enabled;
       docker = enabled;
     };
 
-		user = {
-        hashedPassword = "$6$lP/WAcHvSHwBHxMn$ou44X10FVP3kHaTrIBSpwZGA0jlf5YSLp2lha9fSeJcOLaw5lvWD9BuH3lyNs3qlASqfe/TVtDSkpj5PzpWJK1";
-				fullName="Nikola Milovic";
-        extraGroups = [
-          "wheel"
-        ];
-			};
+    user = {
+      hashedPassword = "$6$lP/WAcHvSHwBHxMn$ou44X10FVP3kHaTrIBSpwZGA0jlf5YSLp2lha9fSeJcOLaw5lvWD9BuH3lyNs3qlASqfe/TVtDSkpj5PzpWJK1";
+      fullName = "Nikola Milovic";
+      extraGroups = [ "wheel" ];
+    };
 
-hardware = {
-		networking = enabled;
-	};
+    hardware = {
+      networking = enabled;
+    };
   };
 
   users = {
