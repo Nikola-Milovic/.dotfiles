@@ -37,7 +37,10 @@ in
       };
     };
 
-    desktop.sway = enabled;
+    desktop.sway = {
+      enable = true;
+      wallpaper = pkgs.custom.wallpapers.galaxy-warm;
+    };
 
     services = {
       ssh = enabled;
@@ -112,12 +115,7 @@ in
     nixfmt-rfc-style
     wget
     vim
-    foot
     git
-    grim # screenshot functionality
-    slurp # screenshot functionality
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    mako # notification system developed by swaywm maintainer
   ];
 
   nix.gc = {

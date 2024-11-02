@@ -48,6 +48,7 @@ with lib.${namespace};
   programs.lazygit = {
     enable = true;
     settings = {
+      # TODO: Make sure this works
       keybinding.universal.return = "<c-l>";
       paging = {
         useConfig = true;

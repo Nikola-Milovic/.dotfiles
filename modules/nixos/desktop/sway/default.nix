@@ -20,6 +20,7 @@ in
   options.${namespace}.desktop.sway = with types; {
     enable = mkBoolOpt false "Whether or not to enable Sway.";
     extraConfig = mkOpt str "" "Additional configuration for the Sway config file.";
+    wallpaper = mkOpt (nullOr package) null "The wallpaper to display.";
   };
 
   config = mkIf cfg.enable {
@@ -31,28 +32,37 @@ in
       wofi = enabled;
       swappy = enabled;
       waybar = enabled;
+      wallpapers = enabled;
       keyring = enabled;
       nautilus = enabled;
       xdg-portal = enabled;
     };
 
     custom.home.configFile."sway/config".text = fileWithText substitutedConfig ''
-      #############################
-      #░░░░░░░░░░░░░░░░░░░░░░░░░░░#
-      #░░█▀▀░█░█░█▀▀░▀█▀░█▀▀░█▄█░░#
-      #░░▀▀█░░█░░▀▀█░░█░░█▀▀░█░█░░#
-      #░░▀▀▀░░▀░░▀▀▀░░▀░░▀▀▀░▀░▀░░#
-      #░░░░░░░░░░░░░░░░░░░░░░░░░░░#
-      #############################
+            #############################
+            #░░░░░░░░░░░░░░░░░░░░░░░░░░░#
+            #░░█▀▀░█░█░█▀▀░▀█▀░█▀▀░█▄█░░#
+            #░░▀▀█░░█░░▀▀█░░█░░█▀▀░█░█░░#
+            #░░▀▀▀░░▀░░▀▀▀░░▀░░▀▀▀░▀░▀░░#
+            #░░░░░░░░░░░░░░░░░░░░░░░░░░░#
+            #############################
 
-      # Launch services waiting for the systemd target sway-session.target
-      exec "systemctl --user import-environment; systemctl --user start sway-session.target"
+            # Launch services waiting for the systemd target sway-session.target
+            exec "systemctl --user import-environment; systemctl --user start sway-session.target"
 
-      # Start a user session dbus (required for things like starting
-      # applications through wofi).
-      exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
+            # Start a user session dbus (required for things like starting
+            # applications through wofi).
+            exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
 
-      ${cfg.extraConfig}
+      			${
+           optionalString (cfg.wallpaper != null) ''
+             output * {
+               bg ${cfg.wallpaper.gnomeFilePath or cfg.wallpaper} fill
+             }
+           ''
+         }
+
+            ${cfg.extraConfig}
     '';
 
     programs.sway = {
@@ -66,6 +76,10 @@ in
         xwayland
         sway-contrib.grimshot
         swaylock-fancy
+
+        grim # screenshot functionality
+        slurp # screenshot functionality
+
         wl-clipboard
         wf-recorder
         libinput

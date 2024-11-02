@@ -62,6 +62,11 @@ in
       yazi = {
         enable = true;
         enableBashIntegration = true;
+        settings = {
+          show_hidden = true;
+          show_symlink = true;
+          sort_by = "extension";
+        };
       };
 
       atuin = {
