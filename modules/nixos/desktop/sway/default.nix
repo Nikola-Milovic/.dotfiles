@@ -139,7 +139,7 @@ in
     # services.displayManager.defaultSession = "sway";
     # services.xserver.displayManager.gdm.enable = true;
     # services.xserver.displayManager.gdm.wayland = true;
-		# TODO: TUI Greet https://github.com/apognu/tuigreet
+    # TODO: TUI Greet https://github.com/apognu/tuigreet
     services.greetd = {
       enable = true;
       settings = rec {

@@ -34,7 +34,7 @@ with lib.${namespace};
       starship = enabled;
       bash = enabled;
       common = enabled;
-			home-manager = enabled;
+      home-manager = enabled;
     };
   };
 
@@ -45,7 +45,16 @@ with lib.${namespace};
     userEmail = "nikolamilovic2001@gmail.com";
   };
 
-  programs.lazygit.enable = true;
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      keybinding.universal.return = "<c-l>";
+      paging = {
+        useConfig = true;
+        colorarg = "always";
+      };
+    };
+  };
 
   # Reload services nicely on config changes
   systemd.user.startServices = "sd-switch";

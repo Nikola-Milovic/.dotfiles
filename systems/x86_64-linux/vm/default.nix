@@ -52,6 +52,7 @@ in
 
     hardware = {
       networking = enabled;
+      audio = enabled;
     };
   };
 
