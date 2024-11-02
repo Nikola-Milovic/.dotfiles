@@ -30,7 +30,6 @@ with lib.${namespace};
 
   custom = {
     programs.terminal = {
-      wezterm = enabled;
       neovim = enabled;
       starship = enabled;
       bash = enabled;

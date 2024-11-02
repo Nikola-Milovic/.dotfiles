@@ -17,7 +17,7 @@
     "modules-right": [
 //        "network",
         "battery",
-        "pulseaudio",
+        // "pulseaudio",
         "custom/vpn",
         "custom/warp",
         "tray",
@@ -95,22 +95,22 @@
         "format": "{icon}",
       },
 
-    "pulseaudio": {
-        "scroll-step": 5,
-        "format": "{icon}  {volume}%",
-        "format-bluetooth": "{icon}  {volume}%",
-        "format-muted": "",
-        "format-icons": {
-            "headphones": "",
-            "handsfree": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", ""]
-        },
-        "on-click": "pavucontrol"
-    },
+   // "pulseaudio": {
+   //     "scroll-step": 5,
+   //     "format": "{icon}  {volume}%",
+   //     "format-bluetooth": "{icon}  {volume}%",
+   //     "format-muted": "",
+   //     "format-icons": {
+   //         "headphones": "",
+   //         "handsfree": "",
+   //         "headset": "",
+   //         "phone": "",
+   //         "portable": "",
+   //         "car": "",
+   //         "default": ["", ""]
+   //     },
+   //     "on-click": "pavucontrol"
+   // },
 
     "tray": {
         "icon-size": 21,
