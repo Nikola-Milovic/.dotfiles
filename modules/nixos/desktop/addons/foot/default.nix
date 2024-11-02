@@ -13,7 +13,7 @@ let
 in
 {
   options.${namespace}.desktop.addons.foot = with types; {
-    enable = mkBoolOpt false "Whether to enable the gnome file manager.";
+    enable = mkBoolOpt false "Whether to enable the foot terminal.";
   };
 
   config = mkIf cfg.enable {

@@ -35,6 +35,7 @@ with lib.${namespace};
       starship = enabled;
       bash = enabled;
       common = enabled;
+			home-manager = enabled;
     };
   };
 

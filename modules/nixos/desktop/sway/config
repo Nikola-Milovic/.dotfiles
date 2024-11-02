@@ -3,7 +3,7 @@
 default_border none
 
 set $mod Mod4
-set $term wezterm
+set $term env @term@
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -12,14 +12,15 @@ font pango:JetBrainsMono Nerd Font 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 # start a terminal
-bindsym $mod+t exec /home/nikola/bin/wezterm
-# bindsym $mod+t exec gnome-terminal
+bindsym $mod+t exec $term
 
 bindsym $mod+Ctrl+q kill
 
-exec albert
 # start dmenu (a program launcher)
-bindsym $mod+d exec albert toggle
+set $menu-run wofi --show drun --prompt search
+
+# Open run menu
+bindsym $mod+d exec $menu-run
 
 # move focused workspace between monitors
 bindsym $mod+Ctrl+greater move workspace to output right

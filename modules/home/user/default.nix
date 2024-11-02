@@ -73,8 +73,6 @@ in
 
         username = mkDefault cfg.name;
       };
-
-      programs.home-manager = enabled;
     }
   ]);
 }
