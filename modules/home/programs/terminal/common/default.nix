@@ -63,9 +63,11 @@ in
         enable = true;
         enableBashIntegration = true;
         settings = {
-          show_hidden = true;
-          show_symlink = true;
-          sort_by = "extension";
+          manager = {
+            sort_by = "extension";
+            show_hidden = true;
+            show_symlink = true;
+          };
         };
       };
 

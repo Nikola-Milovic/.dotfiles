@@ -38,29 +38,46 @@ in
         mkdir -p /btrfs_tmp
         mount /dev/sda2 -o subvol=/ /btrfs_tmp
 
-        # Move current root to a single backup location
+        # Backup and rotate the /root subvolume
         if [[ -e /btrfs_tmp/root ]]; then
-          mkdir -p /btrfs_tmp/old_root
-          echo "Moving current root to /btrfs_tmp/old_root"
-          rm -rf /btrfs_tmp/old_root
-          mv /btrfs_tmp/root /btrfs_tmp/old_root
+            mkdir -p /btrfs_tmp/old_roots
+            timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/root)" "+%Y-%m-%-d_%H:%M:%S")
+            mv /btrfs_tmp/root "/btrfs_tmp/old_roots/$timestamp"
         fi
 
-        # Create a fresh root subvolume
+        # Function to recursively delete old subvolumes
+        delete_subvolume_recursively() {
+            IFS=$'\n'
+            for i in $(btrfs subvolume list -o "$1" | cut -f 9- -d ' '); do
+                delete_subvolume_recursively "/btrfs_tmp/$i"
+            done
+            btrfs subvolume delete "$1"
+        }
+
+        # Remove /root backups older than 14 days
+        find /btrfs_tmp/old_roots/ -maxdepth 1 -mtime +14 -exec bash -c 'delete_subvolume_recursively "$0"' {} \;
+
+        # Create a fresh /root subvolume
         btrfs subvolume create /btrfs_tmp/root
         echo "Created fresh /root subvolume"
 
-        # Optionally create a new /home subvolume if enabled
+        # Optionally backup and rotate the /home subvolume if enabled
         ${optionalString cfg.home ''
           if [[ -e /btrfs_tmp/home ]]; then
-            echo "Moving current /home to /btrfs_tmp/old_home"
-            rm -rf /btrfs_tmp/old_home
-            mv /btrfs_tmp/home /btrfs_tmp/old_home
+              mkdir -p /btrfs_tmp/old_home
+              timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/home)" "+%Y-%m-%-d_%H:%M:%S")
+              mv /btrfs_tmp/home "/btrfs_tmp/old_home/$timestamp"
           fi
+
+          # Remove /home backups older than 14 days
+          find /btrfs_tmp/old_home/ -maxdepth 1 -mtime +14 -exec bash -c 'delete_subvolume_recursively "$0"' {} \;
+
+          # Create a fresh /home subvolume
           btrfs subvolume create /btrfs_tmp/home
           echo "Created fresh /home subvolume"
         ''}
 
+        # Unmount /btrfs_tmp after completing operations
         umount /btrfs_tmp
       '';
     };
