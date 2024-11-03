@@ -43,16 +43,14 @@
         allowUnfree = true;
       };
 
-      home.modules = with inputs; [ ];
+      homes.modules = with inputs; [ impermanence.homeManagerModules.default ];
 
-      systems = {
-        modules = {
-          nixos = with inputs; [
-            disko.nixosModules.disko
-            impermanence.nixosModule
-            home-manager.nixosModules.home-manager
-          ];
-        };
+      systems.modules = {
+        nixos = with inputs; [
+          disko.nixosModules.disko
+          impermanence.nixosModule
+          home-manager.nixosModules.home-manager
+        ];
       };
 
       outputs-builder = channels: { formatter = channels.nixpkgs.nixfmt-rfc-style; };

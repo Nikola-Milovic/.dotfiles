@@ -23,24 +23,7 @@ in
       enable = true;
       enableCompletion = true;
 
-      # TODO: move to golang setup
-      # bashrcExtra = ''
-      #   export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
-      # '';
-
       shellAliases = {
-        cat = "bat";
-        ls = "eza";
-        find = "fd";
-        grep = "rg";
-        top = "btm";
-        # sed="sd" -- can't do this because sd is not compatible with sed's commands that Unix by default uses
-        htop = "btm";
-        ps = "procs";
-        time = "hyperfine";
-        cloc = "tokei";
-        cd = "z";
-
         # TODO: move to git
         g = "git";
         gs = "git status";

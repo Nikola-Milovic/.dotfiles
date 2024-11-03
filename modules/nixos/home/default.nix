@@ -5,9 +5,10 @@
   namespace,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) types mdDoc mkAliasDefinitions;
+  inherit (lib.${namespace}) mkOpt;
+
   cfg = config.${namespace}.home;
 in
 {
@@ -22,13 +23,12 @@ in
   config = {
     custom.home.extraOptions = {
       home.stateVersion = config.system.stateVersion;
-      home.file = mkAliasDefinitions options.${namespace}.home.file;
+      home.file = mkAliasDefinitions cfg.file;
       xdg.enable = true;
       xdg.configFile = mkAliasDefinitions options.${namespace}.home.configFile;
     };
 
-    snowfallorg.users.${config.${namespace}.user.name}.home.config =
-      config.${namespace}.home.extraOptions;
+    snowfallorg.users.${config.${namespace}.user.name}.home.config = cfg.extraOptions;
 
     home-manager = {
       useUserPackages = true;

@@ -11,8 +11,6 @@ let
     mkIf
     mkDefault
     mkMerge
-    getExe
-    getExe'
     ;
   inherit (lib.${namespace}) mkOpt enabled;
 
@@ -57,6 +55,7 @@ in
             "Desktop/.keep".text = "";
             "Documents/.keep".text = "";
             "Downloads/.keep".text = "";
+            "Files/.keep".text = "";
             "Music/.keep".text = "";
             "Pictures/.keep".text = "";
             "Videos/.keep".text = "";

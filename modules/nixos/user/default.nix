@@ -15,6 +15,7 @@ in
   options.${namespace}.user = with types; {
     name = mkOpt str "nikola" "The name to use for the user account.";
     fullName = mkOpt str "Nikola Milovic" "The full name of the user.";
+    group = mkOpt str "users" "The user's group.";
     email = mkOpt str "nikolamilovic2001@gmail.com" "The email of the user.";
     hashedPassword = mkOpt str "password" "The hashed password to use when the user is first created.";
     prompt-init = mkBoolOpt true "Whether or not to show an initial message when opening a new shell.";
@@ -38,25 +39,13 @@ in
 
         environment.systemPackages = with pkgs; [ ];
 
-        custom.home = {
-          file = {
-            "Desktop/.keep".text = "";
-            "Documents/.keep".text = "";
-            "Downloads/.keep".text = "";
-            "Music/.keep".text = "";
-            "Pictures/.keep".text = "";
-            "Videos/.keep".text = "";
-            "work/.keep".text = "";
-          };
-        };
-
         users.users.${cfg.name} = {
           isNormalUser = true;
 
           inherit (cfg) name hashedPassword;
 
           home = "/home/${cfg.name}";
-          group = "users";
+          group = cfg.group;
 
           shell = pkgs.bash;
 

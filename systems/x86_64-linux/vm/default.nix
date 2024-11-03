@@ -29,7 +29,10 @@ in
 
   custom = {
     system = {
-      impermanence = enabled;
+      impermanence = {
+        enable = true;
+        home = true;
+      };
       disko.btrfs = {
         enable = true;
         swapSize = "2G";

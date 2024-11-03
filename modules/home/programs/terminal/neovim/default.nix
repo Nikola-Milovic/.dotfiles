@@ -7,17 +7,20 @@
   lib,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkIf;
+  inherit (lib.${namespace}) mkBoolOpt;
   cfg = config.${namespace}.programs.terminal.neovim;
 in
 {
-  options.${namespace}.programs.terminal.neovim = with types; {
+  options.${namespace}.programs.terminal.neovim = {
     enable = mkBoolOpt false "Enable Neovim";
   };
 
   config = mkIf cfg.enable {
+    # Until the config is migrated to nix, we need to persist this
+    ${namespace}.impermanence.directories = [ ".local/share/nvim" ];
+
     programs.neovim = {
       enable = true;
       viAlias = true;
