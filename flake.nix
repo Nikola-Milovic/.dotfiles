@@ -6,6 +6,11 @@
 
     disko.url = "github:nix-community/disko";
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,13 +48,17 @@
         allowUnfree = true;
       };
 
-      homes.modules = with inputs; [ impermanence.homeManagerModules.default ];
+      homes.modules = with inputs; [
+        impermanence.homeManagerModules.default
+        sops-nix.homeManagerModules.sops
+      ];
 
       systems.modules = {
         nixos = with inputs; [
           disko.nixosModules.disko
           impermanence.nixosModule
           home-manager.nixosModules.home-manager
+          sops-nix.nixosModules.sops
         ];
       };
 

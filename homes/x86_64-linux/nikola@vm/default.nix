@@ -29,9 +29,17 @@ with lib.${namespace};
   fonts.fontconfig.enable = true;
 
   custom = {
+    security = {
+
+      sops = {
+        enable = true;
+        defaultSopsFile = lib.snowfall.fs.get-file "secrets/users/${config.${namespace}.user.name}/secrets.yaml";
+      };
+    };
+
     programs.terminal = {
       neovim = enabled;
-			git = enabled;
+      git = enabled;
       starship = enabled;
       bash = enabled;
       common = enabled;

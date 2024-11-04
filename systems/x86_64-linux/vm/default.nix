@@ -28,6 +28,9 @@ in
   system.stateVersion = "24.05";
 
   custom = {
+    security = {
+      # sops = enabled;
+    };
     system = {
       impermanence = {
         enable = true;

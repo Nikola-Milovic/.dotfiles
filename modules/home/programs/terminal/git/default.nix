@@ -17,22 +17,22 @@ let
   inherit (lib.${namespace}) mkOpt mkBoolOpt enabled;
   inherit (config.${namespace}) user;
 
-  cfg = config.${namespace}.programs.terminal.tools.git;
+  cfg = config.${namespace}.programs.terminal.git;
 
   aliases = import ./aliases.nix;
   ignores = import ./ignores.nix;
 
-  # tokenExports =
-  #   lib.optionalString osConfig.${namespace}.security.sops.enable # Bash
-  #     ''
-  #       GITHUB_TOKEN="$(cat ${config.sops.secrets."github/access-token".path})"
-  #       export GITHUB_TOKEN
-  #       GH_TOKEN="$(cat ${config.sops.secrets."github/access-token".path})"
-  #       export GH_TOKEN
-  #     '';
 in
+# tokenExports =
+#   lib.optionalString osConfig.${namespace}.security.sops.enable # Bash
+#     ''
+#       GITHUB_TOKEN="$(cat ${config.sops.secrets."github/access-token".path})"
+#       export GITHUB_TOKEN
+#       GH_TOKEN="$(cat ${config.sops.secrets."github/access-token".path})"
+#       export GH_TOKEN
+#     '';
 {
-  options.${namespace}.programs.terminal.tools.git = {
+  options.${namespace}.programs.terminal.git = {
     enable = mkEnableOption "Git";
     includes = mkOpt (types.listOf types.attrs) [ ] "Git includeIf paths and conditions.";
     signByDefault = mkOpt types.bool false "Whether to sign commits by default.";
@@ -154,12 +154,10 @@ in
       inherit (aliases) shellAliases;
     };
 
-    # TODO: sops
-    # sops.secrets = lib.mkIf osConfig.${namespace}.security.sops.enable {
-    #   "github/access-token" = {
-    #     sopsFile = lib.snowfall.fs.get-file "secrets/khaneliman/default.yaml";
-    #     path = "${config.home.homeDirectory}/.config/gh/access-token";
-    #   };
-    # };
+    sops.secrets = lib.mkIf config.${namespace}.security.sops.enable {
+      "github/ssh" = {
+        path = "${config.home.homeDirectory}/.ssh/id_ed25519_github.pk";
+      };
+    };
   };
 }

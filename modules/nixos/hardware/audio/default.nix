@@ -6,7 +6,12 @@
   ...
 }:
 let
-  inherit (lib) types mkIf mkForce;
+  inherit (lib)
+    types
+    mkIf
+    mkForce
+    mkEnableOption
+    ;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.hardware.audio;
