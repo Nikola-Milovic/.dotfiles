@@ -14,7 +14,7 @@ let
 in
 {
   options.${namespace}.system.disko.btrfs = with types; {
-    enable = mkBoolOpt false "Whether or not to enable btfrs filesystem.";
+    enable = mkEnableOption "BTFRS Filesystem";
     device = mkOpt str "" "Which device to target";
     swapSize = mkOpt str "" "The size of the swap";
   };

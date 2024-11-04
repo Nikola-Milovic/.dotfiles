@@ -31,7 +31,7 @@ in
     system = {
       impermanence = {
         enable = true;
-        home = true;
+        home = false;
       };
       disko.btrfs = {
         enable = true;

@@ -13,7 +13,7 @@ let
 in
 {
   options.${namespace}.hardware.audio = with types; {
-    enable = mkBoolOpt false "Whether or not to enable audio support.";
+    enable = mkEnableOption "Audio";
     alsa-monitor = mkOpt attrs { } "Alsa configuration.";
     extra-packages = mkOpt (listOf package) [
       # FIXME: broken nixpkgs

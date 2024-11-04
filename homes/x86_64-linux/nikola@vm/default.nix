@@ -31,29 +31,11 @@ with lib.${namespace};
   custom = {
     programs.terminal = {
       neovim = enabled;
+			git = enabled;
       starship = enabled;
       bash = enabled;
       common = enabled;
       home-manager = enabled;
-    };
-  };
-
-  # basic configuration of git, please change to your own
-  programs.git = {
-    enable = true;
-    userName = "Nikola-Milovic";
-    userEmail = "nikolamilovic2001@gmail.com";
-  };
-
-  programs.lazygit = {
-    enable = true;
-    settings = {
-      # TODO: Make sure this works
-      keybinding.universal.return = "<c-l>";
-      paging = {
-        useConfig = true;
-        colorarg = "always";
-      };
     };
   };
 

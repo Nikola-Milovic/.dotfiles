@@ -24,24 +24,7 @@ in
       enableCompletion = true;
 
       shellAliases = {
-        # TODO: move to git
-        g = "git";
-        gs = "git status";
-        ga = "git add";
-        gc = "git commit";
-        lg = "lazygit";
-
-        # TODO: install
-        # wcl="warp-cli";
-
-        "??" = "gh copilot";
-
         c = "clear";
-
-        # TODO: move to zellij
-        tmux = "zellij";
-        zj = "zellij";
-
       };
     };
 

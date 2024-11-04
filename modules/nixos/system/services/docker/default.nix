@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.services.docker = with types; {
-    enable = mkBoolOpt false "Enable docker service";
+    enable = mkEnableOption "Docker";
   };
 
   config = mkIf cfg.enable {

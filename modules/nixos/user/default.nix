@@ -44,6 +44,8 @@ in
 
           inherit (cfg) name hashedPassword;
 
+          createHome = true;
+
           home = "/home/${cfg.name}";
           group = cfg.group;
 

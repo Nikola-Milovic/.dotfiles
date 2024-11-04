@@ -18,7 +18,7 @@ let
 in
 {
   options.${namespace}.desktop.sway = with types; {
-    enable = mkBoolOpt false "Whether or not to enable Sway.";
+    enable = mkEnableOption "Sway";
     extraConfig = mkOpt str "" "Additional configuration for the Sway config file.";
     wallpaper = mkOpt (nullOr package) null "The wallpaper to display.";
   };
