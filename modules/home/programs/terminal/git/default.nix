@@ -35,9 +35,11 @@ in
   options.${namespace}.programs.terminal.git = {
     enable = mkEnableOption "Git";
     includes = mkOpt (types.listOf types.attrs) [ ] "Git includeIf paths and conditions.";
-    signByDefault = mkOpt types.bool false "Whether to sign commits by default.";
+    signByDefault =
+      mkOpt types.bool config.${namespace}.security.sops.enable
+        "Whether to sign commits by default.";
     signingKey =
-      mkOpt types.str "${config.home.homeDirectory}/.ssh/id_ed25519"
+      mkOpt types.str config.sops.secrets."github/ssh_pk".path
         "The key ID to sign commits with.";
     userName = mkOpt types.str user.fullName "The name to configure git with.";
     userEmail = mkOpt types.str user.email "The email to configure git with.";
@@ -86,9 +88,15 @@ in
         };
 
         extraConfig = {
-          credential = {
-            helper = ''${getExe' config.programs.git.package "git-credential-libsecret"}'';
-            useHttpPath = true;
+          # credential = {
+          #   helper = ''${getExe' config.programs.git.package "git-credential-libsecret"}'';
+          #   useHttpPath = true;
+          # };
+
+          url = {
+            "ssh://git@github.com/" = {
+              insteadOf = "https://github.com/";
+            };
           };
 
           fetch = {
@@ -104,6 +112,8 @@ in
           pull = {
             rebase = true;
           };
+
+          gpg.format = "ssh";
 
           push = {
             autoSetupRemote = true;
@@ -152,12 +162,6 @@ in
 
     home = {
       inherit (aliases) shellAliases;
-    };
-
-    sops.secrets = lib.mkIf config.${namespace}.security.sops.enable {
-      "github/ssh" = {
-        path = "${config.home.homeDirectory}/.ssh/id_ed25519_github.pk";
-      };
     };
   };
 }

@@ -1,7 +1,5 @@
 {
   aliases = {
-    lg = "lazygit";
-
     a = "add";
     ap = "add -p";
     ### Commit, checkout, and push
@@ -231,6 +229,7 @@
   };
 
   shellAliases = {
+    lg = "lazygit";
     # #
     # Git alias
     # #

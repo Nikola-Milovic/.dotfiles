@@ -40,6 +40,7 @@ in
         environment.systemPackages = with pkgs; [ ];
 
         users.users.${cfg.name} = {
+
           isNormalUser = true;
 
           inherit (cfg) name hashedPassword;

@@ -25,6 +25,8 @@ in
       ssh-to-age
     ];
 
+    custom.impermanence.files = [ ".config/sops/age/keys.txt" ];
+
     sops = {
       inherit (cfg) defaultSopsFile;
       defaultSopsFormat = "yaml";
@@ -33,6 +35,10 @@ in
         generateKey = true;
         keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
         sshKeyPaths = [ ] ++ cfg.sshKeyPaths;
+      };
+
+      secrets = {
+        "github/ssh_pk" = { };
       };
     };
   };

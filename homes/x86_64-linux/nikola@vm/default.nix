@@ -38,6 +38,7 @@ with lib.${namespace};
     };
 
     programs.terminal = {
+      ssh = enabled;
       neovim = enabled;
       git = enabled;
       starship = enabled;
