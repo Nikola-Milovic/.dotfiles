@@ -43,9 +43,9 @@ in
       };
     };
 
-    desktop.sway = {
-      enable = true;
-      wallpaper = pkgs.custom.wallpapers.galaxy-warm;
+    desktop = {
+      displaymanager.tuigreet = enabled;
+      wms.sway = enabled;
     };
 
     services = {
@@ -73,17 +73,6 @@ in
     };
   };
 
-  # By default, the NixOS VirtualBox demo image includes SDDM and Plasma.
-  # If you prefer another desktop manager or display manager, you may want
-  # to disable the default.
-  services.xserver.desktopManager.plasma5.enable = lib.mkForce false;
-  # services.displayManager.sddm.enable = lib.mkForce false;
-
-  # Enable GDM/GNOME by uncommenting above two lines and two lines below.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
-
-  # Set your time zone.
   time.timeZone = "Europe/Belgrade";
 
   services.xserver = {
@@ -104,19 +93,7 @@ in
     "nix-command"
     "flakes"
   ];
-  #services.pipewire = {
-  #	enable = true;
-  #	alsa.enable = true;
-  #	alsa.support32Bit = true;
-  #	pulse.enable = true;
-  #	# If you want to use JACK applications, uncomment this
-  #	#jack.enable = true;
-  #};
-  #
-  #hardware.pulseadio.enable = false;
 
-  # List packages installed in system profile. To search, run:
-  # \$ nix search wget
   environment.systemPackages = with pkgs; [
     nixfmt-rfc-style
     wget

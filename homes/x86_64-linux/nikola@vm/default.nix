@@ -30,7 +30,6 @@ with lib.${namespace};
 
   custom = {
     security = {
-
       sops = {
         enable = true;
         defaultSopsFile = lib.snowfall.fs.get-file "secrets/users/${config.${namespace}.user.name}/secrets.yaml";
@@ -46,7 +45,14 @@ with lib.${namespace};
       common = enabled;
       home-manager = enabled;
     };
+
+    programs.graphical = {
+      desktop.wms.sway = enabled;
+    };
   };
+
+  # enable = true;
+  # wallpaper = pkgs.custom.wallpapers.galaxy-warm;
 
   # Reload services nicely on config changes
   systemd.user.startServices = "sd-switch";

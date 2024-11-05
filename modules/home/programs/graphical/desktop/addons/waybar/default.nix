@@ -6,18 +6,17 @@
   namespace,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
-  cfg = config.${namespace}.desktop.addons.waybar;
+  inherit (lib) mkEnableOption types mkIf;
+  cfg = config.${namespace}.programs.graphical.desktop.addons.waybar;
 in
 {
-  options.${namespace}.desktop.addons.waybar = with types; {
-    enable = mkBoolOpt false "Whether to enable Waybar in the desktop environment.";
+  options.${namespace}.programs.graphical.desktop.addons.waybar = with types; {
+    enable = mkEnableOption "Waybar";
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
+    home.packages = with pkgs; [
       waybar
       (pkgs.writeTextFile {
         name = "waybar_network_status";
@@ -74,7 +73,7 @@ in
       })
     ];
 
-    custom.home.configFile."waybar/config".source = ./config;
-    custom.home.configFile."waybar/style.css".source = ./style.css;
+    xdg.configFile."waybar/config".source = ./config;
+    xdg.configFile."waybar/style.css".source = ./style.css;
   };
 }

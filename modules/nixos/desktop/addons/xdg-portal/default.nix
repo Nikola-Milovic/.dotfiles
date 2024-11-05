@@ -6,14 +6,13 @@
   namespace,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) mkEnableOption types mkIf;
   cfg = config.${namespace}.desktop.addons.xdg-portal;
 in
 {
   options.${namespace}.desktop.addons.xdg-portal = with types; {
-    enable = mkBoolOpt false "Whether or not to add support for xdg portal.";
+    enable = mkEnableOption "xdg portal";
   };
 
   config = mkIf cfg.enable {
