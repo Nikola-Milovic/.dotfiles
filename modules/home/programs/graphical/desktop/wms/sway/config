@@ -1,70 +1,45 @@
 # TODO try more stylisg setup https://github.com/jakehamilton/config/blob/8bb72cb1b6aba5a073759217c87c71d12f996543/modules/nixos/desktop/sway/config#L61
-
 default_border none
 
-set $mod Mod4
+bindsym Modifier4+t exec $term
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:JetBrainsMono Nerd Font 10
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-bindsym $mod+t exec $term
-
-bindsym $mod+Ctrl+q kill
+bindsym Modifier4+Ctrl+q kill
 
 # start dmenu (a program launcher)
-set $menu-run wofi --show drun --prompt search
-
-# Open run menu
-bindsym $mod+d exec $menu-run
+# set $menu-run wofi --show drun --prompt search
 
 # move focused workspace between monitors
-bindsym $mod+Ctrl+greater move workspace to output right
-bindsym $mod+Ctrl+less move workspace to output left
+bindsym Modifier4+Ctrl+greater move workspace to output right
+bindsym Modifier4+Ctrl+less move workspace to output left
 
 # change focus
-bindsym $mod+Ctrl+h focus left
-bindsym $mod+Ctrl+j focus down
-bindsym $mod+Ctrl+k focus up
-bindsym $mod+Ctrl+l focus right
-
-# move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym Modifier4+Ctrl+h focus left
+bindsym Modifier4+Ctrl+j focus down
+bindsym Modifier4+Ctrl+k focus up
+bindsym Modifier4+Ctrl+l focus right
 
 # split in horizontal orientation
-bindsym $mod+z split h
+bindsym Modifier4+z split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym Modifier4+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym Modifier4+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym Modifier4+s layout stacking
+bindsym Modifier4+w layout tabbed
+bindsym Modifier4+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym Modifier4+Shift+space floating toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym Modifier4+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+#bindsym Modifier4+d focus child
   
 #Workplaces  
 set $workspace1 "1: IDE" 
@@ -91,49 +66,49 @@ assign [class="obsidian"] $workspace5
 #  non shifts
 # switch to workspace
 #SWITCH TO CTRL
-bindsym $mod+Ctrl+plus workspace $workspace1  
-bindsym $mod+Ctrl+bracketleft workspace $workspace2  
-bindsym $mod+Ctrl+braceleft workspace $workspace3
-bindsym $mod+Ctrl+parenleft workspace $workspace4 
-bindsym $mod+Ctrl+ampersand workspace $workspace5 
-bindsym $mod+equal workspace $workspace6  
-bindsym $mod+Ctrl+parenright workspace $workspace7   
-bindsym $mod+Ctrl+braceright workspace $workspace8    
-bindsym $mod+bracketright workspace $workspace9 
-bindsym $mod+Ctrl+asterisk workspace $workspace10
+bindsym Modifier4+Ctrl+plus workspace $workspace1  
+bindsym Modifier4+Ctrl+bracketleft workspace $workspace2  
+bindsym Modifier4+Ctrl+braceleft workspace $workspace3
+bindsym Modifier4+Ctrl+parenleft workspace $workspace4 
+bindsym Modifier4+Ctrl+ampersand workspace $workspace5 
+bindsym Modifier4+equal workspace $workspace6  
+bindsym Modifier4+Ctrl+parenright workspace $workspace7   
+bindsym Modifier4+Ctrl+braceright workspace $workspace8    
+bindsym Modifier4+bracketright workspace $workspace9 
+bindsym Modifier4+Ctrl+asterisk workspace $workspace10
 
 # NOTE: since i have to press shift to get these symbols
 # move focused container to workspace.
 #  I wanted to use this as my method of moving spaces around, but it doesn't
 #  seem to work, but when i provide the keycode + shift it seems to work well.
-bindsym $mod+Shift+plus move container to workspace $workspace1   
-bindsym $mod+Shift+bracketleft move container to workspace $workspace2
-bindsym $mod+Shift+braceleft move container to workspace $workspace3
-bindsym $mod+Shift+parenleft move container to workspace $workspace4
-bindsym $mod+Shift+ampersand move container to workspace $workspace5
-bindsym $mod+Shift+equal move container to workspace $workspace6
-bindsym $mod+Shift+parenright move container to workspace $workspace7
-bindsym $mod+Shift+braceright  move container to workspace $workspace8
-bindsym $mod+Shift+bracketright move container to workspace $workspace9
-bindsym $mod+Shift+asterisk move container to workspace $workspace10
+bindsym Modifier4+Shift+plus move container to workspace $workspace1   
+bindsym Modifier4+Shift+bracketleft move container to workspace $workspace2
+bindsym Modifier4+Shift+braceleft move container to workspace $workspace3
+bindsym Modifier4+Shift+parenleft move container to workspace $workspace4
+bindsym Modifier4+Shift+ampersand move container to workspace $workspace5
+bindsym Modifier4+Shift+equal move container to workspace $workspace6
+bindsym Modifier4+Shift+parenright move container to workspace $workspace7
+bindsym Modifier4+Shift+braceright  move container to workspace $workspace8
+bindsym Modifier4+Shift+bracketright move container to workspace $workspace9
+bindsym Modifier4+Shift+asterisk move container to workspace $workspace10
 #
-# bindcode $mod+Shift+87 move container to workspace $workspace1  
-# bindcode $mod+Shift+88 move container to workspace $workspace2
-# bindcode $mod+Shift+89 move container to workspace $workspace3
-# bindcode $mod+Shift+83 move container to workspace $workspace4
-# bindcode $mod+Shift+84 move container to workspace $workspace5
-# bindcode $mod+Shift+85 move container to workspace $workspace6
-# bindcode $mod+Shift+79 move container to workspace $workspace7
-# bindcode $mod+Shift+80 move container to workspace $workspace8
-# bindcode $mod+Shift+81 move container to workspace $workspace9
-# bindcode $mod+Shift+90 move container to workspace $workspace10
+# bindcode Modifier4+Shift+87 move container to workspace $workspace1  
+# bindcode Modifier4+Shift+88 move container to workspace $workspace2
+# bindcode Modifier4+Shift+89 move container to workspace $workspace3
+# bindcode Modifier4+Shift+83 move container to workspace $workspace4
+# bindcode Modifier4+Shift+84 move container to workspace $workspace5
+# bindcode Modifier4+Shift+85 move container to workspace $workspace6
+# bindcode Modifier4+Shift+79 move container to workspace $workspace7
+# bindcode Modifier4+Shift+80 move container to workspace $workspace8
+# bindcode Modifier4+Shift+81 move container to workspace $workspace9
+# bindcode Modifier4+Shift+90 move container to workspace $workspace10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym Modifier4+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym Modifier4+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+bindsym Modifier4+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -159,22 +134,16 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym Modifier4+r mode "resize"
 
-# ------------------------------------------
-# CUSTOM SETUP START
-# ------------------------------------------
-set $HOME ~/.config
-# exec --no-startup-id $HOME/sway/startup.sh 2  
-# exec --no-startup-id caffeine-indicator
 # Suspend
-bindsym $mod+Shift+period exec systemctl suspend
+bindsym Modifier4+Shift+period exec systemctl suspend
 
-bindsym $mod+Ctrl+b exec brave-browser 
-bindsym $mod+Ctrl+m exec google-chrome
-bindsym $mod+Ctrl+v exec nautilus
-bindsym $mod+Ctrl+w exec gnome-control-center
-bindsym $mod+Ctrl+a exec obsidian
+bindsym Modifier4+Ctrl+b exec brave-browser 
+bindsym Modifier4+Ctrl+m exec google-chrome
+bindsym Modifier4+Ctrl+v exec nautilus
+bindsym Modifier4+Ctrl+w exec gnome-control-center
+bindsym Modifier4+Ctrl+a exec obsidian
 
 #audio setup
 # Set default sink to speakers
@@ -199,7 +168,7 @@ mode "$mode_volume" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+Shift+v mode "$mode_volume"
+bindsym Modifier4+Shift+v mode "$mode_volume"
 
 # Redshift (https://confluence.jaytaala.com/display/TKB/Redshift+on+i3wm) 
 
@@ -223,7 +192,7 @@ mode "$mode_gammastep" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+Ctrl+s mode "$mode_gammastep"
+bindsym Modifier4+Ctrl+s mode "$mode_gammastep"
  
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -240,29 +209,9 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+Pause mode "$mode_system"
+bindsym Modifier4+Pause mode "$mode_system"
 
-
-bindsym $mod+dollar workspace back_and_forth
-
-######################
-#░░░░░░░░░░░░░░░░░░░░#
-#░▀█▀░█▀█░█▀█░█░█░▀█▀#
-#░░█░░█░█░█▀▀░█░█░░█░#
-#░▀▀▀░▀░▀░▀░░░▀▀▀░░▀░#
-#░░░░░░░░░░░░░░░░░░░░#
-######################
-
-input * xkb_layout real-prog-dvorak
-exec_always setxkbmap real-prog-dvorak
-
-#################
-#░░░░░░░░░░░░░░░#
-#░░█▀▄░█▀█░█▀▄░░#
-#░░█▀▄░█▀█░█▀▄░░#
-#░░▀▀░░▀░▀░▀░▀░░#
-#░░░░░░░░░░░░░░░#
-#################
+bindsym Modifier4+dollar workspace back_and_forth
 
 bar {
 	# Run waybar

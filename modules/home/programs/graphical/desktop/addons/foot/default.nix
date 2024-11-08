@@ -17,10 +17,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    custom.programs.graphical.desktop.addons.term = {
-      enable = true;
-      pkg = pkgs.foot;
-    };
+    custom.programs.graphical.desktop.wms.sway.term = pkgs.foot;
+
+    home.packages = [ pkgs.foot ];
 
     xdg.configFile."foot/foot.ini".source = ./foot.ini;
   };

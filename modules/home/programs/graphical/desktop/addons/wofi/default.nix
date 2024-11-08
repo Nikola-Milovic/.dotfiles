@@ -21,6 +21,10 @@ in
       wofi-emoji
     ];
 
+    custom.programs.graphical.desktop.wms.sway.launcherCmd = "${
+      pkgs.wofi.pname or pkgs.wofi.name
+    } --show drun --prompt search";
+
     # config -> .config/wofi/config
     # css -> .config/wofi/style.css
     # colors -> $XDG_CACHE_HOME/wal/colors

@@ -47,12 +47,12 @@ with lib.${namespace};
     };
 
     programs.graphical = {
-      desktop.wms.sway = enabled;
+      desktop.wms.sway = {
+        enable = true;
+        wallpaper = pkgs.custom.wallpapers.galaxy-warm;
+      };
     };
   };
-
-  # enable = true;
-  # wallpaper = pkgs.custom.wallpapers.galaxy-warm;
 
   # Reload services nicely on config changes
   systemd.user.startServices = "sd-switch";

@@ -11,12 +11,14 @@ let
   inherit (lib) types mkIf optionalString;
   inherit (lib.${namespace}) enabled mkOpt mkBoolOpt;
   cfg = config.${namespace}.programs.graphical.desktop.wms.sway;
-  term = config.${namespace}.programs.graphical.desktop.addons.term;
 in
 {
   options.${namespace}.programs.graphical.desktop.wms.sway = with types; {
     enable = mkBoolOpt osConfig.${namespace}.desktop.wms.sway "Sway";
     extraConfig = mkOpt str "" "Additional configuration for the Sway config file.";
+    term = mkOpt package pkgs.foot "The terminal to use.";
+    bar = mkOpt package pkgs.waybar "The bar to use.";
+    launcherCmd = mkOpt str "" "The launcher command to use.";
     wallpaper = mkOpt (nullOr package) null "The wallpaper to display.";
   };
 
@@ -70,33 +72,52 @@ in
       enable = true;
       wrapperFeatures.gtk = true;
 
-      config = {
-        terminal = term.pkg.pname or term.pkg.name;
+      checkConfig = false;
+
+      systemd = {
+        enable = true;
+        xdgAutostart = true;
+
+        variables = [ "--all" ];
       };
 
+      config = {
+
+        bars = [ { command = cfg.bar.pname or cfg.bar.name; } ];
+
+        modifier = "Mod4";
+        # Use Mouse+$mod to drag floating windows to their wanted position
+        floating.modifier = "Mod4";
+        terminal = cfg.term.pname or cfg.term.name;
+        menu = cfg.launcherCmd;
+        input = {
+          "*" = {
+            xkb_layout = "real-prog-dvorak";
+          };
+        };
+
+        fonts = {
+          names = [ "JetBrainsMono Nerd Font" ];
+          size = 10.0;
+        };
+
+        output = mkIf (cfg.wallpaper != null) {
+          "*" = {
+            bg = "${cfg.wallpaper.gnomeFilePath or cfg.wallpaper} fill";
+          };
+        };
+
+        startup = [
+          # Launch services waiting for the systemd target sway-session.target
+          { command = "systemctl --user import-environment; systemctl --user start sway-session.target"; }
+          # Start a user session dbus (required for things like starting
+          # applications through wofi).
+          { command = "dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus"; }
+        ];
+      };
+
+      # ${(builtins.readFile ./config)}
       extraConfig = ''
-        #############################
-        #░░░░░░░░░░░░░░░░░░░░░░░░░░░#
-        #░░█▀▀░█░█░█▀▀░▀█▀░█▀▀░█▄█░░#
-        #░░▀▀█░░█░░▀▀█░░█░░█▀▀░█░█░░#
-        #░░▀▀▀░░▀░░▀▀▀░░▀░░▀▀▀░▀░▀░░#
-        #░░░░░░░░░░░░░░░░░░░░░░░░░░░#
-        #############################
-
-        # Launch services waiting for the systemd target sway-session.target
-        exec "systemctl --user import-environment; systemctl --user start sway-session.target"
-
-        # Start a user session dbus (required for things like starting
-        # applications through wofi).
-        exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
-
-        ${(builtins.readFile ./config)}
-
-        ${optionalString (cfg.wallpaper != null) ''
-          output * {
-          	bg ${cfg.wallpaper.gnomeFilePath or cfg.wallpaper} fill
-          }
-        ''}
 
         ${cfg.extraConfig}
       '';

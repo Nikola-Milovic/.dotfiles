@@ -8,6 +8,7 @@
 }:
 let
   inherit (lib) mkEnableOption types mkIf;
+  inherit (lib.${namespace}) enabled;
   cfg = config.${namespace}.programs.graphical.desktop.addons.waybar;
 in
 {
@@ -16,8 +17,14 @@ in
   };
 
   config = mkIf cfg.enable {
+    custom.programs.graphical.desktop.wms.sway.bar = pkgs.waybar;
+
+    programs.waybar = {
+      enable = true;
+      systemd = enabled;
+    };
+
     home.packages = with pkgs; [
-      waybar
       (pkgs.writeTextFile {
         name = "waybar_network_status";
         destination = "/bin/waybar_network_status.sh";
