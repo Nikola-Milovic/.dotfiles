@@ -17,8 +17,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    custom.programs.graphical.desktop.wms.sway.bar = pkgs.waybar;
-
     programs.waybar = {
       enable = true;
       systemd = enabled;

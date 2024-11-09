@@ -8,19 +8,27 @@
   ...
 }:
 let
-  inherit (lib) types mkIf optionalString;
+  inherit (lib)
+    types
+    mkIf
+    optionalString
+    getExe
+    ;
   inherit (lib.${namespace}) enabled mkOpt mkBoolOpt;
   cfg = config.${namespace}.programs.graphical.desktop.wms.sway;
+  modifier = "Mod4";
 in
 {
   options.${namespace}.programs.graphical.desktop.wms.sway = with types; {
     enable = mkBoolOpt osConfig.${namespace}.desktop.wms.sway "Sway";
     extraConfig = mkOpt str "" "Additional configuration for the Sway config file.";
     term = mkOpt package pkgs.foot "The terminal to use.";
-    bar = mkOpt package pkgs.waybar "The bar to use.";
+    filemanager = mkOpt package pkgs.nemo "The file manager to use.";
     launcherCmd = mkOpt str "" "The launcher command to use.";
     wallpaper = mkOpt (nullOr package) null "The wallpaper to display.";
   };
+
+  imports = lib.snowfall.fs.get-non-default-nix-files ./.;
 
   config = mkIf cfg.enable {
     # Desktop additions
@@ -30,7 +38,8 @@ in
       waybar = enabled;
       wallpapers = enabled;
       keyring = enabled;
-      nautilus = enabled;
+			wlogout = enabled;
+      nemo = enabled;
     };
 
     home = {
@@ -82,13 +91,10 @@ in
       };
 
       config = {
-
-        bars = [ { command = cfg.bar.pname or cfg.bar.name; } ];
-
-        modifier = "Mod4";
+        modifier = modifier;
         # Use Mouse+$mod to drag floating windows to their wanted position
-        floating.modifier = "Mod4";
-        terminal = cfg.term.pname or cfg.term.name;
+        floating.modifier = modifier;
+        terminal = getExe cfg.term;
         menu = cfg.launcherCmd;
         input = {
           "*" = {
@@ -116,9 +122,9 @@ in
         ];
       };
 
-      # ${(builtins.readFile ./config)}
       extraConfig = ''
 
+        ${(builtins.readFile ./config)}
         ${cfg.extraConfig}
       '';
     };

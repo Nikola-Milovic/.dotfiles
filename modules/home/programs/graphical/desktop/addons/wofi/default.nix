@@ -7,7 +7,12 @@
   ...
 }:
 let
-  inherit (lib) mkEnableOption types mkIf;
+  inherit (lib)
+    mkEnableOption
+    types
+    mkIf
+    getExe
+    ;
   cfg = config.${namespace}.programs.graphical.desktop.addons.wofi;
 in
 {
@@ -21,9 +26,9 @@ in
       wofi-emoji
     ];
 
-    custom.programs.graphical.desktop.wms.sway.launcherCmd = "${
-      pkgs.wofi.pname or pkgs.wofi.name
-    } --show drun --prompt search";
+    custom.programs.graphical.desktop.wms.sway = {
+      launcherCmd = "${getExe pkgs.wofi} --show drun --prompt search";
+    };
 
     # config -> .config/wofi/config
     # css -> .config/wofi/style.css

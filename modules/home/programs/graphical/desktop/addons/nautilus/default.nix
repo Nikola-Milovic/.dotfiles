@@ -15,5 +15,9 @@ in
     enable = mkEnableOption "Gnome file manager";
   };
 
-  config = mkIf cfg.enable { home.packages = with pkgs; [ gnome.nautilus ]; };
+  config = mkIf cfg.enable {
+    home.packages = with pkgs; [ gnome.nautilus ];
+
+    custom.programs.graphical.desktop.wms.sway.filemanager = pkgs.gnome.nautilus;
+  };
 }

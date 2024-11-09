@@ -1,149 +1,4 @@
 # TODO try more stylisg setup https://github.com/jakehamilton/config/blob/8bb72cb1b6aba5a073759217c87c71d12f996543/modules/nixos/desktop/sway/config#L61
-default_border none
-
-bindsym Modifier4+t exec $term
-
-bindsym Modifier4+Ctrl+q kill
-
-# start dmenu (a program launcher)
-# set $menu-run wofi --show drun --prompt search
-
-# move focused workspace between monitors
-bindsym Modifier4+Ctrl+greater move workspace to output right
-bindsym Modifier4+Ctrl+less move workspace to output left
-
-# change focus
-bindsym Modifier4+Ctrl+h focus left
-bindsym Modifier4+Ctrl+j focus down
-bindsym Modifier4+Ctrl+k focus up
-bindsym Modifier4+Ctrl+l focus right
-
-# split in horizontal orientation
-bindsym Modifier4+z split h
-
-# split in vertical orientation
-bindsym Modifier4+v split v
-
-# enter fullscreen mode for the focused container
-bindsym Modifier4+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym Modifier4+s layout stacking
-bindsym Modifier4+w layout tabbed
-bindsym Modifier4+e layout toggle split
-
-# toggle tiling / floating
-bindsym Modifier4+Shift+space floating toggle
-
-# focus the parent container
-bindsym Modifier4+a focus parent
-
-# focus the child container
-#bindsym Modifier4+d focus child
-  
-#Workplaces  
-set $workspace1 "1: IDE" 
-set $workspace2 "2: terminals" 
-set $workspace3 "3" 
-set $workspace4 "4:  " 
-set $workspace5 "5: obsidian" 
-set $workspace6 "6" 
-set $workspace7 "7" 
-set $workspace8 "8" 
-set $workspace9 "9: firefox"  
-set $workspace10 "10: discord"  
-
-assign [class="Brave-browser"] $workspace4
-assign [class="Google Chrome"] $workspace4 
-assign [class="firefox"] $workspace9 
-assign [class="discord"] $workspace10
-assign [class="obsidian"] $workspace5
-
-# NOTE: This is some real tom fooliery with my keyboard layout
-#  ZMK will send a shift mod with the items that require a shift key on a
-#  regular keyboard.  so though it defines a keycode as "LEFT_BRACE" it really
-#  is shift_L + LEFT_BRACE.  So you will notice the odd peppering of shifts and
-#  non shifts
-# switch to workspace
-#SWITCH TO CTRL
-bindsym Modifier4+Ctrl+plus workspace $workspace1  
-bindsym Modifier4+Ctrl+bracketleft workspace $workspace2  
-bindsym Modifier4+Ctrl+braceleft workspace $workspace3
-bindsym Modifier4+Ctrl+parenleft workspace $workspace4 
-bindsym Modifier4+Ctrl+ampersand workspace $workspace5 
-bindsym Modifier4+equal workspace $workspace6  
-bindsym Modifier4+Ctrl+parenright workspace $workspace7   
-bindsym Modifier4+Ctrl+braceright workspace $workspace8    
-bindsym Modifier4+bracketright workspace $workspace9 
-bindsym Modifier4+Ctrl+asterisk workspace $workspace10
-
-# NOTE: since i have to press shift to get these symbols
-# move focused container to workspace.
-#  I wanted to use this as my method of moving spaces around, but it doesn't
-#  seem to work, but when i provide the keycode + shift it seems to work well.
-bindsym Modifier4+Shift+plus move container to workspace $workspace1   
-bindsym Modifier4+Shift+bracketleft move container to workspace $workspace2
-bindsym Modifier4+Shift+braceleft move container to workspace $workspace3
-bindsym Modifier4+Shift+parenleft move container to workspace $workspace4
-bindsym Modifier4+Shift+ampersand move container to workspace $workspace5
-bindsym Modifier4+Shift+equal move container to workspace $workspace6
-bindsym Modifier4+Shift+parenright move container to workspace $workspace7
-bindsym Modifier4+Shift+braceright  move container to workspace $workspace8
-bindsym Modifier4+Shift+bracketright move container to workspace $workspace9
-bindsym Modifier4+Shift+asterisk move container to workspace $workspace10
-#
-# bindcode Modifier4+Shift+87 move container to workspace $workspace1  
-# bindcode Modifier4+Shift+88 move container to workspace $workspace2
-# bindcode Modifier4+Shift+89 move container to workspace $workspace3
-# bindcode Modifier4+Shift+83 move container to workspace $workspace4
-# bindcode Modifier4+Shift+84 move container to workspace $workspace5
-# bindcode Modifier4+Shift+85 move container to workspace $workspace6
-# bindcode Modifier4+Shift+79 move container to workspace $workspace7
-# bindcode Modifier4+Shift+80 move container to workspace $workspace8
-# bindcode Modifier4+Shift+81 move container to workspace $workspace9
-# bindcode Modifier4+Shift+90 move container to workspace $workspace10
-
-# reload the configuration file
-bindsym Modifier4+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym Modifier4+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym Modifier4+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym j resize grow height 10 px or 10 ppt
-        bindsym k resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
-
-bindsym Modifier4+r mode "resize"
-
-# Suspend
-bindsym Modifier4+Shift+period exec systemctl suspend
-
-bindsym Modifier4+Ctrl+b exec brave-browser 
-bindsym Modifier4+Ctrl+m exec google-chrome
-bindsym Modifier4+Ctrl+v exec nautilus
-bindsym Modifier4+Ctrl+w exec gnome-control-center
-bindsym Modifier4+Ctrl+a exec obsidian
 
 #audio setup
 # Set default sink to speakers
@@ -168,7 +23,7 @@ mode "$mode_volume" {
     bindsym Escape mode "default"
 }
 
-bindsym Modifier4+Shift+v mode "$mode_volume"
+bindsym Mod4+Shift+v mode "$mode_volume"
 
 # Redshift (https://confluence.jaytaala.com/display/TKB/Redshift+on+i3wm) 
 
@@ -192,50 +47,10 @@ mode "$mode_gammastep" {
     bindsym Escape mode "default"
 }
 
-bindsym Modifier4+Ctrl+s mode "$mode_gammastep"
+bindsym Mod4+Ctrl+s mode "$mode_gammastep"
  
-set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-mode "$mode_system" {
-    bindsym l exec swaylock, mode "default"
-    bindsym e exec i3-msg exit, mode "default"
-    bindsym s exec systemctl suspend, mode "default"
-    bindsym h exec systemctl hibernate, mode "default"
-    bindsym r exec systemctl reboot, mode "default"
-    bindsym Shift+s exec systemctl poweroff -i, mode "default"  
 
-    # back to normal: Enter or Escape
-    bindsym Ctrl + c mode "default"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-bindsym Modifier4+Pause mode "$mode_system"
-
-bindsym Modifier4+dollar workspace back_and_forth
-
-bar {
-	# Run waybar
-	swaybar_command waybar
-}
-
-#########################
-#░░░░░░░░░░░░░░░░░░░░░░░#
-#░░█▀▀░▀█▀░█░█░█░░░█▀▀░░#
-#░░▀▀█░░█░░░█░░█░░░█▀▀░░#
-#░░▀▀▀░░▀░░░▀░░▀▀▀░▀▀▀░░#
-#░░░░░░░░░░░░░░░░░░░░░░░#
-#########################
-
-
-## Fix issue
-set $float floating enable
-set $center move position center
-for_window [app_id="wofi"] border none
-for_window [window_role="pop-up"] $float, $centers
-for_window [window_role="task_dialog"] $float, $centers
-for_window [title="^Android Emulator*"] $float, $centers
-for_window [class="jetbrains-studio" title="Settings"] $float, $centers
-for_window [class="Unity" title="Settings"] $float, $centers
-for_window [app_id="albert"] $float, $centers
-# For godot
-assign [instance="Godot_Engine"] $workspace2
+# ## Fix issue
+# set $float floating enable
+# set $center move position center
+# for_window [app_id="wofi"] border none
