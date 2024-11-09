@@ -6,7 +6,7 @@
 }:
 let
   inherit (lib) mkIf;
-  cfg = config.${namespace}.programs.graphical.desktop.wms.sway;
+  cfg = config.${namespace}.desktop.wms.sway;
 in
 {
   config = mkIf cfg.enable {

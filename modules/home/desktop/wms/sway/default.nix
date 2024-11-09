@@ -15,11 +15,11 @@ let
     getExe
     ;
   inherit (lib.${namespace}) enabled mkOpt mkBoolOpt;
-  cfg = config.${namespace}.programs.graphical.desktop.wms.sway;
+  cfg = config.${namespace}.desktop.wms.sway;
   modifier = "Mod4";
 in
 {
-  options.${namespace}.programs.graphical.desktop.wms.sway = with types; {
+  options.${namespace}.desktop.wms.sway = with types; {
     enable = mkBoolOpt osConfig.${namespace}.desktop.wms.sway "Sway";
     extraConfig = mkOpt str "" "Additional configuration for the Sway config file.";
     term = mkOpt package pkgs.foot "The terminal to use.";
@@ -32,14 +32,16 @@ in
 
   config = mkIf cfg.enable {
     # Desktop additions
-    custom.programs.graphical.desktop.addons = {
-      foot = enabled;
-      wofi = enabled;
-      waybar = enabled;
-      wallpapers = enabled;
-      keyring = enabled;
-			wlogout = enabled;
-      nemo = enabled;
+    custom.desktop = {
+      filemanager.nemo = enabled;
+      addons = {
+        foot = enabled;
+        wofi = enabled;
+        waybar = enabled;
+        wallpapers = enabled;
+        keyring = enabled;
+        wlogout = enabled;
+      };
     };
 
     home = {

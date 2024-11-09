@@ -8,15 +8,15 @@
 }:
 let
   inherit (lib) mkEnableOption types mkIf;
-  cfg = config.${namespace}.programs.graphical.desktop.addons.nemo;
+  cfg = config.${namespace}.desktop.filemanager.nemo;
 in
 {
-  options.${namespace}.programs.graphical.desktop.addons.nemo = with types; {
+  options.${namespace}.desktop.filemanager.nemo = with types; {
     enable = mkEnableOption "Nemo file manager";
   };
 
   config = mkIf cfg.enable {
-    custom.programs.graphical.desktop.wms.sway.filemanager = pkgs.cinnamon.nemo;
+    custom.desktop.wms.sway.filemanager = pkgs.cinnamon.nemo;
     home.packages = with pkgs; [ cinnamon.nemo ];
   };
 }

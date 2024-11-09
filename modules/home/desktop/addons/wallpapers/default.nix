@@ -9,11 +9,11 @@
 let
   inherit (lib) types mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
-  cfg = config.${namespace}.programs.graphical.desktop.addons.wallpapers;
+  cfg = config.${namespace}.desktop.addons.wallpapers;
   inherit (pkgs.custom) wallpapers;
 in
 {
-  options.${namespace}.programs.graphical.desktop.addons.wallpapers = with types; {
+  options.${namespace}.desktop.addons.wallpapers = with types; {
     enable = mkBoolOpt false "Whether or not to add wallpapers to ~/Pictures/wallpapers.";
   };
 

@@ -9,10 +9,10 @@
 with lib.${namespace};
 let
   inherit (lib) mkBoolOption mkIf types;
-  cfg = config.${namespace}.programs.graphical.desktop.addons.keyring;
+  cfg = config.${namespace}.desktop.addons.keyring;
 in
 {
-  options.${namespace}.programs.graphical.desktop.addons.keyring = with types; {
+  options.${namespace}.desktop.addons.keyring = with types; {
     enable = mkBoolOpt false "Gnome Keyring";
   };
 

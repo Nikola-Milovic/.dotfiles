@@ -9,10 +9,10 @@ let
   inherit (lib) mkIf mkEnableOption;
   inherit (lib.${namespace}) mkBoolOpt;
 
-  cfg = config.${namespace}.programs.graphical.desktop.addons.wlogout;
+  cfg = config.${namespace}.desktop.addons.wlogout;
 in
 {
-  options.${namespace}.programs.graphical.desktop.addons.wlogout = {
+  options.${namespace}.desktop.addons.wlogout = {
     enable = mkEnableOption "wlogout";
   };
 

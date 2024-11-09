@@ -9,10 +9,10 @@
 let
   inherit (lib) mkEnableOption types mkIf;
   inherit (lib.${namespace}) enabled;
-  cfg = config.${namespace}.programs.graphical.desktop.addons.waybar;
+  cfg = config.${namespace}.desktop.addons.waybar;
 in
 {
-  options.${namespace}.programs.graphical.desktop.addons.waybar = with types; {
+  options.${namespace}.desktop.addons.waybar = with types; {
     enable = mkEnableOption "Waybar";
   };
 

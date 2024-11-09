@@ -13,10 +13,10 @@ let
     mkIf
     getExe
     ;
-  cfg = config.${namespace}.programs.graphical.desktop.addons.wofi;
+  cfg = config.${namespace}.desktop.addons.wofi;
 in
 {
-  options.${namespace}.programs.graphical.desktop.addons.wofi = with types; {
+  options.${namespace}.desktop.addons.wofi = with types; {
     enable = mkEnableOption "Wofi launcher";
   };
 
@@ -26,7 +26,7 @@ in
       wofi-emoji
     ];
 
-    custom.programs.graphical.desktop.wms.sway = {
+    custom.desktop.wms.sway = {
       launcherCmd = "${getExe pkgs.wofi} --show drun --prompt search";
     };
 

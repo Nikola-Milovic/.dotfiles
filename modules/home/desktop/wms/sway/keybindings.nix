@@ -7,8 +7,13 @@
 }:
 
 let
-  inherit (lib) mkIf getExe getExe';
-  cfg = config.${namespace}.programs.graphical.desktop.wms.sway;
+  inherit (lib)
+    mkIf
+    getExe
+    getExe'
+    mkOptionDefault
+    ;
+  cfg = config.${namespace}.desktop.wms.sway;
 
   modifier = config.wayland.windowManager.sway.config.modifier;
   term = config.wayland.windowManager.sway.config.terminal;
@@ -17,11 +22,17 @@ let
   grim = getExe pkgs.grim;
   slurp = getExe pkgs.slurp;
   wl-copy = getExe' pkgs.wl-clipboard "wl-copy";
-	wlogout = getExe pkgs.wlogout;
+  wlogout = getExe pkgs.wlogout;
   chrome = getExe pkgs.google-chrome;
   # Get file manager from config
   filemanager = getExe cfg.filemanager;
   obsidian = getExe pkgs.obsidian;
+
+  pactl = "${pkgs.pulseaudio}/bin/pactl";
+  pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
+  gammastep = "${pkgs.gammastep}/bin/gammastep";
+  killgam = "${pkgs.procps}/bin/pkill -x gammastep";
+  monitorControl = "${pkgs.${namespace}.monitor-control}/bin/monitor-control";
 
   workspace1 = "1: IDE";
   workspace2 = "2: terminals";
@@ -33,13 +44,50 @@ let
   workspace8 = "8";
   workspace9 = "9";
   workspace10 = "10";
+
+  volume-mode = "Choose: (1) +5 volume, (2) -5 volume, (3) pavucontrol (4) mute";
+  gamma-mode = "Set colour temperature: (a)uto, (r)eset, (1)500K, (2)500K, (3)000K, (4)000K, (5)000K, (6) day";
 in
 {
+  # TODO: https://github.com/Alexays/Waybar/issues/791
+  # Sudo to change monitor brightness
   config = mkIf cfg.enable {
     wayland.windowManager.sway.config = {
+      modes = mkOptionDefault {
+        "${volume-mode}" = {
+          plus = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ +5%, mode \"volume\"";
+          bracketleft = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ -5%, mode \"volume\"";
+          parenleft = "exec ${pactl} set-sink-mute @DEFAULT_SINK@ toggle, mode \"default\"";
+          braceleft = "exec ${pavucontrol}, mode \"default\"";
+
+          # Exit mode
+          Return = "mode \"default\"";
+          "Ctrl+c" = "mode \"default\"";
+          Escape = "mode \"default\"";
+        };
+        "${gamma-mode}" = {
+          a = "exec ${killgam}; ${gammastep} -P -t 5000:4000, mode \"default\"";
+          r = "exec ${killgam}; ${gammastep} -x; ${monitorControl} -b 50 -c 50, mode \"default\"";
+          "1" = "exec ${killgam}; ${gammastep} -P -O 1500; ${monitorControl} -b 0 -c 30, mode \"default\"";
+          "2" = "exec ${killgam}; ${gammastep} -P -O 2500; ${monitorControl} -b 15 -c 40, mode \"default\"";
+          "3" = "exec ${killgam}; ${gammastep} -P -O 3000; ${monitorControl} -b 25 -c 50, mode \"default\"";
+          "4" = "exec ${killgam}; ${gammastep} -P -O 4000; ${monitorControl} -b 35 -c 50, mode \"default\"";
+          "5" = "exec ${killgam}; ${gammastep} -P -O 5000; ${monitorControl} -b 45 -c 50, mode \"default\"";
+          "6" = "exec ${killgam}; ${gammastep} -x; ${monitorControl} -b 70 -c 70, mode \"default\"";
+
+          # Exit mode
+          Return = "mode \"default\"";
+          "Ctrl+c" = "mode \"default\"";
+          Escape = "mode \"default\"";
+        };
+      };
       keybindings =
         with lib;
         mkMerge [
+          {
+            "${modifier}+Shift+v" = "mode ${volume-mode}";
+            "${modifier}+Ctrl+s" = "mode ${gamma-mode}";
+          }
           {
             # Application shortcuts
             "${modifier}+Ctrl+b" = "exec ${brave}";
@@ -102,7 +150,7 @@ in
               exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway?'
             '';
 
-						"${modifier}+Pause" = "${wlogout}";
+            "${modifier}+Pause" = "${wlogout}";
 
             # Move workspace between monitors
             "${modifier}+Ctrl+greater" = "move workspace to output right";

@@ -46,11 +46,9 @@ with lib.${namespace};
       home-manager = enabled;
     };
 
-    programs.graphical = {
-      desktop.wms.sway = {
-        enable = true;
-        wallpaper = pkgs.custom.wallpapers.galaxy-warm;
-      };
+    desktop.wms.sway = {
+      enable = true;
+      wallpaper = pkgs.custom.wallpapers.galaxy-warm;
     };
   };
 
