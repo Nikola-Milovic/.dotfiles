@@ -17,9 +17,17 @@ in
   };
 
   config = mkIf cfg.enable {
-    custom.desktop.addons.xdg-portal = enabled;
+    custom = {
+      desktop.addons.xdg-portal = enabled;
 
-    services.xserver.enable = true;
-    services.libinput.enable = true;
+      security = {
+        # sops = enabled;
+        polkit = enabled;
+      };
+
+    };
+
+		services.xserver.enable = true;
+		services.libinput.enable = true;
   };
 }

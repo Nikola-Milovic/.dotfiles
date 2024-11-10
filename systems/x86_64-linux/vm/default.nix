@@ -28,9 +28,6 @@ in
   system.stateVersion = "24.05";
 
   custom = {
-    security = {
-      # sops = enabled;
-    };
     system = {
       impermanence = {
         enable = true;
@@ -56,7 +53,7 @@ in
     user = {
       hashedPassword = "$6$lP/WAcHvSHwBHxMn$ou44X10FVP3kHaTrIBSpwZGA0jlf5YSLp2lha9fSeJcOLaw5lvWD9BuH3lyNs3qlASqfe/TVtDSkpj5PzpWJK1";
       fullName = "Nikola Milovic";
-      extraGroups = [ "wheel" ];
+      extraGroups = [ "wheel" "video"];
     };
 
     hardware = {

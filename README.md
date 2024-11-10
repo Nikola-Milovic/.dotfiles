@@ -21,9 +21,7 @@ Thanks to these awesome repos for getting me started and helping me get my curre
 
 # TODOS:
 - security 
-	- https://github.com/jakehamilton/config/tree/main/modules/nixos/security
-	- https://gitlab.gnome.org/Archive/libgnome-keyring
-	- https://github.com/khaneliman/khanelinix/blob/8919868593d213f7980b267c4567cede627db603/modules/nixos/display-managers/tuigreet/default.nix
+- explore [looking-glass](https://looking-glass.io/) instead of dual booting
 - virtualisation with [qemu/kvm](https://github.com/khaneliman/khanelinix/tree/8919868593d213f7980b267c4567cede627db603/modules/nixos/virtualisation)
 - [YubiKey](https://github.com/drduh/YubiKey-Guide)
 

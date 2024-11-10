@@ -53,6 +53,8 @@ in
         sway-contrib.grimshot
         swaylock-fancy
 
+        custom.monitor-control
+
         grim # screenshot functionality
         slurp # screenshot functionality
 

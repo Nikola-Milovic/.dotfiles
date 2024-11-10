@@ -85,8 +85,8 @@ in
         with lib;
         mkMerge [
           {
-            "${modifier}+Shift+v" = "mode ${volume-mode}";
-            "${modifier}+Ctrl+s" = "mode ${gamma-mode}";
+            "${modifier}+Shift+v" = "mode \"${volume-mode}\"";
+            "${modifier}+Ctrl+s" = "mode \"${gamma-mode}\"";
           }
           {
             # Application shortcuts

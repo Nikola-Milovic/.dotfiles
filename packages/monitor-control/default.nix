@@ -1,17 +1,21 @@
 { pkgs, stdenv }:
 
-stdenv.mkDerivation {
-  pname = "monitor-control";
-  version = "1.0.0";
+pkgs.writeShellApplication {
+  name = "monitor-control";
 
-  buildInputs = [
-    pkgs.ddcutil
-    pkgs.bash
-  ];
+  runtimeInputs = [ pkgs.ddcutil ];
 
-  src = pkgs.writeText "monitor-control.sh" ''
-    #!${pkgs.bash}/bin/bash
+  meta = with pkgs.lib; {
+    description = "Script to set brightness and contrast for monitors using ddcutil";
+    mainProgram = "monitor-control";
+    license = licenses.mit;
+    maintainers = with maintainers; [ ];
+    platforms = platforms.linux;
+  };
 
+  checkPhase = "";
+
+  text = ''
     usage() {
       echo "Usage: $0 [-b VALUE] [-c VALUE] [-m IDS]"
       echo "  -b, --brightness VALUE   Set brightness to VALUE (0-100)"
@@ -65,37 +69,22 @@ stdenv.mkDerivation {
     fi
 
     # If no monitors specified, detect all
-    if [[ "\$\{#monitor_ids[@]}" -eq 0 ]]; then
+    if [[ "''${#monitor_ids[@]}" -eq 0 ]]; then
       monitor_ids=($(ddcutil detect | grep -oP '(?<=Display )\d+'))
-      if [[ "\$\{#monitor_ids[@]}" -eq 0 ]]; then
+      if [[ "''${#monitor_ids[@]}" -eq 0 ]]; then
         echo "Error: No monitors detected."
         exit 1
       fi
     fi
 
     # Apply settings to each monitor
-    for monitor in "\$\{monitor_ids[@]}"; do
+    for monitor in "''${monitor_ids[@]}"; do
       if [[ -n "$brightness" ]]; then
-        sudo -u root ddcutil -d "$monitor" setvcp 10 "$brightness" >/dev/null
+        ddcutil -d "$monitor" setvcp 10 "$brightness" >/dev/null
       fi
       if [[ -n "$contrast" ]]; then
-        sudo -u root ddcutil -d "$monitor" setvcp 12 "$contrast" >/dev/null
+        ddcutil -d "$monitor" setvcp 12 "$contrast" >/dev/null
       fi
     done
   '';
-
-  phases = [ "installPhase" ];
-
-  installPhase = ''
-    mkdir -p $out/bin
-    install -m 0755 \$\{src} $out/bin/monitor-control
-  '';
-
-  meta = with pkgs.lib; {
-    description = "Script to set brightness and contrast for monitors using ddcutil";
-    mainProgram = "monitor-control";
-    license = licenses.mit;
-    maintainers = with maintainers; [ ];
-    platforms = platforms.linux;
-  };
 }
