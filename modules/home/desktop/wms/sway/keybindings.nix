@@ -49,8 +49,6 @@ let
   gamma-mode = "Set colour temperature: (a)uto, (r)eset, (1)500K, (2)500K, (3)000K, (4)000K, (5)000K, (6) day";
 in
 {
-  # TODO: https://github.com/Alexays/Waybar/issues/791
-  # Sudo to change monitor brightness
   config = mkIf cfg.enable {
     wayland.windowManager.sway.config = {
       modes = mkOptionDefault {

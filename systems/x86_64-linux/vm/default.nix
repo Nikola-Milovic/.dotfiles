@@ -27,41 +27,6 @@ in
 
   system.stateVersion = "24.05";
 
-  custom = {
-    system = {
-      impermanence = {
-        enable = true;
-        home = false;
-      };
-      disko.btrfs = {
-        enable = true;
-        swapSize = "2G";
-        device = "/dev/sda2";
-      };
-    };
-
-    desktop = {
-      displaymanager.tuigreet = enabled;
-      wms.sway = enabled;
-    };
-
-    services = {
-      ssh = enabled;
-      docker = enabled;
-    };
-
-    user = {
-      hashedPassword = "$6$lP/WAcHvSHwBHxMn$ou44X10FVP3kHaTrIBSpwZGA0jlf5YSLp2lha9fSeJcOLaw5lvWD9BuH3lyNs3qlASqfe/TVtDSkpj5PzpWJK1";
-      fullName = "Nikola Milovic";
-      extraGroups = [ "wheel" "video"];
-    };
-
-    hardware = {
-      networking = enabled;
-      audio = enabled;
-    };
-  };
-
   users = {
     mutableUsers = false;
 
@@ -102,5 +67,46 @@ in
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 3d";
+  };
+
+	# --------------
+
+  custom = {
+    system = {
+      fonts = enabled;
+      impermanence = {
+        enable = true;
+        home = false;
+      };
+      disko.btrfs = {
+        enable = true;
+        swapSize = "2G";
+        device = "/dev/sda2";
+      };
+    };
+
+    desktop = {
+      displaymanager.tuigreet = enabled;
+      wms.sway = enabled;
+    };
+
+    services = {
+      ssh = enabled;
+      docker = enabled;
+    };
+
+    user = {
+      hashedPassword = "$6$lP/WAcHvSHwBHxMn$ou44X10FVP3kHaTrIBSpwZGA0jlf5YSLp2lha9fSeJcOLaw5lvWD9BuH3lyNs3qlASqfe/TVtDSkpj5PzpWJK1";
+      fullName = "Nikola Milovic";
+      extraGroups = [
+        "wheel"
+        "video"
+      ];
+    };
+
+    hardware = {
+      networking = enabled;
+      audio = enabled;
+    };
   };
 }

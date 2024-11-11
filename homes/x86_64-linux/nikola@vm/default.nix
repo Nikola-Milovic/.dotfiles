@@ -10,8 +10,6 @@
 }:
 with lib.${namespace};
 {
-  home.packages = with pkgs; [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
-
   programs.direnv = {
     enable = true;
     enableBashIntegration = true;
@@ -29,6 +27,8 @@ with lib.${namespace};
   fonts.fontconfig.enable = true;
 
   custom = {
+    theme.catppuccin = enabled;
+
     security = {
       sops = {
         enable = true;
@@ -46,9 +46,17 @@ with lib.${namespace};
       home-manager = enabled;
     };
 
-    desktop.wms.sway = {
-      enable = true;
-      wallpaper = pkgs.custom.wallpapers.galaxy-warm;
+    desktop = {
+      wms.sway = {
+        enable = true;
+        wallpaper = pkgs.custom.wallpapers.galaxy-warm;
+      };
+
+      bars.waybar = {
+        enable = true;
+        fullSizeOutputs = [ "Virtual-1" ];
+        condensedOutputs = [  ];
+      };
     };
   };
 

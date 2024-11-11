@@ -8,10 +8,10 @@
 }:
 let
   inherit (lib) mkEnableOption types mkIf;
-  cfg = config.${namespace}.desktop.filemanager.nemo;
+  cfg = config.${namespace}.desktop.filemanagers.nemo;
 in
 {
-  options.${namespace}.desktop.filemanager.nemo = with types; {
+  options.${namespace}.desktop.filemanagers.nemo = with types; {
     enable = mkEnableOption "Nemo file manager";
   };
 

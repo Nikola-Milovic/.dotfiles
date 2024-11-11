@@ -32,15 +32,21 @@ in
 
   config = mkIf cfg.enable {
     # Desktop additions
-    custom.desktop = {
-      filemanager.nemo = enabled;
+    custom = {
+			desktop = {
+      filemanagers.nemo = enabled;
       addons = {
         foot = enabled;
         wofi = enabled;
-        waybar = enabled;
         wallpapers = enabled;
         keyring = enabled;
         wlogout = enabled;
+      };
+			};
+
+		theme = {
+        gtk = enabled;
+        qt = enabled;
       };
     };
 
@@ -70,8 +76,6 @@ in
 
       sessionVariables = {
         SDL_VIDEODRIVER = "wayland";
-        QT_QPA_PLATFORM = "wayland";
-        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         _JAVA_AWT_WM_NONREPARENTING = 1;
         MOZ_ENABLE_WAYLAND = 1;
         XDG_SESSION_TYPE = "wayland";
@@ -94,8 +98,11 @@ in
         variables = [ "--all" ];
       };
 
+      inherit (cfg) extraConfig;
+
       config = {
         modifier = modifier;
+        bars = [ ];
         # Use Mouse+$mod to drag floating windows to their wanted position
         floating.modifier = modifier;
         terminal = getExe cfg.term;
@@ -105,6 +112,21 @@ in
             xkb_layout = "real-prog-dvorak";
           };
         };
+
+				window = {
+					titlebar = false;
+					border = 0;
+				};
+				floating = { 
+					titlebar = false; 
+					border = 0;
+					};
+
+				gaps = {
+						inner = 10;
+						outer = 2;
+						# smartBorders = "on";
+					};
 
         fonts = {
           names = [ "JetBrainsMono Nerd Font" ];
@@ -125,12 +147,6 @@ in
           { command = "dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus"; }
         ];
       };
-
-      extraConfig = ''
-
-        ${(builtins.readFile ./config)}
-        ${cfg.extraConfig}
-      '';
     };
   };
 }

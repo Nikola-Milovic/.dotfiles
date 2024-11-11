@@ -11,6 +11,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+		catppuccin-cursors.url = "github:catppuccin/cursors";
+    catppuccin.url = "github:catppuccin/nix";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,6 +53,7 @@
 
       homes.modules = with inputs; [
         impermanence.homeManagerModules.default
+        catppuccin.homeManagerModules.catppuccin
         sops-nix.homeManagerModules.sops
       ];
 
