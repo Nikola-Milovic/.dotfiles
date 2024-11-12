@@ -11,7 +11,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-		catppuccin-cursors.url = "github:catppuccin/cursors";
+    catppuccin-cursors.url = "github:catppuccin/cursors";
     catppuccin.url = "github:catppuccin/nix";
 
     home-manager = {

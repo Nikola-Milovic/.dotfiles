@@ -22,8 +22,7 @@ let
   cfg = config.${namespace}.desktop.bars.waybar;
 
   style = builtins.readFile ./styles/style.css;
-  controlCenterStyle = builtins.readFile ./styles/control-center.css;
-  powerStyle = builtins.readFile ./styles/power.css;
+  customStyle = builtins.readFile ./styles/custom.css;
   statsStyle = builtins.readFile ./styles/stats.css;
   workspacesStyle = builtins.readFile ./styles/workspaces.css;
 
@@ -50,14 +49,15 @@ let
   fullSizeModules = {
     modules-right =
       [
-        "group/tray"
-        "custom/separator-right"
+        # "custom/separator-right"
         "group/stats"
         "custom/separator-right"
-        "group/control-center"
+        "group/tidbits"
+        "group/tray"
+        "custom/separator-right"
       ]
       ++ [
-        # "custom/weather"
+        "custom/weather"
         "clock"
       ];
   };
@@ -65,9 +65,10 @@ let
   condensedModules = {
     modules-right =
       [
-        "group/tray-drawer"
+        # "group/tray-drawer"
         "group/stats-drawer"
-        "group/control-center"
+        "custom/separator-right"
+        # "group/control-center"
       ]
       ++ [
         # "custom/weather"
@@ -124,7 +125,7 @@ in
         (generateOutputSettings cfg.condensedOutputs "condensed")
       ];
 
-      style = "${style}${controlCenterStyle}${powerStyle}${statsStyle}${workspacesStyle}";
+      style = "${style}${customStyle}${statsStyle}${workspacesStyle}";
     };
 
     # sops.secrets = lib.mkIf osConfig.${namespace}.security.sops.enable {

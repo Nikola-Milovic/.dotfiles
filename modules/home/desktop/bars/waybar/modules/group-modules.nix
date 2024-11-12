@@ -24,13 +24,7 @@
       children-class = "not-power";
       transition-left-to-right = false;
     };
-    modules = [
-      "custom/wlogout"
-      # "custom/power"
-      # "custom/quit"
-      # "custom/lock"
-      # "custom/reboot"
-    ];
+    modules = [ "custom/wlogout" ];
   };
 
   "group/tray" = {
@@ -47,29 +41,11 @@
     ];
   };
 
-  "group/stats-drawer" = {
+  "group/tidbits" = {
     orientation = "horizontal";
-    drawer = {
-      transition-duration = 500;
-      transition-left-to-right = false;
-    };
     modules = [
-      "custom/separator-right"
-      "cpu"
-      "memory"
-      "temperature"
-    ];
-  };
-
-  "group/tray-drawer" = {
-    orientation = "horizontal";
-    drawer = {
-      transition-duration = 500;
-      transition-left-to-right = false;
-    };
-    modules = [
-      "custom/separator-right"
-      "tray"
+      "pulseaudio"
+      "custom/vpn"
     ];
   };
 }

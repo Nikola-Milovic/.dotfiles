@@ -55,7 +55,7 @@ with lib.${namespace};
       bars.waybar = {
         enable = true;
         fullSizeOutputs = [ "Virtual-1" ];
-        condensedOutputs = [  ];
+        condensedOutputs = [ ];
       };
     };
   };

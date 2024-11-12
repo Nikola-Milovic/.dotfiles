@@ -82,9 +82,10 @@ in
     ];
   };
 
-  clock = {
+  "clock" = {
     tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-    format = "󰃭 {:%a %d %b \n 󰅐 %I:%M %p}";
+    format = "󰃭 {:%a %d %b %H:%M:%S} ";
+    interval = 1;
     calendar = {
       mode = "year";
       mode-mon-col = 3;
@@ -108,7 +109,7 @@ in
   };
 
   cpu = {
-    format = " {usage}%";
+    format = "CPU: {usage}%";
     tooltip = true;
     states = {
       "50" = 50;
@@ -153,53 +154,7 @@ in
   };
 
   memory = {
-    format = "󰍛 {}%";
-  };
-
-  mpris = {
-    format = "{player_icon} {status_icon} {dynamic}";
-    format-paused = "{player_icon} {status_icon} <i>{dynamic}</i>";
-    max-length = 45;
-    player-icons = {
-      chromium = "";
-      default = "";
-      firefox = "";
-      mopidy = "";
-      mpv = "";
-      spotify = "";
-    };
-    status-icons = {
-      paused = "";
-      playing = "";
-      stopped = "";
-    };
-  };
-
-  mpd = {
-    format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ";
-    format-disconnected = "Disconnected ";
-    format-stopped = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ";
-    unknown-tag = "N/A";
-    interval = 2;
-    consume-icons = {
-      on = " ";
-    };
-    random-icons = {
-      off = "<span color=\"#f53c3c\"></span> ";
-      on = " ";
-    };
-    repeat-icons = {
-      on = " ";
-    };
-    single-icons = {
-      on = "1 ";
-    };
-    state-icons = {
-      paused = "";
-      playing = "";
-    };
-    tooltip-format = "MPD (connected)";
-    tooltip-format-disconnected = "MPD (disconnected)";
+    format = "{used:0.1f}G/{total:0.1f}G ({}%)";
   };
 
   network =

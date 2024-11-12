@@ -33,18 +33,18 @@ in
   config = mkIf cfg.enable {
     # Desktop additions
     custom = {
-			desktop = {
-      filemanagers.nemo = enabled;
-      addons = {
-        foot = enabled;
-        wofi = enabled;
-        wallpapers = enabled;
-        keyring = enabled;
-        wlogout = enabled;
+      desktop = {
+        filemanagers.nemo = enabled;
+        addons = {
+          foot = enabled;
+          wofi = enabled;
+          wallpapers = enabled;
+          keyring = enabled;
+          wlogout = enabled;
+        };
       };
-			};
 
-		theme = {
+      theme = {
         gtk = enabled;
         qt = enabled;
       };
@@ -113,20 +113,20 @@ in
           };
         };
 
-				window = {
-					titlebar = false;
-					border = 0;
-				};
-				floating = { 
-					titlebar = false; 
-					border = 0;
-					};
+        window = {
+          titlebar = false;
+          border = 0;
+        };
+        floating = {
+          titlebar = false;
+          border = 0;
+        };
 
-				gaps = {
-						inner = 10;
-						outer = 2;
-						# smartBorders = "on";
-					};
+        gaps = {
+          inner = 10;
+          outer = 2;
+          # smartBorders = "on";
+        };
 
         fonts = {
           names = [ "JetBrainsMono Nerd Font" ];

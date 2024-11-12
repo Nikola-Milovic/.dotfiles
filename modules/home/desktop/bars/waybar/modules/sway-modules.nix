@@ -15,31 +15,16 @@ in
     on-scroll-up = "${getExe' config.wayland.windowManager.sway.package "swaymsg"} workspace next";
     on-scroll-down = "${getExe' config.wayland.windowManager.sway.package "swaymsg"} workspace prev";
     format = "{icon} {windows}";
-    format-icons = {
-      "1" = "󰎤";
-      "2" = "󰎧";
-      "3" = "󰎪";
-      "4" = "󰎭";
-      "5" = "󰎱";
-      "6" = "󰎳";
-      "7" = "󰎶";
-      "8" = "󰎹";
-      "9" = "󰎼";
-      "10" = "󰽽";
-      "urgent" = "󱨇";
-      "default" = "";
-      "empty" = "󱓼";
-    };
-    persistent-workspaces = {};
+    format-icons = { };
+    persistent-workspaces = { };
     window-format = "<span color='@text'>{name}</span>";
-    window-rewrite-default = "";
+		window-rewrite-default = "";
     window-rewrite = {
       "class<.blueman-manager-wrapped>" = "";
       "class<.devede_ng.py-wrapped>" = "";
       "class<.pitivi-wrapped>" = "󱄢";
       "class<.xemu-wrapped>" = "";
       "class<1Password>" = "󰢁";
-      "class<Foot>" = "";
       "class<Ardour-.*>" = "";
       "class<Bitwarden>" = "󰞀";
       "class<Caprine>" = "󰈎";
@@ -60,9 +45,8 @@ in
       "class<dropbox>" = "";
       "class<dupeGuru>" = "";
       "class<firefox.*> title<.*github.*>" = "";
-      "class<firefox.*> title<.*twitch|youtube|plex|.*>" = "";
+      "class<firefox.*> title<.*twitch|youtube|plex.*>" = "";
       "class<firefox.*>" = "";
-      "class<foot>" = "";
       "class<fr.handbrake.ghb" = "󱁆";
       "class<heroic>" = "󱢾";
       "class<info.cemu.Cemu>" = "󰜭";
@@ -101,9 +85,12 @@ in
       "class<wlroots> title<.*WL-1.*>" = "";
       "class<xwaylandvideobridge>" = "";
       "code-url-handler" = "󰨞";
-      "title<RPCS3.*>" = "";
       "title<Spotify Free>" = "";
       "title<Steam>" = "";
+
+      "class<foot>" = "";
+			"class<chrome>" = "";
+			"class<brave-browser>" = "";
     };
   };
 }

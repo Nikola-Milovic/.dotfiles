@@ -35,6 +35,7 @@ in
         # Nerd Fonts
         (nerdfonts.override {
           fonts = [
+            "JetBrainsMono"
             "CascadiaCode"
             "Iosevka"
             "Monaspace"

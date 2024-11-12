@@ -29,13 +29,13 @@ in
     tooltip = false;
   };
 
-  # "custom/weather" = {
-  #   exec = "${getExe pkgs.wttrbar} --fahrenheit --ampm";
-  #   return-type = "json";
-  #   format = "{}";
-  #   tooltip = true;
-  #   interval = 3600;
-  # };
+  "custom/weather" = {
+    exec = "${getExe pkgs.wttrbar} --location Belgrade";
+    return-type = "json";
+    format = "{}";
+    tooltip = true;
+    interval = 3600;
+  };
 
   "custom/wlogout" = {
     format = "";
