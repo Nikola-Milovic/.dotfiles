@@ -70,14 +70,6 @@ in
                         "noatime"
                       ];
                     };
-                    "/home" = {
-                      mountpoint = "/home";
-                      mountOptions = [
-                        "subvol=home"
-                        "compress=zstd"
-                        "noatime"
-                      ];
-                    };
                     "/nix" = {
                       mountpoint = "/nix";
                       mountOptions = [

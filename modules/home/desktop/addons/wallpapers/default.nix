@@ -14,7 +14,7 @@ let
 in
 {
   options.${namespace}.desktop.addons.wallpapers = with types; {
-    enable = mkBoolOpt false "Whether or not to add wallpapers to ~/Pictures/wallpapers.";
+    enable = mkBoolOpt false "Whether or not to add wallpapers to ~/pictures/wallpapers.";
   };
 
   config = mkIf cfg.enable ({
@@ -23,7 +23,7 @@ in
       let
         wallpaper = wallpapers.${name};
       in
-      acc // { "Pictures/wallpapers/${wallpaper.fileName}".source = wallpaper; }
+      acc // { "pictures/wallpapers/${wallpaper.fileName}".source = wallpaper; }
     ) { } (wallpapers.names);
   });
 }

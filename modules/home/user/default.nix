@@ -52,18 +52,17 @@ in
       home = {
         file =
           {
-            "Desktop/.keep".text = "";
-            "Documents/.keep".text = "";
-            "Downloads/.keep".text = "";
-            "Files/.keep".text = "";
-            "Music/.keep".text = "";
-            "Pictures/.keep".text = "";
-            "Videos/.keep".text = "";
+            "documents/.keep".text = "";
+            "downloads/.keep".text = "";
+            "files/.keep".text = "";
+            "music/.keep".text = "";
+            "pictures/.keep".text = "";
+            "videos/.keep".text = "";
           }
           // lib.optionalAttrs (cfg.icon != null) {
             ".face".source = cfg.icon;
             ".face.icon".source = cfg.icon;
-            "Pictures/${cfg.icon.fileName or (builtins.baseNameOf cfg.icon)}".source = cfg.icon;
+            "pictures/${cfg.icon.fileName or (builtins.baseNameOf cfg.icon)}".source = cfg.icon;
           };
 
         homeDirectory = mkDefault cfg.home;
