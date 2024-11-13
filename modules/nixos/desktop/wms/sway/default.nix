@@ -19,15 +19,11 @@ in
   config = mkIf cfg.enable {
     custom = {
       desktop.addons.xdg-portal = enabled;
-
-      security = {
-        # sops = enabled;
-        polkit = enabled;
-      };
-
     };
 
-    services.xserver.enable = true;
-    services.libinput.enable = true;
+		programs.sway = enabled;
+
+    services.xserver = enabled;
+    services.libinput = enabled;
   };
 }

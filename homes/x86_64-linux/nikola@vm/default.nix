@@ -30,6 +30,7 @@ with lib.${namespace};
     theme.catppuccin = enabled;
 
     security = {
+			keyring = enabled;
       sops = {
         enable = true;
         defaultSopsFile = lib.snowfall.fs.get-file "secrets/users/${config.${namespace}.user.name}/secrets.yaml";

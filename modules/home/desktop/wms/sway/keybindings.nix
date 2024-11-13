@@ -34,16 +34,16 @@ let
   killgam = "${pkgs.procps}/bin/pkill -x gammastep";
   monitorControl = "${pkgs.${namespace}.monitor-control}/bin/monitor-control";
 
-  workspace1 = "1:";
-  workspace2 = "2:";
-  workspace3 = "3:";
-  workspace4 = "4:";
-  workspace5 = "5:";
-  workspace6 = "6:";
-  workspace7 = "7:";
-  workspace8 = "8:";
-  workspace9 = "9:";
-  workspace10 = "10:";
+  workspace1 = "1";
+  workspace2 = "2";
+  workspace3 = "3";
+  workspace4 = "4";
+  workspace5 = "5";
+  workspace6 = "6";
+  workspace7 = "7";
+  workspace8 = "8";
+  workspace9 = "9";
+  workspace10 = "10";
 
   volume-mode = "Choose: (1) +5 volume, (2) -5 volume, (3) pavucontrol (4) mute";
   gamma-mode = "Set colour temperature: (a)uto, (r)eset, (1)500K, (2)500K, (3)000K, (4)000K, (5)000K, (6) day";
