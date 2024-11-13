@@ -39,7 +39,6 @@ in
           foot = enabled;
           wofi = enabled;
           wallpapers = enabled;
-          keyring = enabled;
           wlogout = enabled;
         };
       };
@@ -88,6 +87,7 @@ in
     wayland.windowManager.sway = {
       enable = true;
       wrapperFeatures.gtk = true;
+			xwayland = true;
 
       checkConfig = false;
 

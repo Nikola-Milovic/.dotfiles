@@ -85,6 +85,11 @@ in
       };
     };
 
+		security = {
+				keyring = enabled;
+        polkit = enabled;
+			};
+
     desktop = {
       displaymanager.tuigreet = enabled;
       wms.sway = enabled;

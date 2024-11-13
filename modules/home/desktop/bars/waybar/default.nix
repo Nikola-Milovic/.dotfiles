@@ -112,9 +112,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    # systemd.user.services.waybar.Service.ExecStart = mkIf cfg.debug (
-    #   mkForce "${getExe pkgs.waybar} -l debug"
-    # );
+    systemd.user.services.waybar.Service.ExecStart = mkIf cfg.debug (
+      mkForce "${getExe pkgs.waybar} -l debug"
+    );
 
     programs.waybar = {
       enable = true;
