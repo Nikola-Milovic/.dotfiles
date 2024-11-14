@@ -30,7 +30,7 @@ with lib.${namespace};
     theme.catppuccin = enabled;
 
     security = {
-			keyring = enabled;
+      keyring = enabled;
       sops = {
         enable = true;
         defaultSopsFile = lib.snowfall.fs.get-file "secrets/users/${config.${namespace}.user.name}/secrets.yaml";
@@ -55,6 +55,7 @@ with lib.${namespace};
 
       bars.waybar = {
         enable = true;
+				debug = true;
         fullSizeOutputs = [ "Virtual-1" ];
         condensedOutputs = [ ];
       };
