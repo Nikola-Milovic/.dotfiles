@@ -80,6 +80,21 @@
     background-color: @green;
 }
 
+#custom-vpn.connected {
+	color: @green;
+}
+#custom-vpn.disconnected {
+	color: @red;
+}
+
+#custom-vpn{
+  margin: 0.5em;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-weight: bold;
+  background-color: @surface0;
+  border: 2px solid @surface1;
+}
 
 /* Custom styling for the logout icon on end */
 #custom-wlogout, #custom-power {

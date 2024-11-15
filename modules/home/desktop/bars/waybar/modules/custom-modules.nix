@@ -43,4 +43,11 @@ in
     tooltip = false;
     on-click = "${getExe' pkgs.coreutils "sleep"} 0.1 && ${getExe pkgs.wlogout} -c 5 -r 5 -p layer-shell";
   };
+
+  "custom/vpn" = {
+    interval = 3;
+    exec = "${getExe pkgs.custom.waybar-vpn-status}";
+    format = "{}{icon}";
+    return-type = "json";
+  };
 }

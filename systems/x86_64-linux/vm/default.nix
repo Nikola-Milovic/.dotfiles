@@ -69,7 +69,7 @@ in
     options = "--delete-older-than 3d";
   };
 
-	services.xserver.displayManager.lightdm.enable = mkForce false;
+  services.xserver.displayManager.lightdm.enable = mkForce false;
 
   # --------------
 
