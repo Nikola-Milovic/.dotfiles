@@ -16,18 +16,16 @@ with lib.${namespace};
     nix-direnv.enable = true;
   };
 
-  programs.chromium = {
-    enable = true;
-    commandLineArgs = [
-      "--enable-features=UseOzonePlatform"
-      "--ozone-platform=wayland"
-    ];
-  };
-
   fonts.fontconfig.enable = true;
 
   custom = {
     theme.catppuccin = enabled;
+
+    programs.graphical = {
+      browsers = {
+        brave = enabled;
+      };
+    };
 
     security = {
       keyring = enabled;

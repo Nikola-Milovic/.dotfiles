@@ -9,7 +9,6 @@ with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.services.ssh;
-  sshSocketPath = "${config.users.users.yourusername.xdg.runtimeDir}/ssh-agent.socket";
 in
 {
   options.${namespace}.services.ssh = with types; {

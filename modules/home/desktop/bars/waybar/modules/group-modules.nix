@@ -45,7 +45,7 @@
     orientation = "horizontal";
     modules = [
       "pulseaudio"
-			"custom/vpn"
+      "custom/vpn"
     ];
   };
 }

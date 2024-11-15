@@ -63,7 +63,8 @@ in
       };
 
       sessionVariables = {
-        GTK_USE_PORTAL = "${toString (boolToNum cfg.usePortal)}";
+        # https://github.com/NixOS/nixpkgs/pull/179204 	
+        # GTK_USE_PORTAL = "${toString (boolToNum cfg.usePortal)}";
         CURSOR_THEME = mkDefault cfg.cursor.name;
       };
     };
