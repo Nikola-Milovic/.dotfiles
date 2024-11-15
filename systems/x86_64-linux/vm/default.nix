@@ -83,7 +83,6 @@ in
       fonts = enabled;
       impermanence = {
         enable = true;
-        home = false;
       };
       disko.btrfs = {
         enable = true;

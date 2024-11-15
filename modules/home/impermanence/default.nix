@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.impermanence = with types; {
-    enable = mkBoolOpt osConfig.${namespace}.system.impermanence.home "Is home impermanence enabled";
+    enable = mkBoolOpt osConfig.${namespace}.system.impermanence.enable "Is home impermanence enabled";
     files = mkOpt (listOf (either str attrs)) [ ] "Additional home files to persist.";
     directories = mkOpt (listOf (either str attrs)) [ ] "Additional home directories to persist.";
   };
