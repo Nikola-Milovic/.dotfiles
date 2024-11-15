@@ -31,5 +31,8 @@ in
       enableGnomeKeyring = true;
       gnupg.enable = true;
     };
+
+    # if i encounter issues with text popping up on screen
+    # https://github.com/sjcobb2022/nixos-config/blob/main/hosts/common/optional/greetd.nix#L23
   };
 }

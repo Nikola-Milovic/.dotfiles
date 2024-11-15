@@ -45,7 +45,7 @@ in
 
       theme = {
         gtk = enabled;
-        qt = enabled;
+        # qt = enabled;
       };
     };
 
@@ -87,7 +87,7 @@ in
     wayland.windowManager.sway = {
       enable = true;
       wrapperFeatures.gtk = true;
-			xwayland = true;
+      xwayland = true;
 
       checkConfig = false;
 

@@ -1,7 +1,7 @@
 {
   config,
   lib,
-	pkgs,
+  pkgs,
   namespace,
   ...
 }:
@@ -15,11 +15,11 @@ in
     enable = mkEnableOption "gnome keyring";
   };
 
-  config = mkIf cfg.enable { 
-		services.gnome.gnome-keyring.enable = true;
-	environment.systemPackages = with pkgs; [
+  config = mkIf cfg.enable {
+    services.gnome.gnome-keyring.enable = true;
+    environment.systemPackages = with pkgs; [
       gnome.gnome-keyring
       gnome.libgnome-keyring
     ];
-	};
+  };
 }

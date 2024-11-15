@@ -18,7 +18,7 @@ in
     format-icons = { };
     persistent-workspaces = { };
     window-format = "<span color='@text'>{name}</span>";
-		window-rewrite-default = "";
+    window-rewrite-default = "";
     window-rewrite = {
       "class<.blueman-manager-wrapped>" = "";
       "class<.devede_ng.py-wrapped>" = "";
@@ -89,8 +89,8 @@ in
       "title<Steam>" = "";
 
       "class<foot>" = "";
-			"class<chrome>" = "";
-			"class<brave-browser>" = "";
+      "class<chrome>" = "";
+      "class<brave-browser>" = "";
     };
   };
 }

@@ -21,7 +21,7 @@ in
       desktop.addons.xdg-portal = enabled;
     };
 
-		programs.sway = enabled;
+    # programs.sway = enabled;
 
     services.xserver = enabled;
     services.libinput = enabled;

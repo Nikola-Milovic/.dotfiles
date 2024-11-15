@@ -69,6 +69,13 @@ in
     options = "--delete-older-than 3d";
   };
 
+  nix.settings = {
+    cores = 4;
+    max-jobs = 4;
+  };
+
+  services.xserver.displayManager.lightdm.enable = mkForce false;
+
   # --------------
 
   custom = {
@@ -85,10 +92,10 @@ in
       };
     };
 
-		security = {
-				keyring = enabled;
-        polkit = enabled;
-			};
+    security = {
+      keyring = enabled;
+      polkit = enabled;
+    };
 
     desktop = {
       displaymanager.tuigreet = enabled;
