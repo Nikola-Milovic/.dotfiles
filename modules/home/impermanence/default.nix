@@ -28,7 +28,6 @@ in
         "documents"
         "videos"
         ".gnupg"
-        ".dotfiles"
         ".cache"
         ".nixops"
         # ".local/share"
