@@ -30,6 +30,11 @@ in
       procs
     ];
 
+    ${namespace}.impermanence.directories = [
+      ".local/share/atuin"
+      ".local/share/zoxide"
+    ];
+
     home.shellAliases = {
       # sed="sd" -- can't do this because sd is not compatible with sed's commands that Unix by default uses
       htop = "btm";
