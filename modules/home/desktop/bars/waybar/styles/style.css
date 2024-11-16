@@ -48,7 +48,6 @@ box {
 
 /* Add spacing for right side modules */
 #user,
-#custom-weather,
 #keyboard-state,
 #mpd {
   padding: 0 1em;
