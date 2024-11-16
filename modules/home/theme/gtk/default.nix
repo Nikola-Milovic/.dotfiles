@@ -20,7 +20,7 @@ in
 {
   options.${namespace}.theme.gtk = {
     enable = mkBoolOpt false "Whether to customize GTK and apply themes.";
-    usePortal = mkBoolOpt false "Whether to use the GTK Portal.";
+    # usePortal = mkBoolOpt false "Whether to use the GTK Portal.";
 
     cursor = {
       name = mkOpt types.str "catppuccin-macchiato-blue-cursors" "The name of the cursor theme to apply.";
@@ -63,7 +63,8 @@ in
       };
 
       sessionVariables = {
-        GTK_USE_PORTAL = "${toString (boolToNum cfg.usePortal)}";
+        # https://github.com/NixOS/nixpkgs/pull/179204 	
+        # GTK_USE_PORTAL = "${toString (boolToNum cfg.usePortal)}";
         CURSOR_THEME = mkDefault cfg.cursor.name;
       };
     };

@@ -87,6 +87,8 @@
 	color: @red;
 }
 
+
+#custom-weather,
 #custom-vpn{
   margin: 0.5em;
   padding-left: 8px;
@@ -95,6 +97,7 @@
   background-color: @surface0;
   border: 2px solid @surface1;
 }
+
 
 /* Custom styling for the logout icon on end */
 #custom-wlogout, #custom-power {
