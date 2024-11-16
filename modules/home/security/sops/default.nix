@@ -25,7 +25,7 @@ in
       ssh-to-age
     ];
 
-    custom.impermanence.files = [ "${config.home.homeDirectory}/.config/sops/age/keys.txt" ];
+    custom.impermanence.directories = [ ".config/sops" ];
 
     sops = {
       inherit (cfg) defaultSopsFile;
