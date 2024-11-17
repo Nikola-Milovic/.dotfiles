@@ -33,7 +33,7 @@ in
 
       age = {
         generateKey = true;
-        keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+        keyFile = "${config.${namespace}.user.home}/.config/sops/age/keys.txt";
         sshKeyPaths = [ ] ++ cfg.sshKeyPaths;
       };
 

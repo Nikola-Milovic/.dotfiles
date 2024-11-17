@@ -33,6 +33,7 @@ in
     ${namespace}.impermanence.directories = [
       ".local/share/atuin"
       ".local/share/zoxide"
+      ".config/lazygit/state.yml"
     ];
 
     home.shellAliases = {

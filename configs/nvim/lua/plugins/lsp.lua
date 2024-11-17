@@ -45,45 +45,5 @@ return {
       },
     },
   },
-  {
-    "williamboman/mason.nvim",
-    enabled = false,
-    opts = function(_, opts)
-      local ensure_installed = {
-        -- python
-        -- "ruff-lsp", -- lsp
-        -- "pyright", -- lsp
-        -- "black", -- formatter
-        -- "mypy", -- linter
-        --
-        -- -- lua
-        -- "lua-language-server", -- lsp
-        -- "stylua", -- formatter
-        --
-        -- -- shell
-        -- "bash-language-server", -- lsp
-        -- "shfmt", -- formatter
-        -- "shellcheck", -- linter
-        --
-        -- -- yaml
-        -- "yamllint", -- linter
-        --
-        -- -- sql
-        -- "sqlfluff", -- linter
-        --
-        -- -- rust
-        -- "rust-analyzer", -- lsp
-        -- -- rustfmt -- formatter (install via rustup)
-        --
-        -- -- protobuf
-        -- "buf-language-server", -- lsp (prototype, not feature-complete yet, rely on buf for now)
-        -- "buf", -- formatter, linter
-        -- "protolint", -- linter
-      }
-
-      opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, ensure_installed)
-    end,
-  },
   { import = "plugins.langs" },
 }
