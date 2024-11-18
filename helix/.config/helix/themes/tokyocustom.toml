@@ -1,7 +1,0 @@
-inherits = "tokyonight_storm"
-
-"ui.popup.background" = "#ffffff"
-
-[palette]
-foreground_highlight = "#d1dbff5"
-foreground_gutter = "#686f8a"

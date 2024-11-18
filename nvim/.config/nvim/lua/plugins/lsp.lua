@@ -32,7 +32,7 @@ return {
       opts.servers.gopls = vim.tbl_deep_extend("force", opts.servers.gopls or {}, {
         settings = {
           gopls = {
-            buildFlags = { "-tags=manual", "-tags=integration" },
+            buildFlags = { "-tags=manual integration" },
           },
         },
       })

@@ -1,5 +1,22 @@
 return {
   {
+    "catppuccin/nvim",
+    lazy = false,
+    name = "catppuccin",
+    opts = {
+      flavour = "macchiato",
+    },
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "tokyonight",
+      custom_highlights = function(colors)
+        return {} --TODO: https://github.com/catppuccin/nvim/discussions/778#discussioncomment-10966691
+      end,
+    },
+  },
+  {
     "folke/tokyonight.nvim",
     lazy = true,
     opts = {
