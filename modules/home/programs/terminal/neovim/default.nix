@@ -30,10 +30,10 @@ in
   config = mkIf cfg.enable {
     home.sessionVariables = {
       EDITOR = "nvim";
-      NVIVM_PLUGIN_PATH = "${
-        pkgs.vimUtils.packDir
-          config.home-manager.users.${config.${namespace}.user.name}.programs.neovim.finalPackage.passthru.packpathDirs
-      }/pack/myNeovimPackages/start";
+      # NVIVM_PLUGIN_PATH = "${
+      #   pkgs.vimUtils.packDir
+      #     config.home-manager.users.${config.${namespace}.user.name}.programs.neovim.finalPackage.passthru.packpathDirs
+      # }/pack/myNeovimPackages/start";
     };
 
     programs.neovim = {

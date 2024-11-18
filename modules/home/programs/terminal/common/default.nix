@@ -30,11 +30,13 @@ in
       procs
     ];
 
-    ${namespace}.impermanence.directories = [
-      ".local/share/atuin"
-      ".local/share/zoxide"
-      ".config/lazygit/state.yml"
-    ];
+    ${namespace}.impermanence = {
+      files = [ ".config/lazygit/state.yml" ];
+      directories = [
+        ".local/share/atuin"
+        ".local/share/zoxide"
+      ];
+    };
 
     home.shellAliases = {
       # sed="sd" -- can't do this because sd is not compatible with sed's commands that Unix by default uses

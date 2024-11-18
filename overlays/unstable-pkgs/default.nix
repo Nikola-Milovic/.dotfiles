@@ -1,1 +1,1 @@
-{ channels, ... }: final: prev: { inherit (channels.unstable) vimPlugins; }
+{ channels, ... }: final: prev: { inherit (channels.unstable) vimPlugins obsidian; }

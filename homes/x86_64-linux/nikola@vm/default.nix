@@ -25,6 +25,7 @@ with lib.${namespace};
       browsers = {
         brave = enabled;
       };
+			obsidian = enabled;
     };
 
     security = {
