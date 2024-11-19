@@ -48,7 +48,7 @@ in
     services = {
       ssh = enabled;
       docker = enabled;
-			syncthing = enabled;
+      syncthing = enabled;
     };
 
     user = {
