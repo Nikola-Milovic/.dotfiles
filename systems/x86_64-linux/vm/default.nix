@@ -35,6 +35,8 @@ in
       };
     };
 
+    programs.nh = enabled;
+
     security = {
       keyring = enabled;
       polkit = enabled;
@@ -48,7 +50,6 @@ in
     services = {
       ssh = enabled;
       docker = enabled;
-      syncthing = enabled;
     };
 
     user = {

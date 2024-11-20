@@ -36,6 +36,10 @@ with lib.${namespace};
       };
     };
 
+    services = {
+      syncthing = enabled;
+    };
+
     programs.terminal = {
       ssh = enabled;
       neovim = enabled;

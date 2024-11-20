@@ -3,12 +3,12 @@
 -- Add any additional keymaps here
 
 local function map(mode, lhs, rhs, opts)
-  opts = opts or {}
-  opts.silent = opts.silent ~= false
-  if opts.remap and not vim.g.vscode then
-    opts.remap = nil
-  end
-  vim.keymap.set(mode, lhs, rhs, opts)
+	opts = opts or {}
+	opts.silent = opts.silent ~= false
+	if opts.remap and not vim.g.vscode then
+		opts.remap = nil
+	end
+	vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 -- Override lazynvim defaults
@@ -43,13 +43,3 @@ map("n", "<C-u>", "<C-u>zz", { desc = "which_key_ignore" })
 map("n", "<C-u>", "<C-u>zz", { desc = "which_key_ignore" })
 
 map("n", "<leader>w", "<cmd>w<cr><esc>", { desc = "which_key_ignore" })
-
--- Oil
-local oil = require("oil")
-map("n", "<leader>E", function()
-  oil.open(vim.loop.cwd())
-end, { desc = "Open root directory" })
--- map("n", "<leader>", oil.open(vim.loop.cwd()), { desc = "Open root directory" })
-map("n", "<leader>e", function()
-  oil.open(oil.get_current_dir())
-end, { desc = "Open cwd" })

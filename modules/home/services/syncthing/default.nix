@@ -9,6 +9,7 @@
 let
   inherit (lib) types mkIf mkEnableOption;
   cfg = config.${namespace}.services.syncthing;
+  homeDir = "${config.xdg.stateHome}/syncthing";
 in
 {
   options.${namespace}.services.syncthing = with types; {
@@ -16,9 +17,14 @@ in
   };
 
   config = mkIf cfg.enable {
+    ${namespace}.impermanence.directories = [ homeDir ];
+
     services.syncthing = {
       enable = true;
-      dataDir = "/home/${config.${namespace}.user.name}/files/syncthing";
+      extraOptions = [
+        "--no-default-folder"
+        "--home=${homeDir}"
+      ];
     };
   };
 }

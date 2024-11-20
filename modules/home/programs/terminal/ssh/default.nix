@@ -20,6 +20,9 @@ in
   };
 
   config = mkIf cfg.enable {
+
+    ${namespace}.impermanence.files = [ ".ssh/known_hosts" ];
+
     programs.ssh = {
       enable = true;
       extraConfig = optionalString config.${namespace}.security.sops.enable ''

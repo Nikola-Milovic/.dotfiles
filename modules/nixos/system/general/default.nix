@@ -59,7 +59,7 @@ in
       git
     ];
 
-    nix.gc = {
+    nix.gc = mkIf (config.${namespace}.programs.nh.enable == false) {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than ${cfg.gcRetentionDays}";
