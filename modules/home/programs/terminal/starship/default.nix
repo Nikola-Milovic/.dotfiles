@@ -5,14 +5,13 @@
   lib,
   ...
 }:
-with lib;
-with lib.${namespace};
 let
+  inherit (lib) types mkEnableOption mkIf;
   cfg = config.${namespace}.programs.terminal.starship;
 in
 {
   options.${namespace}.programs.terminal.starship = with types; {
-    enable = mkBoolOpt false "Enable Starship";
+    enable = mkEnableOption "starship";
   };
 
   # TODO: add more languages and nerdfont icons (check out presets on their docs)

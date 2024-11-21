@@ -1,5 +1,6 @@
 {
   options,
+	pkgs,
   config,
   namespace,
   lib,
@@ -16,7 +17,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    custom.user.extraGroups = [ "docker" ];
+    ${namespace}.user.extraGroups = [ "docker" ];
+
+		users.users.${config.${namespace}.user.name}.packages = [
+			pkgs.docker-compose
+		];
 
     virtualisation.docker = {
       enable = true;

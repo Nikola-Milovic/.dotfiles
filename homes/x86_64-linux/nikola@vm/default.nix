@@ -10,22 +10,30 @@
 }:
 with lib.${namespace};
 {
-  programs.direnv = {
-    enable = true;
-    enableBashIntegration = true;
-    nix-direnv.enable = true;
-  };
-
   fonts.fontconfig.enable = true;
 
   custom = {
     theme.catppuccin = enabled;
 
-    programs.graphical = {
-      browsers = {
-        brave = enabled;
+    programs = {
+
+      graphical = {
+        browsers = {
+          brave = enabled;
+        };
+        obsidian = enabled;
       };
-      obsidian = enabled;
+
+      terminal = {
+        ssh = enabled;
+        neovim = enabled;
+        git = enabled;
+        starship = enabled;
+        devenv = enabled;
+        bash = enabled;
+        common = enabled;
+        home-manager = enabled;
+      };
     };
 
     security = {
@@ -38,16 +46,6 @@ with lib.${namespace};
 
     services = {
       syncthing = enabled;
-    };
-
-    programs.terminal = {
-      ssh = enabled;
-      neovim = enabled;
-      git = enabled;
-      starship = enabled;
-      bash = enabled;
-      common = enabled;
-      home-manager = enabled;
     };
 
     desktop = {
