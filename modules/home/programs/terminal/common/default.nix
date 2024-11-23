@@ -87,7 +87,7 @@ in
     };
 
     xdg.configFile."zellij" = {
-      source = config.lib.file.mkOutOfStoreSymlink (lib.snowfall.fs.get-file "configs/zellij");
+      source = config.lib.file.mkOutOfStoreSymlink (./zellij);
       recursive = true;
     };
   };

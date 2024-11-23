@@ -12,6 +12,9 @@ with lib.${namespace};
 {
   fonts.fontconfig.enable = true;
 
+  # Reload services nicely on config changes
+  systemd.user.startServices = "sd-switch";
+
   custom = {
     theme.catppuccin = enabled;
 
@@ -62,7 +65,4 @@ with lib.${namespace};
       };
     };
   };
-
-  # Reload services nicely on config changes
-  systemd.user.startServices = "sd-switch";
 }

@@ -12,7 +12,7 @@ let
 in
 {
   options.${namespace}.system.keyboard = with types; {
-    real-prog-dvorak = mkEnableOption "enable real prog dvorak";
+    real-prog-dvorak = mkEnableOption "real prog dvorak";
   };
 
   config = mkIf cfg.real-prog-dvorak {
@@ -20,7 +20,7 @@ in
       xkb.extraLayouts.real-prog-dvorak = {
         description = "Real programmers dvorak";
         languages = [ "eng" ];
-        symbolsFile = lib.snowfall.fs.get-file "/configs/keyboard/real-prog-dvorak";
+        symbolsFile = ./keyboards/real-prog-dvorak;
       };
 
       enable = true;
@@ -28,12 +28,7 @@ in
       xkb.layout = "us";
       xkb.variant = "dvorak";
     };
+
     console.useXkbConfig = true;
-
-    systemd.services.nix-daemon = {
-      environment.TMPDIR = "/var/tmp";
-    };
-
-    system.stateVersion = "24.05";
   };
 }

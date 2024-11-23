@@ -37,6 +37,12 @@ in
       tmp.useTmpfs = true;
     };
 
+    systemd.services.nix-daemon = {
+      environment.TMPDIR = "/var/tmp";
+    };
+
+    system.stateVersion = "24.05";
+
     users = {
       mutableUsers = false;
 
@@ -66,8 +72,8 @@ in
     };
 
     nix.settings = {
-      cores = 4;
-      max-jobs = 4;
+      cores = cfg.cores;
+      max-jobs = if cfg.maxJobs > 0 then cfg.maxJobs else "auto";
     };
 
     services.xserver.displayManager.lightdm.enable = mkForce false;
