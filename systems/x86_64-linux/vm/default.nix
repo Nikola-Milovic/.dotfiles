@@ -17,8 +17,6 @@ in
     system = {
       general = {
         gcRetentionDays = "3d";
-        maxJobs = 4;
-        cores = 4;
       };
 
       keyboard.real-prog-dvorak = true;
