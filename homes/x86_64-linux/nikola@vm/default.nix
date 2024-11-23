@@ -16,7 +16,10 @@ with lib.${namespace};
   systemd.user.startServices = "sd-switch";
 
   custom = {
-    theme.catppuccin = enabled;
+    theme = {
+			catppuccin = enabled;
+			vanilla-dmz-cursor = enabled;
+		};
 
     programs = {
 
