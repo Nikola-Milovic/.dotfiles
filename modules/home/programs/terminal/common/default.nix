@@ -31,7 +31,7 @@ in
     ];
 
     ${namespace}.impermanence = {
-      files = [ ".config/lazygit/state.yml" ];
+      files = [ ".local/state/lazygit/state.yml" ];
       directories = [
         ".local/share/atuin"
         ".local/share/zoxide"
