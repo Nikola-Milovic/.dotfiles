@@ -41,7 +41,10 @@ let
 
     modules-left =
       [ "custom/wlogout" ]
-      ++ lib.optionals config.${namespace}.desktop.wms.sway.enable [ "sway/workspaces" ]
+      ++ lib.optionals config.${namespace}.desktop.wms.sway.enable [
+        "sway/workspaces"
+        "sway/mode"
+      ]
       ++ [ "custom/separator-left" ]
       ++ lib.optionals config.${namespace}.desktop.wms.sway.enable [ "sway/window" ];
   };
