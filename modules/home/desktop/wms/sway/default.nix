@@ -16,11 +16,11 @@ let
     ;
   inherit (lib.${namespace}) enabled mkOpt mkBoolOpt;
   cfg = config.${namespace}.desktop.wms.sway;
-  modifier = "Mod4";
 in
 {
   options.${namespace}.desktop.wms.sway = with types; {
     enable = mkBoolOpt osConfig.${namespace}.desktop.wms.sway "Sway";
+    modifier = mkOpt str "Mod1" "Modifier key to use";
     extraConfig = mkOpt str "" "Additional configuration for the Sway config file.";
     term = mkOpt package pkgs.foot "The terminal to use.";
     filemanager = mkOpt package pkgs.nemo "The file manager to use.";
@@ -101,10 +101,10 @@ in
       inherit (cfg) extraConfig;
 
       config = {
-        modifier = modifier;
+        modifier = cfg.modifier;
         bars = [ ];
         # Use Mouse+$mod to drag floating windows to their wanted position
-        floating.modifier = modifier;
+        floating.modifier = cfg.modifier;
         terminal = getExe cfg.term;
         menu = cfg.launcherCmd;
         input = {

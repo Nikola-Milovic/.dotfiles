@@ -16,10 +16,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-		# home.file.".icons/vanilla-dmz".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
-		 	${namespace}.theme.gtk.cursor = mkForce {
-				package = pkgs.vanilla-dmz;
-				name = "Vanilla-DMZ";
-		};
+    # home.file.".icons/vanilla-dmz".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
+    ${namespace}.theme.gtk.cursor = mkForce {
+      package = pkgs.vanilla-dmz;
+      name = "Vanilla-DMZ";
+    };
   };
 }

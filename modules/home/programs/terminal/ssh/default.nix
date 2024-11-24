@@ -20,7 +20,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    ${namespace}.impermanence.files = [ ".ssh/known_hosts" ".ssh/known_hosts.old" ];
+    ${namespace}.impermanence.files = [
+      ".ssh/known_hosts"
+      ".ssh/known_hosts.old"
+    ];
 
     programs.ssh = {
       enable = true;

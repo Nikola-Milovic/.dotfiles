@@ -57,14 +57,13 @@ with lib.${namespace};
     desktop = {
       wms.sway = {
         enable = true;
-        modifier = "Mod4";
         wallpaper = pkgs.custom.wallpapers.galaxy-warm;
       };
 
       bars.waybar = {
         enable = true;
         debug = true;
-        fullSizeOutputs = [ "Virtual-1" ];
+        fullSizeOutputs = [ "DP-2" ];
         condensedOutputs = [ ];
       };
     };
