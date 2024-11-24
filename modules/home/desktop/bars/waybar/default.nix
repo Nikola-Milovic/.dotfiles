@@ -57,6 +57,7 @@ let
         "custom/separator-right"
         "group/tidbits"
         "group/tray"
+        "group/gamma"
         "custom/separator-right"
       ]
       ++ [

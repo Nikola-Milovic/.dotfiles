@@ -50,4 +50,41 @@ in
     format = "{}{icon}";
     return-type = "json";
   };
+
+  # https://github.com/MaxVerevkin/wl-gammarelay-rs
+  # wl-gammarelay temperature module
+  "custom/wl-gammarelay-temperature" = {
+    format = "{} 󰃝";
+    exec = "${getExe pkgs.wl-gammarelay-rs} watch {t}";
+    on-scroll-up = ''
+      ${getExe' pkgs.systemd "busctl"} --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +200
+    '';
+    on-scroll-down = ''
+      ${getExe' pkgs.systemd "busctl"} --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -200
+    '';
+  };
+
+  # wl-gammarelay brightness module
+  "custom/wl-gammarelay-brightness" = {
+    format = "{}% ";
+    exec = "${getExe pkgs.wl-gammarelay-rs} watch {bp}";
+    on-scroll-up = ''
+      ${getExe' pkgs.systemd "busctl"} --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d +0.04
+    '';
+    on-scroll-down = ''
+      ${getExe' pkgs.systemd "busctl"} --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d -0.04
+    '';
+  };
+
+  # wl-gammarelay gamma module
+  "custom/wl-gammarelay-gamma" = {
+    format = "{}% γ";
+    exec = "${getExe pkgs.wl-gammarelay-rs} watch {g}";
+    on-scroll-up = ''
+      ${getExe' pkgs.systemd "busctl"} --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateGamma d +0.02
+    '';
+    on-scroll-down = ''
+      ${getExe' pkgs.systemd "busctl"} --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateGamma d -0.02
+    '';
+  };
 }

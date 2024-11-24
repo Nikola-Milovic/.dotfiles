@@ -40,6 +40,7 @@
 }
 
 #custom-pipewire.muted,
+#wireplumber.muted
 #pulseaudio.muted {
   background-color: #90b1b1;
   color: #2a5c45;
@@ -110,3 +111,20 @@
 #power .not-power {
     color: @red;
   }
+
+/* gamma */
+#custom-wl-gammarelay-brightness,
+#custom-wl-gammarelay-temperature{
+  margin: 0.5em;
+  padding-left: 4px;
+  padding-right: 4px;
+  font-weight: bold;
+}
+
+#custom-wl-gammarelay-brightness{
+	color: @yellow;
+}
+
+#custom-wl-gammarelay-temperature{
+	color: @red;
+}

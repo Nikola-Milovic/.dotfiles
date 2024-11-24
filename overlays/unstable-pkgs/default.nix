@@ -1,1 +1,2 @@
-{ channels, ... }: final: prev: { inherit (channels.unstable) vimPlugins obsidian; }
+{ channels, ... }:
+final: prev: { inherit (channels.unstable) vimPlugins obsidian wl-gammarelay-rs; }

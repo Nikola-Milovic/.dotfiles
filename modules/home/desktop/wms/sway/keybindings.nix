@@ -28,11 +28,35 @@ let
   filemanager = getExe cfg.filemanager;
   obsidian = getExe pkgs.obsidian;
 
-  pactl = "${pkgs.pulseaudio}/bin/pactl";
-  pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
-  gammastep = "${pkgs.gammastep}/bin/gammastep";
-  killgam = "${pkgs.procps}/bin/pkill -x gammastep";
-  monitorControl = "${pkgs.${namespace}.monitor-control}/bin/monitor-control";
+  pactl = getExe' pkgs.pulseaudio "pactl";
+  pavucontrol = getExe pkgs.pavucontrol;
+  gammastep = getExe pkgs.wl-gammarelay-rs;
+  monitorControl = getExe pkgs.custom.monitor-control;
+  busctl = getExe' pkgs.systemd "busctl";
+
+  # Helper functions for `wl-gammarelay`
+  increaseTemperature = ''
+    ${busctl} --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100
+  '';
+  decreaseTemperature = ''
+    ${busctl} --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100
+  '';
+  setTemperature = t: "${busctl} --user set-property rs.wl-gammarelay / rs.wl.gammarelay Temperature q ${toString t}";
+
+  increaseBrightness = "${busctl} --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d +0.02";
+  decreaseBrightness = "${busctl} --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d -0.02";
+  setBrightness = b: "${busctl} --user set-property rs.wl-gammarelay / rs.wl.gammarelay Brightness d ${toString b}";
+
+  monitorControlCommand =
+    {
+      brightness ? null,
+      contrast ? null,
+    }:
+    ''
+      ${monitorControl} ${if brightness != null then "-b ${toString brightness}" else ""} ${
+        if contrast != null then "-c ${toString contrast}" else ""
+      }
+    '';
 
   workspace1 = "1";
   workspace2 = "2";
@@ -46,7 +70,7 @@ let
   workspace10 = "10";
 
   volume-mode = "Choose: (1) +5 volume, (2) -5 volume, (3) pavucontrol (4) mute";
-  gamma-mode = "Set colour temperature: (a)uto, (r)eset, (1)500K, (2)500K, (3)000K, (4)000K, (5)000K, (6) day";
+  gamma-mode = "Set colour temperature: (a)uto, (r)eset, (1) day, (2) evening, (3) night, (4) very bright day";
 in
 {
   config = mkIf cfg.enable {
@@ -63,15 +87,12 @@ in
           "Ctrl+c" = "mode \"default\"";
           Escape = "mode \"default\"";
         };
+        # https://gitlab.com/chinstrap/gammastep/-/issues/41
         "${gamma-mode}" = {
-          a = "exec ${killgam}; ${gammastep} -P -t 5000:4000, mode \"default\"";
-          r = "exec ${killgam}; ${gammastep} -x; ${monitorControl} -b 50 -c 50, mode \"default\"";
-          "1" = "exec ${killgam}; ${gammastep} -P -O 1500; ${monitorControl} -b 0 -c 30, mode \"default\"";
-          "2" = "exec ${killgam}; ${gammastep} -P -O 2500; ${monitorControl} -b 15 -c 40, mode \"default\"";
-          "3" = "exec ${killgam}; ${gammastep} -P -O 3000; ${monitorControl} -b 25 -c 50, mode \"default\"";
-          "4" = "exec ${killgam}; ${gammastep} -P -O 4000; ${monitorControl} -b 35 -c 50, mode \"default\"";
-          "5" = "exec ${killgam}; ${gammastep} -P -O 5000; ${monitorControl} -b 45 -c 50, mode \"default\"";
-          "6" = "exec ${killgam}; ${gammastep} -x; ${monitorControl} -b 70 -c 70, mode \"default\"";
+          "1" = "${setTemperature 5000};${setBrightness 0.8},mode \"default\"";
+          "2" = "${setTemperature 4000};${setBrightness 0.6},mode \"default\"";
+          "3" = "${setTemperature 3000};${setBrightness 0.5},mode \"default\"";
+          "4" =  "${setTemperature 7000};${setBrightness 1},mode \"default\"";
 
           # Exit mode
           Return = "mode \"default\"";

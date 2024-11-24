@@ -48,4 +48,13 @@
       "custom/vpn"
     ];
   };
+
+  "group/gamma" = {
+    orientation = "horizontal";
+    modules = [
+      # "custom/wl-gammarelay-gamma"
+      "custom/wl-gammarelay-brightness"
+      "custom/wl-gammarelay-temperature"
+    ];
+  };
 }

@@ -36,6 +36,7 @@ in
       desktop = {
         filemanagers.nemo = enabled;
         addons = {
+          gammastep = enabled;
           foot = enabled;
           wofi = enabled;
           wallpapers = enabled;
