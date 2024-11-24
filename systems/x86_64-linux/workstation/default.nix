@@ -62,6 +62,7 @@ in
     hardware = {
       networking = enabled;
       audio = enabled;
+      i2c = enabled;
     };
   };
 }
