@@ -19,7 +19,10 @@ in
   config = mkIf cfg.enable {
     ${namespace} = {
       user.extraGroups = [ "docker" ];
-      system.impermanence.directories = [ "/var/lib/docker" ];
+      system.impermanence = {
+        directories = [ "/var/lib/docker" ];
+        userDirectories = [ ".local/share/docker" ];
+      };
     };
 
     users.users.${config.${namespace}.user.name}.packages = [ pkgs.docker-compose ];

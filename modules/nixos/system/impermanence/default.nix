@@ -20,6 +20,7 @@ in
     enable = mkEnableOption "Impermanence";
     files = mkOpt (listOf (either str attrs)) [ ] "Additional files to persist.";
     directories = mkOpt (listOf (either str attrs)) [ ] "Additional directories to persist.";
+    userDirectories = mkOpt (listOf (either str attrs)) [ ] "Additional user directories to persist.";
   };
 
   config = mkIf cfg.enable {
@@ -86,7 +87,7 @@ in
         "/etc/ssh/ssh_host_rsa_key.pub"
       ] ++ cfg.files;
       users.${config.${namespace}.user.name} = {
-        directories = [ ".dotfiles" ];
+        directories = [ ".dotfiles" ] ++ cfg.userDirectories;
       };
     };
 
