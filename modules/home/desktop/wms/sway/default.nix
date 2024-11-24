@@ -60,6 +60,7 @@ in
         swaylock-fancy
 
         custom.monitor-control
+        custom.gammastep-helper
 
         grim # screenshot functionality
         slurp # screenshot functionality

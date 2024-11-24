@@ -30,33 +30,8 @@ let
 
   pactl = getExe' pkgs.pulseaudio "pactl";
   pavucontrol = getExe pkgs.pavucontrol;
-  gammastep = getExe pkgs.wl-gammarelay-rs;
+  gammastep = getExe pkgs.custom.gammastep-helper;
   monitorControl = getExe pkgs.custom.monitor-control;
-  busctl = getExe' pkgs.systemd "busctl";
-
-  # Helper functions for `wl-gammarelay`
-  increaseTemperature = ''
-    ${busctl} --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100
-  '';
-  decreaseTemperature = ''
-    ${busctl} --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100
-  '';
-  setTemperature = t: "${busctl} --user set-property rs.wl-gammarelay / rs.wl.gammarelay Temperature q ${toString t}";
-
-  increaseBrightness = "${busctl} --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d +0.02";
-  decreaseBrightness = "${busctl} --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d -0.02";
-  setBrightness = b: "${busctl} --user set-property rs.wl-gammarelay / rs.wl.gammarelay Brightness d ${toString b}";
-
-  monitorControlCommand =
-    {
-      brightness ? null,
-      contrast ? null,
-    }:
-    ''
-      ${monitorControl} ${if brightness != null then "-b ${toString brightness}" else ""} ${
-        if contrast != null then "-c ${toString contrast}" else ""
-      }
-    '';
 
   workspace1 = "1";
   workspace2 = "2";
@@ -87,12 +62,11 @@ in
           "Ctrl+c" = "mode \"default\"";
           Escape = "mode \"default\"";
         };
-        # https://gitlab.com/chinstrap/gammastep/-/issues/41
         "${gamma-mode}" = {
-          "1" = "${setTemperature 5000};${setBrightness 0.8},mode \"default\"";
-          "2" = "${setTemperature 4000};${setBrightness 0.6},mode \"default\"";
-          "3" = "${setTemperature 3000};${setBrightness 0.5},mode \"default\"";
-          "4" =  "${setTemperature 7000};${setBrightness 1},mode \"default\"";
+          plus = "${gammastep} -t 5000 -b 0.8;${monitorControl} -b 50 -c 50,mode \"default\"";
+          bracketleft = "${gammastep} -t 3500 -b 0.6;${monitorControl} -b 35 -c 35,mode \"default\"";
+          parenleft = "${gammastep} -t 1500 -b 0.7;${monitorControl} -b 0 -c 0,mode \"default\"";
+          braceleft = "${gammastep} -t 7000 -b 1.0;${monitorControl} -b 70 -c 70,mode \"default\"";
 
           # Exit mode
           Return = "mode \"default\"";
