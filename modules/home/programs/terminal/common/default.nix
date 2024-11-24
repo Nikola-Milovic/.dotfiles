@@ -31,8 +31,9 @@ in
     ];
 
     ${namespace}.impermanence = {
-      files = [ ".local/state/lazygit/state.yml" ];
+      files = [ ".config/pet/snippet.toml" ];
       directories = [
+        ".cache/tealdeer"
         ".local/share/atuin"
         ".local/share/zoxide"
       ];
@@ -60,6 +61,18 @@ in
       fd = enabled;
       bat = enabled;
       ripgrep = enabled;
+
+      # maybe add pet snippets to a gist
+      pet = {
+        enable = true;
+      };
+
+      tealdeer = {
+        enable = true;
+        settings.update = {
+          auto_update = true;
+        };
+      };
 
       zellij = enabled;
       zoxide = {

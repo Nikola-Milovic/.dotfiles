@@ -46,6 +46,10 @@ in
   };
 
   config = mkIf cfg.enable {
+    ${namespace}.impermanence = {
+      files = [ ".local/state/lazygit/state.yml" ];
+    };
+
     home.packages = with pkgs; [
       bfg-repo-cleaner
       git-crypt
