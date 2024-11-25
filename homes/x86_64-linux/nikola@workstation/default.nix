@@ -59,7 +59,7 @@ with lib.${namespace};
     desktop = {
       wms.sway = {
         enable = true;
-        wallpaper = pkgs.custom.wallpapers.galaxy-warm;
+        wallpaper = pkgs.custom.wallpapers.galaxy-purple;
       };
 
       bars.waybar = {
