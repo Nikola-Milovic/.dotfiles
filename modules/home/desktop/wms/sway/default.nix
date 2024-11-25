@@ -46,13 +46,13 @@ in
 
       theme = {
         gtk = enabled;
-        # qt = enabled;
+        qt = enabled;
       };
     };
 
     home = {
       packages = with pkgs; [
-        xwaylandvideobridge
+        # xwaylandvideobridge
         swaylock
         swayidle
         xwayland
