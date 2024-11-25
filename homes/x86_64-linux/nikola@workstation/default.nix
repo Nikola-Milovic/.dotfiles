@@ -16,6 +16,8 @@ with lib.${namespace};
   systemd.user.startServices = "sd-switch";
 
   custom = {
+    user = enabled;
+
     theme = {
       catppuccin = enabled;
       vanilla-dmz-cursor = enabled;
