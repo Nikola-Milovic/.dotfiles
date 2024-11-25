@@ -30,9 +30,7 @@ in
     email = mkOpt types.str "nikolamilovic2001@gmail.com" "The email of the user.";
     fullName = mkOpt types.str "Nikola Milovic" "The full name of the user.";
     home = mkOpt (types.nullOr types.str) home-directory "The user's home directory.";
-    icon =
-      mkOpt (types.nullOr types.package) null 
-        "The profile picture to use for the user.";
+    icon = mkOpt (types.nullOr types.package) null "The profile picture to use for the user.";
     name = mkOpt (types.nullOr types.str) config.snowfallorg.user.name "The user account.";
   };
 

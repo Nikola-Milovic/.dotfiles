@@ -21,6 +21,12 @@ in
     custom.user.extraGroups = [ "networkmanager" ];
 
     networking = {
+      nameservers = [
+        "1.1.1.1"
+        "9.9.9.9"
+        "8.8.8.8"
+      ];
+
       hosts = {
         "127.0.0.1" = [ "local.test" ] ++ (cfg.hosts."127.0.0.1" or [ ]);
       } // cfg.hosts;

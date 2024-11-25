@@ -33,7 +33,10 @@ in
       };
     };
 
-    programs.nh = enabled;
+    programs = {
+      nh = enabled;
+      vpn = enabled;
+    };
 
     security = {
       keyring = enabled;
