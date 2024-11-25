@@ -35,9 +35,9 @@ let
     layer = "top";
     position = "bottom";
 
-    margin-top = 10;
-    margin-left = 20;
-    margin-right = 20;
+    margin-top = 0;
+    margin-left = 0;
+    margin-right = 0;
 
     modules-left =
       [ "custom/wlogout" ]

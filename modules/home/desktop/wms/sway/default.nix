@@ -125,9 +125,11 @@ in
         };
 
         gaps = {
-          inner = 10;
-          outer = 2;
-          # smartBorders = "on";
+          inner = 8;
+          vertical = 0;
+          outer = 0;
+          smartGaps = true;
+          smartBorders = "no_gaps";
         };
 
         fonts = {
