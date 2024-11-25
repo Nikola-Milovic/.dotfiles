@@ -21,9 +21,18 @@ in
     files = mkOpt (listOf (either str attrs)) [ ] "Additional files to persist.";
     directories = mkOpt (listOf (either str attrs)) [ ] "Additional directories to persist.";
     userDirectories = mkOpt (listOf (either str attrs)) [ ] "Additional user directories to persist.";
+    device = mkOpt str "" "Device to mount";
   };
 
   config = mkIf cfg.enable {
+
+    assertions = [
+      {
+        assertion = cfg.device != "";
+        message = "system.impermanence.device must be set";
+      }
+    ];
+
     security.sudo.extraConfig = ''
       # rollback results in sudo lectures after each reboot
       Defaults lecture = never
@@ -43,7 +52,7 @@ in
       serviceConfig.Type = "oneshot";
       script = ''
                 mkdir -p /btrfs_tmp
-                mount ${config.${namespace}.system.disko.btrfs.device} -o subvol=/ /btrfs_tmp
+                mount ${cfg.device} -o subvol=/ /btrfs_tmp
 
         			if [[ -e /btrfs_tmp/root ]]; then
         					mkdir -p /btrfs_tmp/old_roots
