@@ -28,6 +28,11 @@ in
       tokei
       eza
       procs
+
+      # disk size analyzers, I prefer ncdu
+      # dust
+      # dua
+      ncdu
     ];
 
     ${namespace}.impermanence = {
@@ -52,6 +57,8 @@ in
       find = "fd";
       grep = "rg";
       top = "btm";
+
+      diskusage = "ncdu /";
 
       tmux = "zellij";
       zj = "zellij";

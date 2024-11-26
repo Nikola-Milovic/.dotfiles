@@ -32,7 +32,7 @@ in
   "custom/weather" = {
     exec = "${getExe pkgs.wttrbar} --location Belgrade";
     return-type = "json";
-    format = "{}";
+    format = "{}°C";
     tooltip = true;
     interval = 3600;
   };
