@@ -96,7 +96,23 @@ in
         "/etc/ssh/ssh_host_rsa_key.pub"
       ] ++ cfg.files;
       users.${config.${namespace}.user.name} = {
-        directories = [ ".dotfiles" ] ++ cfg.userDirectories;
+        directories = [
+          ".dotfiles"
+
+          "downloads"
+          "music"
+          "pictures"
+          "desktop"
+          "files"
+          "documents"
+          "videos"
+          ".gnupg"
+          ".cache"
+          ".nixops"
+          # ".local/share"
+          ".local/share/keyrings"
+          ".local/share/direnv"
+        ] ++ cfg.userDirectories;
       };
     };
 

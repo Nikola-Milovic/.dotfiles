@@ -19,21 +19,7 @@ in
 
   config = mkIf cfg.enable {
     home.persistence."/persist/home/${config.${namespace}.user.name}" = {
-      directories = [
-        "downloads"
-        "music"
-        "pictures"
-        "desktop"
-        "files"
-        "documents"
-        "videos"
-        ".gnupg"
-        ".cache"
-        ".nixops"
-        # ".local/share"
-        ".local/share/keyrings"
-        ".local/share/direnv"
-      ] ++ cfg.directories;
+      directories = [ ] ++ cfg.directories;
       files = [ ] ++ cfg.files;
       allowOther = true;
     };

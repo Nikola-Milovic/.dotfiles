@@ -218,6 +218,8 @@ in
                 html
                 typescript
                 python
+
+                just
               ]
             )).dependencies;
         };

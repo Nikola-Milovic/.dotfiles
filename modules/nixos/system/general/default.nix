@@ -41,6 +41,8 @@ in
       environment.TMPDIR = "/var/tmp";
     };
 
+    systemd.extraConfig = "DefaultLimitNOFILE=2048"; # defaults to 1024 if unset
+
     system.stateVersion = "24.05";
 
     users = {
