@@ -25,6 +25,9 @@ Thanks to these awesome repos for getting me started and helping me get my curre
 - virtualisation with [qemu/kvm](https://github.com/khaneliman/khanelinix/tree/8919868593d213f7980b267c4567cede627db603/modules/nixos/virtualisation)
 - [YubiKey](https://github.com/drduh/YubiKey-Guide)
 
+- Improve brave fonts
+- Syncthing and obsidian
+
 
 # in the future
 

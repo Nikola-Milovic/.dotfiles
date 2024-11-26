@@ -27,13 +27,25 @@ in
 
     users.users.${config.${namespace}.user.name}.packages = [ pkgs.docker-compose ];
 
+    # # Since we're rootles we can't bind to port :80
+    # networking.firewall = {
+    #   # Redirect local outgoing traffic destined for port 80 to port 8000
+    #   extraCommands = ''
+    #     iptables -t nat -A OUTPUT -p tcp --dport 80 -j REDIRECT --to-port 8000
+    #   '';
+    # };
+
     virtualisation.docker = {
       enable = true;
       enableOnBoot = true;
-      rootless = {
+      autoPrune = {
         enable = true;
-        setSocketVariable = true;
+        dates = "weekly";
       };
+      # rootless = {
+      #   enable = true;
+      #   setSocketVariable = true;
+      # };
     };
   };
 }

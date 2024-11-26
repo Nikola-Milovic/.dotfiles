@@ -21,7 +21,11 @@ in
     custom.user.extraGroups = [ "networkmanager" ];
 
     networking = {
-      nameservers = [
+      firewall = {
+        enable = true;
+      };
+
+      nameservers = mkForce [
         "1.1.1.1"
         "9.9.9.9"
         "8.8.8.8"
@@ -34,6 +38,14 @@ in
       networkmanager = {
         enable = true;
         dhcp = "internal";
+
+        # Try and solve the issue of NM attaching the router as the default NS
+        dns = "none";
+        settings = {
+          main = {
+            rc-manager = "unmanaged";
+          };
+        };
       };
     };
 
