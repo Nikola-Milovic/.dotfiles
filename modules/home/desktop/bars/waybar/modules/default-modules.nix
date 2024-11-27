@@ -212,11 +212,11 @@ in
     input-filename = "temp1_input";
     critical-threshold = 80;
     format-critical = "{temperatureC}°C {icon}";
-    format = "{icon} {temperatureC}°C";
+    format = "{icon}{temperatureC}°C";
     format-icons = [
       ""
       ""
-      ""
+      ""
     ];
     interval = "5";
   };

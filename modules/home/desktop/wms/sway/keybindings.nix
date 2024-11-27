@@ -86,7 +86,7 @@ in
             "${modifier}+Ctrl+b" = "exec ${brave}";
             "${modifier}+Ctrl+m" = "exec ${chrome}";
             "${modifier}+Ctrl+v" = "exec ${filemanager}";
-            "${modifier}+Ctrl+a" = "exec ${obsidian}";
+            "${modifier}+Ctrl+a" = "exec ${obsidian} --disable-gpu";
             "${modifier}+t" = "exec ${term}";
             "${modifier}+d" = "exec ${cfg.launcherCmd}";
 

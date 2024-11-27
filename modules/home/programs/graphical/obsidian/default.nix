@@ -15,5 +15,9 @@ in
     enable = mkEnableOption "obsidian";
   };
 
-  config = mkIf cfg.enable { home.packages = [ pkgs.obsidian ]; };
+  config = mkIf cfg.enable {
+    ${namespace}.impermanence.directories = [ ".config/obsidian" ];
+
+    home.packages = [ pkgs.obsidian ];
+  };
 }

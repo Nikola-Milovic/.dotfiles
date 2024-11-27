@@ -1,6 +1,7 @@
 {
   options,
   config,
+  pkgs,
   namespace,
   lib,
   ...
@@ -17,6 +18,9 @@ in
   # TODO: add more languages and nerdfont icons (check out presets on their docs)
   # https://gist.github.com/3ayazaya/d87c70c5f30a6e28f15dfc84ca95fc68
   config = mkIf cfg.enable {
+    # Prompt issues
+    home.packages = [ pkgs.bashInteractive ];
+
     programs.starship = {
       enable = true;
       settings = {
