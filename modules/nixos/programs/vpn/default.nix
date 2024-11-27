@@ -19,6 +19,8 @@ in
     # sudo nmcli connection import type openvpn file
     networking.networkmanager.plugins = [ pkgs.gnome.networkmanager-openvpn ];
 
+    ${namespace}.system.impermanence.directories = [ "/root/.cert/nm-openvpn" ];
+
     # users.users.${config.${namespace}.user.name}.packages = [ pkgs.cloudflare-warp ];
 
     # TODO: [24.11] https://discourse.nixos.org/t/cant-start-cloudflare-warp-cli/232674

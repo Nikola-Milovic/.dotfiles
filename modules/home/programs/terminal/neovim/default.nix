@@ -32,6 +32,12 @@ in
   };
 
   config = mkIf cfg.enable {
+
+    ${namespace}.impermanence.directories = [
+      ".config/github-copilot"
+      ".local/state/nvim"
+    ];
+
     programs.neovim = {
       enable = true;
       viAlias = true;
@@ -250,6 +256,8 @@ in
                 json5
                 yaml
                 markdown
+
+                graphql
               ]
             )).dependencies;
         };
