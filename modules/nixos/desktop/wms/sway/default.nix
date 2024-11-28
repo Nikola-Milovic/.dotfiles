@@ -23,7 +23,7 @@ in
 
     # programs.sway = enabled;
 
-    services.xserver = enabled;
+    # services.xserver = enabled;
     services.libinput = enabled;
   };
 }

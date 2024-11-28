@@ -23,7 +23,7 @@ in
         symbolsFile = ./keyboards/real-prog-dvorak;
       };
 
-      enable = true;
+      # enable = true;
 
       xkb.layout = "us";
       xkb.variant = "dvorak";
