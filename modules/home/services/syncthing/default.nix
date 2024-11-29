@@ -9,7 +9,7 @@
 let
   inherit (lib) types mkIf mkEnableOption;
   cfg = config.${namespace}.services.syncthing;
-  homeDir = "${config.xdg.stateHome}/syncthing";
+  homeDir = ".local/state/syncthing";
 in
 {
   options.${namespace}.services.syncthing = with types; {

@@ -24,12 +24,12 @@ with lib.${namespace};
     };
 
     programs = {
-
       graphical = {
         browsers = {
           brave = enabled;
         };
         obsidian = enabled;
+        sublime = enabled;
       };
 
       terminal = {

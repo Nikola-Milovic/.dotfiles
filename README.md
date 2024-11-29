@@ -28,3 +28,4 @@ Thanks to these awesome repos for getting me started and helping me get my curre
 - Improve brave fonts
 - Sway brightness hotkeys
 - Syncthing and obsidian
+- [Coolercontrol](https://gitlab.com/coolercontrol/coolercontrol)

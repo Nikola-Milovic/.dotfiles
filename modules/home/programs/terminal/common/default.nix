@@ -69,6 +69,8 @@ in
       bat = enabled;
       ripgrep = enabled;
 
+      command-not-found = enabled;
+
       # maybe add pet snippets to a gist
       pet = {
         enable = true;

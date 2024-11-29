@@ -46,6 +46,7 @@ in
     programs = {
       nh = enabled;
       vpn = enabled;
+      calibre = enabled;
     };
 
     security = {

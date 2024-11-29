@@ -51,6 +51,8 @@
     lib.mkFlake {
       channels-config = {
         allowUnfree = true;
+        # TODO: figure out where was this added, probably calibre
+        permittedInsecurePackages = [ "openssl-1.1.1w" ];
       };
 
       homes.modules = with inputs; [

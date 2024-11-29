@@ -39,6 +39,9 @@ in
 
       secrets = {
         "github/ssh_pk" = { };
+        "ssh/personal/pk" = {
+          path = "${config.${namespace}.user.home}/.config/sops/ssh/personal_pk";
+        };
       };
     };
   };

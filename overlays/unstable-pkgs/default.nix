@@ -4,5 +4,6 @@ final: prev: {
     vimPlugins
     wl-gammarelay-rs
     obsidian
+    rustdesk
     ;
 }
