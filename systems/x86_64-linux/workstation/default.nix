@@ -23,6 +23,7 @@ in
   # --------------
 
   custom = {
+		virtualisation.kvm = enabled;
     system = {
       general = {
         gcRetentionDays = "3d";
