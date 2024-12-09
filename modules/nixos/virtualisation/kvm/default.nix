@@ -24,8 +24,9 @@ in
     enable = mkBoolOpt false "Whether or not to enable KVM virtualisation.";
     # Use `machinectl` and then `machinectl status <name>` to
     # get the unit "*.scope" of the virtual machine.
-    machineUnits = mkOpt (listOf str) [
-    ] "The systemd *.scope units to wait for before starting Scream.";
+    machineUnits =
+      mkOpt (listOf str) [ ]
+        "The systemd *.scope units to wait for before starting Scream.";
     platform = mkOpt (enum [
       "amd"
       "intel"
@@ -90,6 +91,11 @@ in
     };
 
     ${namespace} = {
+      system.impermanence = {
+        directories = [ "/var/lib/libvirt" ];
+        userDirectories = [ ".local/share/images" ];
+      };
+
       user = {
         extraGroups = [
           "disk"
@@ -125,5 +131,5 @@ in
         };
       };
     };
-	};
-  }
+  };
+}
