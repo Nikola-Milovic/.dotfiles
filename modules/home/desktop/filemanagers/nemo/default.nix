@@ -16,7 +16,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    custom.desktop.wms.sway.filemanager = pkgs.cinnamon.nemo;
-    home.packages = with pkgs; [ cinnamon.nemo ];
+    custom.desktop.wms.sway.filemanager = pkgs.nemo;
+    home.packages = with pkgs; [ nemo ];
   };
 }

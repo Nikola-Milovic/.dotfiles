@@ -18,8 +18,8 @@ in
   config = mkIf cfg.enable {
     services.gnome.gnome-keyring.enable = true;
     environment.systemPackages = with pkgs; [
-      gnome.gnome-keyring
-      gnome.libgnome-keyring
+      libgnome-keyring
+      gnome-keyring
     ];
   };
 }

@@ -110,8 +110,8 @@ in
           theme = {
             name = "Catppuccin-Macchiato-Blue";
             package = pkgs.catppuccin-kvantum.override {
-              accent = "Blue";
-              variant = "Macchiato";
+              accent = "blue";
+              variant = "macchiato";
             };
           };
 
@@ -128,14 +128,15 @@ in
       # NOTE: Need some customization and merging of configuration files so cant just enable all
       enable = false;
 
-      accent = "Blue";
+      accent = "blue";
       flavor = "macchiato";
     };
 
     home = {
       file = mkMerge [
         (mkIf pkgs.stdenv.isDarwin {
-          "Library/Application Support/BetterDiscord/themes/catppuccin-macchiato.theme.css".source = ./catppuccin-macchiato.theme.css;
+          "Library/Application Support/BetterDiscord/themes/catppuccin-macchiato.theme.css".source =
+            ./catppuccin-macchiato.theme.css;
         })
       ];
 

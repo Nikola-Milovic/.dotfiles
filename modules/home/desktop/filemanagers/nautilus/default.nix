@@ -16,8 +16,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ gnome.nautilus ];
+    home.packages = with pkgs; [ nautilus ];
 
-    custom.desktop.wms.sway.filemanager = pkgs.gnome.nautilus;
+    custom.desktop.wms.sway.filemanager = pkgs.nautilus;
   };
 }

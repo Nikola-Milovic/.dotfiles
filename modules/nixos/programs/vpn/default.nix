@@ -17,7 +17,7 @@ in
 
   config = mkIf cfg.enable {
     # sudo nmcli connection import type openvpn file
-    networking.networkmanager.plugins = [ pkgs.gnome.networkmanager-openvpn ];
+    networking.networkmanager.plugins = [ pkgs.networkmanager-openvpn ];
 
     ${namespace}.system.impermanence.directories = [ "/root/.cert/nm-openvpn" ];
 

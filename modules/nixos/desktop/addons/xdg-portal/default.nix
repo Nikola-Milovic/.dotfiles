@@ -31,7 +31,7 @@ in
           xdg-desktop-portal-gtk
         ];
 
-        # https://github.com/NixOS/nixpkgs/pull/179204 	
+        # https://github.com/NixOS/nixpkgs/pull/179204
         # gtkUsePortal = true;
       };
     };

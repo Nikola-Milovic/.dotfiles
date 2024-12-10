@@ -72,7 +72,7 @@ in
         brightnessctl
         glib # for gsettings
         # gtk3.out # for gtk-launch
-        gnome.gnome-control-center
+        gnome-control-center
       ];
 
       sessionVariables = {

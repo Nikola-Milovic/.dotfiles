@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib) mkIf getExe mkEnableOption;
-  inherit (lib.${namespace});
+  inherit (lib.${namespace}) ;
 
   cfg = config.${namespace}.desktop.displaymanager.tuigreet;
 in

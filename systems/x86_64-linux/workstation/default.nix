@@ -11,14 +11,14 @@ in
 {
   imports = [ ./hardware-configuration.nix ];
 
-  # https://wiki.nixos.org/wiki/AMD_GPU
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  hardware.amdgpu.initrd.enable = true;
 
   # --------------
 
