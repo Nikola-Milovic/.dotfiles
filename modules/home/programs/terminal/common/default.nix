@@ -35,6 +35,9 @@ in
       ncdu
     ];
 
+    # TODO: add superfile instead of yazi
+    #https://superfile.netlify.app/list/theme-list/
+
     ${namespace}.impermanence = {
       files = [ ".config/pet/snippet.toml" ];
       directories = [

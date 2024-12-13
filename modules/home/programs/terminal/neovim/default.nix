@@ -10,6 +10,7 @@
   lib,
   ...
 }:
+# switch to https://github.com/matadaniel/LazyVim-module/tree/main/lazyvim/extras/lang
 let
   inherit (lib) mkIf;
   inherit (lib.${namespace}) mkBoolOpt;
@@ -84,7 +85,10 @@ in
               name = "LuaSnip";
               path = luasnip;
             }
-            luasnip
+            {
+              name = "LuaSnip";
+              path = luasnip;
+            }
             {
               name = "mini.surround";
               path = mini-surround;
@@ -110,10 +114,8 @@ in
 
             # terraform
             telescope-tf-doc
-            {
-              name = "terraform_doc";
-              path = telescope-tf-doc;
-            }
+
+            cmp_luasnip
 
             # LazyVim
             LazyVim

@@ -28,7 +28,7 @@ let
 
   custom-modules = import ./modules/custom-modules.nix { inherit config lib pkgs; };
   default-modules = import ./modules/default-modules.nix { inherit lib pkgs; };
-  group-modules = import ./modules/group-modules.nix { inherit lib namespace osConfig; };
+  group-modules = import ./modules/group-modules.nix { inherit lib namespace; };
   sway-modules = import ./modules/sway-modules.nix { inherit config lib; };
 
   commonAttributes = {

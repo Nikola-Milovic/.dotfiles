@@ -62,6 +62,7 @@ in
 
     services = {
       ssh = enabled;
+      tailscale = enabled;
       docker = enabled;
     };
 
