@@ -87,6 +87,7 @@ in
       "code-url-handler" = "󰨞";
       "title<Spotify Free>" = "";
       "title<Steam>" = "";
+      "class<rustdesk>" = "󰢹";
 
       "class<foot>" = "";
       "class<chrome>" = "";

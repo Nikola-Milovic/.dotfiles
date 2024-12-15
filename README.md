@@ -43,5 +43,6 @@ A big thanks to these amazing repositories that helped me set up my current envi
 - [ ] **Explore [Looking Glass](https://looking-glass.io/)** as an alternative to dual booting
 - [ ] **Set Up [YubiKey](https://github.com/drduh/YubiKey-Guide)**
 - [ ] **Improve Brave Fonts**
-- [ ] **Add Sway Brightness Hotkeys**
 - [ ] **Integrate [CoolerControl](https://gitlab.com/coolercontrol/coolercontrol)**
+- [ ] **Fix Sway Brightness Hotkeys**
+- [ ] **Wrong audio device is used as default**

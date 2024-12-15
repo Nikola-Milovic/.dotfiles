@@ -30,6 +30,7 @@ with lib.${namespace};
         };
         obsidian = enabled;
         sublime = enabled;
+				vlc = enabled;
       };
 
       terminal = {
