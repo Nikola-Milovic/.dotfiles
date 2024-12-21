@@ -30,6 +30,7 @@ mkShell {
     #   statix
     nixfmt-rfc-style
     nixd
+    sops
   ];
 
   shellHook = ''

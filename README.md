@@ -46,3 +46,4 @@ A big thanks to these amazing repositories that helped me set up my current envi
 - [ ] **Integrate [CoolerControl](https://gitlab.com/coolercontrol/coolercontrol)**
 - [ ] **Fix Sway Brightness Hotkeys**
 - [ ] **Wrong audio device is used as default**
+- [ ] BTRFS rollback not working

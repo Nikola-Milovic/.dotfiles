@@ -11,14 +11,7 @@ in
 {
   imports = [ ./hardware-configuration.nix ];
 
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  hardware.amdgpu.initrd.enable = true;
 
   # --------------
 
@@ -76,6 +69,7 @@ in
     };
 
     hardware = {
+      amdgpu = enabled;
       networking = enabled;
       audio = enabled;
       i2c = enabled;

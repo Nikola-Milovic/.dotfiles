@@ -15,8 +15,7 @@ in
     enable = mkEnableOption "starship";
   };
 
-  # TODO: add more languages and nerdfont icons (check out presets on their docs)
-  # https://gist.github.com/3ayazaya/d87c70c5f30a6e28f15dfc84ca95fc68
+	# https://github.com/starship/starship/pull/4439
   config = mkIf cfg.enable {
     # Prompt issues
     home.packages = [ pkgs.bashInteractive ];
@@ -39,6 +38,16 @@ in
           symbol = " ";
         };
 
+        docker_context = {
+          only_with_files = true;
+          disabled = false;
+          detect_files = [
+            ".dockercontext"
+          ];
+        };
+
+        git_status.disabled = true;
+        buf.disabled = true;
         add_newline = false;
         aws.disabled = true;
         gcloud.disabled = true;
