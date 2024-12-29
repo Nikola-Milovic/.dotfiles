@@ -33,6 +33,9 @@ in
       # dust
       # dua
       ncdu
+
+      sqlite
+      rsync
     ];
 
     # TODO: add superfile instead of yazi
@@ -72,7 +75,9 @@ in
       bat = enabled;
       ripgrep = enabled;
 
-      command-not-found = enabled;
+      command-not-found = {
+        enable = true;
+      };
 
       # maybe add pet snippets to a gist
       pet = {

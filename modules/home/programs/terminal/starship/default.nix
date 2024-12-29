@@ -15,7 +15,7 @@ in
     enable = mkEnableOption "starship";
   };
 
-	# https://github.com/starship/starship/pull/4439
+  # https://github.com/starship/starship/pull/4439
   config = mkIf cfg.enable {
     # Prompt issues
     home.packages = [ pkgs.bashInteractive ];
