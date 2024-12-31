@@ -31,6 +31,7 @@ with lib.${namespace};
         obsidian = enabled;
         sublime = enabled;
         vlc = enabled;
+        torrent = enabled;
       };
 
       terminal = {
