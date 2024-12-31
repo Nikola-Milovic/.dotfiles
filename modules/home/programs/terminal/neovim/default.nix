@@ -118,6 +118,9 @@ in
             cmp_luasnip
 
             # LazyVim
+            fzf-lua
+            blink-cmp
+            blink-cmp-copilot
             LazyVim
             bufferline-nvim
             cmp-buffer
