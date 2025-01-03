@@ -124,13 +124,82 @@ in
       };
     };
 
-    catppuccin = {
-      # NOTE: Need some customization and merging of configuration files so cant just enable all
-      enable = false;
+    catppuccin =
+      let
+        flavor = "macchiato";
+        accent = "blue";
+      in
+      {
+        # NOTE: Need some customization and merging of configuration files so cant just enable all
+        enable = false;
 
-      accent = "blue";
-      flavor = "macchiato";
-    };
+        inherit flavor;
+        inherit accent;
+
+        bat = {
+          enable = true;
+          inherit flavor;
+        };
+        bottom = {
+          enable = true;
+          inherit flavor;
+        };
+        btop = {
+          enable = true;
+          inherit flavor;
+        };
+        delta = {
+          enable = true;
+          inherit flavor;
+        };
+        foot = {
+          enable = true;
+          inherit flavor;
+        };
+        fzf = {
+          enable = true;
+          inherit flavor;
+          inherit accent;
+        };
+        gh-dash = {
+          enable = true;
+          inherit flavor;
+          inherit accent;
+        };
+        gitui = {
+          enable = true;
+          inherit flavor;
+        };
+        glamour = {
+          enable = true;
+          inherit flavor;
+        };
+        k9s = {
+          enable = true;
+          inherit flavor;
+        };
+        lazygit = {
+          enable = true;
+          inherit accent;
+          inherit flavor;
+        };
+        nvim = {
+          enable = true;
+          inherit flavor;
+        };
+        waybar = {
+          enable = true;
+          inherit flavor;
+        };
+        zellij = {
+          enable = true;
+          inherit flavor;
+        };
+        yazi = {
+          enable = true;
+          inherit accent;
+        };
+      };
 
     home = {
       file = mkMerge [
@@ -252,115 +321,6 @@ in
         # };
       };
     };
-
-    programs =
-      let
-        applyCatppuccin =
-          {
-            name,
-            nestedName ? null,
-            extraAttrs ? { },
-          }:
-          let
-            catppuccinConfig = {
-              catppuccin = {
-                enable = true;
-                inherit (cfg) flavor;
-              } // extraAttrs;
-            };
-          in
-          if nestedName == null then
-            {
-              inherit name;
-              value = catppuccinConfig;
-            }
-          else
-            {
-              inherit name;
-              value = {
-                ${nestedName} = catppuccinConfig;
-              };
-            };
-
-        themedPrograms = map (prog: applyCatppuccin { name = prog; }) [
-          "alacritty"
-          "bat"
-          "bottom"
-          "btop"
-          "cava"
-          "fish"
-          "foot"
-          "fzf"
-          "gh-dash"
-          "gitui"
-          "glamour"
-          "helix"
-          "kitty"
-          "neovim"
-          "waybar"
-          "zathura"
-          "zellij"
-        ];
-
-        extraConfigurations = [
-          (applyCatppuccin {
-            name = "git";
-            nestedName = "delta";
-          })
-          (applyCatppuccin {
-            name = "k9s";
-            extraAttrs = {
-              transparent = true;
-            };
-          })
-          (applyCatppuccin {
-            name = "lazygit";
-            extraAttrs = {
-              inherit (cfg) accent;
-            };
-          })
-          (applyCatppuccin {
-            name = "zsh";
-            nestedName = "syntaxHighlighting";
-          })
-        ];
-
-        allPrograms = themedPrograms ++ extraConfigurations;
-
-        programs = builtins.listToAttrs allPrograms;
-      in
-      programs
-      // {
-        # Additional program settings that don't follow the common pattern
-        ncspot.settings = {
-          theme = {
-            background = "#24273A";
-            primary = "#CAD3F5";
-            secondary = "#1E2030";
-            title = "#8AADF4";
-            playing = "#8AADF4";
-            playing_selected = "#B7BDF8";
-            playing_bg = "#181926";
-            highlight = "#C6A0F6";
-            highlight_bg = "#494D64";
-            error = "#CAD3F5";
-            error_bg = "#ED8796";
-            statusbar = "#181926";
-            statusbar_progress = "#CAD3F5";
-            statusbar_bg = "#8AADF4";
-            cmdline = "#CAD3F5";
-            cmdline_bg = "#181926";
-            search_match = "#f5bde6";
-          };
-        };
-
-        yazi.theme = lib.mkMerge [
-          (import ./yazi/filetype.nix { })
-          (import ./yazi/manager.nix { inherit config lib namespace; })
-          (import ./yazi/status.nix { })
-          (import ./yazi/theme.nix { })
-        ];
-      };
 
     # xdg.configFile =
     #   mkIf (pkgs.stdenv.isLinux && config.${namespace}.programs.graphical.apps.discord.enable)
