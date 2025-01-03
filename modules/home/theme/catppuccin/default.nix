@@ -187,6 +187,10 @@ in
           enable = true;
           inherit flavor;
         };
+        sway = {
+          enable = true;
+          inherit flavor;
+        };
         waybar = {
           enable = true;
           inherit flavor;
@@ -241,8 +245,6 @@ in
     #     };
 
     wayland.windowManager.sway = {
-      catppuccin = mkIf config.${namespace}.desktop.wms.sway.enable { enable = true; };
-
       config.colors = {
         background = "$base";
 

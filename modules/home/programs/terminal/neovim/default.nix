@@ -37,6 +37,17 @@ let
       hash = "sha256-ZMdsaW9wjmep0CMNCj8k2jSvV8aLMYmiOFm3iD8/pJw=";
     };
   };
+
+  # https://github.com/mfussenegger/nvim-ansible
+  nvim-ansible = pkgs.vimUtils.buildVimPlugin {
+    name = "nvim-ansible";
+    src = pkgs.fetchFromGitHub {
+      owner = "mfussenegger";
+      repo = "nvim-ansible";
+      rev = "44dabdaa8a9193b7f564a8408ed6d7107705030a";
+      hash = "sha256-uigPQ6VAXjs52XkYHJMKHxKKwpqnsJmhocsTpMq40ac=";
+    };
+  };
 in
 {
   options.${namespace}.programs.terminal.neovim = {
@@ -103,7 +114,10 @@ in
             copilot-cmp
 
             #tailwind
-            tailwind-cmp
+            {
+              path = tailwind-cmp;
+              name = "tailwindcss-colorizer-cmp";
+            }
 
             #markdown
             markdown-preview-nvim
@@ -113,9 +127,18 @@ in
             SchemaStore-nvim
 
             # terraform
-            telescope-tf-doc
+            {
+              path = telescope-tf-doc;
+              name = "telescope-terraform-doc.nvim";
+            }
 
             cmp_luasnip
+
+            #ansible
+            {
+              name = "nvim-ansible";
+              path = nvim-ansible;
+            }
 
             # LazyVim
             fzf-lua
@@ -187,70 +210,71 @@ in
           lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
         in
         ''
-                                        require("lazy").setup({
-                                         defaults = {
-                                          lazy = true,
-                                         },
-                                         dev = {
-                                          -- reuse files from pkgs.vimPlugins.*
-                                          path = "${lazyPath}",
-                                          patterns = { "" },
-                                          -- fallback to download
-                                          fallback = false,
-                                         },
-                                         spec = {
-                                          { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+          require("lazy").setup({
+          	defaults = {
+          	lazy = true,
+          	},
+          	dev = {
+          	-- reuse files from pkgs.vimPlugins.*
+          	path = "${lazyPath}",
+          	patterns = { "" },
+          	-- fallback to download
+          	fallback = false,
+          	},
+          	spec = {
+          	{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
-                                          -- import any extras modules here
-                                           { import = "lazyvim.plugins.extras.ai.copilot" },
+          	-- import any extras modules here
+          		{ import = "lazyvim.plugins.extras.ai.copilot" },
 
-                                           { import = "lazyvim.plugins.extras.coding.mini-comment" },
-                                           { import = "lazyvim.plugins.extras.coding.mini-surround" },
+          		{ import = "lazyvim.plugins.extras.coding.mini-comment" },
+          		{ import = "lazyvim.plugins.extras.coding.mini-surround" },
 
-                                           { import = "lazyvim.plugins.extras.coding.luasnip" },
+          		{ import = "lazyvim.plugins.extras.coding.luasnip" },
 
-                                         -- { import = "lazyvim.plugins.extras.formatting.black" },
+          	-- { import = "lazyvim.plugins.extras.formatting.black" },
 
-          																	{ import = "lazyvim.plugins.extras.lang.terraform" },
-                                         -- { import = "lazyvim.plugins.extras.lang.astro" },
-                                         -- { import = "lazyvim.plugins.extras.lang.svelte" },
-                    												{ import = "lazyvim.plugins.extras.lang.python" },
-                                            { import = "lazyvim.plugins.extras.lang.markdown" },
-                                         -- { import = "lazyvim.plugins.extras.lang.json" },
-                                            { import = "lazyvim.plugins.extras.lang.go" },
-                                            { import = "lazyvim.plugins.extras.lang.yaml" },
-                                            { import = "lazyvim.plugins.extras.lang.docker" },
-                                         -- { import = "lazyvim.plugins.extras.lang.omnisharp" },
-                              						--	{ import = "lazyvim.plugins.extras.lang.tailwind" },
-                              							{ import = "lazyvim.plugins.extras.lang.typescript" },
+          		{ import = "lazyvim.plugins.extras.lang.terraform" },
+          		{ import = "lazyvim.plugins.extras.lang.ansible" },
+          	-- { import = "lazyvim.plugins.extras.lang.astro" },
+          	-- { import = "lazyvim.plugins.extras.lang.svelte" },
+          		{ import = "lazyvim.plugins.extras.lang.python" },
+          		{ import = "lazyvim.plugins.extras.lang.markdown" },
+          	-- { import = "lazyvim.plugins.extras.lang.json" },
+          		{ import = "lazyvim.plugins.extras.lang.go" },
+          		{ import = "lazyvim.plugins.extras.lang.yaml" },
+          		{ import = "lazyvim.plugins.extras.lang.docker" },
+          	-- { import = "lazyvim.plugins.extras.lang.omnisharp" },
+          	--	{ import = "lazyvim.plugins.extras.lang.tailwind" },
+          		{ import = "lazyvim.plugins.extras.lang.typescript" },
 
-                                          -- The following configs are needed for fixing lazyvim on nix
-                                          -- force enable telescope-fzf-native.nvim
-                                          { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
-                                          -- disable mason.nvim, use config.extraPackages
-                                          { "williamboman/mason-lspconfig.nvim", enabled = false },
-                                          { "williamboman/mason.nvim", enabled = false },
-                                          -- uncomment to import/override with your plugins
-                                          { import = "plugins" },
-                                          -- put this line at the end of spec to clear ensure_installed
-                                          { "nvim-treesitter/nvim-treesitter", opts = function(_, opts) opts.ensure_installed = {} end },
-                                         },
-                                         performance = {
-                                          rtp = {
-                                           -- disable some rtp plugins
-                                           disabled_plugins = {
-                                            "gzip",
-                                            -- "matchit",
-                                            -- "matchparen",
-                                            "netrwPlugin",
-                                            "tarPlugin",
-                                            "tohtml",
-                                            "tutor",
-                                            "zipPlugin",
-                                           },
-                                          },
-                                         },
-                                        })
+          	-- The following configs are needed for fixing lazyvim on nix
+          	-- force enable telescope-fzf-native.nvim
+          	{ "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
+          	-- disable mason.nvim, use config.extraPackages
+          	{ "williamboman/mason-lspconfig.nvim", enabled = false },
+          	{ "williamboman/mason.nvim", enabled = false },
+          	-- uncomment to import/override with your plugins
+          	{ import = "plugins" },
+          	-- put this line at the end of spec to clear ensure_installed
+          	{ "nvim-treesitter/nvim-treesitter", opts = function(_, opts) opts.ensure_installed = {} end },
+          	},
+          	performance = {
+          	rtp = {
+          		-- disable some rtp plugins
+          		disabled_plugins = {
+          		"gzip",
+          		-- "matchit",
+          		-- "matchparen",
+          		"netrwPlugin",
+          		"tarPlugin",
+          		"tohtml",
+          		"tutor",
+          		"zipPlugin",
+          		},
+          	},
+          	},
+          })
         '';
     };
 
