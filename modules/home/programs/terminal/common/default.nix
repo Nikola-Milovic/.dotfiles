@@ -36,6 +36,9 @@ in
 
       sqlite
       rsync
+
+      dig
+      inetutils
     ];
 
     # TODO: add superfile instead of yazi
@@ -74,10 +77,6 @@ in
       fd = enabled;
       bat = enabled;
       ripgrep = enabled;
-
-      command-not-found = {
-        enable = true;
-      };
 
       # maybe add pet snippets to a gist
       pet = {
