@@ -34,8 +34,6 @@ mkShell {
   ];
 
   shellHook = ''
-    echo 🔨 Welcome to ${namespace}
-
-
+    			echo "Nix dev envirnment"
   '';
 }

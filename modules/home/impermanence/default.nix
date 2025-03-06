@@ -19,7 +19,7 @@ in
 
   config = mkIf cfg.enable {
     home.persistence."/persist/home/${config.${namespace}.user.name}" = {
-      directories = [ ] ++ cfg.directories;
+      directories = [ ".cursor" ] ++ cfg.directories;
       files = [ ] ++ cfg.files;
       allowOther = true;
     };
