@@ -134,6 +134,10 @@ in
 
             cmp_luasnip
 
+            # C
+            cmake-tools-nvim
+            clangd_extensions-nvim
+
             #ansible
             {
               name = "nvim-ansible";
@@ -245,8 +249,11 @@ in
           		{ import = "lazyvim.plugins.extras.lang.yaml" },
           		{ import = "lazyvim.plugins.extras.lang.docker" },
           	-- { import = "lazyvim.plugins.extras.lang.omnisharp" },
-          	--	{ import = "lazyvim.plugins.extras.lang.tailwind" },
+          		{ import = "lazyvim.plugins.extras.lang.tailwind" },
           		{ import = "lazyvim.plugins.extras.lang.typescript" },
+
+          		{ import = "lazyvim.plugins.extras.lang.cmake" },
+          		{ import = "lazyvim.plugins.extras.lang.clangd" },
 
           	-- The following configs are needed for fixing lazyvim on nix
           	-- force enable telescope-fzf-native.nvim
@@ -287,6 +294,7 @@ in
             (pkgs.vimPlugins.nvim-treesitter.withPlugins (
               plugins: with plugins; [
                 c
+                cpp
                 lua
                 nix
 

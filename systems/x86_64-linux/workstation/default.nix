@@ -14,7 +14,6 @@ in
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # --------------
-
   custom = {
     virtualisation.kvm = enabled;
     system = {
@@ -41,6 +40,7 @@ in
       nh = enabled;
       vpn = enabled;
       calibre = enabled;
+      nix-ld = enabled;
     };
 
     security = {
