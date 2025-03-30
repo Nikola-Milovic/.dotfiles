@@ -25,7 +25,7 @@ in
 
       fonts = enabled;
       impermanence = {
-        enable = true;
+        enable = false;
         device = "/dev/nvme1n1p2";
       };
 
