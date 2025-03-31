@@ -52,7 +52,7 @@ in
       serviceConfig.Type = "oneshot";
       script = ''
         							mkdir -p /btrfs_tmp
-        							mount -t btrfs ${cfg.device} -o subvol=/ /btrfs_tmp 
+        							mount -t btrfs ${cfg.device} -o subvol=/ /btrfs_tmp
 
                 			if [[ -e /btrfs_tmp/root ]]; then
                 					mkdir -p /btrfs_tmp/old_roots

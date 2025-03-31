@@ -24,8 +24,9 @@ in
       keyboard.real-prog-dvorak = true;
 
       fonts = enabled;
+      # NEVER DISABLE IMPERMANENCE
       impermanence = {
-        enable = false;
+        enable = true;
         device = "/dev/nvme1n1p2";
       };
 
