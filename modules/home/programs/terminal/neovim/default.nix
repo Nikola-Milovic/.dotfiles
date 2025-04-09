@@ -48,6 +48,16 @@ let
       hash = "sha256-uigPQ6VAXjs52XkYHJMKHxKKwpqnsJmhocsTpMq40ac=";
     };
   };
+
+  blink-compat = pkgs.vimUtils.buildVimPlugin {
+    name = "blink.compat";
+    src = pkgs.fetchFromGitHub {
+      owner = "saghen";
+      repo = "blink.compat";
+      rev = "2ed6d9a28b07fa6f3bface818470605f8896408c";
+      hash = "sha256-GluPgQ8EPH9XXsyLnw//sh1lcDEdcu3VbYQG4ns5JAE=";
+    };
+  };
 in
 {
   options.${namespace}.programs.terminal.neovim = {
@@ -110,8 +120,15 @@ in
             }
             oil-nvim
             nvim-ts-context-commentstring
-            copilot-lua
-            copilot-cmp
+            #copilot-lua
+            #copilot-cmp
+            #blink-cmp-copilot
+
+            supermaven-nvim
+            {
+              path = blink-compat;
+              name = "blink.compat";
+            }
 
             #tailwind
             {
@@ -147,7 +164,6 @@ in
             # LazyVim
             fzf-lua
             blink-cmp
-            blink-cmp-copilot
             LazyVim
             bufferline-nvim
             cmp-buffer
@@ -214,74 +230,75 @@ in
           lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
         in
         ''
-          require("lazy").setup({
-          	defaults = {
-          	lazy = true,
-          	},
-          	dev = {
-          	-- reuse files from pkgs.vimPlugins.*
-          	path = "${lazyPath}",
-          	patterns = { "" },
-          	-- fallback to download
-          	fallback = false,
-          	},
-          	spec = {
-          	{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
+                              require("lazy").setup({
+                              	defaults = {
+                              	lazy = true,
+                              	},
+                              	dev = {
+                              	-- reuse files from pkgs.vimPlugins.*
+                              	path = "${lazyPath}",
+                              	patterns = { "" },
+                              	-- fallback to download
+                              	fallback = false,
+                              	},
+                              	spec = {
+                              	{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
-          	-- import any extras modules here
-          		{ import = "lazyvim.plugins.extras.ai.copilot" },
+                              	-- import any extras modules here
+                                -- { import = "lazyvim.plugins.extras.ai.copilot" },
+          				{ import = "lazyvim.plugins.extras.ai.supermaven" },
 
-          		{ import = "lazyvim.plugins.extras.coding.mini-comment" },
-          		{ import = "lazyvim.plugins.extras.coding.mini-surround" },
+                              		{ import = "lazyvim.plugins.extras.coding.mini-comment" },
+                              		{ import = "lazyvim.plugins.extras.coding.mini-surround" },
 
-          		{ import = "lazyvim.plugins.extras.coding.luasnip" },
+                              		{ import = "lazyvim.plugins.extras.coding.luasnip" },
 
-          	-- { import = "lazyvim.plugins.extras.formatting.black" },
+                              	-- { import = "lazyvim.plugins.extras.formatting.black" },
 
-          		{ import = "lazyvim.plugins.extras.lang.terraform" },
-          		{ import = "lazyvim.plugins.extras.lang.ansible" },
-          	-- { import = "lazyvim.plugins.extras.lang.astro" },
-          	-- { import = "lazyvim.plugins.extras.lang.svelte" },
-          		{ import = "lazyvim.plugins.extras.lang.python" },
-          		{ import = "lazyvim.plugins.extras.lang.markdown" },
-          	-- { import = "lazyvim.plugins.extras.lang.json" },
-          		{ import = "lazyvim.plugins.extras.lang.go" },
-          		{ import = "lazyvim.plugins.extras.lang.yaml" },
-          		{ import = "lazyvim.plugins.extras.lang.docker" },
-          	-- { import = "lazyvim.plugins.extras.lang.omnisharp" },
-          		{ import = "lazyvim.plugins.extras.lang.tailwind" },
-          		{ import = "lazyvim.plugins.extras.lang.typescript" },
+                              		{ import = "lazyvim.plugins.extras.lang.terraform" },
+                              		{ import = "lazyvim.plugins.extras.lang.ansible" },
+                              	-- { import = "lazyvim.plugins.extras.lang.astro" },
+                              	-- { import = "lazyvim.plugins.extras.lang.svelte" },
+                              		{ import = "lazyvim.plugins.extras.lang.python" },
+                              		{ import = "lazyvim.plugins.extras.lang.markdown" },
+                              	-- { import = "lazyvim.plugins.extras.lang.json" },
+                              		{ import = "lazyvim.plugins.extras.lang.go" },
+                              		{ import = "lazyvim.plugins.extras.lang.yaml" },
+                              		{ import = "lazyvim.plugins.extras.lang.docker" },
+                              	-- { import = "lazyvim.plugins.extras.lang.omnisharp" },
+                              		{ import = "lazyvim.plugins.extras.lang.tailwind" },
+                              		{ import = "lazyvim.plugins.extras.lang.typescript" },
 
-          		{ import = "lazyvim.plugins.extras.lang.cmake" },
-          		{ import = "lazyvim.plugins.extras.lang.clangd" },
+                              		{ import = "lazyvim.plugins.extras.lang.cmake" },
+                              		{ import = "lazyvim.plugins.extras.lang.clangd" },
 
-          	-- The following configs are needed for fixing lazyvim on nix
-          	-- force enable telescope-fzf-native.nvim
-          	{ "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
-          	-- disable mason.nvim, use config.extraPackages
-          	{ "williamboman/mason-lspconfig.nvim", enabled = false },
-          	{ "williamboman/mason.nvim", enabled = false },
-          	-- uncomment to import/override with your plugins
-          	{ import = "plugins" },
-          	-- put this line at the end of spec to clear ensure_installed
-          	{ "nvim-treesitter/nvim-treesitter", opts = function(_, opts) opts.ensure_installed = {} end },
-          	},
-          	performance = {
-          	rtp = {
-          		-- disable some rtp plugins
-          		disabled_plugins = {
-          		"gzip",
-          		-- "matchit",
-          		-- "matchparen",
-          		"netrwPlugin",
-          		"tarPlugin",
-          		"tohtml",
-          		"tutor",
-          		"zipPlugin",
-          		},
-          	},
-          	},
-          })
+                              	-- The following configs are needed for fixing lazyvim on nix
+                              	-- force enable telescope-fzf-native.nvim
+                              	{ "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
+                              	-- disable mason.nvim, use config.extraPackages
+                              	{ "williamboman/mason-lspconfig.nvim", enabled = false },
+                              	{ "williamboman/mason.nvim", enabled = false },
+                              	-- uncomment to import/override with your plugins
+                              	{ import = "plugins" },
+                              	-- put this line at the end of spec to clear ensure_installed
+                              	{ "nvim-treesitter/nvim-treesitter", opts = function(_, opts) opts.ensure_installed = {} end },
+                              	},
+                              	performance = {
+                              	rtp = {
+                              		-- disable some rtp plugins
+                              		disabled_plugins = {
+                              		"gzip",
+                              		-- "matchit",
+                              		-- "matchparen",
+                              		"netrwPlugin",
+                              		"tarPlugin",
+                              		"tohtml",
+                              		"tutor",
+                              		"zipPlugin",
+                              		},
+                              	},
+                              	},
+                              })
         '';
     };
 
@@ -302,6 +319,7 @@ in
                 gomod
                 gowork
                 gosum
+                templ
 
                 html
                 typescript
