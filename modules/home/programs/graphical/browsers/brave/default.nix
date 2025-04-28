@@ -34,6 +34,8 @@ in
         "dbepggeogbaibhgnhhndojpepiihcmeb" # vimium
         "edacconmaakjimmfgnblocblbcdcpbko" # session buddy
         "aapbdbdomjkkjkaonfhkkikfgjllcleb" # translate
+        "pobhoodpcipjmedfenaigbeloiidbflp" # minimal twitter
+        "hlepfoohegkhhmjieoechaddaejaokhf" # refined github
       ];
     };
   };

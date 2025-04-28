@@ -124,7 +124,7 @@ in
             #copilot-cmp
             #blink-cmp-copilot
 
-            supermaven-nvim
+            # supermaven-nvim
             {
               path = blink-compat;
               name = "blink.compat";
@@ -246,7 +246,7 @@ in
 
                               	-- import any extras modules here
                                 -- { import = "lazyvim.plugins.extras.ai.copilot" },
-          				{ import = "lazyvim.plugins.extras.ai.supermaven" },
+          				-- { import = "lazyvim.plugins.extras.ai.supermaven" },
 
                               		{ import = "lazyvim.plugins.extras.coding.mini-comment" },
                               		{ import = "lazyvim.plugins.extras.coding.mini-surround" },
