@@ -57,7 +57,7 @@
 
       homes.modules = with inputs; [
         impermanence.homeManagerModules.default
-        catppuccin.homeManagerModules.catppuccin
+        catppuccin.homeModules.catppuccin
         sops-nix.homeManagerModules.sops
       ];
 

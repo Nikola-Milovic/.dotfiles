@@ -20,6 +20,8 @@ in
   config = mkIf cfg.enable {
     custom.user.extraGroups = [ "networkmanager" ];
 
+    environment.etc.hosts.mode = "0644";
+
     networking = {
       firewall = {
         enable = true;

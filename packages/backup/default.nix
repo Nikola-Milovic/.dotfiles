@@ -57,7 +57,7 @@ pkgs.writeShellApplication {
             done
 
             echo "Starting backup from ''${SRC} to ''${DEST}..."
-            sudo rsync -av "''${EXCLUDE_ARGS[@]}" "$SRC" "$DEST"
+            sudo rsync --max-size=50M -av "''${EXCLUDE_ARGS[@]}" "$SRC" "$DEST"
             echo "Backup complete."
   '';
 }

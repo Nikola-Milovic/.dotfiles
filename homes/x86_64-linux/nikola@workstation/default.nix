@@ -23,6 +23,8 @@ with lib.${namespace};
       vanilla-dmz-cursor = enabled;
     };
 
+    programming = enabled;
+
     programs = {
       graphical = {
         browsers = {
@@ -32,6 +34,7 @@ with lib.${namespace};
         sublime = enabled;
         vlc = enabled;
         torrent = enabled;
+        cursor = enabled;
       };
 
       terminal = {

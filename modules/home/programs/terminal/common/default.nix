@@ -63,8 +63,8 @@ in
       c = "clear";
       cat = "bat";
       ls = "eza";
-      find = "fd";
-      grep = "rg";
+      # find = "fd";
+      # grep = "rg";
       top = "btm";
 
       diskusage = "ncdu /";
