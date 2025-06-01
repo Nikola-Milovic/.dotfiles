@@ -24,12 +24,18 @@ in
 
     hardware.amdgpu.initrd.enable = true;
 
+    boot.initrd.kernelModules = [ "amdgpu" ];
+
+    systemd.packages = with pkgs; [ lact ];
+    systemd.services.lactd.wantedBy = [ "multi-user.target" ];
+
     hardware.graphics.extraPackages = with pkgs; [
       rocmPackages.clr.icd
     ];
 
     environment.systemPackages = with pkgs; [
       clinfo
+      lact
     ];
   };
 }
