@@ -37,12 +37,21 @@ in
       sqlite
       rsync
 
+      zip
+      unzip
+
       dig
       inetutils
+      busybox
     ];
 
     # TODO: add superfile instead of yazi
     #https://superfile.netlify.app/list/theme-list/
+    #
+    programs.nix-index = {
+      enable = true;
+      enableBashIntegration = true;
+    };
 
     ${namespace}.impermanence = {
       files = [ ".config/pet/snippet.toml" ];
