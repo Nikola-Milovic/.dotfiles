@@ -57,6 +57,25 @@ in
       jack.enable = true;
       pulse.enable = true;
       wireplumber.enable = true;
+      wireplumber.extraConfig = {
+        "set-default-audio-device" = {
+          "monitor.alsa.rules" = [
+            {
+              matches = [
+                {
+                  "device.name" = "alsa_card.pci-0000_7b_00.6";
+                }
+              ];
+              actions = {
+                update-props = {
+                  "priority.driver" = 1000;
+                  "priority.session" = 1000;
+                };
+              };
+            }
+          ];
+        };
+      };
     };
 
     services.pulseaudio.enable = mkForce false;
