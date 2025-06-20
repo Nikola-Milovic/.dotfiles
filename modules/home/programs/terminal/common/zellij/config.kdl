@@ -1,4 +1,6 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
+show_startup_tips false
+
 keybinds clear-defaults=true {
     shared_except "locked" {
         bind "Home" { GoToTab 1; SwitchToMode "Locked"; }

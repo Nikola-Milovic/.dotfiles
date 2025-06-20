@@ -19,6 +19,7 @@ in
     home.persistence."/persist/home/${config.${namespace}.user.name}" = {
       directories = [
         ".config/hcloud"
+        ".config/claude"
         ".claude"
       ];
       files = [
