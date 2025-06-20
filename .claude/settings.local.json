@@ -4,7 +4,8 @@
       "Bash(find:*)",
       "Bash(ls:*)",
       "Bash(grep:*)",
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "WebFetch(domain:search.nixos.org)"
     ],
     "deny": []
   }

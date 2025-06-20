@@ -2,6 +2,7 @@
   options,
   inputs,
   system,
+  pkgs,
   config,
   namespace,
   lib,
@@ -25,8 +26,19 @@ in
 
       shellAliases = {
         c = "clear";
+        less = "less -x4RFsX";
+      };
+
+      sessionVariables = {
+        PAGER = "less";
+        LESS = "-R";
+        LESSOPEN = "| ${pkgs.sourceHighlight}/bin/src-hilite-lesspipe.sh %s";
       };
     };
+
+    home.packages = with pkgs; [
+      sourceHighlight
+    ];
 
   };
 }
