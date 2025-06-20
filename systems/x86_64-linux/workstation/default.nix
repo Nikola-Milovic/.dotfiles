@@ -70,7 +70,9 @@ in
     };
 
     hardware = {
-      amdgpu = enabled;
+      gpu.amd = enabled;
+      cpu.amd = enabled;
+      opengl = enabled;
       networking = enabled;
       audio = enabled;
       i2c = enabled;
