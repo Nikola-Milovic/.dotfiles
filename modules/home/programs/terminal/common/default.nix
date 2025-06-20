@@ -42,16 +42,14 @@ in
 
       dig
       inetutils
-      busybox
+      lsof
     ];
 
     # TODO: add superfile instead of yazi
     #https://superfile.netlify.app/list/theme-list/
-    #
-    programs.nix-index = {
-      enable = true;
-      enableBashIntegration = true;
-    };
+
+    # https://github.com/nix-community/nix-index-database
+    programs.nix-index.enable = true;
 
     ${namespace}.impermanence = {
       files = [ ".config/pet/snippet.toml" ];

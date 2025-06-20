@@ -45,6 +45,11 @@ in
 
     security.rtkit.enable = true;
 
+    # Disable audio power saving to prevent crackling
+    boot.extraModprobeConfig = ''
+      options snd_hda_intel power_save=0
+    '';
+
     services.pipewire = {
       enable = true;
       alsa.enable = true;
@@ -53,5 +58,7 @@ in
       pulse.enable = true;
       wireplumber.enable = true;
     };
+
+    services.pulseaudio.enable = mkForce false;
   };
 }

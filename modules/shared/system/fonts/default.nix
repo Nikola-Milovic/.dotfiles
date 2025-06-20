@@ -32,18 +32,16 @@ in
         noto-fonts-color-emoji
         twemoji-color-font
 
-        # Nerd Fonts
-        (nerdfonts.override {
-          fonts = [
-            "JetBrainsMono"
-            "CascadiaCode"
-            "Iosevka"
-            "Monaspace"
-            "NerdFontsSymbolsOnly"
-          ];
-        })
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.caskaydia-cove
+        nerd-fonts.caskaydia-mono
+        nerd-fonts.iosevka
+        nerd-fonts.monaspace
+        nerd-fonts.symbols-only
+
       ] "Custom font packages to install.";
     default = mkOpt types.str "JetBrainsMono Nerd Font" "Default font name";
+    size = mkOpt types.int 13 "Default font size";
   };
 
   config = mkIf cfg.enable {

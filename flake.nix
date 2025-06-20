@@ -2,7 +2,7 @@
   description = "NixOS system setup";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -17,7 +17,7 @@
     catppuccin.url = "github:catppuccin/nix";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -27,6 +27,11 @@
 
     snowfall-lib = {
       url = "github:snowfallorg/lib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -59,6 +64,7 @@
         impermanence.homeManagerModules.default
         catppuccin.homeModules.catppuccin
         sops-nix.homeManagerModules.sops
+        nix-index-database.hmModules.nix-index
       ];
 
       systems.modules = {
