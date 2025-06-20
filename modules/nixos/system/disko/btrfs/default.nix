@@ -31,6 +31,10 @@ in
       }
     ];
 
+    # Ensure BTRFS support in initrd for impermanence rollback
+    boot.initrd.supportedFilesystems = [ "btrfs" ];
+    boot.initrd.availableKernelModules = [ "btrfs" ];
+
     disko.devices = {
       disk = {
         nvme0n1 = {
