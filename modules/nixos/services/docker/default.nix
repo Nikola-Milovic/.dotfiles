@@ -45,6 +45,9 @@ in
         enable = true;
         dates = "weekly";
       };
+      daemon.settings = {
+        insecure-registries = [ "100.65.28.102:5000" ];
+      };
       # rootless = {
       #   enable = true;
       #   setSocketVariable = true;

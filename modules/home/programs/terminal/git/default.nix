@@ -64,6 +64,9 @@ in
       lazygit = {
         enable = true;
         settings = {
+          git = {
+            overrideGpg = true;
+          };
           keybinding.universal.return = "<c-l>";
           paging = {
             useConfig = true;
