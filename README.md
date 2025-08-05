@@ -42,8 +42,11 @@ A big thanks to these amazing repositories that helped me set up my current envi
 - [ ] **Security Enhancements**
 - [ ] **Explore [Looking Glass](https://looking-glass.io/)** as an alternative to dual booting
 - [ ] **Set Up [YubiKey](https://github.com/drduh/YubiKey-Guide)**
-- [ ] **Improve Brave Fonts**
-- [ ] **Integrate [CoolerControl](https://gitlab.com/coolercontrol/coolercontrol)**
 - [ ] **Fix Sway Brightness Hotkeys**
 - [ ] **Wrong audio device is used as default**
 - [ ] BTRFS rollback not working
+
+## Neovim
+
+- [ ] [Open edit from lazyvim](https://github.com/kdheepak/lazygit.nvim/issues/67#issuecomment-3123381338)
+- [ ] AI autocomplete, like [minuet](https://github.com/milanglacier/minuet-ai.nvim)

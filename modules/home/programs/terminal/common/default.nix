@@ -49,7 +49,7 @@ in
     #https://superfile.netlify.app/list/theme-list/
 
     # https://github.com/nix-community/nix-index-database
-    programs.nix-index.enable = true;
+    programs.nix-index.enable = false;
 
     ${namespace}.impermanence = {
       files = [ ".config/pet/snippet.toml" ];
