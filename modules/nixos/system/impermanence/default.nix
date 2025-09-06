@@ -87,14 +87,16 @@ in
         "/var/tmp/" # needed because we change the nix tmp dir to /var/tmp
         "/var/db/sudo/"
         "/var/lib/"
-      ] ++ cfg.directories;
+      ]
+      ++ cfg.directories;
       files = [
         "/etc/machine-id"
         "/etc/ssh/ssh_host_ed25519_key"
         "/etc/ssh/ssh_host_ed25519_key.pub"
         "/etc/ssh/ssh_host_rsa_key"
         "/etc/ssh/ssh_host_rsa_key.pub"
-      ] ++ cfg.files;
+      ]
+      ++ cfg.files;
       users.${config.${namespace}.user.name} = {
         directories = [
           ".dotfiles"
@@ -112,7 +114,8 @@ in
           # ".local/share"
           ".local/share/keyrings"
           ".local/share/direnv"
-        ] ++ cfg.userDirectories;
+        ]
+        ++ cfg.userDirectories;
       };
     };
 

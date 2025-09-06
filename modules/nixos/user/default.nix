@@ -67,8 +67,10 @@ in
             "input"
             "power"
             "nix"
-          ] ++ cfg.extraGroups;
-        } // cfg.extraOptions;
+          ]
+          ++ cfg.extraGroups;
+        }
+        // cfg.extraOptions;
       }
     ]
   );

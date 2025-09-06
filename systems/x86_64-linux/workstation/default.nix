@@ -21,7 +21,7 @@ in
         gcRetentionDays = "3d";
       };
 
-      keyboard.real-prog-dvorak = true;
+      keyboard.layout = "lemi-dvorak";
 
       fonts = enabled;
       # NEVER DISABLE IMPERMANENCE
@@ -70,7 +70,10 @@ in
     };
 
     hardware = {
-      gpu.amd = enabled;
+      gpu.amd = {
+        enable = true;
+        enableRocmSupport = true;
+      };
       cpu.amd = enabled;
       opengl = enabled;
       networking = enabled;

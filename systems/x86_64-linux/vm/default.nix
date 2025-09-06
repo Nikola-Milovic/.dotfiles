@@ -19,7 +19,7 @@ in
         gcRetentionDays = "3d";
       };
 
-      keyboard.real-prog-dvorak = true;
+      keyboard."lemi-dvorak" = true;
 
       fonts = enabled;
       impermanence = {

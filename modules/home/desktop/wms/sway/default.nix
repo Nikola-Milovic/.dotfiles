@@ -111,7 +111,7 @@ in
         menu = cfg.launcherCmd;
         input = {
           "*" = {
-            xkb_layout = "real-prog-dvorak";
+            xkb_layout = osConfig.${namespace}.system.keyboard.layout;
           };
         };
 

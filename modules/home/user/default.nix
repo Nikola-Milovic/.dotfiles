@@ -67,20 +67,19 @@ in
       };
 
       home = {
-        file =
-          {
-            "documents/.keep".text = "";
-            "downloads/.keep".text = "";
-            "files/.keep".text = "";
-            "music/.keep".text = "";
-            "pictures/.keep".text = "";
-            "videos/.keep".text = "";
-          }
-          // lib.optionalAttrs (cfg.icon != null) {
-            ".face".source = cfg.icon;
-            ".face.icon".source = cfg.icon;
-            "pictures/${cfg.icon.fileName or (builtins.baseNameOf cfg.icon)}".source = cfg.icon;
-          };
+        file = {
+          "documents/.keep".text = "";
+          "downloads/.keep".text = "";
+          "files/.keep".text = "";
+          "music/.keep".text = "";
+          "pictures/.keep".text = "";
+          "videos/.keep".text = "";
+        }
+        // lib.optionalAttrs (cfg.icon != null) {
+          ".face".source = cfg.icon;
+          ".face.icon".source = cfg.icon;
+          "pictures/${cfg.icon.fileName or (builtins.baseNameOf cfg.icon)}".source = cfg.icon;
+        };
 
         homeDirectory = mkDefault cfg.home;
 

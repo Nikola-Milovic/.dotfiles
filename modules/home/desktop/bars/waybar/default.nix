@@ -39,45 +39,44 @@ let
     margin-left = 0;
     margin-right = 0;
 
-    modules-left =
-      [ "custom/wlogout" ]
-      ++ lib.optionals config.${namespace}.desktop.wms.sway.enable [
-        "sway/workspaces"
-        "sway/mode"
-      ]
-      ++ [ "custom/separator-left" ]
-      ++ lib.optionals config.${namespace}.desktop.wms.sway.enable [ "sway/window" ];
+    modules-left = [
+      "custom/wlogout"
+    ]
+    ++ lib.optionals config.${namespace}.desktop.wms.sway.enable [
+      "sway/workspaces"
+      "sway/mode"
+    ]
+    ++ [ "custom/separator-left" ]
+    ++ lib.optionals config.${namespace}.desktop.wms.sway.enable [ "sway/window" ];
   };
 
   fullSizeModules = {
-    modules-right =
-      [
-        # "custom/separator-right"
-        "group/stats"
-        "custom/separator-right"
-        "group/tidbits"
-        "group/tray"
-        "group/gamma"
-        "custom/separator-right"
-      ]
-      ++ [
-        "custom/weather"
-        "clock"
-      ];
+    modules-right = [
+      # "custom/separator-right"
+      "group/stats"
+      "custom/separator-right"
+      "group/tidbits"
+      "group/tray"
+      "group/gamma"
+      "custom/separator-right"
+    ]
+    ++ [
+      "custom/weather"
+      "clock"
+    ];
   };
 
   condensedModules = {
-    modules-right =
-      [
-        # "group/tray-drawer"
-        "group/stats-drawer"
-        "custom/separator-right"
-        # "group/control-center"
-      ]
-      ++ [
-        # "custom/weather"
-        "clock"
-      ];
+    modules-right = [
+      # "group/tray-drawer"
+      "group/stats-drawer"
+      "custom/separator-right"
+      # "group/control-center"
+    ]
+    ++ [
+      # "custom/weather"
+      "clock"
+    ];
   };
 
   mkBarSettings =

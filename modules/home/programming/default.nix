@@ -2,6 +2,7 @@
   lib,
   config,
   osConfig,
+  pkgs,
   namespace,
   ...
 }:
@@ -16,10 +17,12 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = [ pkgs.devbox ];
     home.persistence."/persist/home/${config.${namespace}.user.name}" = {
       directories = [
         ".config/hcloud"
         ".config/claude"
+        ".config/stripe"
         ".claude"
       ];
       files = [

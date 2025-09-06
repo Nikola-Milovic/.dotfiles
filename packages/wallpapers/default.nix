@@ -54,7 +54,8 @@ pkgs.stdenvNoCC.mkDerivation {
 
   passthru = {
     inherit names;
-  } // wallpapers;
+  }
+  // wallpapers;
 
   meta = with lib; {
     description = "Some good wallpapers!";
