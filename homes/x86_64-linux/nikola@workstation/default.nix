@@ -32,6 +32,7 @@ with lib.${namespace};
         };
         obsidian = enabled;
         sublime = enabled;
+        rustdesk = enabled;
         vlc = enabled;
         torrent = enabled;
         cursor = enabled;

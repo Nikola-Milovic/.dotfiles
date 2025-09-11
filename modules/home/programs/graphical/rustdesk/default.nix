@@ -15,5 +15,9 @@ in
     enable = mkEnableOption "rustdesk";
   };
 
-  config = lib.mkIf cfg.enable { home.packages = [ pkgs.rustdesk ]; };
+  config = lib.mkIf cfg.enable {
+
+    custom.impermanence.directories = [ ".config/rustdesk" ];
+    home.packages = [ pkgs.rustdesk ];
+  };
 }
