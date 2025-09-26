@@ -34,7 +34,11 @@ in
       ];
 
       hosts = {
-        "127.0.0.1" = [ "local.test" ] ++ (cfg.hosts."127.0.0.1" or [ ]);
+        "127.0.0.1" = [
+          "local.test"
+          "host.docker.internal"
+        ]
+        ++ (cfg.hosts."127.0.0.1" or [ ]);
       }
       // cfg.hosts;
 

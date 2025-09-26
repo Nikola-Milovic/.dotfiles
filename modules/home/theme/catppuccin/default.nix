@@ -17,15 +17,6 @@ let
 
   cfg = config.${namespace}.theme.catppuccin;
 
-  warpPkg = pkgs.fetchFromGitHub {
-    owner = "catppuccin";
-    repo = "warp";
-    rev = "11295fa7aed669ca26f81ff44084059952a2b528";
-    hash = "sha256-ym5hwEBtLlFe+DqMrXR3E4L2wghew2mf9IY/1aynvAI=";
-  };
-
-  warpStyle = "${warpPkg.outPath}/themes/catppuccin_macchiato.yml";
-
   catppuccinAccents = [
     "rosewater"
     "flamingo"
@@ -206,13 +197,6 @@ in
       };
 
     home = {
-      file = mkMerge [
-        (mkIf pkgs.stdenv.isDarwin {
-          "Library/Application Support/BetterDiscord/themes/catppuccin-macchiato.theme.css".source =
-            ./catppuccin-macchiato.theme.css;
-        })
-      ];
-
       pointerCursor = mkIf pkgs.stdenv.isLinux {
         inherit (config.${namespace}.theme.gtk.cursor) name package size;
         x11.enable = true;
@@ -323,12 +307,5 @@ in
         # };
       };
     };
-
-    # xdg.configFile =
-    #   mkIf (pkgs.stdenv.isLinux && config.${namespace}.programs.graphical.apps.discord.enable)
-    #     {
-    #       "ArmCord/themes/Catppuccin-Macchiato-BD".source = ./Catppuccin-Macchiato-BD;
-    #       "BetterDiscord/themes/catppuccin-macchiato.theme.css".source = ./catppuccin-macchiato.theme.css;
-    #     };
   };
 }

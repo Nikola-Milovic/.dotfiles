@@ -23,6 +23,7 @@ in
         ".config/hcloud"
         ".config/claude"
         ".config/stripe"
+        ".codex"
         ".claude"
       ];
       files = [
