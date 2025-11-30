@@ -24,18 +24,18 @@ in
       commandLineArgs = [
         "--enable-features=UseOzonePlatform"
         "--ozone-platform=wayland"
-        "--password-store=gnome-libsecret"
+        # "--password-store=gnome-libsecret"
       ];
       extensions = [
-        "eimadpbcbfnmbkopoojfekhnkhdbieeh" # dark mode
-        "nngceckbapebfimnlniiiahkandclblb" # bitwarden
-        "niloccemoadcdkdjlinkgdfekeahmflj" # pocket
-        "bjcnpgekponkjpincbcoflgkdomldlnl" # block site
-        "dbepggeogbaibhgnhhndojpepiihcmeb" # vimium
-        "edacconmaakjimmfgnblocblbcdcpbko" # session buddy
-        "aapbdbdomjkkjkaonfhkkikfgjllcleb" # translate
-        "pobhoodpcipjmedfenaigbeloiidbflp" # minimal twitter
-        "hlepfoohegkhhmjieoechaddaejaokhf" # refined github
+        # "eimadpbcbfnmbkopoojfekhnkhdbieeh" # dark mode
+        # "nngceckbapebfimnlniiiahkandclblb" # bitwarden
+        # "niloccemoadcdkdjlinkgdfekeahmflj" # pocket
+        # "bjcnpgekponkjpincbcoflgkdomldlnl" # block site
+        # "dbepggeogbaibhgnhhndojpepiihcmeb" # vimium
+        # "edacconmaakjimmfgnblocblbcdcpbko" # session buddy
+        # "aapbdbdomjkkjkaonfhkkikfgjllcleb" # translate
+        # "pobhoodpcipjmedfenaigbeloiidbflp" # minimal twitter
+        # "hlepfoohegkhhmjieoechaddaejaokhf" # refined github
       ];
     };
   };

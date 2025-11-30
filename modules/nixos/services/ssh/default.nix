@@ -19,6 +19,7 @@ in
     users.users = {
       ${config.${namespace}.user.name}.openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEXL3hgnOlMFWc00kvOKsAHcuYbIfLDSEBFq/df6rSOZ nikolamilovic2001@gmail.com"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICtOPWJU/StzQ8F3OjKX1i/j6TT3Lf9V66UQAac9qhSY nikola.milovic@fuel.me"
       ];
     };
     # Enable the OpenSSH daemon.

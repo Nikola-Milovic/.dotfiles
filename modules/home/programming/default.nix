@@ -17,7 +17,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.devbox ];
+    home.packages = with pkgs; [ devbox ];
     home.persistence."/persist/home/${config.${namespace}.user.name}" = {
       directories = [
         ".config/hcloud"
@@ -25,6 +25,7 @@ in
         ".config/stripe"
         ".codex"
         ".claude"
+        ".local/share/mkcert"
       ];
       files = [
         ".claude.json"

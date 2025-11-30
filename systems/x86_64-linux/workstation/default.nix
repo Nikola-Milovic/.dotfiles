@@ -42,6 +42,7 @@ in
       vpn = enabled;
       calibre = enabled;
       nix-ld = enabled;
+      mkcert = enabled;
     };
 
     security = {

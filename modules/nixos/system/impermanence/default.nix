@@ -42,7 +42,8 @@ in
 
     boot.initrd.systemd.services.rollback = {
       description = "Simplified Rollback BTRFS root subvolume to a pristine state";
-      wantedBy = [ "initrd.target" ];
+      # wantedBy = [ "initrd.target" ];
+      wantedBy = [ ];
       before = [
         "initrd-root-fs.target"
         "sysroot-var-lib-nixos.mount"
