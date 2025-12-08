@@ -75,6 +75,7 @@ in
         enable = true;
         enableRocmSupport = true;
       };
+      opentablet = enabled;
       cpu.amd = enabled;
       opengl = enabled;
       networking = enabled;
