@@ -14,6 +14,7 @@ let
     mkOptionDefault
     ;
   cfg = config.${namespace}.desktop.wms.sway;
+  whispAwayCfg = config.${namespace}.services.whisp-away or { enable = false; };
 
   modifier = config.wayland.windowManager.sway.config.modifier;
   term = config.wayland.windowManager.sway.config.terminal;
@@ -32,6 +33,13 @@ let
   pavucontrol = getExe pkgs.pavucontrol;
   gammastep = getExe pkgs.custom.gammastep-helper;
   monitorControl = getExe pkgs.custom.monitor-control;
+
+  # Voice dictation keybindings (push-to-talk)
+  whispAwayKeybindings = lib.optionalAttrs whispAwayCfg.enable {
+    # Grave/backtick key for push-to-talk: hold to record, release to transcribe
+    "--release grave" = "exec whisp-away stop";
+    "grave" = "exec whisp-away start";
+  };
 
   workspace1 = "1";
   workspace2 = "2";
@@ -153,6 +161,8 @@ in
             # Workspace back and forth
             "${modifier}+dollar" = "workspace back_and_forth";
           }
+          # Voice dictation (whisp-away)
+          whispAwayKeybindings
         ];
     };
   };

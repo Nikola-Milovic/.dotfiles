@@ -27,6 +27,7 @@ in
         enable = true;
       };
 
+# Local network interface used for mobile development to connect to the host machine
       firewall.trustedInterfaces = [ "enp119s0" ];
 
       nameservers = mkForce [

@@ -37,6 +37,21 @@
         "type": "github"
       }
     },
+    "crane": {
+      "locked": {
+        "lastModified": 1758758545,
+        "narHash": "sha256-NU5WaEdfwF6i8faJ2Yh+jcK9vVFrofLcwlD/mP65JrI=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "95d528a5f54eaba0d12102249ce42f4d01f4e364",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": "nixpkgs_3"
@@ -312,7 +327,8 @@
         "nixpkgs": "nixpkgs_5",
         "snowfall-lib": "snowfall-lib",
         "sops-nix": "sops-nix",
-        "unstable": "unstable"
+        "unstable": "unstable",
+        "whisp-away": "whisp-away"
       }
     },
     "snowfall-lib": {
@@ -385,6 +401,27 @@
         "owner": "nixos",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "whisp-away": {
+      "inputs": {
+        "crane": "crane",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1767274102,
+        "narHash": "sha256-JTwjUceRA1YJ/sKIAMoUyoeEFOSbvtWlq6haMDb1QA8=",
+        "owner": "Nikola-Milovic",
+        "repo": "whisp-away",
+        "rev": "c5806ffdda25b7efde4236d5b10455d88a816b28",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Nikola-Milovic",
+        "repo": "whisp-away",
         "type": "github"
       }
     }

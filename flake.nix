@@ -34,6 +34,11 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    whisp-away = {
+      url = "github:Nikola-Milovic/whisp-away";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -65,6 +70,7 @@
         catppuccin.homeModules.catppuccin
         sops-nix.homeManagerModules.sops
         nix-index-database.homeModules.nix-index
+        whisp-away.nixosModules.home-manager
       ];
 
       systems.modules = {

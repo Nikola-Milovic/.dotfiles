@@ -60,6 +60,12 @@ with lib.${namespace};
 
     services = {
       syncthing = enabled;
+      whisp-away = {
+        enable = true;
+        accelerationType = "vulkan"; # AMD GPU
+        useClipboard = false; # Type at cursor position
+        defaultModel = "small.en"; # Good balance of speed/quality
+      };
     };
 
     desktop = {
