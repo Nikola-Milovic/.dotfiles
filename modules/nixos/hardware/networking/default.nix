@@ -27,6 +27,8 @@ in
         enable = true;
       };
 
+      firewall.trustedInterfaces = [ "enp119s0" ];
+
       nameservers = mkForce [
         "1.1.1.1"
         "9.9.9.9"
