@@ -19,7 +19,7 @@ in
     users.users = {
       ${config.${namespace}.user.name}.openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEXL3hgnOlMFWc00kvOKsAHcuYbIfLDSEBFq/df6rSOZ nikolamilovic2001@gmail.com"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICtOPWJU/StzQ8F3OjKX1i/j6TT3Lf9V66UQAac9qhSY nikola.milovic@fuel.me"
+        "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCW1FA0CO8Zb7Fih2YH1g8eDrqyZB2pWBXRCZM1oClKmQ3WrQ1APW83ly9Q0JLSDvA7gK/Qjo6IcSMXLWvENak0ChHAIXK4W21iUHZM10hFAUGJ+oeR8jdhDLOK+oHpr951xSNzXnKoKfbTBFDIQsuCQgzd3uwAYvogrMDmfYxnxf5+BHgRAwY4BWylkio/aB9js7eIUmrc1x6+VyRVbKdZp45HR4S/V283c2gzM4+I+3+5K0O9MaBEu3jHT5pI67PuAz5KFEgf7CcMeGtoibLt1bqN4T2PZPEQq2w7EUNlE8KCa707bl0/VG/VmEGhZPTidcW7rQ9/joNq6ZAs1qMfA4YMUREgCy3xKxzzCjmUgqa50+sOy9qIvnkeqOhpFs7gTIkfrK7FJjEJVM+izTkoVzSgvfdQB6gZJL50DX3LSBwG7koPaix5n8iI+wsR9DlQD7w183geglAgz9gMSdeAeEz60HN2XShp+QY0rqHOLjPIL9w+tjKOwLQImUSViCX67i62kX+PPDzP02yj/AxFZDUOhnbJUpJHt1p8IV+MJDUE7HdYWo63zyZY71Ao1gdRUrbMGyPjr8a+hGXsYqnPmdQQ05tOyj8Moj7qlKTFcPigI12uXe9YhtmeWBfzpZSotvxFmY8GtWl/c80fLKl8MdekbkDoJ8EzCLbOjtLkow== u0_a486@localhost"
       ];
     };
     # Enable the OpenSSH daemon.
