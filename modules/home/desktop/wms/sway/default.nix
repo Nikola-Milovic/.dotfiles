@@ -41,6 +41,7 @@ in
           wofi = enabled;
           wallpapers = enabled;
           wlogout = enabled;
+          mako = enabled;
         };
       };
 
@@ -149,6 +150,8 @@ in
           # Start a user session dbus (required for things like starting
           # applications through wofi).
           { command = "dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus"; }
+          # Notification daemon
+          { command = "mako"; }
         ];
       };
     };

@@ -41,12 +41,18 @@ in
       description = "Default whisper model to use";
     };
 
+    autoStartDaemon = mkOption {
+      type = bool;
+      default = true;
+      description = "Whether to auto-start the daemon on login";
+    };
+
     defaultBackend = mkOption {
       type = enum [
         "whisper-cpp"
         "faster-whisper"
       ];
-      default = "whisper-cpp";
+      default = "faster-whisper";
       description = "Default whisper backend";
     };
   };
@@ -61,8 +67,10 @@ in
     # Enable the upstream whisp-away service
     services.whisp-away = {
       enable = true;
+
       inherit (cfg)
         accelerationType
+        autoStartDaemon
         useClipboard
         defaultModel
         defaultBackend

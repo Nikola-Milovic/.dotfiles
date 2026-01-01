@@ -34,11 +34,10 @@ let
   gammastep = getExe pkgs.custom.gammastep-helper;
   monitorControl = getExe pkgs.custom.monitor-control;
 
-  # Voice dictation keybindings (push-to-talk)
+  # Voice dictation keybindings
   whispAwayKeybindings = lib.optionalAttrs whispAwayCfg.enable {
-    # Grave/backtick key for push-to-talk: hold to record, release to transcribe
-    "--release grave" = "exec whisp-away stop";
-    "grave" = "exec whisp-away start";
+    # Alt+Shift+d to toggle voice dictation
+    "${modifier}+Shift+d" = "exec whisp-away toggle";
   };
 
   workspace1 = "1";

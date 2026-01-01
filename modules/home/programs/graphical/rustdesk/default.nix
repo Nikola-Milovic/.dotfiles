@@ -18,6 +18,6 @@ in
   config = lib.mkIf cfg.enable {
 
     custom.impermanence.directories = [ ".config/rustdesk" ];
-    home.packages = [ pkgs.rustdesk ];
+    # home.packages = [ pkgs.rustdesk ];
   };
 }
