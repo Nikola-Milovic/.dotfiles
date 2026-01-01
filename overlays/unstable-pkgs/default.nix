@@ -6,4 +6,7 @@ final: prev: {
     obsidian
     rustdesk
     ;
+
+  # Expose unstable Rust toolchain for packages requiring newer Rust versions
+  unstableRustPlatform = channels.unstable.rustPlatform;
 }

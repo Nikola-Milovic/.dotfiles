@@ -43,6 +43,9 @@ in
       dig
       inetutils
       lsof
+
+      # git worktree management CLI
+      custom.worktrunk
     ];
 
     # TODO: add superfile instead of yazi
@@ -79,6 +82,13 @@ in
       tmux = "zellij";
       zj = "zellij";
     };
+
+    # worktrunk (wt) shell integration & completions
+    programs.bash.initExtra = ''
+      if command -v wt >/dev/null 2>&1; then
+        eval "$(command wt config shell init bash)"
+      fi
+    '';
 
     programs = {
       fd = enabled;
