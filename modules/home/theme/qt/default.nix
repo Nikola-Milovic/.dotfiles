@@ -72,7 +72,7 @@ in
         kdePackages.qqc2-desktop-style
         kdePackages.qt6ct
         kdePackages.qtwayland # qt6
-        libsForQt5.breeze-qt5
+        kdePackages.breeze.qt5
         libsForQt5.qt5.qtwayland # qt5
         libsForQt5.qt5ct
         libsForQt5.qtstyleplugin-kvantum

@@ -77,7 +77,7 @@ in
 
         qemu = {
           package = pkgs.qemu_kvm;
-          ovmf = enabled;
+          # ovmf is no longer needed - OVMF images are now available by default
           swtpm.enable = true;
 
           verbatimConfig = ''

@@ -37,8 +37,6 @@ in
       ]
       ++ cfg.extra-packages;
 
-    hardware.pulseaudio.enable = mkForce false;
-
     custom = {
       user.extraGroups = [ "audio" ];
     };

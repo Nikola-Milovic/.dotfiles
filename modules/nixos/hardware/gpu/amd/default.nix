@@ -38,17 +38,9 @@ in
       "LIBVA_DRIVER_NAME" = "radeonsi";
     };
 
-    # enables AMDVLK & OpenCL support
+    # enables OpenCL support (RADV is now the default Vulkan driver)
     hardware = {
       amdgpu = {
-        amdvlk = {
-          enable = true;
-
-          support32Bit = {
-            enable = true;
-          };
-          supportExperimental.enable = true;
-        };
         initrd.enable = true;
         opencl.enable = true;
       };

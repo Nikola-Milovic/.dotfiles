@@ -2,7 +2,7 @@
   description = "NixOS system setup";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -14,10 +14,14 @@
     };
 
     catppuccin-cursors.url = "github:catppuccin/cursors";
-    catppuccin.url = "github:catppuccin/nix/release-25.05";
+
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

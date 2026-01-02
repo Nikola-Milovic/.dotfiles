@@ -21,7 +21,7 @@ in
       enable = true;
       settings = {
         default_session = {
-          command = "${getExe pkgs.greetd.tuigreet} --time -r --cmd sway";
+          command = "${getExe pkgs.tuigreet} --time -r --cmd sway";
           user = "greeter";
         };
       };

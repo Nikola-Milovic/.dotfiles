@@ -75,26 +75,38 @@ in
         };
       };
 
+      delta = {
+        enable = true;
+        enableGitIntegration = true;
+
+        options = {
+          dark = true;
+          features = mkForce "decorations side-by-side navigate";
+          line-numbers = true;
+          navigate = true;
+          side-by-side = true;
+        };
+      };
+
       git = {
         enable = true;
         package = pkgs.gitFull;
-        inherit (cfg) includes userName userEmail;
-        inherit (aliases) aliases;
+        inherit (cfg) includes;
         inherit (ignores) ignores;
 
-        delta = {
-          enable = true;
-
-          options = {
-            dark = true;
-            features = mkForce "decorations side-by-side navigate";
-            line-numbers = true;
-            navigate = true;
-            side-by-side = true;
-          };
+        signing = {
+          key = cfg.signingKey;
+          inherit (cfg) signByDefault;
         };
 
-        extraConfig = {
+        settings = {
+          user = {
+            name = cfg.userName;
+            email = cfg.userEmail;
+          };
+
+          alias = aliases.aliases;
+
           # credential = {
           #   helper = ''${getExe' config.programs.git.package "git-credential-libsecret"}'';
           #   useHttpPath = true;
@@ -137,11 +149,6 @@ in
               "/etc/nixos"
             ];
           };
-        };
-
-        signing = {
-          key = cfg.signingKey;
-          inherit (cfg) signByDefault;
         };
       };
 

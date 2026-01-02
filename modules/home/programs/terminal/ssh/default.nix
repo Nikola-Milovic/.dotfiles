@@ -27,22 +27,25 @@ in
 
     programs.ssh = {
       enable = true;
-      extraConfig = optionalString config.${namespace}.security.sops.enable ''
-        				Host github.com
-        					AddKeysToAgent yes
-        					Hostname github.com
-        					IdentitiesOnly yes
-        					IdentityFile ${config.sops.secrets."github/ssh_pk".path}
-
-
-        				Host aigpu
-        					User admin 
-        					AddKeysToAgent yes
-        					Hostname 100.65.28.102
-        					IdentitiesOnly yes
-        					PreferredAuthentications publickey
-        					IdentityFile ${config.sops.secrets."ssh/personal/pk".path}
-      '';
+      enableDefaultConfig = false;
+      matchBlocks = lib.mkIf config.${namespace}.security.sops.enable {
+        "github.com" = {
+          hostname = "github.com";
+          identityFile = config.sops.secrets."github/ssh_pk".path;
+          identitiesOnly = true;
+          addKeysToAgent = "yes";
+        };
+        "aigpu" = {
+          user = "admin";
+          hostname = "100.65.28.102";
+          identityFile = config.sops.secrets."ssh/personal/pk".path;
+          identitiesOnly = true;
+          addKeysToAgent = "yes";
+          extraOptions = {
+            PreferredAuthentications = "publickey";
+          };
+        };
+      };
     };
   };
 }
