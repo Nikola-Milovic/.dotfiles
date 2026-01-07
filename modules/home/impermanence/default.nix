@@ -18,10 +18,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.persistence."/persist/home/${config.${namespace}.user.name}" = {
+    home.persistence."/persist" = {
       directories = [ ] ++ cfg.directories;
       files = [ ] ++ cfg.files;
-      allowOther = true;
     };
   };
 }

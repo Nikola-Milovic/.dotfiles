@@ -6,16 +6,16 @@
 
 unstableRustPlatform.buildRustPackage (finalAttrs: {
   pname = "worktrunk";
-  version = "0.8.3";
+  version = "0.9.5";
 
   src = fetchFromGitHub {
     owner = "max-sixty";
     repo = "worktrunk";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-rkQ0FBKxlcqzUadNn9sdvyiLk2j40LrlunAZHx6UzxI=";
+    hash = "sha256-lVA8gemD4djE2OBMrKIXoBZ0dcY4hvo2XZzeVieGbqo=";
   };
 
-  cargoHash = "sha256-8AhwP5kDvwbNkzSWZFyag8A/UQMABPVeuFvJ754maRI=";
+  cargoHash = "sha256-1tTX18Y1O0TPisxDZ21X3t+qL/6m2crfbuUPFrQQwfY=";
 
   # vergen-gitcl in build.rs needs git, but we use VERGEN_IDEMPOTENT to skip
   # actual git operations and fall back to CARGO_PKG_VERSION

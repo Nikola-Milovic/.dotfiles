@@ -70,7 +70,6 @@
       };
 
       homes.modules = with inputs; [
-        impermanence.homeManagerModules.default
         catppuccin.homeModules.catppuccin
         sops-nix.homeManagerModules.sops
         nix-index-database.homeModules.nix-index

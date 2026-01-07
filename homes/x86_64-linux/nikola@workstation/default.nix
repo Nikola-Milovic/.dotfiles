@@ -65,6 +65,7 @@ with lib.${namespace};
         accelerationType = "vulkan"; # AMD GPU
         useClipboard = false; # Type at cursor position
         # useClipboard = true; # Copy to clipboard
+        defaultBackend = "whisper-cpp";
         defaultModel = "small.en"; # Good balance of speed/quality
       };
     };

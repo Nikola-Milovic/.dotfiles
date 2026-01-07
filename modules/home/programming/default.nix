@@ -18,7 +18,7 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [ devbox ];
-    home.persistence."/persist/home/${config.${namespace}.user.name}" = {
+    home.persistence."/persist" = {
       directories = [
         ".config/hcloud"
         ".config/claude"
