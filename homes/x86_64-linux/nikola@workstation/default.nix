@@ -63,8 +63,8 @@ with lib.${namespace};
       whisp-away = {
         enable = true;
         accelerationType = "vulkan"; # AMD GPU
-        useClipboard = false; # Type at cursor position
-        # useClipboard = true; # Copy to clipboard
+        # useClipboard = false; # Type at cursor position
+        useClipboard = true; # Copy to clipboard
         defaultBackend = "whisper-cpp";
         defaultModel = "small.en"; # Good balance of speed/quality
       };

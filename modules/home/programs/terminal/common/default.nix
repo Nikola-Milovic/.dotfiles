@@ -94,6 +94,8 @@ in
       fd = enabled;
       bat = enabled;
       ripgrep = enabled;
+      fzf = enabled;
+      jq = enabled;
 
       # maybe add pet snippets to a gist
       pet = {
