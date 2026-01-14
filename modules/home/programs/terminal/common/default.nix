@@ -45,7 +45,7 @@ in
       lsof
 
       # git worktree management CLI
-      custom.worktrunk
+      worktrunk
     ];
 
     # TODO: add superfile instead of yazi

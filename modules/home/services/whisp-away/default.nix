@@ -47,6 +47,12 @@ in
       description = "Whether to auto-start the daemon on login";
     };
 
+    autoStartTray = mkOption {
+      type = bool;
+      default = true;
+      description = "Whether to auto-start the tray on login";
+    };
+
     defaultBackend = mkOption {
       type = enum [
         "whisper-cpp"
@@ -71,6 +77,7 @@ in
       inherit (cfg)
         accelerationType
         autoStartDaemon
+        autoStartTray
         useClipboard
         defaultModel
         defaultBackend
