@@ -48,6 +48,11 @@
       url = "github:max-sixty/worktrunk";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    locallm = {
+      url = "github:Nikola-Milovic/locallm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -79,6 +84,7 @@
         sops-nix.homeManagerModules.sops
         nix-index-database.homeModules.nix-index
         whisp-away.nixosModules.home-manager
+        locallm.homeManagerModules.default
       ];
 
       systems.modules = {

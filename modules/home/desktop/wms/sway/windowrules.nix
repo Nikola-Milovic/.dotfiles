@@ -29,6 +29,7 @@ in
 
         floating = {
           criteria = [
+            { app_id = "locallm"; }
             { class = "Wofi"; }
             { class = "wlogout"; }
             { class = "file_progress"; }

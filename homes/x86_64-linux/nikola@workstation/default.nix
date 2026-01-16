@@ -36,6 +36,11 @@ with lib.${namespace};
         vlc = enabled;
         torrent = enabled;
         cursor = enabled;
+        locallm = {
+          enable = true;
+          defaultModel = "llama3.2:3b";
+          showGpuStats = true;
+        };
       };
 
       terminal = {

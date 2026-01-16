@@ -59,6 +59,12 @@ in
       ssh = enabled;
       tailscale = enabled;
       docker = enabled;
+      ollama = {
+        enable = true;
+        acceleration = "rocm";
+        rocmOverrideGfx = "11.0.0"; # RX 7000 series
+        loadModels = [ "llama3.2:3b" ];
+      };
     };
 
     user = {
