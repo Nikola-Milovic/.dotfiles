@@ -154,7 +154,7 @@ in
   };
 
   memory = {
-    format = "{used:0.1f}G/{total:0.1f}G ({}%)";
+    format = "{used:0.1f}G/{total:0.1f}G ({percentage}%)";
   };
 
   network =
@@ -208,8 +208,9 @@ in
   };
 
   temperature = {
-    hwmon-path-abs = "/sys/devices/pci0000:00/0000:00:18.3/hwmon";
-    input-filename = "temp1_input";
+    # Let waybar auto-detect the temperature sensor
+    # Using GPU temp since k10temp CPU sensor isn't available
+    hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
     critical-threshold = 80;
     format-critical = "{temperatureC}°C {icon}";
     format = "{icon}{temperatureC}°C";
