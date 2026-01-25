@@ -17,7 +17,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ devbox ];
+    home.packages = with pkgs; [
+      devbox
+      nodejs_24
+    ];
+    home.sessionPath = [
+      "$HOME/.local/bin"
+      "$HOME/.cargo/bin"
+    ];
     home.persistence."/persist" = {
       directories = [
         ".config/hcloud"

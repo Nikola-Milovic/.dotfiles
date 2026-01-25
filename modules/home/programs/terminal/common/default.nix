@@ -43,9 +43,6 @@ in
       dig
       inetutils
       lsof
-
-      # git worktree management CLI
-      worktrunk
     ];
 
     # TODO: add superfile instead of yazi
