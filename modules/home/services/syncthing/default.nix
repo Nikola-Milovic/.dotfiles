@@ -22,7 +22,6 @@ in
     services.syncthing = {
       enable = true;
       extraOptions = [
-        "--no-default-folder"
         "--home=${homeDir}"
       ];
     };
