@@ -76,7 +76,7 @@ in
 
       diskusage = "ncdu /";
 
-      tmux = "zellij";
+      # tmux = "zellij";
       zj = "zellij";
     };
 
@@ -93,6 +93,11 @@ in
       ripgrep = enabled;
       fzf = enabled;
       jq = enabled;
+
+      tmux = {
+        enable = true;
+        shell = "${pkgs.bash}/bin/bash";
+      };
 
       # maybe add pet snippets to a gist
       pet = {
