@@ -25,12 +25,16 @@ in
     networking = {
       firewall = {
         enable = true;
+        # Avoid strict rpfilter drops on tunneled traffic (e.g. tailscale0 + docker bridges).
+        checkReversePath = "loose";
       };
 
 # Local network interface used for mobile development to connect to the host machine
       firewall.trustedInterfaces = [
         "enp119s0"
         "tailscale0"
+        "docker0"
+        "br-+"
       ];
 
       nameservers = mkForce [
