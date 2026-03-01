@@ -31,6 +31,7 @@ in
           criteria = [
             { app_id = "locallm"; }
             { class = "Wofi"; }
+            { class = "Emulator"; }
             { class = "wlogout"; }
             { class = "file_progress"; }
             { class = "confirm"; }
