@@ -12,7 +12,7 @@ I have a highly customized setup that allows me to work comfortably for long hou
 | **Memory** | 64GB DDR5 6000MHz |
 | **Storage** | 2TB NVMe M.2 PCIe 4 SSD |
 | **Operating System** | NixOS (Sway + Wayland) |
-| **IDE** | Neovim |
+| **IDE** | Vim |
 
 - **Keyboard**  ⌨️ [Kinesis Advantage 2](https://kinesis-ergo.com/shop/advantage2/) - A durable and comfortable ergonomic keyboard without RGB. Highly recommended for anyone with wrist issues seeking a simple and effective solution.
 - **Layout:** [Real-Programmer Dvorak](https://github.com/ThePrimeagen/keyboards) with modifications: `<Esc>` moved to `<Caps Lock>` for easier access, and `Home/End` swapped with `Page Up/Down`.
@@ -45,8 +45,3 @@ A big thanks to these amazing repositories that helped me set up my current envi
 - [ ] **Fix Sway Brightness Hotkeys**
 - [ ] **Wrong audio device is used as default**
 - [ ] BTRFS rollback not working
-
-## Neovim
-
-- [ ] [Open edit from lazyvim](https://github.com/kdheepak/lazygit.nvim/issues/67#issuecomment-3123381338)
-- [ ] AI autocomplete, like [minuet](https://github.com/milanglacier/minuet-ai.nvim)

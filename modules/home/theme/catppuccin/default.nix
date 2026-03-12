@@ -174,10 +174,6 @@ in
           inherit accent;
           inherit flavor;
         };
-        nvim = {
-          enable = true;
-          inherit flavor;
-        };
         sway = {
           enable = true;
           inherit flavor;

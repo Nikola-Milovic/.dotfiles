@@ -25,8 +25,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
-
     impermanence.url = "github:nix-community/impermanence";
 
     snowfall-lib = {
@@ -46,6 +44,11 @@
 
     locallm = {
       url = "github:Nikola-Milovic/locallm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    desloppify = {
+      url = "github:Nikola-Milovic/desloppify";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

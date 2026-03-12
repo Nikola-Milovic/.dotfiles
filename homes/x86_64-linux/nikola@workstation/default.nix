@@ -45,7 +45,6 @@ with lib.${namespace};
 
       terminal = {
         ssh = enabled;
-        neovim = enabled;
         git = enabled;
         starship = enabled;
         devenv = enabled;

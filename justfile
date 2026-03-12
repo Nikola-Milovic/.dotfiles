@@ -1,3 +1,3 @@
 setup:
 	TODO:
-	-- nvim && sops key setup
+	-- vim && sops key setup

@@ -66,7 +66,7 @@ Uses SOPS with age encryption:
 ## Important Notes
 
 1. **Never disable impermanence** - The system is designed around this feature
-2. **All custom modules use the `custom` namespace** - e.g., `custom.programs.neovim`
+2. **All custom modules use the `custom` namespace** - e.g., `custom.programs.terminal.common`
 3. **Test changes with `nh os test`** before switching
 4. **Backup /persist before major changes** using `nix run .#backup`
 5. **BTRFS subvolumes**: root (ephemeral), nix, persist, log, swap

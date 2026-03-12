@@ -43,6 +43,10 @@ in
       dig
       inetutils
       lsof
+
+      vim
+
+      inputs.desloppify.packages.${system}.default
     ];
 
     # TODO: add superfile instead of yazi
