@@ -44,8 +44,6 @@ in
       inetutils
       lsof
 
-      vim
-
       inputs.desloppify.packages.${system}.default
     ];
 
@@ -138,6 +136,14 @@ in
         enableBashIntegration = true;
         flags = [ "--disable-up-arrow" ];
       };
+    };
+
+    programs.vim = {
+      enable = true;
+      packageConfigurable = pkgs.vim-full;
+      extraConfig = ''
+        set clipboard^=unnamedplus
+      '';
     };
 
     xdg.configFile."zellij" = {
