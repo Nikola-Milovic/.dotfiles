@@ -141,8 +141,11 @@ in
     programs.vim = {
       enable = true;
       packageConfigurable = pkgs.vim-full;
+      plugins = with pkgs.vimPlugins; [ fzf-vim ];
       extraConfig = ''
+        let mapleader = " "
         set clipboard^=unnamedplus
+        nnoremap <silent> <leader><leader> :Files<CR>
       '';
     };
 
