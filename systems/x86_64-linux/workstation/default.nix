@@ -59,6 +59,7 @@ in
       ssh = enabled;
       tailscale = enabled;
       docker = enabled;
+      networkmon = enabled;
       ollama = {
         enable = true;
         acceleration = "rocm";
