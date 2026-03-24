@@ -138,36 +138,6 @@ in
       };
     };
 
-    programs.vim = {
-      enable = true;
-      packageConfigurable = pkgs.vim-full;
-      plugins = with pkgs.vimPlugins; [ fzf-vim ];
-      extraConfig = ''
-        let mapleader = " "
-        let maplocalleader = " "
-
-        nnoremap <silent> <Space> <Nop>
-
-        set clipboard^=unnamedplus
-        set ignorecase
-        set smartcase
-
-        let g:netrw_sort_options = "i"
-
-        function! s:OpenFilePicker() abort
-          if exists(':Files') == 2
-            execute 'Files'
-            return
-          endif
-
-          execute 'Explore'
-        endfunction
-
-        nnoremap <silent> <leader><leader> :call <SID>OpenFilePicker()<CR>
-        nnoremap <silent> <leader>e :Explore<CR>
-      '';
-    };
-
     xdg.configFile."zellij" = {
       source = config.lib.file.mkOutOfStoreSymlink (./zellij);
       recursive = true;

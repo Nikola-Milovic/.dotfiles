@@ -37,6 +37,7 @@ with lib.${namespace};
         devenv = enabled;
         bash = enabled;
         common = enabled;
+        vim = enabled;
         home-manager = enabled;
       };
     };

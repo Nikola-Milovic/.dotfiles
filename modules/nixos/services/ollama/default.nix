@@ -13,6 +13,16 @@ let
     types
     ;
   cfg = config.${namespace}.services.ollama;
+  package =
+    if cfg.acceleration == false then
+      pkgs.ollama-cpu
+    else
+      {
+        rocm = pkgs.ollama-rocm;
+        cuda = pkgs.ollama-cuda;
+        vulkan = pkgs.ollama-vulkan;
+      }
+      .${cfg.acceleration};
 in
 {
   options.${namespace}.services.ollama = {
@@ -22,10 +32,11 @@ in
       type = types.enum [
         "rocm"
         "cuda"
+        "vulkan"
         false
       ];
       default = "rocm";
-      description = "Hardware acceleration type for Ollama";
+      description = "Hardware acceleration type for the selected Ollama package";
     };
 
     rocmOverrideGfx = mkOption {
@@ -48,12 +59,8 @@ in
 
     services.ollama = {
       enable = true;
-      package = pkgs.ollama-rocm;
-      inherit (cfg) acceleration loadModels rocmOverrideGfx;
-      environmentVariables = {
-        HSA_OVERRIDE_GFX_VERSION = cfg.rocmOverrideGfx;
-      };
+      inherit package;
+      inherit (cfg) loadModels rocmOverrideGfx;
     };
   };
 }
-

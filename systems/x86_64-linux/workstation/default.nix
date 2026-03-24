@@ -6,7 +6,10 @@
 }:
 let
   inherit (lib) mkForce;
-  inherit (lib.${namespace}) enabled;
+  inherit (lib.${namespace})
+    disabled
+    enabled
+    ;
 in
 {
   imports = [ ./hardware-configuration.nix ];
@@ -59,7 +62,7 @@ in
       ssh = enabled;
       tailscale = enabled;
       docker = enabled;
-      networkmon = enabled;
+      networkmon = disabled;
       ollama = {
         enable = true;
         acceleration = "rocm";
