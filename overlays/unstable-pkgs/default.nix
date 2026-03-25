@@ -11,6 +11,7 @@ final: prev: {
     obsidian
     rustdesk
     tailscale
+    wt
     ;
 
   # Expose unstable Rust toolchain for packages requiring newer Rust versions

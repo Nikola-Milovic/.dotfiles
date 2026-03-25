@@ -60,11 +60,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1773934245,
-        "narHash": "sha256-urSl3ZFUcWdY20Zy9HBXs2rGRZp8J6kJY8NQaqxNO0w=",
+        "lastModified": 1774414470,
+        "narHash": "sha256-6IsMEMDpe2Zc5I6Ck7IKl4tUM3HGbeUIhNh+0i1rzMk=",
         "owner": "Nikola-Milovic",
         "repo": "desloppify",
-        "rev": "82cfbf8da26af26a0e3a687b5ff809fb90dbe11a",
+        "rev": "5447daa258a01508604ff30428287c2f18b08957",
         "type": "github"
       },
       "original": {

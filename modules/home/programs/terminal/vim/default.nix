@@ -38,21 +38,27 @@ in
 
         let g:netrw_sort_options = "i"
 
+        " Keep the fzf picker readable regardless of the active highlight defaults.
+        highlight FzfNormal guifg=#cad3f5 guibg=#24273a ctermfg=189 ctermbg=237
+        highlight FzfSelection guifg=#cad3f5 guibg=#363a4f ctermfg=189 ctermbg=238
+        highlight FzfAccent guifg=#8aadf4 guibg=#24273a ctermfg=111 ctermbg=237
+        highlight FzfMuted guifg=#a5adcb guibg=#24273a ctermfg=146 ctermbg=237
+
         let g:fzf_colors =
-        \ { 'fg':      ['fg', 'Normal'],
-          \ 'bg':      ['bg', 'Normal'],
-          \ 'query':   ['fg', 'Normal'],
-          \ 'hl':      ['fg', 'Comment'],
-          \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-          \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-          \ 'hl+':     ['fg', 'Statement'],
-          \ 'info':    ['fg', 'PreProc'],
-          \ 'border':  ['fg', 'Ignore'],
-          \ 'prompt':  ['fg', 'Conditional'],
-          \ 'pointer': ['fg', 'Exception'],
-          \ 'marker':  ['fg', 'Keyword'],
-          \ 'spinner': ['fg', 'Label'],
-          \ 'header':  ['fg', 'Comment'] }
+        \ { 'fg':      ['fg', 'FzfNormal'],
+          \ 'bg':      ['bg', 'FzfNormal'],
+          \ 'query':   ['fg', 'FzfNormal'],
+          \ 'hl':      ['fg', 'FzfAccent'],
+          \ 'fg+':     ['fg', 'FzfSelection'],
+          \ 'bg+':     ['bg', 'FzfSelection'],
+          \ 'hl+':     ['fg', 'FzfAccent'],
+          \ 'info':    ['fg', 'FzfMuted'],
+          \ 'border':  ['fg', 'FzfMuted'],
+          \ 'prompt':  ['fg', 'FzfAccent'],
+          \ 'pointer': ['fg', 'FzfAccent'],
+          \ 'marker':  ['fg', 'FzfAccent'],
+          \ 'spinner': ['fg', 'FzfAccent'],
+          \ 'header':  ['fg', 'FzfMuted'] }
 
         function! s:OpenFilePicker() abort
           if exists(':Files') == 2
