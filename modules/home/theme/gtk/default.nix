@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  osConfig,
+  osConfig ? { },
   namespace,
   ...
 }:
@@ -16,6 +16,12 @@ let
     ;
 
   cfg = config.${namespace}.theme.gtk;
+  fontName = lib.attrByPath [
+    namespace
+    "system"
+    "fonts"
+    "default"
+  ] "JetBrainsMono Nerd Font" osConfig;
 in
 {
   options.${namespace}.theme.gtk = {
@@ -87,7 +93,7 @@ in
           cursor-size = cfg.cursor.size;
           cursor-theme = cfg.cursor.name;
           enable-hot-corners = false;
-          font-name = osConfig.${namespace}.system.fonts.default;
+          font-name = fontName;
           gtk-theme = cfg.theme.name;
           icon-theme = cfg.icon.name;
         };
@@ -98,7 +104,7 @@ in
       enable = true;
 
       font = {
-        name = osConfig.${namespace}.system.fonts.default;
+        name = fontName;
       };
 
       gtk2 = {

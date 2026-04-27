@@ -5,7 +5,6 @@
   pkgs,
   system,
   namespace,
-  osConfig,
   ...
 }:
 let

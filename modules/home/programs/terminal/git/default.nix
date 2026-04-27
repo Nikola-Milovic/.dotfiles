@@ -3,7 +3,6 @@
   lib,
   pkgs,
   namespace,
-  osConfig,
   ...
 }:
 let
@@ -46,7 +45,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    ${namespace}.impermanence = {
+    ${namespace}.impermanence = mkIf pkgs.stdenv.isLinux {
       files = [ ".local/state/lazygit/state.yml" ];
     };
 

@@ -40,7 +40,7 @@ following snowfall conventions.
 
 - `systems/x86_64-linux/workstation` — main desktop
 - `systems/x86_64-linux/vm` — virtualised test target
-- `systems/aarch64-darwin/mac` — work in progress (see `plans/darwin.md`)
+- `systems/aarch64-darwin/macbook` — work in progress (see `plans/darwin.md`)
 
 ## Common commands
 
@@ -79,7 +79,8 @@ nix fmt
 ## Impermanence
 
 The root filesystem is reset on every boot. To keep state across reboots, opt in
-explicitly:
+explicitly. This is Linux/NixOS-only; the Darwin configuration does not use
+impermanence.
 
 - System state → `modules/nixos/system/impermanence/default.nix`
 - User state → `modules/home/impermanence/default.nix`
@@ -99,6 +100,7 @@ Heavy inspiration (and outright borrowed patterns) from:
 - [jakehamilton/config](https://github.com/jakehamilton/config)
 - [khaneliman/khanelinix](https://github.com/khaneliman/khanelinix)
 - [hmajid2301/nixicle](https://github.com/hmajid2301/nixicle)
+- [dustinlyons/nixos-config](https://github.com/dustinlyons/nixos-config)
 
 ## TODO
 

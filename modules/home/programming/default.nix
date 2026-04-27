@@ -1,7 +1,7 @@
 {
   lib,
   config,
-  osConfig,
+  osConfig ? { },
   pkgs,
   namespace,
   ...
@@ -10,10 +10,11 @@ let
   inherit (lib) mkIf types;
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
   cfg = config.${namespace}.programming;
+  osProgrammingEnabled = lib.attrByPath [ namespace "programming" "enable" ] false osConfig;
 in
 {
   options.${namespace}.programming = with types; {
-    enable = mkBoolOpt osConfig.${namespace}.programming.enable "R U PROGRAMMING?";
+    enable = mkBoolOpt osProgrammingEnabled "R U PROGRAMMING?";
   };
 
   config = mkIf cfg.enable {
@@ -25,7 +26,7 @@ in
       "$HOME/.local/bin"
       "$HOME/.cargo/bin"
     ];
-    home.persistence."/persist" = {
+    ${namespace}.impermanence = mkIf pkgs.stdenv.isLinux {
       directories = [
         ".config/hcloud"
         ".config/claude"

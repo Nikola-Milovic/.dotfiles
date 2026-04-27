@@ -1,6 +1,7 @@
 {
   options,
   config,
+  pkgs,
   namespace,
   lib,
   ...
@@ -20,7 +21,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    ${namespace}.impermanence.files = [
+    ${namespace}.impermanence.files = lib.mkIf pkgs.stdenv.isLinux [
       ".ssh/known_hosts"
       ".ssh/known_hosts.old"
     ];

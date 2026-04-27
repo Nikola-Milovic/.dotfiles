@@ -25,7 +25,7 @@ in
       ssh-to-age
     ];
 
-    custom.impermanence.directories = [ ".config/sops" ];
+    custom.impermanence.directories = lib.mkIf pkgs.stdenv.isLinux [ ".config/sops" ];
 
     sops = {
       inherit (cfg) defaultSopsFile;

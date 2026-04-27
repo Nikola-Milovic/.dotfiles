@@ -53,7 +53,7 @@ in
     # https://github.com/nix-community/nix-index-database
     programs.nix-index.enable = false;
 
-    ${namespace}.impermanence = {
+    ${namespace}.impermanence = mkIf pkgs.stdenv.isLinux {
       files = [ ".config/pet/snippet.toml" ];
       directories = [
         ".cache/tealdeer"

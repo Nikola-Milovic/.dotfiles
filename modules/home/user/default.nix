@@ -32,61 +32,69 @@ in
     home = mkOpt (types.nullOr types.str) home-directory "The user's home directory.";
     icon = mkOpt (types.nullOr types.package) null "The profile picture to use for the user.";
     name = mkOpt (types.nullOr types.str) config.snowfallorg.user.name "The user account.";
+    stateVersion = mkOpt types.str "24.05" "The Home Manager state version.";
   };
 
-  config = mkIf cfg.enable (mkMerge [
+  config = mkMerge [
     {
-      assertions = [
-        {
-          assertion = cfg.name != null;
-          message = "${namespace}.user.name must be set";
-        }
-        {
-          assertion = cfg.home != null;
-          message = "${namespace}.user.home must be set";
-        }
-      ];
+      home.stateVersion = mkDefault cfg.stateVersion;
+    }
 
-      xdg = {
-        enable = true;
-        userDirs =
-          let
-            appendToHomeDir = path: "${cfg.home}/${path}";
-          in
+    (mkIf cfg.enable (mkMerge [
+      {
+        assertions = [
           {
-            enable = true;
-            desktop = appendToHomeDir "desktop";
-            documents = appendToHomeDir "documents";
-            download = appendToHomeDir "downloads";
-            music = appendToHomeDir "music";
-            pictures = appendToHomeDir "pictures";
-            publicShare = appendToHomeDir "public";
-            templates = appendToHomeDir "templates";
-            videos = appendToHomeDir "videos";
-          };
-      };
+            assertion = cfg.name != null;
+            message = "${namespace}.user.name must be set";
+          }
+          {
+            assertion = cfg.home != null;
+            message = "${namespace}.user.home must be set";
+          }
+        ];
 
-      home = {
-        file = {
-          "documents/.keep".text = "";
-          "downloads/.keep".text = "";
-          "files/.keep".text = "";
-          "music/.keep".text = "";
-          "pictures/.keep".text = "";
-          "videos/.keep".text = "";
-        }
-        // lib.optionalAttrs (cfg.icon != null) {
-          ".face".source = cfg.icon;
-          ".face.icon".source = cfg.icon;
-          "pictures/${cfg.icon.fileName or (builtins.baseNameOf cfg.icon)}".source = cfg.icon;
+        xdg = mkIf pkgs.stdenv.isLinux {
+          enable = true;
+          userDirs =
+            let
+              appendToHomeDir = path: "${cfg.home}/${path}";
+            in
+            {
+              enable = true;
+              desktop = appendToHomeDir "desktop";
+              documents = appendToHomeDir "documents";
+              download = appendToHomeDir "downloads";
+              music = appendToHomeDir "music";
+              pictures = appendToHomeDir "pictures";
+              publicShare = appendToHomeDir "public";
+              templates = appendToHomeDir "templates";
+              videos = appendToHomeDir "videos";
+            };
         };
 
-        homeDirectory = mkDefault cfg.home;
+        home = {
+          file =
+            lib.optionalAttrs pkgs.stdenv.isLinux {
+              "documents/.keep".text = "";
+              "downloads/.keep".text = "";
+              "files/.keep".text = "";
+              "music/.keep".text = "";
+              "pictures/.keep".text = "";
+              "videos/.keep".text = "";
+            }
+            // lib.optionalAttrs (cfg.icon != null) {
+              ".face".source = cfg.icon;
+              ".face.icon".source = cfg.icon;
+              "pictures/${cfg.icon.fileName or (builtins.baseNameOf cfg.icon)}".source = cfg.icon;
+            };
 
-        shellAliases = { };
+          homeDirectory = mkDefault cfg.home;
 
-        username = mkDefault cfg.name;
-      };
-    }
-  ]);
+          shellAliases = { };
+
+          username = mkDefault cfg.name;
+        };
+      }
+    ]))
+  ];
 }
