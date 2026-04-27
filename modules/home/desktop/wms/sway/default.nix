@@ -17,14 +17,18 @@ let
   inherit (lib.${namespace}) enabled mkOpt mkBoolOpt;
   cfg = config.${namespace}.desktop.wms.sway;
   osSwayEnabled = lib.attrByPath [ namespace "desktop" "wms" "sway" "enable" ] false osConfig;
-  osKeyboardLayout = lib.attrByPath [ namespace "system" "keyboard" "layout" ] "us" osConfig;
+  osKeyboardXkb = lib.attrByPath [ namespace "system" "keyboard" "xkb" ] {
+    layout = "us";
+    variant = "";
+  } osConfig;
 in
 {
   options.${namespace}.desktop.wms.sway = with types; {
     enable = mkBoolOpt osSwayEnabled "Sway";
     modifier = mkOpt str "Mod1" "Modifier key to use";
     extraConfig = mkOpt str "" "Additional configuration for the Sway config file.";
-    keyboardLayout = mkOpt str osKeyboardLayout "Keyboard layout to use.";
+    keyboardLayout = mkOpt str osKeyboardXkb.layout "xkb_layout to use.";
+    keyboardVariant = mkOpt str osKeyboardXkb.variant "xkb_variant to use.";
     term = mkOpt package pkgs.foot "The terminal to use.";
     filemanager = mkOpt package pkgs.nemo "The file manager to use.";
     launcherCmd = mkOpt str "" "The launcher command to use.";
@@ -116,6 +120,7 @@ in
         input = {
           "*" = {
             xkb_layout = cfg.keyboardLayout;
+            xkb_variant = cfg.keyboardVariant;
           };
         };
 

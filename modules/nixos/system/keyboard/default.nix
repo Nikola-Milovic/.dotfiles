@@ -94,6 +94,14 @@ let
     };
   };
 
+  # Custom layouts are registered via xkb.extraLayouts as standalone
+  # top-level entries, so they are addressed as `layout=<name>`.
+  # Built-in layouts (e.g. "dvorak") only exist as variants of "us"
+  # in xkbcommon's database, so they need `layout=us, variant=<name>`.
+  isCustom = extraLayouts ? ${cfg.layout};
+  xkbLayout = if isCustom then cfg.layout else "us";
+  xkbVariant = if isCustom then "" else cfg.layout;
+
 in
 {
   options.${namespace}.system.keyboard = with types; {
@@ -112,18 +120,37 @@ in
         keybinding definitions so they adapt to the chosen layout.
       '';
     };
+
+    xkb = {
+      layout = mkOption {
+        type = str;
+        readOnly = true;
+        description = "xkb_layout name for the active layout (consumers: sway, etc.).";
+      };
+      variant = mkOption {
+        type = str;
+        readOnly = true;
+        description = "xkb_variant name for the active layout (empty for custom layouts).";
+      };
+    };
   };
 
   config = mkIf (lib.elem cfg.layout availableLayouts) {
-    ${namespace}.system.keyboard.symbols = layoutSymbols.${cfg.layout};
+    ${namespace}.system.keyboard = {
+      symbols = layoutSymbols.${cfg.layout};
+      xkb = {
+        layout = xkbLayout;
+        variant = xkbVariant;
+      };
+    };
 
     services.xserver = {
-      xkb.extraLayouts = lib.optionalAttrs (extraLayouts ? ${cfg.layout}) {
+      xkb.extraLayouts = lib.optionalAttrs isCustom {
         ${cfg.layout} = extraLayouts.${cfg.layout};
       };
 
-      xkb.layout = "us";
-      xkb.variant = cfg.layout;
+      xkb.layout = xkbLayout;
+      xkb.variant = xkbVariant;
     };
 
     console.useXkbConfig = true;
