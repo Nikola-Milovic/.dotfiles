@@ -9,19 +9,16 @@
 let
   inherit (lib) mkOption types mkIf;
 
-  # Define the configuration variable
   cfg = config.${namespace}.system.keyboard;
 
-  # Define a list of available keyboard layouts.
-  # This makes it easy to add new layouts in the future.
   availableLayouts = [
+    "dvorak"
     "real-prog-dvorak"
     "lemi-dvorak"
   ];
 
-  # Define the extra layouts that can be enabled.
-  # This is a map where the keys are the layout names and the values
-  # are their corresponding definitions.
+  # Custom layouts that need to be registered with xkb.
+  # Built-in xkb variants (e.g. "dvorak") do not appear here.
   extraLayouts = {
     real-prog-dvorak = {
       description = "Real programmers dvorak";
@@ -35,25 +32,96 @@ let
     };
   };
 
+  # Per-layout map from a "logical" key (the QWERTY/US character a user
+  # would think of) to the xkb keysym actually produced on that layout.
+  # Consumers (e.g. sway keybindings) look up by logical key so bindings
+  # can stay layout-agnostic. Lower-case `tilde` / `backtick` entries
+  # cover the TLDE position, which lacks a single-char ASCII name here.
+  layoutSymbols = rec {
+    dvorak = {
+      "1" = "1";
+      "2" = "2";
+      "3" = "3";
+      "4" = "4";
+      "5" = "5";
+      "6" = "6";
+      "7" = "7";
+      "8" = "8";
+      "9" = "9";
+      "0" = "0";
+      "!" = "exclam";
+      "@" = "at";
+      "#" = "numbersign";
+      "$" = "dollar";
+      "%" = "percent";
+      "^" = "asciicircum";
+      "&" = "ampersand";
+      "*" = "asterisk";
+      "(" = "parenleft";
+      ")" = "parenright";
+      backtick = "grave";
+      tilde = "asciitilde";
+    };
+
+    lemi-dvorak = dvorak // {
+      "1" = "plus";
+      "2" = "bracketleft";
+      "3" = "braceleft";
+      "4" = "parenleft";
+      "5" = "ampersand";
+      "6" = "at";
+      "7" = "parenright";
+      "8" = "braceright";
+      "9" = "bracketright";
+      "0" = "asterisk";
+      # Shift on the number row produces the digit itself on lemi-dvorak.
+      "!" = "1";
+      "@" = "2";
+      "#" = "3";
+      "$" = "4";
+      "%" = "5";
+      "^" = "6";
+      "&" = "7";
+      "*" = "8";
+      "(" = "9";
+      ")" = "0";
+      backtick = "dollar";
+    };
+
+    # Identical to lemi-dvorak except AE06 produces `equal` instead of `at`.
+    real-prog-dvorak = lemi-dvorak // {
+      "6" = "equal";
+    };
+  };
+
 in
 {
   options.${namespace}.system.keyboard = with types; {
     layout = mkOption {
-      # Use an enum type to restrict the selection to our predefined list.
       type = enum availableLayouts;
       default = "real-prog-dvorak";
       description = "Selects the custom keyboard layout to be used.";
     };
+
+    symbols = mkOption {
+      type = attrsOf str;
+      readOnly = true;
+      description = ''
+        Map from a logical (QWERTY-equivalent) key to the xkb keysym
+        produced by that key on the active layout. Use this in
+        keybinding definitions so they adapt to the chosen layout.
+      '';
+    };
   };
 
   config = mkIf (lib.elem cfg.layout availableLayouts) {
+    ${namespace}.system.keyboard.symbols = layoutSymbols.${cfg.layout};
+
     services.xserver = {
-      # Enable the specified extra layout by selecting it from the map.
-      xkb.extraLayouts = {
+      xkb.extraLayouts = lib.optionalAttrs (extraLayouts ? ${cfg.layout}) {
         ${cfg.layout} = extraLayouts.${cfg.layout};
       };
 
-      # Set the xserver layout and variant based on the user's choice.
       xkb.layout = "us";
       xkb.variant = cfg.layout;
     };
