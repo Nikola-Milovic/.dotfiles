@@ -1,47 +1,110 @@
-# Intro
+# .dotfiles
 
-This is my personal NixOS flake configuration repository. It utilizes [snowfalllib](https://github.com/snowfallorg/lib) to configure my system, home, packages and so on. I'm constantly improving it but it's already my daily driver.
+My personal NixOS flake. Built on [snowfall-lib](https://github.com/snowfallorg/lib),
+hardened with [impermanence](https://github.com/nix-community/impermanence), and
+secured with [sops-nix](https://github.com/Mic92/sops-nix). It's my daily driver.
 
-I have a highly customized setup that allows me to work comfortably for long hours at the computer. Port from my previous Ubuntu setup over at [**.dotfiles-old**](https://github.com/Nikola-Milovic/.dotfiles-old) repository.
+Ported from my previous Ubuntu setup at
+[.dotfiles-old](https://github.com/Nikola-Milovic/.dotfiles-old).
 
-## Hardware & Software
+## What's in here
 
-| **Category** | **Details** |
-|--------------|-------------|
-| **Processor** | 💻 Ryzen 9 9950X |
-| **Memory** | 64GB DDR5 6000MHz |
-| **Storage** | 2TB NVMe M.2 PCIe 4 SSD |
-| **Operating System** | NixOS (Sway + Wayland) |
-| **IDE** | Vim |
+- **NixOS** with a **Sway / Wayland** desktop session
+- **Impermanent root**: only `/nix`, `/boot`, and `/persist` survive a reboot;
+  everything else is wiped on every boot and explicitly opted in for persistence
+- **SOPS + age** for secrets, scoped per host
+- **Custom xkb layouts** alongside stock dvorak, plumbed through to sway
+  keybindings so layout changes propagate automatically
+- **Per-arch hosts** for Linux and (in progress) Darwin
 
-- **Keyboard**  ⌨️ [Kinesis Advantage 2](https://kinesis-ergo.com/shop/advantage2/) - A durable and comfortable ergonomic keyboard without RGB. Highly recommended for anyone with wrist issues seeking a simple and effective solution.
-- **Layout:** [Real-Programmer Dvorak](https://github.com/ThePrimeagen/keyboards) with modifications: `<Esc>` moved to `<Caps Lock>` for easier access, and `Home/End` swapped with `Page Up/Down`.
+## Repository layout
 
-This setup has eliminated my wrist pain and discomfort entirely.
+The `custom.` namespace is reserved for everything defined in this repo,
+following snowfall conventions.
 
----
+| Path             | Purpose                                                    |
+| ---------------- | ---------------------------------------------------------- |
+| `flake.nix`      | Flake entry point and inputs                               |
+| `systems/`       | Per-host NixOS / nix-darwin configurations                 |
+| `homes/`         | Per-user home-manager configurations (`<arch>/<user>...`)  |
+| `modules/nixos/` | System-level NixOS modules                                 |
+| `modules/home/`  | home-manager modules                                       |
+| `modules/shared/`| Modules shared between system and home                     |
+| `lib/`           | Snowfall library extensions exposed under `lib.custom.*`   |
+| `packages/`      | Custom packages, surfaced as flake outputs                 |
+| `overlays/`      | Nixpkgs overlays (`brave`, `calibre`, `unstable-pkgs`)     |
+| `shells/`        | Per-language `nix develop` shells                          |
+| `secrets/`       | SOPS-encrypted secrets (see `.sops.yaml`)                  |
 
-## [Impermanence](https://github.com/nix-community/impermanence)
+### Hosts
 
-Currently everything but `/nix`, `/boot` and `/persist` are wiped on every boot. Why...? I don't know really, it's probably not necessary but sounded fun to do. You have to explicitly state every directory and file that you want to persist, it gives you more control over your system so that it doesn't get filled up with junk files
+- `systems/x86_64-linux/workstation` — main desktop
+- `systems/x86_64-linux/vm` — virtualised test target
+- `systems/aarch64-darwin/mac` — work in progress (see `plans/darwin.md`)
 
----
+## Common commands
 
-# Inspirations & Credits
+Rebuild the system (using [`nh`](https://github.com/viperML/nh)):
 
-A big thanks to these amazing repositories that helped me set up my current environment:
+```sh
+nh os switch     # rebuild and switch
+nh os boot       # rebuild and set as the next boot generation
+nh os test       # rebuild without switching (ephemeral, recommended for trying changes)
+```
+
+Drop into a development shell:
+
+```sh
+nix develop .#nix    # nixfmt-rfc-style, nixd, sops
+nix develop .#go
+nix develop .#lua
+```
+
+Run a custom package:
+
+```sh
+nix run .#backup              # back up /persist to ~/backup/backups/linux/
+nix run .#monitor-control     # monitor brightness / contrast
+nix run .#gammastep-helper    # screen colour temperature
+nix run .#waybar-vpn-status   # waybar VPN module
+nix run .#networkmon          # network monitor
+```
+
+Format every Nix file in the tree:
+
+```sh
+nix fmt
+```
+
+## Impermanence
+
+The root filesystem is reset on every boot. To keep state across reboots, opt in
+explicitly:
+
+- System state → `modules/nixos/system/impermanence/default.nix`
+- User state → `modules/home/impermanence/default.nix`
+- App-specific state → the relevant module's own impermanence block
+
+Persistent data lives under `/persist/...` and is bind-mounted back to where
+the app expects it. Before any major change, snapshot it:
+
+```sh
+nix run .#backup
+```
+
+## Credits
+
+Heavy inspiration (and outright borrowed patterns) from:
 
 - [jakehamilton/config](https://github.com/jakehamilton/config)
-- [Khanelinix/khanelinix](https://github.com/khaneliman/khanelinix)
+- [khaneliman/khanelinix](https://github.com/khaneliman/khanelinix)
 - [hmajid2301/nixicle](https://github.com/hmajid2301/nixicle)
 
----
+## TODO
 
-# TODOs
-
-- [ ] **Security Enhancements**
-- [ ] **Explore [Looking Glass](https://looking-glass.io/)** as an alternative to dual booting
-- [ ] **Set Up [YubiKey](https://github.com/drduh/YubiKey-Guide)**
-- [ ] **Fix Sway Brightness Hotkeys**
-- [ ] **Wrong audio device is used as default**
+- [ ] Security enhancements
+- [ ] Evaluate [Looking Glass](https://looking-glass.io/) as an alternative to dual-booting
+- [ ] [YubiKey](https://github.com/drduh/YubiKey-Guide) setup
+- [ ] Fix sway brightness hotkeys
+- [ ] Wrong audio device picked as default
 - [ ] BTRFS rollback not working
