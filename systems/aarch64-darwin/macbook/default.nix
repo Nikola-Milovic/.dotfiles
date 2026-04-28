@@ -13,6 +13,8 @@ with lib.${namespace};
   };
 
   custom = {
+    apps.terminals = enabled;
+
     system = {
       defaults = {
         enable = true;

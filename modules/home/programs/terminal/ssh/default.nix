@@ -51,7 +51,8 @@ in
         })
         (lib.mkIf (config.${namespace}.security.sops.enable && pkgs.stdenv.isDarwin) {
           "workstation" = {
-            hostname = "workstation";
+            hostname = "100.85.47.92";
+            user = "nikola";
             identityFile = config.sops.secrets."ssh/laptop/private".path;
             identitiesOnly = true;
             addKeysToAgent = "yes";
