@@ -168,8 +168,8 @@ should be followed by a logout/login and a check at the login screen.
    Git, Vim, Starship, Direnv, Devenv, and common CLI tools.
 2. Secrets: copy the existing SOPS age key to `~/.config/sops/age/keys.txt`, or create a Mac-specific
    age key, add its recipient to `.sops.yaml`, and rekey `secrets/users/nikola/secrets.yaml`.
-3. SSH/Git signing: SOPS is enabled in the Darwin home from the start; verify `github/ssh_pk` and
-   commit signing on macOS after activation.
+3. SSH/Git signing: SOPS is enabled in the Darwin home from the start; verify `ssh/github/private`
+   and commit signing on macOS after activation.
 4. Keyboard: decide whether manual Dvorak is enough for first use, or whether nix-darwin should be
    activated before migrating the rest of the machine.
 5. Services: test `custom.services.syncthing` on Darwin separately. Home Manager service activation

@@ -11,6 +11,7 @@ let
     mkEnableOption
     optionalString
     mkIf
+    mkMerge
     types
     ;
   cfg = config.${namespace}.programs.terminal.ssh;
@@ -29,24 +30,34 @@ in
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks = lib.mkIf config.${namespace}.security.sops.enable {
-        "github.com" = {
-          hostname = "github.com";
-          identityFile = config.sops.secrets."github/ssh_pk".path;
-          identitiesOnly = true;
-          addKeysToAgent = "yes";
-        };
-        "aigpu" = {
-          user = "admin";
-          hostname = "100.65.28.102";
-          identityFile = config.sops.secrets."ssh/personal/pk".path;
-          identitiesOnly = true;
-          addKeysToAgent = "yes";
-          extraOptions = {
-            PreferredAuthentications = "publickey";
+      matchBlocks = mkMerge [
+        (lib.mkIf config.${namespace}.security.sops.enable {
+          "github.com" = {
+            hostname = "github.com";
+            identityFile = config.sops.secrets."ssh/github/private".path;
+            identitiesOnly = true;
+            addKeysToAgent = "yes";
           };
-        };
-      };
+          "aigpu" = {
+            user = "admin";
+            hostname = "100.65.28.102";
+            identityFile = config.sops.secrets."ssh/personal/private".path;
+            identitiesOnly = true;
+            addKeysToAgent = "yes";
+            extraOptions = {
+              PreferredAuthentications = "publickey";
+            };
+          };
+        })
+        (lib.mkIf (config.${namespace}.security.sops.enable && pkgs.stdenv.isDarwin) {
+          "workstation" = {
+            hostname = "workstation";
+            identityFile = config.sops.secrets."ssh/laptop/private".path;
+            identitiesOnly = true;
+            addKeysToAgent = "yes";
+          };
+        })
+      ];
     };
   };
 }

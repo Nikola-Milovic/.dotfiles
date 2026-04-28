@@ -76,6 +76,59 @@ Format every Nix file in the tree:
 nix fmt
 ```
 
+## Darwin MacBook
+
+Install Nix on a clean macOS machine:
+
+```sh
+curl -L https://nixos.org/nix/install | sh -s -- --daemon
+```
+
+Restart the terminal, then enable flakes for bootstrap:
+
+```sh
+mkdir -p ~/.config/nix
+printf 'experimental-features = nix-command flakes\n' >> ~/.config/nix/nix.conf
+```
+
+Clone this repo and switch to the Darwin branch:
+
+```sh
+mkdir -p ~/code
+cd ~/code
+git clone https://github.com/Nikola-Milovic/.dotfiles.git
+cd .dotfiles
+git switch darwin-macbook
+```
+
+Install the MacBook age key before activating SOPS-backed Home Manager:
+
+```sh
+mkdir -p ~/.config/sops/age
+install -m 600 ~/Downloads/macbook-keys.txt ~/.config/sops/age/keys.txt
+```
+
+Before `just` is installed, use it through Nix:
+
+```sh
+nix run nixpkgs#just -- darwin-check
+nix run nixpkgs#just -- darwin-bootstrap
+```
+
+After the first successful activation:
+
+```sh
+just darwin-check
+just darwin-switch
+```
+
+The standalone Home Manager helpers are available too:
+
+```sh
+nix run nixpkgs#just -- hm-bootstrap
+just hm-switch
+```
+
 ## Impermanence
 
 The root filesystem is reset on every boot. To keep state across reboots, opt in

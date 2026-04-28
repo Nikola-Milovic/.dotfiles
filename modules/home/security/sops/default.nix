@@ -10,6 +10,7 @@ let
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.security.sops;
+  sshSecretPath = name: "${config.${namespace}.user.home}/.config/sops/ssh/${name}";
 in
 {
   options.${namespace}.security.sops = with types; {
@@ -38,9 +39,16 @@ in
       };
 
       secrets = {
-        "github/ssh_pk" = { };
-        "ssh/personal/pk" = {
-          path = "${config.${namespace}.user.home}/.config/sops/ssh/personal_pk";
+        "ssh/github/private" = {
+          path = sshSecretPath "github";
+        };
+        "ssh/personal/private" = {
+          path = sshSecretPath "personal";
+        };
+      }
+      // lib.optionalAttrs pkgs.stdenv.isDarwin {
+        "ssh/laptop/private" = {
+          path = sshSecretPath "laptop";
         };
       };
     };

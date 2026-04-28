@@ -38,7 +38,7 @@ in
       mkOpt types.bool config.${namespace}.security.sops.enable
         "Whether to sign commits by default.";
     signingKey =
-      mkOpt types.str config.sops.secrets."github/ssh_pk".path
+      mkOpt types.str config.sops.secrets."ssh/github/private".path
         "The key ID to sign commits with.";
     userName = mkOpt types.str user.fullName "The name to configure git with.";
     userEmail = mkOpt types.str user.email "The email to configure git with.";

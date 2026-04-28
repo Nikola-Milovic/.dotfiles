@@ -26,6 +26,7 @@ in
       bottom
       hyperfine
       tokei
+      just
       eza
       procs
 
