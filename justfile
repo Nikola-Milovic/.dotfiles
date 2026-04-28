@@ -2,45 +2,35 @@ set shell := ["bash", "-eu", "-o", "pipefail", "-c"]
 
 home := "nikola"
 darwin_host := "macbook"
+nixos_host := "workstation"
+
+hm := "github:nix-community/home-manager/release-25.11"
+darwin_rebuild := "github:nix-darwin/nix-darwin/nix-darwin-25.11#darwin-rebuild"
+nixos_rebuild := "github:NixOS/nixpkgs/nixos-25.11#nixos-rebuild"
 
 default:
-    @just --list
+    @printf '%s\n' 'switch' 'hm-switch' 'darwin-switch' 'nixos-switch'
 
-# Evaluate the standalone Home Manager activation derivation.
-hm-eval home=home:
-    nix eval .#homeConfigurations."{{home}}".activationPackage.drvPath
+switch:
+    case "$(uname -s)" in \
+      Darwin) \
+        nix run {{hm}} -- switch --flake .#{{home}}; \
+        nix run {{darwin_rebuild}} -- switch --flake .#{{darwin_host}}; \
+        ;; \
+      Linux) \
+        sudo nix run {{nixos_rebuild}} -- switch --flake .#{{nixos_host}}; \
+        ;; \
+      *) \
+        echo "Unsupported system: $(uname -s)" >&2; \
+        exit 1; \
+        ;; \
+    esac
 
-# Bootstrap Home Manager before the home-manager command exists.
-hm-bootstrap home=home:
-    nix run github:nix-community/home-manager/release-25.11 -- switch --flake .#{{home}}
-
-# Switch standalone Home Manager after it has been bootstrapped.
 hm-switch home=home:
-    home-manager switch --flake .#{{home}}
+    nix run {{hm}} -- switch --flake .#{{home}}
 
-# Evaluate the nix-darwin system derivation.
-darwin-eval host=darwin_host:
-    nix eval .#darwinConfigurations.{{host}}.config.system.build.toplevel.drvPath
-
-# Bootstrap nix-darwin before the darwin-rebuild command exists.
-darwin-bootstrap host=darwin_host:
-    nix run github:nix-darwin/nix-darwin/nix-darwin-25.11#darwin-rebuild -- switch --flake .#{{host}}
-
-# Switch nix-darwin, bootstrapping through nix run if darwin-rebuild is not installed yet.
 darwin-switch host=darwin_host:
-    if command -v darwin-rebuild >/dev/null 2>&1; then \
-      darwin-rebuild switch --flake .#{{host}}; \
-    else \
-      nix run github:nix-darwin/nix-darwin/nix-darwin-25.11#darwin-rebuild -- switch --flake .#{{host}}; \
-    fi
+    nix run {{darwin_rebuild}} -- switch --flake .#{{host}}
 
-# Alias for the command name people naturally reach for.
-darwin-rebuild host=darwin_host: darwin-switch
-
-# Evaluate the MacBook Home Manager and nix-darwin targets.
-darwin-check: hm-eval darwin-eval
-
-# Evaluate existing Linux Home Manager targets.
-linux-home-check:
-    nix eval .#homeConfigurations."nikola@workstation".activationPackage.drvPath
-    nix eval .#homeConfigurations."nikola@vm".activationPackage.drvPath
+nixos-switch host=nixos_host:
+    sudo nix run {{nixos_rebuild}} -- switch --flake .#{{host}}
