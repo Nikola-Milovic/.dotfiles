@@ -26,9 +26,16 @@ darwin-eval host=darwin_host:
 darwin-bootstrap host=darwin_host:
     nix run github:nix-darwin/nix-darwin/nix-darwin-25.11#darwin-rebuild -- switch --flake .#{{host}}
 
-# Switch nix-darwin after it has been bootstrapped.
+# Switch nix-darwin, bootstrapping through nix run if darwin-rebuild is not installed yet.
 darwin-switch host=darwin_host:
-    darwin-rebuild switch --flake .#{{host}}
+    if command -v darwin-rebuild >/dev/null 2>&1; then \
+      darwin-rebuild switch --flake .#{{host}}; \
+    else \
+      nix run github:nix-darwin/nix-darwin/nix-darwin-25.11#darwin-rebuild -- switch --flake .#{{host}}; \
+    fi
+
+# Alias for the command name people naturally reach for.
+darwin-rebuild host=darwin_host: darwin-switch
 
 # Evaluate the MacBook Home Manager and nix-darwin targets.
 darwin-check: hm-eval darwin-eval
