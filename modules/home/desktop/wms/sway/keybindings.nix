@@ -24,8 +24,22 @@ let
   # the logical (QWERTY-equivalent) key the user thinks of pressing to
   # the keysym actually produced on the active layout, so bindings
   # below stay layout-agnostic.
+  fallbackSymbols = {
+    "!" = "exclam";
+    "@" = "at";
+    "#" = "numbersign";
+    "$" = "dollar";
+    "%" = "percent";
+    "^" = "asciicircum";
+    "&" = "ampersand";
+    "*" = "asterisk";
+    "(" = "parenleft";
+    ")" = "parenright";
+    backtick = "grave";
+    tilde = "asciitilde";
+  };
   symbols = lib.attrByPath [ namespace "system" "keyboard" "symbols" ] { } osConfig;
-  sym = key: symbols.${key} or key;
+  sym = key: symbols.${key} or fallbackSymbols.${key} or key;
 
   digits = [
     "1"
@@ -61,7 +75,10 @@ let
 
   workspaceMoveBindings = lib.listToAttrs (
     lib.imap1 (i: key: {
-      name = "${modifier}+Shift+${sym key}";
+      # Shift is consumed by xkb when producing these shifted keysyms.
+      # Binding to the symbol itself keeps physical Mod+Shift+number-row
+      # workspace moves working on Dvorak layouts.
+      name = "${modifier}+${sym key}";
       value = "move container to workspace ${toString i}";
     }) shiftedDigits
   );
