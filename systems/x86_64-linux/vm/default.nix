@@ -24,6 +24,7 @@ in
       fonts = enabled;
       impermanence = {
         enable = true;
+        device = "/dev/sda2";
       };
 
       disko.btrfs = {

@@ -13,9 +13,9 @@ mkShell {
     golangci-lint-langserver
     golangci-lint
     gofumpt
-    goimports
+    gotools
     gomodifytags
   ];
 
-  shellHook = '''';
+  shellHook = "";
 }

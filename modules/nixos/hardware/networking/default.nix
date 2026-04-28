@@ -29,7 +29,7 @@ in
         checkReversePath = "loose";
       };
 
-# Local network interface used for mobile development to connect to the host machine
+      # Local network interface used for mobile development to connect to the host machine
       firewall.trustedInterfaces = [
         "enp119s0"
         "tailscale0"

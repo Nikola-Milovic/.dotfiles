@@ -1,4 +1,9 @@
-{ lib, namespace, config, ... }:
+{
+  lib,
+  namespace,
+  config,
+  ...
+}:
 let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.${namespace}.hardware.opentablet;

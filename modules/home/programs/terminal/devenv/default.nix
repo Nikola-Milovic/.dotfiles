@@ -22,6 +22,13 @@ in
       enable = true;
       enableBashIntegration = true;
       nix-direnv.enable = true;
+      package =
+        if pkgs.stdenv.isDarwin then
+          pkgs.direnv.overrideAttrs (_oldAttrs: {
+            doCheck = false;
+          })
+        else
+          pkgs.direnv;
     };
 
     home.file.".direnvrc".text = ''

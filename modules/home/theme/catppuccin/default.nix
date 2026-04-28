@@ -16,6 +16,21 @@ let
   inherit (lib.${namespace}) capitalize;
 
   cfg = config.${namespace}.theme.catppuccin;
+  palette = (import ./colors.nix).colors;
+  fzfColors = {
+    "bg+" = palette.surface0.hex;
+    bg = palette.base.hex;
+    spinner = palette.rosewater.hex;
+    hl = palette.blue.hex;
+    fg = palette.text.hex;
+    header = palette.blue.hex;
+    info = palette.blue.hex;
+    pointer = palette.blue.hex;
+    marker = palette.blue.hex;
+    "fg+" = palette.text.hex;
+    prompt = palette.blue.hex;
+    "hl+" = palette.blue.hex;
+  };
 
   catppuccinAccents = [
     "rosewater"
@@ -147,11 +162,6 @@ in
           enable = true;
           inherit flavor;
         };
-        fzf = {
-          enable = true;
-          inherit flavor;
-          inherit accent;
-        };
         gh-dash = {
           enable = true;
           inherit flavor;
@@ -202,6 +212,8 @@ in
         CURSOR_THEME = config.${namespace}.theme.gtk.cursor.name;
       };
     };
+
+    programs.fzf.colors = fzfColors;
 
     qt = mkIf pkgs.stdenv.isLinux {
       enable = true;
