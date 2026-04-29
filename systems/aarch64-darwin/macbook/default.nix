@@ -23,7 +23,10 @@ with lib.${namespace};
   };
 
   custom = {
-    apps.terminals = enabled;
+    apps = {
+      terminals = enabled;
+      raycast = enabled;
+    };
 
     system = {
       defaults = {
@@ -34,8 +37,10 @@ with lib.${namespace};
       keyboard = {
         enable = true;
         layout = "dvorak";
-        remapCapsLockToControl = true;
+        remapCapsLockToControl = false;
+        remapCapsLockToEscape = true;
         remapNonUSTilde = true;
+        swapLeftCtrlAndFn = true;
       };
     };
   };
