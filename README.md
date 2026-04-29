@@ -1,80 +1,102 @@
 # .dotfiles
 
-My personal NixOS flake. Built on [snowfall-lib](https://github.com/snowfallorg/lib),
-hardened with [impermanence](https://github.com/nix-community/impermanence), and
-secured with [sops-nix](https://github.com/Mic92/sops-nix). It's my daily driver.
+Personal NixOS and macOS configuration flake. Built on
+[snowfall-lib](https://github.com/snowfallorg/lib), with
+[home-manager](https://github.com/nix-community/home-manager),
+[nix-darwin](https://github.com/nix-darwin/nix-darwin), NixOS
+[impermanence](https://github.com/nix-community/impermanence), and
+[sops-nix](https://github.com/Mic92/sops-nix).
 
 Ported from my previous Ubuntu setup at
 [.dotfiles-old](https://github.com/Nikola-Milovic/.dotfiles-old).
 
-## What's in here
+## What's In Here
 
-- **NixOS** with a **Sway / Wayland** desktop session
-- **Impermanent root**: only `/nix`, `/boot`, and `/persist` survive a reboot;
-  everything else is wiped on every boot and explicitly opted in for persistence
+- **NixOS workstation** with Sway / Wayland
+- **Impermanent NixOS root**: only `/nix`, `/boot`, and `/persist` survive reboots
+- **Apple Silicon MacBook** managed with nix-darwin and Home Manager
 - **SOPS + age** for secrets, scoped per host
-- **Custom xkb layouts** alongside stock dvorak, plumbed through to sway
-  keybindings so layout changes propagate automatically
-- **Per-arch hosts** for Linux and (in progress) Darwin
+- **Custom xkb layouts** on Linux, plumbed through to Sway keybindings
+- **Darwin keyboard defaults** for Dvorak, Caps Lock, and non-US tilde behavior
+- **Homebrew-managed macOS apps** through the Darwin layer
 
-## Repository layout
+## Repository Layout
 
-The `custom.` namespace is reserved for everything defined in this repo,
-following snowfall conventions.
+Everything defined by this repo uses the `custom.` namespace.
 
-| Path             | Purpose                                                    |
-| ---------------- | ---------------------------------------------------------- |
-| `flake.nix`      | Flake entry point and inputs                               |
-| `systems/`       | Per-host NixOS / nix-darwin configurations                 |
-| `homes/`         | Per-user home-manager configurations (`<arch>/<user>...`)  |
-| `modules/nixos/` | System-level NixOS modules                                 |
-| `modules/home/`  | home-manager modules                                       |
-| `modules/shared/`| Modules shared between system and home                     |
-| `lib/`           | Snowfall library extensions exposed under `lib.custom.*`   |
-| `packages/`      | Custom packages, surfaced as flake outputs                 |
-| `overlays/`      | Nixpkgs overlays (`brave`, `calibre`, `unstable-pkgs`)     |
-| `shells/`        | Per-language `nix develop` shells                          |
-| `secrets/`       | SOPS-encrypted secrets (see `.sops.yaml`)                  |
+| Path              | Purpose                                                   |
+| ----------------- | --------------------------------------------------------- |
+| `flake.nix`       | Flake entry point and inputs                              |
+| `systems/`        | Per-host NixOS / nix-darwin configurations                |
+| `homes/`          | Per-user Home Manager configurations                      |
+| `modules/nixos/`  | NixOS system modules                                      |
+| `modules/darwin/` | nix-darwin system and app modules                         |
+| `modules/home/`   | Home Manager modules                                      |
+| `modules/shared/` | Modules shared between system and home                    |
+| `lib/`            | Snowfall library extensions exposed under `lib.custom.*`  |
+| `packages/`       | Custom packages surfaced as flake outputs                 |
+| `overlays/`       | nixpkgs overlays                                          |
+| `shells/`         | Per-language `nix develop` shells                         |
+| `secrets/`        | SOPS-encrypted secrets                                    |
 
-### Hosts
+## Hosts
 
-- `systems/x86_64-linux/workstation` — main desktop
-- `systems/x86_64-linux/vm` — virtualised test target
-- `systems/aarch64-darwin/macbook` — work in progress (see `plans/darwin.md`)
+- `systems/x86_64-linux/workstation` - main NixOS desktop
+- `systems/x86_64-linux/vm` - virtualized test target
+- `systems/aarch64-darwin/macbook` - Apple Silicon MacBook
 
-## Common commands
+## Common Commands
 
-Rebuild the system (using [`nh`](https://github.com/viperML/nh)):
+Use `just` as the normal entry point:
 
 ```sh
-nh os switch     # rebuild and switch
-nh os boot       # rebuild and set as the next boot generation
-nh os test       # rebuild without switching (ephemeral, recommended for trying changes)
+just switch          # Darwin: HM then sudo darwin-rebuild; Linux: sudo nixos-rebuild
+just hm-switch       # standalone Home Manager switch
+just darwin-switch   # sudo darwin-rebuild for macbook
+just nixos-switch    # sudo nixos-rebuild for workstation
 ```
 
-Drop into a development shell:
+Development shells:
 
 ```sh
-nix develop .#nix    # nixfmt-rfc-style, nixd, sops
+nix develop .#nix
 nix develop .#go
 nix develop .#lua
 ```
 
-Run a custom package:
+Run custom packages:
 
 ```sh
-nix run .#backup              # back up /persist to ~/backup/backups/linux/
-nix run .#monitor-control     # monitor brightness / contrast
-nix run .#gammastep-helper    # screen colour temperature
-nix run .#waybar-vpn-status   # waybar VPN module
-nix run .#networkmon          # network monitor
+nix run .#backup
+nix run .#monitor-control
+nix run .#gammastep-helper
+nix run .#waybar-vpn-status
+nix run .#networkmon
 ```
 
-Format every Nix file in the tree:
+Format the tree:
 
 ```sh
 nix fmt
 ```
+
+## macOS Package Policy
+
+The rule for Darwin is:
+
+- **CLI tools**: use nixpkgs, Home Manager, flake inputs, overlays, or local packages.
+- **GUI apps and macOS app bundles**: use nix-darwin-managed Homebrew, with nix-homebrew as the preferred bootstrap layer if Homebrew ownership needs to be made fully declarative.
+
+This keeps the Mac simple and reliable. Even if a nixpkgs package exposes a
+`.app`, pinning that app into the Dock can leave a missing question mark after
+rebuilds because the Dock points at an old store path. Use Homebrew casks for
+apps that live in `/Applications`.
+
+Current examples:
+
+- `ghostty` and `wezterm` are Homebrew casks in `modules/darwin/apps/terminals/default.nix`
+- `worktrunk` is a Homebrew formula on macOS
+- `worktrunk` is installed from its upstream Nix flake on Linux
 
 ## Darwin MacBook
 
@@ -91,14 +113,13 @@ mkdir -p ~/.config/nix
 printf 'experimental-features = nix-command flakes\n' >> ~/.config/nix/nix.conf
 ```
 
-Clone this repo and switch to the Darwin branch:
+Clone this repo:
 
 ```sh
-mkdir -p ~/code
-cd ~/code
-git clone https://github.com/Nikola-Milovic/.dotfiles.git
-cd .dotfiles
-git switch darwin-macbook
+mkdir -p ~/Desktop
+cd ~/Desktop
+git clone https://github.com/Nikola-Milovic/.dotfiles.git dotfiles
+cd dotfiles
 ```
 
 Install the MacBook age key before activating SOPS-backed Home Manager:
@@ -108,47 +129,42 @@ mkdir -p ~/.config/sops/age
 install -m 600 ~/Downloads/macbook-keys.txt ~/.config/sops/age/keys.txt
 ```
 
-Before `just` is installed, use it through Nix:
+Bootstrap with `just` through Nix:
 
 ```sh
-nix run nixpkgs#just -- darwin-check
-nix run nixpkgs#just -- darwin-bootstrap
+nix run nixpkgs#just -- switch
 ```
 
 After the first successful activation:
 
 ```sh
-just darwin-check
-just darwin-switch
+just switch
 ```
 
-The standalone Home Manager helpers are available too:
-
-```sh
-nix run nixpkgs#just -- hm-bootstrap
-just hm-switch
-```
+`darwin-rebuild switch` must run as root. The `just` recipes already do that
+with `sudo`.
 
 ## Impermanence
 
-The root filesystem is reset on every boot. To keep state across reboots, opt in
-explicitly. This is Linux/NixOS-only; the Darwin configuration does not use
-impermanence.
+The NixOS root filesystem is reset on every boot. To keep state across reboots,
+opt in explicitly:
 
-- System state → `modules/nixos/system/impermanence/default.nix`
-- User state → `modules/home/impermanence/default.nix`
-- App-specific state → the relevant module's own impermanence block
+- System state: `modules/nixos/system/impermanence/default.nix`
+- User state: `modules/home/impermanence/default.nix`
+- App-specific state: the relevant module's own impermanence block
 
-Persistent data lives under `/persist/...` and is bind-mounted back to where
-the app expects it. Before any major change, snapshot it:
+Persistent data lives under `/persist/...` and is mounted back to where apps
+expect it. Before major changes, snapshot it:
 
 ```sh
 nix run .#backup
 ```
 
+Darwin does not use impermanence.
+
 ## Credits
 
-Heavy inspiration (and outright borrowed patterns) from:
+Heavy inspiration and borrowed patterns from:
 
 - [jakehamilton/config](https://github.com/jakehamilton/config)
 - [khaneliman/khanelinix](https://github.com/khaneliman/khanelinix)
