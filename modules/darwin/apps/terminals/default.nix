@@ -13,6 +13,9 @@ in
 {
   options.${namespace}.apps.terminals = {
     enable = mkBoolOpt false "Whether to install terminal emulator apps on macOS.";
+    brews = mkOpt (types.listOf types.str) [
+      "worktrunk"
+    ] "Homebrew formulae for terminal tooling.";
     casks = mkOpt (types.listOf types.str) [
       "ghostty"
       "wezterm"
@@ -22,6 +25,7 @@ in
   config = mkIf cfg.enable {
     homebrew = {
       enable = true;
+      brews = cfg.brews;
       casks = cfg.casks;
     };
   };

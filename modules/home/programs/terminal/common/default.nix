@@ -19,34 +19,38 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      file
-      which
-      tree
-      bottom
-      hyperfine
-      tokei
-      just
-      eza
-      procs
+    home.packages =
+      (with pkgs; [
+        file
+        which
+        tree
+        bottom
+        hyperfine
+        tokei
+        just
+        eza
+        procs
 
-      # disk size analyzers, I prefer ncdu
-      # dust
-      # dua
-      ncdu
+        # disk size analyzers, I prefer ncdu
+        # dust
+        # dua
+        ncdu
 
-      sqlite
-      rsync
+        sqlite
+        rsync
 
-      zip
-      unzip
+        zip
+        unzip
 
-      dig
-      inetutils
-      lsof
+        dig
+        inetutils
+        lsof
 
-      inputs.desloppify.packages.${system}.default
-    ];
+        inputs.desloppify.packages.${system}.default
+      ])
+      ++ optionals pkgs.stdenv.isLinux [
+        inputs.worktrunk.packages.${system}.worktrunk
+      ];
 
     # TODO: add superfile instead of yazi
     #https://superfile.netlify.app/list/theme-list/
