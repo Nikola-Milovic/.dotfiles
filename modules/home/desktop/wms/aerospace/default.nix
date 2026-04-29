@@ -130,11 +130,9 @@ in
       launchd.enable = true;
 
       userSettings = {
-        "config-version" = 2;
-
-        # `mode.*.binding` is source-of-truth in custom configs; defaults are not merged.
-        # Guide: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
-        "persistent-workspaces" = [ ];
+        # Keep version-gated keys like `config-version` and `persistent-workspaces`
+        # out of this generated config. Older AeroSpace releases reject unknown keys.
+        # Default config reference: https://nikitabobko.github.io/AeroSpace/guide#default-config
 
         # Keep `split` usable for the Sway-like Alt+z/Alt+v bindings.
         # Command docs: https://nikitabobko.github.io/AeroSpace/commands#split
@@ -161,6 +159,8 @@ in
         };
 
         mode = {
+          # `mode.*.binding` is source-of-truth in custom configs; defaults are not merged.
+          # Guide: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
           main.binding = mainBindings // workspaceFocusBindings // workspaceMoveBindings;
           volume.binding = volumeBindings;
         };
