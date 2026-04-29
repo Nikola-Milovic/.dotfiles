@@ -66,6 +66,7 @@ in
       vim
       git
     ];
+    environment.enableAllTerminfo = true;
 
     nix.gc = mkIf (config.${namespace}.programs.nh.enable == false) {
       automatic = true;

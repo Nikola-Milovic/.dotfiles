@@ -1,4 +1,5 @@
 {
+  pkgs,
   lib,
   namespace,
   ...
@@ -6,6 +7,11 @@
 with lib.${namespace};
 {
   nixpkgs.hostPlatform = "aarch64-darwin";
+
+  users.users.nikola = {
+    home = "/Users/nikola";
+    shell = pkgs.bashInteractive;
+  };
 
   system = {
     primaryUser = "nikola";
@@ -25,6 +31,7 @@ with lib.${namespace};
         enable = true;
         layout = "dvorak";
         remapCapsLockToControl = true;
+        remapNonUSTilde = true;
       };
     };
   };

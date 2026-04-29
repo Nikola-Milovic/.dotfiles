@@ -28,12 +28,14 @@ in
       description = "The macOS keyboard layout to select.";
     };
     remapCapsLockToControl = mkOpt types.bool true "Whether to remap Caps Lock to Control.";
+    remapNonUSTilde = mkOpt types.bool false "Whether to remap the non-US tilde key to grave/tilde.";
   };
 
   config = mkIf cfg.enable {
     system.keyboard = {
       enableKeyMapping = true;
       inherit (cfg) remapCapsLockToControl;
+      nonUS.remapTilde = cfg.remapNonUSTilde;
     };
 
     system.defaults.NSGlobalDomain = {
