@@ -31,6 +31,9 @@ in
 
       dock = {
         autohide = false;
+        # AeroSpace recommends this because hidden workspaces affect Mission Control sizing.
+        # https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
+        expose-group-apps = true;
         show-recents = false;
         launchanim = true;
         mouse-over-hilite-stack = true;
@@ -46,6 +49,10 @@ in
         Clicking = true;
         TrackpadThreeFingerDrag = true;
       };
+
+      # AeroSpace recommends disabling "Displays have separate Spaces" for stability.
+      # https://nikitabobko.github.io/AeroSpace/guide#a-note-on-displays-have-separate-spaces
+      spaces.spans-displays = true;
     };
   };
 }

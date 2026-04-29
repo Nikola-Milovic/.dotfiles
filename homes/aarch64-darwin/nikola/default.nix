@@ -27,5 +27,7 @@ with lib.${namespace};
       enable = true;
       defaultSopsFile = lib.snowfall.fs.get-file "secrets/users/nikola/secrets.yaml";
     };
+
+    desktop.wms.aerospace = enabled;
   };
 }
