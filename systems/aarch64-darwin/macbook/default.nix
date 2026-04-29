@@ -8,9 +8,13 @@ with lib.${namespace};
 {
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  users.users.nikola = {
-    home = "/Users/nikola";
-    shell = pkgs.bashInteractive;
+  users = {
+    knownUsers = [ "nikola" ];
+    users.nikola = {
+      home = "/Users/nikola";
+      shell = pkgs.bashInteractive;
+      uid = 501;
+    };
   };
 
   system = {
