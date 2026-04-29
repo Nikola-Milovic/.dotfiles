@@ -12,7 +12,11 @@ let
 
   modifier = cfg.modifier;
   exec = command: "exec-and-forget ${command}";
-  openApp = app: ''open -a "${app}"'';
+  # `exec-and-forget` runs through `/bin/bash -c`; use absolute system tools so
+  # app launchers do not depend on AeroSpace's launchd PATH.
+  # https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
+  # https://nikitabobko.github.io/AeroSpace/guide#exec-environment-variables
+  openApp = app: ''/usr/bin/open -a "${app}"'';
 
   digits = [
     "1"
@@ -60,7 +64,7 @@ let
     "${modifier}-v" = "split vertical";
 
     # Screenshots
-    "${modifier}-p" = "exec-and-forget screencapture -i -c";
+    "${modifier}-p" = "exec-and-forget /usr/sbin/screencapture -i -c";
 
     # Focus movement
     "${modifier}-ctrl-h" = "focus left";
@@ -91,7 +95,7 @@ let
     "1" = "volume up";
     "2" = "volume down";
     "3" = [
-      (exec ''open -a "System Settings"'')
+      (exec ''/usr/bin/open -a "System Settings"'')
       "mode main"
     ];
     "4" = "volume mute-toggle";
@@ -110,10 +114,11 @@ in
       "dvorak"
       "colemak"
     ]) "dvorak" "AeroSpace keyboard mapping preset.";
-    terminalCommand = mkOpt types.str ''open -na "Ghostty"'' "Command used to open a terminal.";
+    terminalCommand =
+      mkOpt types.str "/usr/bin/open -n /Applications/Ghostty.app"
+        "Command used to open a terminal.";
     launcherCommand =
-      mkOpt types.str
-        "osascript -e 'tell application \"System Events\" to key code 49 using command down'"
+      mkOpt types.str ''/usr/bin/open "raycast://"''
         "Command used to open the launcher.";
     braveApp = mkOpt types.str "Brave Browser" "macOS application name for Brave.";
     chromeApp = mkOpt types.str "Google Chrome" "macOS application name for Chrome.";
