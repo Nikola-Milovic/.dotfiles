@@ -22,6 +22,16 @@ with lib.${namespace};
     stateVersion = 6;
   };
 
+  environment.variables = {
+    LANG = "en_US.UTF-8";
+    LC_COLLATE = "en_US.UTF-8";
+  };
+
+  launchd.user.envVariables = {
+    LANG = "en_US.UTF-8";
+    LC_COLLATE = "en_US.UTF-8";
+  };
+
   custom = {
     apps = {
       terminals = enabled;
