@@ -65,6 +65,7 @@ in
       wget
       vim
       git
+      ghostty.terminfo
     ];
     environment.enableAllTerminfo = true;
 
