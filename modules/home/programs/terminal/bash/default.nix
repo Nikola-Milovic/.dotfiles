@@ -24,6 +24,12 @@ in
       enable = true;
       enableCompletion = true;
 
+      initExtra = mkIf pkgs.stdenv.isDarwin ''
+        if [ -d /Applications/Ghostty.app/Contents/Resources/terminfo ]; then
+          export TERMINFO_DIRS="/Applications/Ghostty.app/Contents/Resources/terminfo:$TERMINFO_DIRS"
+        fi
+      '';
+
       shellAliases = {
         c = "clear";
         less = "less -x4RFsX";
@@ -40,5 +46,13 @@ in
       sourceHighlight
     ];
 
+    home.file."Library/Application Support/com.mitchellh.ghostty/config.ghostty" =
+      mkIf pkgs.stdenv.isDarwin
+        {
+          force = true;
+          text = ''
+            command = /run/current-system/sw/bin/bash
+          '';
+        };
   };
 }

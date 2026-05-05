@@ -56,9 +56,27 @@ in
             identityFile = config.sops.secrets."ssh/laptop/private".path;
             identitiesOnly = true;
             addKeysToAgent = "yes";
+            setEnv.TERM = "xterm-256color";
           };
         })
       ];
     };
+
+    programs.bash.initExtra = lib.mkIf pkgs.stdenv.isDarwin ''
+      __custom_reset_terminal_input_modes() {
+        printf '\033[?9l\033[?1000l\033[?1001l\033[?1002l\033[?1003l\033[?1005l\033[?1006l\033[?1015l\033[?1004l\033[?2004l'
+      }
+
+      reset-terminal-input() {
+        __custom_reset_terminal_input_modes
+      }
+
+      ssh() {
+        command ssh "$@"
+        local status=$?
+        __custom_reset_terminal_input_modes
+        return "$status"
+      }
+    '';
   };
 }
