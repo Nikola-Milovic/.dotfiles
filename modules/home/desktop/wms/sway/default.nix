@@ -17,9 +17,11 @@ let
   inherit (lib.${namespace}) enabled mkOpt mkBoolOpt;
   cfg = config.${namespace}.desktop.wms.sway;
   osSwayEnabled = lib.attrByPath [ namespace "desktop" "wms" "sway" "enable" ] false osConfig;
+  # Standalone Home Manager evaluations do not receive NixOS' `osConfig`.
+  # Keep them aligned with the Linux hosts' default keyboard choice.
   osKeyboardXkb = lib.attrByPath [ namespace "system" "keyboard" "xkb" ] {
     layout = "us";
-    variant = "";
+    variant = "dvorak";
   } osConfig;
 in
 {
@@ -120,6 +122,8 @@ in
         input = {
           "*" = {
             xkb_layout = cfg.keyboardLayout;
+          }
+          // lib.optionalAttrs (cfg.keyboardVariant != "") {
             xkb_variant = cfg.keyboardVariant;
           };
         };
