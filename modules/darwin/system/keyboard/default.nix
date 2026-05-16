@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   namespace,
   ...
 }:
@@ -9,6 +10,16 @@ let
   inherit (lib.${namespace}) mkBoolOpt mkOpt;
 
   cfg = config.${namespace}.system.keyboard;
+  userKeyMappingJson = builtins.toJSON config.system.keyboard.userKeyMapping;
+  applyKeyboardMapping = pkgs.writeShellScript "apply-keyboard-mapping" ''
+    set -eu
+
+    sleep 5
+    /usr/bin/hidutil property --set '{"UserKeyMapping":${userKeyMappingJson}}'
+
+    sleep 15
+    /usr/bin/hidutil property --set '{"UserKeyMapping":${userKeyMappingJson}}'
+  '';
 
   dvorakInputSource = {
     InputSourceKind = "Keyboard Layout";
@@ -53,6 +64,16 @@ in
         AppleCurrentKeyboardLayoutInputSourceID = "com.apple.keylayout.Dvorak";
         AppleEnabledInputSources = [ dvorakInputSource ];
         AppleSelectedInputSources = [ dvorakInputSource ];
+      };
+    };
+
+    launchd.user.agents.keyboard-mapping = mkIf cfg.enable {
+      serviceConfig = {
+        ProgramArguments = [ "${applyKeyboardMapping}" ];
+        RunAtLoad = true;
+        ProcessType = "Interactive";
+        StandardOutPath = "/tmp/custom-keyboard-mapping.log";
+        StandardErrorPath = "/tmp/custom-keyboard-mapping.log";
       };
     };
   };

@@ -44,6 +44,7 @@ with lib.${namespace};
         dockTileSize = 48;
       };
       nix = enabled;
+      homebrew = enabled;
       keyboard = {
         enable = true;
         layout = "dvorak";

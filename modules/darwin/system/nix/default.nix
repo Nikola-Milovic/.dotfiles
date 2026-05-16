@@ -40,6 +40,7 @@ in
     };
 
     environment.systemPackages = with pkgs; [
+      ffmpeg
       git
       vim
       nixfmt-rfc-style

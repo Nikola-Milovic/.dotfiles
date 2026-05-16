@@ -23,6 +23,7 @@ in
       plugins = with pkgs.vimPlugins; [
         fzf-vim
         catppuccin-vim
+        vim-dirvish
       ];
       extraConfig = ''
         let mapleader = " "
@@ -36,7 +37,10 @@ in
 
         colorscheme catppuccin_macchiato
 
-        let g:netrw_sort_options = "i"
+        let g:loaded_netrwPlugin = 1
+        command! -nargs=? -complete=dir Explore Dirvish <args>
+        command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
+        command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
 
         " Keep the fzf picker readable regardless of the active highlight defaults.
         highlight FzfNormal guifg=#cad3f5 guibg=#24273a ctermfg=189 ctermbg=237

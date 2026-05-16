@@ -17,6 +17,7 @@ in
       "worktrunk"
     ] "Homebrew formulae for terminal tooling.";
     casks = mkOpt (types.listOf types.str) [
+      "codex"
       "ghostty"
       "wezterm"
     ] "Homebrew casks for terminal emulator apps.";

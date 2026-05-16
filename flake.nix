@@ -32,6 +32,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+
     impermanence.url = "github:nix-community/impermanence";
 
     snowfall-lib = {
@@ -98,6 +110,9 @@
       ];
 
       systems.modules = {
+        darwin = with inputs; [
+          nix-homebrew.darwinModules.nix-homebrew
+        ];
         nixos = with inputs; [
           disko.nixosModules.disko
           impermanence.nixosModule
