@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
+    nixpkgs-kernel-619.url = "github:NixOS/nixpkgs/107cba9eb4a8d8c9f8e9e61266d78d340867913a";
+
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     disko.url = "github:nix-community/disko";

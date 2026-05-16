@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   namespace,
@@ -14,7 +15,10 @@ in
 {
   imports = [ ./hardware-configuration.nix ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Temporary pin for shutdown regression: Linux 7.0.x reaches systemd poweroff
+  # but leaves the machine physically powered on, while 6.19.10 powers off cleanly.
+  boot.kernelPackages =
+    inputs.nixpkgs-kernel-619.legacyPackages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_6_19;
 
   # --------------
   custom = {
