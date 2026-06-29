@@ -46,6 +46,8 @@ in
         inetutils
         lsof
 
+        custom.codex-resets
+
         inputs.desloppify.packages.${system}.default
       ])
       ++ optionals pkgs.stdenv.isLinux [
