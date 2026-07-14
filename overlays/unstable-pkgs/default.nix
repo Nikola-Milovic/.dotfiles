@@ -1,6 +1,7 @@
 { channels, ... }:
 final: prev: {
   inherit (channels.unstable)
+    aseprite
     ollama
     ollama-cpu
     ollama-cuda

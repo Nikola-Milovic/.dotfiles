@@ -61,11 +61,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    locallm = {
-      url = "github:Nikola-Milovic/locallm";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     desloppify = {
       url = "github:Nikola-Milovic/desloppify";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -104,7 +99,6 @@
         sops-nix.homeManagerModules.sops
         nix-index-database.homeModules.nix-index
         whisp-away.nixosModules.home-manager
-        locallm.homeManagerModules.default
       ];
 
       systems.modules = {
