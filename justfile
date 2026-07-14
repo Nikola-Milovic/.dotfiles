@@ -4,9 +4,9 @@ home := "nikola"
 darwin_host := "macbook"
 nixos_host := "workstation"
 
-hm := "github:nix-community/home-manager/release-25.11"
-darwin_rebuild := "github:nix-darwin/nix-darwin/nix-darwin-25.11#darwin-rebuild"
-nixos_rebuild := "github:NixOS/nixpkgs/nixos-25.11#nixos-rebuild"
+hm := "github:nix-community/home-manager/release-26.05"
+darwin_rebuild := "github:nix-darwin/nix-darwin/nix-darwin-26.05#darwin-rebuild"
+nixos_rebuild := "github:NixOS/nixpkgs/nixos-26.05#nixos-rebuild"
 
 default:
     @printf '%s\n' 'switch' 'hm-switch' 'darwin-switch' 'nixos-switch'

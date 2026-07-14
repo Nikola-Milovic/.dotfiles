@@ -129,6 +129,7 @@ in
       yazi = {
         enable = true;
         enableBashIntegration = true;
+        shellWrapperName = "yy";
         settings = {
           manager = {
             sort_by = "extension";

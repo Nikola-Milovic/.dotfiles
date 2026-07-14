@@ -31,7 +31,7 @@ with lib.${namespace};
           brave = enabled;
         };
         obsidian = enabled;
-        sublime = enabled;
+        text-editor = enabled;
         rustdesk = enabled;
         wayvnc = enabled;
         vlc = enabled;

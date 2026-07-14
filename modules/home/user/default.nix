@@ -61,6 +61,7 @@ in
             in
             {
               enable = true;
+              setSessionVariables = true;
               desktop = appendToHomeDir "desktop";
               documents = appendToHomeDir "documents";
               download = appendToHomeDir "downloads";

@@ -14,6 +14,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    hardware.opentabletdriver.enable = true;
+    hardware.opentabletdriver = {
+      enable = true;
+      daemon.enable = true;
+    };
+
+    ${namespace}.system.impermanence.userDirectories = [ ".config/OpenTabletDriver" ];
   };
 }

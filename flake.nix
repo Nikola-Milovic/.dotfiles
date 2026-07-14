@@ -2,7 +2,7 @@
   description = "NixOS system setup";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     nixpkgs-kernel-619.url = "github:NixOS/nixpkgs/107cba9eb4a8d8c9f8e9e61266d78d340867913a";
 
@@ -18,17 +18,17 @@
     catppuccin-cursors.url = "github:catppuccin/cursors";
 
     catppuccin = {
-      url = "github:catppuccin/nix/release-25.11";
+      url = "github:catppuccin/nix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     darwin = {
-      url = "github:nix-darwin/nix-darwin/nix-darwin-25.11";
+      url = "github:nix-darwin/nix-darwin/nix-darwin-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -97,8 +97,6 @@
     lib.mkFlake {
       channels-config = {
         allowUnfree = true;
-        # TODO: figure out where was this added, probably calibre
-        permittedInsecurePackages = [ "openssl-1.1.1w" ];
       };
 
       homes.modules = with inputs; [

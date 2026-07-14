@@ -28,7 +28,7 @@ mkShell {
     #   nixpkgs-review
     #   snowfall-flake.packages.${system}.flake
     #   statix
-    nixfmt-rfc-style
+    nixfmt
     nixd
     sops
   ];

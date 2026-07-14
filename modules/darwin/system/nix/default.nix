@@ -43,7 +43,7 @@ in
       ffmpeg
       git
       vim
-      nixfmt-rfc-style
+      nixfmt
     ];
   };
 }

@@ -30,33 +30,31 @@ in
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks = mkMerge [
+      settings = mkMerge [
         (lib.mkIf config.${namespace}.security.sops.enable {
           "github.com" = {
-            hostname = "github.com";
-            identityFile = config.sops.secrets."ssh/github/private".path;
-            identitiesOnly = true;
-            addKeysToAgent = "yes";
+            HostName = "github.com";
+            IdentityFile = config.sops.secrets."ssh/github/private".path;
+            IdentitiesOnly = true;
+            AddKeysToAgent = "yes";
           };
           "aigpu" = {
-            user = "admin";
-            hostname = "100.65.28.102";
-            identityFile = config.sops.secrets."ssh/personal/private".path;
-            identitiesOnly = true;
-            addKeysToAgent = "yes";
-            extraOptions = {
-              PreferredAuthentications = "publickey";
-            };
+            User = "admin";
+            HostName = "100.65.28.102";
+            IdentityFile = config.sops.secrets."ssh/personal/private".path;
+            IdentitiesOnly = true;
+            AddKeysToAgent = "yes";
+            PreferredAuthentications = "publickey";
           };
         })
         (lib.mkIf (config.${namespace}.security.sops.enable && pkgs.stdenv.isDarwin) {
           "workstation" = {
-            hostname = "workstation.tail469983.ts.net";
-            user = "nikola";
-            identityFile = config.sops.secrets."ssh/laptop/private".path;
-            identitiesOnly = true;
-            addKeysToAgent = "yes";
-            setEnv.TERM = "xterm-256color";
+            HostName = "workstation.tail469983.ts.net";
+            User = "nikola";
+            IdentityFile = config.sops.secrets."ssh/laptop/private".path;
+            IdentitiesOnly = true;
+            AddKeysToAgent = "yes";
+            SetEnv.TERM = "xterm-256color";
           };
         })
       ];

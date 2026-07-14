@@ -131,7 +131,7 @@ in
       enable = true;
 
       # Home Manager writes ~/.config/aerospace/aerospace.toml and owns launchd.
-      # https://home-manager-options.extranix.com/?query=programs.aerospace&release=release-25.11
+      # https://home-manager-options.extranix.com/?query=programs.aerospace&release=release-26.05
       launchd.enable = true;
 
       userSettings = {

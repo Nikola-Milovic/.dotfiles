@@ -23,7 +23,7 @@ in
   config = {
     custom.home.extraOptions = {
       home.stateVersion = config.system.stateVersion;
-      home.file = mkAliasDefinitions cfg.file;
+      home.file = mkAliasDefinitions options.${namespace}.home.file;
       xdg.enable = true;
       xdg.configFile = mkAliasDefinitions options.${namespace}.home.configFile;
     };

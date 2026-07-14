@@ -56,7 +56,7 @@ printf 'experimental-features = nix-command flakes\n' >> ~/.config/nix/nix.conf
 Clone this repo, then bootstrap Home Manager from the flake:
 
 ```sh
-nix run github:nix-community/home-manager/release-25.11 -- switch --flake ~/path/to/.dotfiles#nikola
+nix run github:nix-community/home-manager/release-26.05 -- switch --flake ~/path/to/.dotfiles#nikola
 ```
 
 After the first activation, use:
@@ -195,7 +195,7 @@ On macOS:
 ```sh
 nix eval ~/path/to/.dotfiles#homeConfigurations."nikola".activationPackage.drvPath
 home-manager switch --flake ~/path/to/.dotfiles#nikola
-nix run github:nix-darwin/nix-darwin/nix-darwin-25.11#darwin-rebuild -- switch --flake ~/path/to/.dotfiles#macbook
+nix run github:nix-darwin/nix-darwin/nix-darwin-26.05#darwin-rebuild -- switch --flake ~/path/to/.dotfiles#macbook
 darwin-rebuild switch --flake ~/path/to/.dotfiles#macbook
 ```
 
