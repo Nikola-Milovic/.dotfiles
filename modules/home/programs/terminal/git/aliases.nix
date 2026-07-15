@@ -229,7 +229,6 @@
   };
 
   shellAliases = {
-    lg = "lazygit";
     # #
     # Git alias
     # #
