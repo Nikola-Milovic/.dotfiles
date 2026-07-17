@@ -6,6 +6,8 @@
 
     nixpkgs-kernel-619.url = "github:NixOS/nixpkgs/107cba9eb4a8d8c9f8e9e61266d78d340867913a";
 
+    nixpkgs-zellij.url = "github:NixOS/nixpkgs/b6018f87da91d19d0ab4cf979885689b469cdd41";
+
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     disko.url = "github:nix-community/disko";

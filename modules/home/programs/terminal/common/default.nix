@@ -120,7 +120,12 @@ in
         };
       };
 
-      zellij = enabled;
+      # TODO: Return to `pkgs.zellij` after https://github.com/openai/codex/issues/33037
+      # is fixed. Zellij 0.44.3 can freeze the Codex TUI on focus gain, so pin 0.43.1.
+      zellij = {
+        enable = true;
+        package = inputs.nixpkgs-zellij.legacyPackages.${system}.zellij;
+      };
       zoxide = {
         enable = true;
         enableBashIntegration = true;
