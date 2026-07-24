@@ -4,7 +4,8 @@
 
 final: prev: {
   brave = prev.brave.override {
-    vulkanSupport = true;
-    commandLineArgs = "--enable-features=AcceleratedVideoDecodeLinuxGL,VaapiVideoDecoder,VaapiIgnoreDriverChecks,Vulkan,DefaultANGLEVulkan,VulkanFromANGLE";
+    # Keep Chromium on its default OpenGL path. The Vulkan/ANGLE path corrupts
+    # hardware-decoded video when Sway exports the output through PipeWire.
+    vulkanSupport = false;
   };
 }

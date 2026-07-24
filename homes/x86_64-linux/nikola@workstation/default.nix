@@ -31,6 +31,10 @@ with lib.${namespace};
         browsers = {
           brave = enabled;
         };
+        obs-studio = {
+          enable = true;
+          driPrime = "pci-0000_03_00_0";
+        };
         obsidian = enabled;
         text-editor = enabled;
         rustdesk = enabled;

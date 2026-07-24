@@ -20,6 +20,14 @@ in
   boot.kernelPackages =
     inputs.nixpkgs-kernel-619.legacyPackages.${pkgs.stdenv.hostPlatform.system}.linuxPackages_6_19;
 
+  # Keep Sway, xdg-desktop-portal-wlr, and capture clients on the GPU driving
+  # the monitor. Otherwise wlroots renders on the iGPU and screen capture
+  # crosses GPUs, producing black or corrupted DMA-BUF frames.
+  environment.sessionVariables.WLR_DRM_DEVICES = "/dev/dri/rx7700xt-card";
+  services.udev.extraRules = ''
+    SUBSYSTEM=="drm", KERNEL=="card[0-9]", ATTRS{vendor}=="0x1002", ATTRS{device}=="0x747e", SYMLINK+="dri/rx7700xt-card"
+  '';
+
   # --------------
   custom = {
     virtualisation.kvm = enabled;
