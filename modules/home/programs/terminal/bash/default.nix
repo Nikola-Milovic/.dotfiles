@@ -39,6 +39,7 @@ in
         PAGER = "less";
         LESS = "-R";
         LESSOPEN = "| ${pkgs.sourceHighlight}/bin/src-hilite-lesspipe.sh %s";
+        VITEST_MAX_WORKERS = "8";
       };
     };
 

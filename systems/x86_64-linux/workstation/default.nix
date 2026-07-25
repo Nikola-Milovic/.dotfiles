@@ -24,9 +24,14 @@ in
   # the monitor. Otherwise wlroots renders on the iGPU and screen capture
   # crosses GPUs, producing black or corrupted DMA-BUF frames.
   environment.sessionVariables.WLR_DRM_DEVICES = "/dev/dri/rx7700xt-card";
+  environment.systemPackages = [ pkgs.gpu-screen-recorder-gtk ];
   services.udev.extraRules = ''
     SUBSYSTEM=="drm", KERNEL=="card[0-9]", ATTRS{vendor}=="0x1002", ATTRS{device}=="0x747e", SYMLINK+="dri/rx7700xt-card"
   '';
+
+  # Install the recorder and create the capability wrapper required for
+  # promptless direct KMS capture, bypassing the desktop portal.
+  programs.gpu-screen-recorder.enable = true;
 
   # --------------
   custom = {
@@ -43,6 +48,7 @@ in
       impermanence = {
         enable = true;
         device = "/dev/nvme1n1p2";
+        userDirectories = [ ".config/gpu-screen-recorder" ];
       };
 
       disko.btrfs = {
