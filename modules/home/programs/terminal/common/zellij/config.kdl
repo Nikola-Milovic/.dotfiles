@@ -119,6 +119,7 @@ keybinds clear-defaults=true {
     session {
         bind "Ctrl o" { SwitchToMode "Normal"; }
         bind "Ctrl s" { SwitchToMode "Scroll"; }
+        bind "a" { Quit; }
         bind "d" { Detach; }
         bind "w" {
             LaunchOrFocusPlugin "session-manager" {
@@ -153,7 +154,8 @@ keybinds clear-defaults=true {
     }
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }
-        bind "Ctrl q" { Quit; }
+        // Require Ctrl-q followed by a in Session mode to quit.
+        bind "Ctrl q" { SwitchToMode "Session"; }
         bind "Alt n" { NewPane; }
         bind "Alt i" { MoveTab "Left"; }
         bind "Alt o" { MoveTab "Right"; }
@@ -249,7 +251,7 @@ plugins {
 //   - true (default)
 //   - false
 //
-session_serialization false
+session_serialization true
 
 // Whether pane viewports are serialized along with the session, default is false
 // Options:
