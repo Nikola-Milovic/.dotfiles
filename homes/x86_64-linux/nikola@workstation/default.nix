@@ -65,6 +65,7 @@ with lib.${namespace};
     };
 
     services = {
+      cliproxyapi = disabled;
       syncthing = enabled;
       whisp-away = {
         enable = true;
