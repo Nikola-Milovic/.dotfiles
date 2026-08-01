@@ -116,10 +116,13 @@ keybinds clear-defaults=true {
         bind "Ctrl c" { SwitchToMode "Normal"; }
         bind "Esc" { UndoRenamePane; SwitchToMode "Pane"; }
     }
+    prompt {
+        bind "Ctrl q" { SwitchToMode "Normal"; }
+        bind "q" { Quit; }
+    }
     session {
         bind "Ctrl o" { SwitchToMode "Normal"; }
         bind "Ctrl s" { SwitchToMode "Scroll"; }
-        bind "a" { Quit; }
         bind "d" { Detach; }
         bind "w" {
             LaunchOrFocusPlugin "session-manager" {
@@ -154,8 +157,6 @@ keybinds clear-defaults=true {
     }
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }
-        // Require Ctrl-q followed by a in Session mode to quit.
-        bind "Ctrl q" { SwitchToMode "Session"; }
         bind "Alt n" { NewPane; }
         bind "Alt i" { MoveTab "Left"; }
         bind "Alt o" { MoveTab "Right"; }
@@ -179,6 +180,9 @@ keybinds clear-defaults=true {
     }
     shared_except "scroll" "locked" {
         bind "Ctrl s" { SwitchToMode "Scroll"; }
+    }
+    shared_except "prompt" "locked" {
+        bind "Ctrl q" { SwitchToMode "Prompt"; }
     }
     shared_except "session" "locked" {
         bind "Ctrl o" { SwitchToMode "Session"; }
@@ -208,13 +212,8 @@ plugins {
     }
 }
 
-// Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
-// eg. when terminal window with an active zellij session is closed
-// Options:
-//   - detach (Default)
-//   - quit
-//
-// on_force_close "quit"
+// Do not leave a detached session behind when its terminal is closed.
+on_force_close "quit"
 
 //  Send a request for a simplified ui (without arrow fonts) to plugins
 //  Options:
@@ -246,24 +245,8 @@ plugins {
 //
 // auto_layout true
 
-// Whether sessions should be serialized to the cache folder (including their tabs/panes, cwds and running commands) so that they can later be resurrected
-// Options:
-//   - true (default)
-//   - false
-//
-session_serialization true
-
-// Whether pane viewports are serialized along with the session, default is false
-// Options:
-//   - true
-//   - false (default)
-// serialize_pane_viewport true
-
-// Scrollback lines to serialize along with the pane viewport when serializing sessions, 0
-// defaults to the scrollback size. If this number is higher than the scrollback size, it will
-// also default to the scrollback size. This does nothing if `serialize_pane_viewport` is not true.
-//
-// scrollback_lines_to_serialize 10000
+// Exited sessions must not be persisted for resurrection.
+session_serialization false
 
 // Define color themes for Zellij
 // For more examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes

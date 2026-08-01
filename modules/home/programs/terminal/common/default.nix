@@ -12,6 +12,8 @@ with lib;
 with lib.${namespace};
 let
   cfg = config.${namespace}.programs.terminal.common;
+  zellijPkgs = inputs.nixpkgs-zellij.legacyPackages.${system};
+  zellijWithQuitHint = import ./zellij/package.nix { inherit zellijPkgs; };
 in
 {
   options.${namespace}.programs.terminal.common = with types; {
@@ -124,7 +126,7 @@ in
       # is fixed. Zellij 0.44.3 can freeze the Codex TUI on focus gain, so pin 0.43.1.
       zellij = {
         enable = true;
-        package = inputs.nixpkgs-zellij.legacyPackages.${system}.zellij;
+        package = zellijWithQuitHint;
       };
       zoxide = {
         enable = true;

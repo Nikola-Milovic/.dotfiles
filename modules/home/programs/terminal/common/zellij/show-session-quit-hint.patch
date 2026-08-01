@@ -1,0 +1,18 @@
+diff --git a/default-plugins/status-bar/src/one_line_ui.rs b/default-plugins/status-bar/src/one_line_ui.rs
+--- a/default-plugins/status-bar/src/one_line_ui.rs
++++ b/default-plugins/status-bar/src/one_line_ui.rs
+@@ -1370,3 +1370,5 @@ fn keybinds(mi: &ModeInfo) -> Vec<(String, String, Vec<KeyWithModifier>)> {
++    ]} else if mi.mode == IM::Prompt { vec![
++        (s("Quit"), s("Quit"), action_key(&km, &[Action::Quit])),
+     ]} else if mi.mode == IM::Session { vec![
+         (s("Detach"), s("Detach"), action_key(&km, &[Action::Detach])),
+         (s("Session Manager"), s("Manager"), session_manager_key(&km)),
+diff --git a/default-plugins/status-bar/src/second_line.rs b/default-plugins/status-bar/src/second_line.rs
+--- a/default-plugins/status-bar/src/second_line.rs
++++ b/default-plugins/status-bar/src/second_line.rs
+@@ -245,3 +245,5 @@ fn keybinds(mi: &ModeInfo) -> Vec<(String, String, Vec<KeyWithModifier>)> {
++    ]} else if mi.mode == IM::Prompt { vec![
++        (s("Quit"), s("Quit"), action_key(&km, &[Action::Quit])),
+     ]} else if mi.mode == IM::Session { vec![
+         (s("Detach"), s("Detach"), action_key(&km, &[Action::Detach])),
+         (s("Session Manager"), s("Manager"), action_key(&km, &[A::LaunchOrFocusPlugin(Default::default(), true, true, false, false), TO_NORMAL])), // not entirely accurate
